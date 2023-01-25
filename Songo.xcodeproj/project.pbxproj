@@ -10,9 +10,19 @@
 		AD56EA9529786AA900BD9F59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD56EA9429786AA900BD9F59 /* AppDelegate.swift */; };
 		AD56EA9729786AA900BD9F59 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD56EA9629786AA900BD9F59 /* SceneDelegate.swift */; };
 		AD56EA9929786AA900BD9F59 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD56EA9829786AA900BD9F59 /* ViewController.swift */; };
-		AD56EA9C29786AA900BD9F59 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD56EA9A29786AA900BD9F59 /* Main.storyboard */; };
 		AD56EA9E29786AA900BD9F59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD56EA9D29786AA900BD9F59 /* Assets.xcassets */; };
-		AD56EAA129786AA900BD9F59 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD56EA9F29786AA900BD9F59 /* LaunchScreen.storyboard */; };
+		DE4C8EC32981A12D0065C813 /* ClusterAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4C8EC22981A12D0065C813 /* ClusterAnnotationView.swift */; };
+		DE4C8EC52981A9330065C813 /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4C8EC42981A9330065C813 /* LocationController.swift */; };
+		DE4C8EC82981C32A0065C813 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4C8EC72981C32A0065C813 /* TabBarController.swift */; };
+		DE7319B7297F5FA900A6197C /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319B6297F5FA900A6197C /* AppContainer.swift */; };
+		DE7319B9297F60BD00A6197C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319B8297F60BD00A6197C /* MapViewController.swift */; };
+		DE7319BB297F610C00A6197C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319BA297F610C00A6197C /* BaseViewController.swift */; };
+		DE7319BD297F635A00A6197C /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319BC297F635A00A6197C /* MapView.swift */; };
+		DE7319C12980486800A6197C /* MapReactiveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319C02980486800A6197C /* MapReactiveButton.swift */; };
+		DE7319C3298054D500A6197C /* SongButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319C2298054D500A6197C /* SongButtonView.swift */; };
+		DE7319C62980581B00A6197C /* UIControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319C52980581B00A6197C /* UIControl.swift */; };
+		DE7319C8298061AF00A6197C /* SongPlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319C7298061AF00A6197C /* SongPlaylistView.swift */; };
+		DE7319CA29806C1300A6197C /* CircleRangeVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319C929806C1300A6197C /* CircleRangeVIew.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,10 +30,20 @@
 		AD56EA9429786AA900BD9F59 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AD56EA9629786AA900BD9F59 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		AD56EA9829786AA900BD9F59 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		AD56EA9B29786AA900BD9F59 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AD56EA9D29786AA900BD9F59 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		AD56EAA029786AA900BD9F59 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AD56EAA229786AA900BD9F59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DE4C8EC22981A12D0065C813 /* ClusterAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterAnnotationView.swift; sourceTree = "<group>"; };
+		DE4C8EC42981A9330065C813 /* LocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
+		DE4C8EC72981C32A0065C813 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		DE7319B6297F5FA900A6197C /* AppContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainer.swift; sourceTree = "<group>"; };
+		DE7319B8297F60BD00A6197C /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		DE7319BA297F610C00A6197C /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		DE7319BC297F635A00A6197C /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		DE7319C02980486800A6197C /* MapReactiveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapReactiveButton.swift; sourceTree = "<group>"; };
+		DE7319C2298054D500A6197C /* SongButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongButtonView.swift; sourceTree = "<group>"; };
+		DE7319C52980581B00A6197C /* UIControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIControl.swift; sourceTree = "<group>"; };
+		DE7319C7298061AF00A6197C /* SongPlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongPlaylistView.swift; sourceTree = "<group>"; };
+		DE7319C929806C1300A6197C /* CircleRangeVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleRangeVIew.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +76,81 @@
 		AD56EA9329786AA900BD9F59 /* Songo */ = {
 			isa = PBXGroup;
 			children = (
-				AD56EA9429786AA900BD9F59 /* AppDelegate.swift */,
-				AD56EA9629786AA900BD9F59 /* SceneDelegate.swift */,
-				AD56EA9829786AA900BD9F59 /* ViewController.swift */,
-				AD56EA9A29786AA900BD9F59 /* Main.storyboard */,
+				DEF2A8E02978862B002697F9 /* Model */,
+				DEF2A8E129788633002697F9 /* Controller */,
+				DE7319BE2980481900A6197C /* Scene */,
+				DE7319C42980580700A6197C /* Extensions */,
 				AD56EA9D29786AA900BD9F59 /* Assets.xcassets */,
-				AD56EA9F29786AA900BD9F59 /* LaunchScreen.storyboard */,
 				AD56EAA229786AA900BD9F59 /* Info.plist */,
 			);
 			path = Songo;
+			sourceTree = "<group>";
+		};
+		DE4C8EC62981C3120065C813 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				DE4C8EC72981C32A0065C813 /* TabBarController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		DE7319BE2980481900A6197C /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				DE4C8EC62981C3120065C813 /* TabBar */,
+				DE7319BF2980483900A6197C /* Map */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
+		DE7319BF2980483900A6197C /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				DE7319B8297F60BD00A6197C /* MapViewController.swift */,
+				DEF2A8E22978864D002697F9 /* View */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		DE7319C42980580700A6197C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				DE7319C52980581B00A6197C /* UIControl.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		DEF2A8E02978862B002697F9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DEF2A8E129788633002697F9 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				DE7319B6297F5FA900A6197C /* AppContainer.swift */,
+				AD56EA9429786AA900BD9F59 /* AppDelegate.swift */,
+				AD56EA9629786AA900BD9F59 /* SceneDelegate.swift */,
+				DE7319BA297F610C00A6197C /* BaseViewController.swift */,
+				AD56EA9829786AA900BD9F59 /* ViewController.swift */,
+				DE4C8EC42981A9330065C813 /* LocationController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		DEF2A8E22978864D002697F9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DE7319BC297F635A00A6197C /* MapView.swift */,
+				DE7319C02980486800A6197C /* MapReactiveButton.swift */,
+				DE7319C2298054D500A6197C /* SongButtonView.swift */,
+				DE7319C7298061AF00A6197C /* SongPlaylistView.swift */,
+				DE7319C929806C1300A6197C /* CircleRangeVIew.swift */,
+				DE4C8EC22981A12D0065C813 /* ClusterAnnotationView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,9 +211,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD56EAA129786AA900BD9F59 /* LaunchScreen.storyboard in Resources */,
 				AD56EA9E29786AA900BD9F59 /* Assets.xcassets in Resources */,
-				AD56EA9C29786AA900BD9F59 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,32 +222,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE7319BD297F635A00A6197C /* MapView.swift in Sources */,
+				DE7319C62980581B00A6197C /* UIControl.swift in Sources */,
+				DE7319C3298054D500A6197C /* SongButtonView.swift in Sources */,
+				DE4C8EC82981C32A0065C813 /* TabBarController.swift in Sources */,
 				AD56EA9929786AA900BD9F59 /* ViewController.swift in Sources */,
+				DE7319B7297F5FA900A6197C /* AppContainer.swift in Sources */,
 				AD56EA9529786AA900BD9F59 /* AppDelegate.swift in Sources */,
+				DE4C8EC52981A9330065C813 /* LocationController.swift in Sources */,
+				DE7319B9297F60BD00A6197C /* MapViewController.swift in Sources */,
 				AD56EA9729786AA900BD9F59 /* SceneDelegate.swift in Sources */,
+				DE4C8EC32981A12D0065C813 /* ClusterAnnotationView.swift in Sources */,
+				DE7319BB297F610C00A6197C /* BaseViewController.swift in Sources */,
+				DE7319C12980486800A6197C /* MapReactiveButton.swift in Sources */,
+				DE7319CA29806C1300A6197C /* CircleRangeVIew.swift in Sources */,
+				DE7319C8298061AF00A6197C /* SongPlaylistView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		AD56EA9A29786AA900BD9F59 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AD56EA9B29786AA900BD9F59 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		AD56EA9F29786AA900BD9F59 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AD56EAA029786AA900BD9F59 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		AD56EAA329786AA900BD9F59 /* Debug */ = {
@@ -287,14 +364,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = S7ZK5B3N8D;
+				DEVELOPMENT_TEAM = 67AYPRFZH8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Songo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -315,14 +392,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = S7ZK5B3N8D;
+				DEVELOPMENT_TEAM = 67AYPRFZH8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Songo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -10,14 +10,40 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+    var appContainer: AppContainer = AppContainer()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        // 1. Capture the scene if there is one into a variable
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        
+        let window = UIWindow(windowScene: windowScene)
+        
+        // 3. Disble DarkMode
+        if #available(iOS 13.0, *) {
+            window.overrideUserInterfaceStyle = .light
+        }
+//        // 4. Create the view hierarchy
+//        let viewController = getRootViewController()
+        
+//        // 5. Set the root view controller of the window
+//        window.rootViewController = viewController
+        
+        // 6. Set the window and make it keyAndVisible
+        self.window = window
+        window.makeKeyAndVisible()
+        window.rootViewController = appContainer.createMapScene()
     }
+    // Mostra tutorial caso seja a primeira vez no app
+//    func getRootViewController() -> UIViewController {
+//        let seenTutorial = UserDefaults.standard.bool(forKey: "SEEN-ONBOARDING")
+//        let rootViewController = seenTutorial ? appContainer.createTabBarControllerScene() : UINavigationController(rootViewController: appContainer.createOnBoardingScene(isFirstTime: true))
+//
+//        return rootViewController
+//    }
+
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.

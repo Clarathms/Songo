@@ -38,7 +38,10 @@ class MapView: MKMapView  {
         showsBuildings = false
     }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 //não está impactando em nada no momento (chamado em extensão do CLLocation)
     /// Set the center of the camera to the user`s location.
     /// - Parameter userLocation: the location of the user given by the LocationController.

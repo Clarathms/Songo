@@ -15,6 +15,9 @@ class MapViewController: BaseViewController<MapView> {
 =======
     
     
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     let locationController: LocationController
     // Variable that holds the value (true or false) if the user is logged or not.

@@ -20,6 +20,9 @@
 		DE4C8ECC2982F2D50065C813 /* MKMapViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4C8ECB2982F2D50065C813 /* MKMapViewDelegate.swift */; };
 		DE4C8ECE29830D330065C813 /* SongModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4C8ECD29830D330065C813 /* SongModel.swift */; };
 		DE4C8ED2298315E70065C813 /* SongRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4C8ED1298315E70065C813 /* SongRepository.swift */; };
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 		DE7319B7297F5FA900A6197C /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319B6297F5FA900A6197C /* AppContainer.swift */; };
 		DE7319B9297F60BD00A6197C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319B8297F60BD00A6197C /* MapViewController.swift */; };
@@ -48,6 +51,9 @@
 		DE4C8ECB2982F2D50065C813 /* MKMapViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKMapViewDelegate.swift; sourceTree = "<group>"; };
 		DE4C8ECD29830D330065C813 /* SongModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongModel.swift; sourceTree = "<group>"; };
 		DE4C8ED1298315E70065C813 /* SongRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongRepository.swift; sourceTree = "<group>"; };
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 		DE7319B6297F5FA900A6197C /* AppContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainer.swift; sourceTree = "<group>"; };
 		DE7319B8297F60BD00A6197C /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -241,8 +247,11 @@
 				DE7319BD297F635A00A6197C /* MapView.swift in Sources */,
 				DE7319C62980581B00A6197C /* UIControl.swift in Sources */,
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 				DE7319C3298054D500A6197C /* SongButtonView.swift in Sources */,
 =======
+=======
+>>>>>>> Stashed changes
 				DE7319C3298054D500A6197C /* AddSongButtonView.swift in Sources */,
 				DE4C8ED2298315E70065C813 /* SongRepository.swift in Sources */,
 				DE4C8ECC2982F2D50065C813 /* MKMapViewDelegate.swift in Sources */,

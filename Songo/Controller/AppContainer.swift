@@ -11,6 +11,9 @@ class AppContainer {
     /// The `LocationController` used by the entire app
     private lazy var locationController: LocationController = LocationController()
     
+    /// The `TabBarController` used by the entire app
+    private lazy var tabBarController: TabBarController = TabBarController(factory: self, locationController: locationController)
+    
 }
 //MARK: - Map Factory
 protocol MapSceneFactory {
@@ -26,4 +29,16 @@ extension AppContainer: MapSceneFactory {
         return MapViewController(locationController: locationController)
     }
     
+}
+
+protocol TabBarControllerSceneFactory {
+    
+    func createTabBarControllerScene() -> TabBarController
+}
+
+extension AppContainer: TabBarControllerSceneFactory {
+    
+    func createTabBarControllerScene() -> TabBarController {
+        return tabBarController
+    }
 }

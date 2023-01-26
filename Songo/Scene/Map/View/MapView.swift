@@ -37,4 +37,16 @@ class MapView: MKMapView  {
         mapType = .mutedStandard
         showsBuildings = false
     }
+    
+    /// Set the center of the camera to the user`s location.
+    /// - Parameter userLocation: the location of the user given by the LocationController.
+    func setRegionToUserCurrentLocation(userLocation: CLLocation) {
+        setCenter(userLocation.coordinate, animated: true)
+    }
+    /// Set the limited zoom region.
+    /// - Parameter userLocation: the location of the user given by the LocationController.
+    func setRegionToUserCurrentLocationWithZoomLimits(userLocation: CLLocation) {
+        let region = MKCoordinateRegion.init(center: userLocation.coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
+        setRegion(region, animated: true)
+    }
 }

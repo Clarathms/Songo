@@ -39,5 +39,8 @@ class TabBarController: UITabBarController {
         let mapTabBarItem = UITabBarItem(title: NSLocalizedString("Mapa", comment: "TabBarController: Name of the Map slot on Tab Bar."), image: UIImage(systemName: "map"), selectedImage: UIImage(systemName: "map.fill"))
         mapTabBarItem.tag = 0
         mapViewController.tabBarItem = mapTabBarItem
+        
+        // Adds the ViewControllers to the TabBar
+        setViewControllers([mapNavigationController],animated: false)
     }
 }

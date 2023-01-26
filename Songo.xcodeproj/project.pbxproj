@@ -15,6 +15,8 @@
 		DE4C8EC82981C32A0065C813 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4C8EC72981C32A0065C813 /* TabBarController.swift */; };
 		DE4C8ECA29822BA80065C813 /* CLLocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4C8EC929822BA80065C813 /* CLLocationManagerDelegate.swift */; };
 		DE4C8ECC2982F2D50065C813 /* MKMapViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4C8ECB2982F2D50065C813 /* MKMapViewDelegate.swift */; };
+		DE5DD17129833224002BEB3F /* SongRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD16F29833224002BEB3F /* SongRepository.swift */; };
+		DE5DD17229833224002BEB3F /* SongModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD17029833224002BEB3F /* SongModel.swift */; };
 		DE7319B7297F5FA900A6197C /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319B6297F5FA900A6197C /* AppContainer.swift */; };
 		DE7319B9297F60BD00A6197C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319B8297F60BD00A6197C /* MapViewController.swift */; };
 		DE7319BB297F610C00A6197C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319BA297F610C00A6197C /* BaseViewController.swift */; };
@@ -37,6 +39,8 @@
 		DE4C8EC72981C32A0065C813 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		DE4C8EC929822BA80065C813 /* CLLocationManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLLocationManagerDelegate.swift; sourceTree = "<group>"; };
 		DE4C8ECB2982F2D50065C813 /* MKMapViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKMapViewDelegate.swift; sourceTree = "<group>"; };
+		DE5DD16F29833224002BEB3F /* SongRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongRepository.swift; sourceTree = "<group>"; };
+		DE5DD17029833224002BEB3F /* SongModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongModel.swift; sourceTree = "<group>"; };
 		DE7319B6297F5FA900A6197C /* AppContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainer.swift; sourceTree = "<group>"; };
 		DE7319B8297F60BD00A6197C /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		DE7319BA297F610C00A6197C /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -78,7 +82,7 @@
 		AD56EA9329786AA900BD9F59 /* Songo */ = {
 			isa = PBXGroup;
 			children = (
-				DEF2A8E02978862B002697F9 /* Model */,
+				DE5DD16E29833224002BEB3F /* Model */,
 				DEF2A8E129788633002697F9 /* Controller */,
 				DE7319BE2980481900A6197C /* Scene */,
 				DE7319C42980580700A6197C /* Extensions */,
@@ -94,6 +98,15 @@
 				DE4C8EC72981C32A0065C813 /* TabBarController.swift */,
 			);
 			path = TabBar;
+			sourceTree = "<group>";
+		};
+		DE5DD16E29833224002BEB3F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DE5DD16F29833224002BEB3F /* SongRepository.swift */,
+				DE5DD17029833224002BEB3F /* SongModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		DE7319BE2980481900A6197C /* Scene */ = {
@@ -122,13 +135,6 @@
 				DE4C8ECB2982F2D50065C813 /* MKMapViewDelegate.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		DEF2A8E02978862B002697F9 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		DEF2A8E129788633002697F9 /* Controller */ = {
@@ -231,6 +237,7 @@
 				DE4C8ECC2982F2D50065C813 /* MKMapViewDelegate.swift in Sources */,
 				DE4C8EC82981C32A0065C813 /* TabBarController.swift in Sources */,
 				DE7319B7297F5FA900A6197C /* AppContainer.swift in Sources */,
+				DE5DD17229833224002BEB3F /* SongModel.swift in Sources */,
 				AD56EA9529786AA900BD9F59 /* AppDelegate.swift in Sources */,
 				DE4C8EC52981A9330065C813 /* LocationController.swift in Sources */,
 				DE4C8ECA29822BA80065C813 /* CLLocationManagerDelegate.swift in Sources */,
@@ -240,6 +247,7 @@
 				DE7319BB297F610C00A6197C /* BaseViewController.swift in Sources */,
 				DE7319C12980486800A6197C /* MapReactiveButton.swift in Sources */,
 				DE7319CA29806C1300A6197C /* CircleRangeView.swift in Sources */,
+				DE5DD17129833224002BEB3F /* SongRepository.swift in Sources */,
 				DE7319C8298061AF00A6197C /* SongPlaylistView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

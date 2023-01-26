@@ -11,6 +11,11 @@ import MapKit
 
 /// The View Controller of the Map Scene
 class MapViewController: BaseViewController<MapView> {
+<<<<<<< Updated upstream
+=======
+    
+    
+>>>>>>> Stashed changes
     let locationController: LocationController
     // Variable that holds the value (true or false) if the user is logged or not.
     var isAuthenticated: Bool
@@ -34,4 +39,25 @@ class MapViewController: BaseViewController<MapView> {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+<<<<<<< Updated upstream
+=======
+    
+    func updateOverlay(location: CLLocationCoordinate2D) {
+        let newCircle = MKCircle(center: location, radius: 500)
+        mainView.removeOverlays(mainView.overlays)
+        mainView.addOverlay(newCircle)
+    }
+    
+    override func viewDidLoad() {
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        setupLocationManager()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        isLocationOn = locationController.isLocationOn
+        guard let location = locationController.location?.coordinate else { return }
+        updateOverlay(location: location)
+    }
+>>>>>>> Stashed changes
 }

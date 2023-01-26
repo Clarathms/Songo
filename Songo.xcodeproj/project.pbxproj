@@ -14,12 +14,19 @@
 		DE4C8EC32981A12D0065C813 /* ClusterAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4C8EC22981A12D0065C813 /* ClusterAnnotationView.swift */; };
 		DE4C8EC52981A9330065C813 /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4C8EC42981A9330065C813 /* LocationController.swift */; };
 		DE4C8EC82981C32A0065C813 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4C8EC72981C32A0065C813 /* TabBarController.swift */; };
+<<<<<<< Updated upstream
+=======
+		DE4C8ECA29822BA80065C813 /* CLLocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4C8EC929822BA80065C813 /* CLLocationManagerDelegate.swift */; };
+		DE4C8ECC2982F2D50065C813 /* MKMapViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4C8ECB2982F2D50065C813 /* MKMapViewDelegate.swift */; };
+		DE4C8ECE29830D330065C813 /* SongModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4C8ECD29830D330065C813 /* SongModel.swift */; };
+		DE4C8ED2298315E70065C813 /* SongRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4C8ED1298315E70065C813 /* SongRepository.swift */; };
+>>>>>>> Stashed changes
 		DE7319B7297F5FA900A6197C /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319B6297F5FA900A6197C /* AppContainer.swift */; };
 		DE7319B9297F60BD00A6197C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319B8297F60BD00A6197C /* MapViewController.swift */; };
 		DE7319BB297F610C00A6197C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319BA297F610C00A6197C /* BaseViewController.swift */; };
 		DE7319BD297F635A00A6197C /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319BC297F635A00A6197C /* MapView.swift */; };
 		DE7319C12980486800A6197C /* MapReactiveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319C02980486800A6197C /* MapReactiveButton.swift */; };
-		DE7319C3298054D500A6197C /* SongButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319C2298054D500A6197C /* SongButtonView.swift */; };
+		DE7319C3298054D500A6197C /* AddSongButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319C2298054D500A6197C /* AddSongButtonView.swift */; };
 		DE7319C62980581B00A6197C /* UIControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319C52980581B00A6197C /* UIControl.swift */; };
 		DE7319C8298061AF00A6197C /* SongPlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319C7298061AF00A6197C /* SongPlaylistView.swift */; };
 		DE7319CA29806C1300A6197C /* CircleRangeVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319C929806C1300A6197C /* CircleRangeVIew.swift */; };
@@ -35,12 +42,19 @@
 		DE4C8EC22981A12D0065C813 /* ClusterAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterAnnotationView.swift; sourceTree = "<group>"; };
 		DE4C8EC42981A9330065C813 /* LocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
 		DE4C8EC72981C32A0065C813 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+<<<<<<< Updated upstream
+=======
+		DE4C8EC929822BA80065C813 /* CLLocationManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLLocationManagerDelegate.swift; sourceTree = "<group>"; };
+		DE4C8ECB2982F2D50065C813 /* MKMapViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKMapViewDelegate.swift; sourceTree = "<group>"; };
+		DE4C8ECD29830D330065C813 /* SongModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongModel.swift; sourceTree = "<group>"; };
+		DE4C8ED1298315E70065C813 /* SongRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongRepository.swift; sourceTree = "<group>"; };
+>>>>>>> Stashed changes
 		DE7319B6297F5FA900A6197C /* AppContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainer.swift; sourceTree = "<group>"; };
 		DE7319B8297F60BD00A6197C /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		DE7319BA297F610C00A6197C /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		DE7319BC297F635A00A6197C /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		DE7319C02980486800A6197C /* MapReactiveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapReactiveButton.swift; sourceTree = "<group>"; };
-		DE7319C2298054D500A6197C /* SongButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongButtonView.swift; sourceTree = "<group>"; };
+		DE7319C2298054D500A6197C /* AddSongButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSongButtonView.swift; sourceTree = "<group>"; };
 		DE7319C52980581B00A6197C /* UIControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIControl.swift; sourceTree = "<group>"; };
 		DE7319C7298061AF00A6197C /* SongPlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongPlaylistView.swift; sourceTree = "<group>"; };
 		DE7319C929806C1300A6197C /* CircleRangeVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleRangeVIew.swift; sourceTree = "<group>"; };
@@ -123,6 +137,8 @@
 		DEF2A8E02978862B002697F9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DE4C8ECD29830D330065C813 /* SongModel.swift */,
+				DE4C8ED1298315E70065C813 /* SongRepository.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -145,7 +161,7 @@
 			children = (
 				DE7319BC297F635A00A6197C /* MapView.swift */,
 				DE7319C02980486800A6197C /* MapReactiveButton.swift */,
-				DE7319C2298054D500A6197C /* SongButtonView.swift */,
+				DE7319C2298054D500A6197C /* AddSongButtonView.swift */,
 				DE7319C7298061AF00A6197C /* SongPlaylistView.swift */,
 				DE7319C929806C1300A6197C /* CircleRangeVIew.swift */,
 				DE4C8EC22981A12D0065C813 /* ClusterAnnotationView.swift */,
@@ -224,13 +240,20 @@
 			files = (
 				DE7319BD297F635A00A6197C /* MapView.swift in Sources */,
 				DE7319C62980581B00A6197C /* UIControl.swift in Sources */,
+<<<<<<< Updated upstream
 				DE7319C3298054D500A6197C /* SongButtonView.swift in Sources */,
+=======
+				DE7319C3298054D500A6197C /* AddSongButtonView.swift in Sources */,
+				DE4C8ED2298315E70065C813 /* SongRepository.swift in Sources */,
+				DE4C8ECC2982F2D50065C813 /* MKMapViewDelegate.swift in Sources */,
+>>>>>>> Stashed changes
 				DE4C8EC82981C32A0065C813 /* TabBarController.swift in Sources */,
 				AD56EA9929786AA900BD9F59 /* ViewController.swift in Sources */,
 				DE7319B7297F5FA900A6197C /* AppContainer.swift in Sources */,
 				AD56EA9529786AA900BD9F59 /* AppDelegate.swift in Sources */,
 				DE4C8EC52981A9330065C813 /* LocationController.swift in Sources */,
 				DE7319B9297F60BD00A6197C /* MapViewController.swift in Sources */,
+				DE4C8ECE29830D330065C813 /* SongModel.swift in Sources */,
 				AD56EA9729786AA900BD9F59 /* SceneDelegate.swift in Sources */,
 				DE4C8EC32981A12D0065C813 /* ClusterAnnotationView.swift in Sources */,
 				DE7319BB297F610C00A6197C /* BaseViewController.swift in Sources */,

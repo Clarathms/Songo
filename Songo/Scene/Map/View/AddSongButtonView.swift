@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 /// Set the button that assumes different states.
-class SongButtonView: UIButton {
+class AddSongButtonView: UIButton {
     
     // MARK: - Properties
     var _state: UIControl.State = .normal

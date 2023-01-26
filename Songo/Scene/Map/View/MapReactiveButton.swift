@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class MapReactiveButton: SongButtonView {
+class MapReactiveButton: AddSongButtonView {
     
     override init() {
         super.init()

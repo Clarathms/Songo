@@ -10,6 +10,11 @@
 		AD56EA9529786AA900BD9F59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD56EA9429786AA900BD9F59 /* AppDelegate.swift */; };
 		AD56EA9729786AA900BD9F59 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD56EA9629786AA900BD9F59 /* SceneDelegate.swift */; };
 		AD56EA9E29786AA900BD9F59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD56EA9D29786AA900BD9F59 /* Assets.xcassets */; };
+		ADD39B0F2983038200888559 /* AuthorizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD39B0E2983038200888559 /* AuthorizationView.swift */; };
+		ADD39B11298305D900888559 /* TutorialPage1.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD39B10298305D900888559 /* TutorialPage1.swift */; };
+		ADD39B132983063500888559 /* TutorialPage2.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD39B122983063500888559 /* TutorialPage2.swift */; };
+		ADD39B152983063D00888559 /* TutorialPage3.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD39B142983063D00888559 /* TutorialPage3.swift */; };
+		ADD39B19298317E400888559 /* GoToVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD39B18298317E400888559 /* GoToVC.swift */; };
 		DE4C8EC32981A12D0065C813 /* ClusterAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4C8EC22981A12D0065C813 /* ClusterAnnotationView.swift */; };
 		DE4C8EC52981A9330065C813 /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4C8EC42981A9330065C813 /* LocationController.swift */; };
 		DE4C8EC82981C32A0065C813 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4C8EC72981C32A0065C813 /* TabBarController.swift */; };
@@ -32,6 +37,11 @@
 		AD56EA9629786AA900BD9F59 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		AD56EA9D29786AA900BD9F59 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AD56EAA229786AA900BD9F59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ADD39B0E2983038200888559 /* AuthorizationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationView.swift; sourceTree = "<group>"; };
+		ADD39B10298305D900888559 /* TutorialPage1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialPage1.swift; sourceTree = "<group>"; };
+		ADD39B122983063500888559 /* TutorialPage2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialPage2.swift; sourceTree = "<group>"; };
+		ADD39B142983063D00888559 /* TutorialPage3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialPage3.swift; sourceTree = "<group>"; };
+		ADD39B18298317E400888559 /* GoToVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoToVC.swift; sourceTree = "<group>"; };
 		DE4C8EC22981A12D0065C813 /* ClusterAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterAnnotationView.swift; sourceTree = "<group>"; };
 		DE4C8EC42981A9330065C813 /* LocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
 		DE4C8EC72981C32A0065C813 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -88,6 +98,34 @@
 			path = Songo;
 			sourceTree = "<group>";
 		};
+		ADD39B0D2983035900888559 /* Tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				ADD39B17298317D500888559 /* Controller */,
+				ADD39B16298317C400888559 /* View */,
+			);
+			path = Tutorial;
+			sourceTree = "<group>";
+		};
+		ADD39B16298317C400888559 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				ADD39B0E2983038200888559 /* AuthorizationView.swift */,
+				ADD39B10298305D900888559 /* TutorialPage1.swift */,
+				ADD39B122983063500888559 /* TutorialPage2.swift */,
+				ADD39B142983063D00888559 /* TutorialPage3.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		ADD39B17298317D500888559 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				ADD39B18298317E400888559 /* GoToVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		DE4C8EC62981C3120065C813 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -99,6 +137,7 @@
 		DE7319BE2980481900A6197C /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				ADD39B0D2983035900888559 /* Tutorial */,
 				DE4C8EC62981C3120065C813 /* TabBar */,
 				DE7319BF2980483900A6197C /* Map */,
 			);
@@ -231,14 +270,19 @@
 				DE4C8ECC2982F2D50065C813 /* MKMapViewDelegate.swift in Sources */,
 				DE4C8EC82981C32A0065C813 /* TabBarController.swift in Sources */,
 				DE7319B7297F5FA900A6197C /* AppContainer.swift in Sources */,
+				ADD39B0F2983038200888559 /* AuthorizationView.swift in Sources */,
 				AD56EA9529786AA900BD9F59 /* AppDelegate.swift in Sources */,
 				DE4C8EC52981A9330065C813 /* LocationController.swift in Sources */,
 				DE4C8ECA29822BA80065C813 /* CLLocationManagerDelegate.swift in Sources */,
+				ADD39B19298317E400888559 /* GoToVC.swift in Sources */,
+				ADD39B152983063D00888559 /* TutorialPage3.swift in Sources */,
+				ADD39B11298305D900888559 /* TutorialPage1.swift in Sources */,
 				DE7319B9297F60BD00A6197C /* MapViewController.swift in Sources */,
 				AD56EA9729786AA900BD9F59 /* SceneDelegate.swift in Sources */,
 				DE4C8EC32981A12D0065C813 /* ClusterAnnotationView.swift in Sources */,
 				DE7319BB297F610C00A6197C /* BaseViewController.swift in Sources */,
 				DE7319C12980486800A6197C /* MapReactiveButton.swift in Sources */,
+				ADD39B132983063500888559 /* TutorialPage2.swift in Sources */,
 				DE7319CA29806C1300A6197C /* CircleRangeView.swift in Sources */,
 				DE7319C8298061AF00A6197C /* SongPlaylistView.swift in Sources */,
 			);

@@ -43,6 +43,11 @@ class SongButtonView: UIButton {
         addDropShadow()
         setTitleColor(.white, for: .normal)
         setTitleColor(.blue, for: .disabled)
+        
+///       talvez não precise
+
+//        setTitle(NSLocalizedString("Adicionar música atual", comment: "MapReactiveButton: title for MapReactiveButton"), for: .addCurrentSong)
+//        contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     }
     
     required init?(coder: NSCoder) {

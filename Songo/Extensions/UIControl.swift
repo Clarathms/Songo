@@ -10,6 +10,6 @@ import UIKit
 
 extension UIControl.State {
     static let locationOccupied = UIControl.State(rawValue: 1 << 16)
-    static let addCurrentSong = UIControl.State(rawValue: 1 << 17)
+    static let addCurrentSong = UIControl.State(rawValue: 1 << 17)//????
     static let userNotFocus = UIControl.State(rawValue: 1 << 18)
 }

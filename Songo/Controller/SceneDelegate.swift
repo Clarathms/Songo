@@ -36,6 +36,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.makeKeyAndVisible()
         window.rootViewController = appContainer.createTabBarControllerScene()
     }
+    
+//    func getRootViewController() -> UIViewController {
+//        
+//    }
     // Mostra tutorial caso seja a primeira vez no app
 //    func getRootViewController() -> UIViewController {
 //        let seenTutorial = UserDefaults.standard.bool(forKey: "SEEN-ONBOARDING")

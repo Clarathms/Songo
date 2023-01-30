@@ -19,7 +19,8 @@
 		DE5DD17229833224002BEB3F /* SongPlacementModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD17029833224002BEB3F /* SongPlacementModel.swift */; };
 		DE5DD175298421C3002BEB3F /* SongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD174298421C3002BEB3F /* SongViewController.swift */; };
 		DE5DD178298421F8002BEB3F /* SongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD177298421F8002BEB3F /* SongView.swift */; };
-		DE5DD17B29843B38002BEB3F /* MusicController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD17A29843B38002BEB3F /* MusicController.swift */; };
+		DE5DD17B29843B38002BEB3F /* AppleMusicController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD17A29843B38002BEB3F /* AppleMusicController.swift */; };
+		DE5DD17E2984813D002BEB3F /* AppleMusicService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD17D2984813D002BEB3F /* AppleMusicService.swift */; };
 		DE7319B7297F5FA900A6197C /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319B6297F5FA900A6197C /* AppContainer.swift */; };
 		DE7319B9297F60BD00A6197C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319B8297F60BD00A6197C /* MapViewController.swift */; };
 		DE7319BB297F610C00A6197C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319BA297F610C00A6197C /* BaseViewController.swift */; };
@@ -46,7 +47,8 @@
 		DE5DD17029833224002BEB3F /* SongPlacementModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongPlacementModel.swift; sourceTree = "<group>"; };
 		DE5DD174298421C3002BEB3F /* SongViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongViewController.swift; sourceTree = "<group>"; };
 		DE5DD177298421F8002BEB3F /* SongView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongView.swift; sourceTree = "<group>"; };
-		DE5DD17A29843B38002BEB3F /* MusicController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicController.swift; sourceTree = "<group>"; };
+		DE5DD17A29843B38002BEB3F /* AppleMusicController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicController.swift; sourceTree = "<group>"; };
+		DE5DD17D2984813D002BEB3F /* AppleMusicService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicService.swift; sourceTree = "<group>"; };
 		DE7319B6297F5FA900A6197C /* AppContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainer.swift; sourceTree = "<group>"; };
 		DE7319B8297F60BD00A6197C /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		DE7319BA297F610C00A6197C /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 				DEF2A8E129788633002697F9 /* Controller */,
 				DE7319BE2980481900A6197C /* Scene */,
 				DE7319C42980580700A6197C /* Extensions */,
+				DE5DD17C2984812B002BEB3F /* Services */,
 				AD56EA9D29786AA900BD9F59 /* Assets.xcassets */,
 				AD56EAA229786AA900BD9F59 /* Info.plist */,
 			);
@@ -142,6 +145,14 @@
 			path = ViewComponents;
 			sourceTree = "<group>";
 		};
+		DE5DD17C2984812B002BEB3F /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				DE5DD17D2984813D002BEB3F /* AppleMusicService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		DE7319BE2980481900A6197C /* Scene */ = {
 			isa = PBXGroup;
 			children = (
@@ -179,7 +190,7 @@
 				AD56EA9629786AA900BD9F59 /* SceneDelegate.swift */,
 				DE7319BA297F610C00A6197C /* BaseViewController.swift */,
 				DE4C8EC42981A9330065C813 /* LocationController.swift */,
-				DE5DD17A29843B38002BEB3F /* MusicController.swift */,
+				DE5DD17A29843B38002BEB3F /* AppleMusicController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -271,12 +282,13 @@
 				DE4C8ECC2982F2D50065C813 /* MKMapViewDelegate.swift in Sources */,
 				DE4C8EC82981C32A0065C813 /* TabBarController.swift in Sources */,
 				DE7319B7297F5FA900A6197C /* AppContainer.swift in Sources */,
+				DE5DD17E2984813D002BEB3F /* AppleMusicService.swift in Sources */,
 				DE5DD17229833224002BEB3F /* SongPlacementModel.swift in Sources */,
 				DE5DD178298421F8002BEB3F /* SongView.swift in Sources */,
 				DE5DD175298421C3002BEB3F /* SongViewController.swift in Sources */,
 				AD56EA9529786AA900BD9F59 /* AppDelegate.swift in Sources */,
 				DE4C8EC52981A9330065C813 /* LocationController.swift in Sources */,
-				DE5DD17B29843B38002BEB3F /* MusicController.swift in Sources */,
+				DE5DD17B29843B38002BEB3F /* AppleMusicController.swift in Sources */,
 				DE4C8ECA29822BA80065C813 /* CLLocationManagerDelegate.swift in Sources */,
 				DE7319B9297F60BD00A6197C /* MapViewController.swift in Sources */,
 				AD56EA9729786AA900BD9F59 /* SceneDelegate.swift in Sources */,

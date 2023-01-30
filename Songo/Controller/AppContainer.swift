@@ -11,8 +11,10 @@ class AppContainer {
     /// The `LocationController` used by the entire app
     private lazy var locationController: LocationController = LocationController()
     
+    private lazy var appleMusicController: AppleMusicController = AppleMusicController()
+    
     /// The `TabBarController` used by the entire app
-    private lazy var tabBarController: TabBarController = TabBarController(factory: self, locationController: locationController)
+    private lazy var tabBarController: TabBarController = TabBarController(factory: self, locationController: locationController, appleMusicController: appleMusicController)
     
 }
 //MARK: - Map Factory
@@ -40,5 +42,15 @@ extension AppContainer: TabBarControllerSceneFactory {
     
     func createTabBarControllerScene() -> TabBarController {
         return tabBarController
+    }
+}
+
+protocol AppleMusicFactory {
+    func createAppleMusicAuthorization() -> AppleMusicController
+}
+
+extension AppContainer: AppleMusicFactory {
+    func createAppleMusicAuthorization() -> AppleMusicController {
+        return appleMusicController
     }
 }

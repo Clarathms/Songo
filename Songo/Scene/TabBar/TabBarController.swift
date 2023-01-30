@@ -14,19 +14,23 @@ class TabBarController: UITabBarController {
     let factory: Factory
     
     let locationController: LocationController
+    let appleMusicController: AppleMusicController
+
     
-    init(factory: Factory, locationController: LocationController) {
+    init(factory: Factory, locationController: LocationController, appleMusicController: AppleMusicController) {
         self.locationController = locationController
         self.factory = factory
+        self.appleMusicController = appleMusicController
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func loadView() {
         super.loadView()
+        appleMusicController.checkAppleMusicAuthorization()
         locationController.checkLocationServices()
         setApplicationViewControllers()
     }

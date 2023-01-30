@@ -24,9 +24,13 @@ class AppleMusicController {
             switch appleMusicAuthorization {
             case .notDetermined:
                 appleMusicAuthorization = await MusicAuthorization.request()
+            case .authorized:
+                Task{
+                    lastSubscriptionUpdate
+                }
             default:
                 // TODO: Arrumar a lógica não posso dar fatal error
-                fatalError("No button should be displayed for current authorization status: \(appleMusicAuthorization).")
+                appleMusicAuthorization = await MusicAuthorization.request()
             }
         }
        

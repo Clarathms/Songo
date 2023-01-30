@@ -21,6 +21,13 @@
 		DE5DD178298421F8002BEB3F /* SongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD177298421F8002BEB3F /* SongView.swift */; };
 		DE5DD17B29843B38002BEB3F /* AppleMusicController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD17A29843B38002BEB3F /* AppleMusicController.swift */; };
 		DE5DD17E2984813D002BEB3F /* AppleMusicService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD17D2984813D002BEB3F /* AppleMusicService.swift */; };
+		DE5DD18A298874C4002BEB3F /* ViewControllerTutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD181298874C4002BEB3F /* ViewControllerTutorial.swift */; };
+		DE5DD18C298874C4002BEB3F /* GoToVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD183298874C4002BEB3F /* GoToVC.swift */; };
+		DE5DD18D298874C4002BEB3F /* TutorialPage3.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD185298874C4002BEB3F /* TutorialPage3.swift */; };
+		DE5DD18E298874C4002BEB3F /* TutorialPage1.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD186298874C4002BEB3F /* TutorialPage1.swift */; };
+		DE5DD18F298874C4002BEB3F /* TutorialPage2.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD187298874C4002BEB3F /* TutorialPage2.swift */; };
+		DE5DD190298874C4002BEB3F /* AuthorizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD188298874C4002BEB3F /* AuthorizationView.swift */; };
+		DE5DD193298875BC002BEB3F /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD192298875BC002BEB3F /* UIColor.swift */; };
 		DE7319B7297F5FA900A6197C /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319B6297F5FA900A6197C /* AppContainer.swift */; };
 		DE7319B9297F60BD00A6197C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319B8297F60BD00A6197C /* MapViewController.swift */; };
 		DE7319BB297F610C00A6197C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319BA297F610C00A6197C /* BaseViewController.swift */; };
@@ -49,6 +56,13 @@
 		DE5DD177298421F8002BEB3F /* SongView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongView.swift; sourceTree = "<group>"; };
 		DE5DD17A29843B38002BEB3F /* AppleMusicController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicController.swift; sourceTree = "<group>"; };
 		DE5DD17D2984813D002BEB3F /* AppleMusicService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicService.swift; sourceTree = "<group>"; };
+		DE5DD181298874C4002BEB3F /* ViewControllerTutorial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerTutorial.swift; sourceTree = "<group>"; };
+		DE5DD183298874C4002BEB3F /* GoToVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoToVC.swift; sourceTree = "<group>"; };
+		DE5DD185298874C4002BEB3F /* TutorialPage3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialPage3.swift; sourceTree = "<group>"; };
+		DE5DD186298874C4002BEB3F /* TutorialPage1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialPage1.swift; sourceTree = "<group>"; };
+		DE5DD187298874C4002BEB3F /* TutorialPage2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialPage2.swift; sourceTree = "<group>"; };
+		DE5DD188298874C4002BEB3F /* AuthorizationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationView.swift; sourceTree = "<group>"; };
+		DE5DD192298875BC002BEB3F /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		DE7319B6297F5FA900A6197C /* AppContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainer.swift; sourceTree = "<group>"; };
 		DE7319B8297F60BD00A6197C /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		DE7319BA297F610C00A6197C /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -153,9 +167,39 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		DE5DD17F298874C4002BEB3F /* Tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				DE5DD180298874C4002BEB3F /* Controller */,
+				DE5DD184298874C4002BEB3F /* View */,
+			);
+			path = Tutorial;
+			sourceTree = "<group>";
+		};
+		DE5DD180298874C4002BEB3F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				DE5DD181298874C4002BEB3F /* ViewControllerTutorial.swift */,
+				DE5DD183298874C4002BEB3F /* GoToVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		DE5DD184298874C4002BEB3F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DE5DD186298874C4002BEB3F /* TutorialPage1.swift */,
+				DE5DD187298874C4002BEB3F /* TutorialPage2.swift */,
+				DE5DD185298874C4002BEB3F /* TutorialPage3.swift */,
+				DE5DD188298874C4002BEB3F /* AuthorizationView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		DE7319BE2980481900A6197C /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				DE5DD17F298874C4002BEB3F /* Tutorial */,
 				DE5DD173298421B2002BEB3F /* Song */,
 				DE4C8EC62981C3120065C813 /* TabBar */,
 				DE7319BF2980483900A6197C /* Map */,
@@ -175,6 +219,7 @@
 		DE7319C42980580700A6197C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				DE5DD192298875BC002BEB3F /* UIColor.swift */,
 				DE7319C52980581B00A6197C /* UIControl.swift */,
 				DE4C8EC929822BA80065C813 /* CLLocationManagerDelegate.swift */,
 				DE4C8ECB2982F2D50065C813 /* MKMapViewDelegate.swift */,
@@ -277,10 +322,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE7319BD297F635A00A6197C /* MapView.swift in Sources */,
+				DE5DD18E298874C4002BEB3F /* TutorialPage1.swift in Sources */,
 				DE7319C62980581B00A6197C /* UIControl.swift in Sources */,
 				DE7319C3298054D500A6197C /* SongButtonView.swift in Sources */,
+				DE5DD193298875BC002BEB3F /* UIColor.swift in Sources */,
 				DE4C8ECC2982F2D50065C813 /* MKMapViewDelegate.swift in Sources */,
+				DE5DD190298874C4002BEB3F /* AuthorizationView.swift in Sources */,
+				DE5DD18F298874C4002BEB3F /* TutorialPage2.swift in Sources */,
 				DE4C8EC82981C32A0065C813 /* TabBarController.swift in Sources */,
+				DE5DD18A298874C4002BEB3F /* ViewControllerTutorial.swift in Sources */,
+				DE5DD18D298874C4002BEB3F /* TutorialPage3.swift in Sources */,
 				DE7319B7297F5FA900A6197C /* AppContainer.swift in Sources */,
 				DE5DD17E2984813D002BEB3F /* AppleMusicService.swift in Sources */,
 				DE5DD17229833224002BEB3F /* SongPlacementModel.swift in Sources */,
@@ -293,6 +344,7 @@
 				DE7319B9297F60BD00A6197C /* MapViewController.swift in Sources */,
 				AD56EA9729786AA900BD9F59 /* SceneDelegate.swift in Sources */,
 				DE4C8EC32981A12D0065C813 /* ClusterAnnotationView.swift in Sources */,
+				DE5DD18C298874C4002BEB3F /* GoToVC.swift in Sources */,
 				DE7319BB297F610C00A6197C /* BaseViewController.swift in Sources */,
 				DE7319C12980486800A6197C /* MapReactiveButton.swift in Sources */,
 				DE7319CA29806C1300A6197C /* CircleRangeView.swift in Sources */,

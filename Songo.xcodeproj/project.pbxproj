@@ -10,6 +10,8 @@
 		AD56EA9529786AA900BD9F59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD56EA9429786AA900BD9F59 /* AppDelegate.swift */; };
 		AD56EA9729786AA900BD9F59 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD56EA9629786AA900BD9F59 /* SceneDelegate.swift */; };
 		AD56EA9E29786AA900BD9F59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD56EA9D29786AA900BD9F59 /* Assets.xcassets */; };
+		AD5F5A3B29845AAC00441743 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5F5A3A29845AAC00441743 /* UIColor.swift */; };
+		AD8EB7D629886B330084A61A /* SwiftUIHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8EB7D529886B330084A61A /* SwiftUIHostingVC.swift */; };
 		ADD39B0F2983038200888559 /* AuthorizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD39B0E2983038200888559 /* AuthorizationView.swift */; };
 		ADD39B11298305D900888559 /* TutorialPage1.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD39B10298305D900888559 /* TutorialPage1.swift */; };
 		ADD39B132983063500888559 /* TutorialPage2.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD39B122983063500888559 /* TutorialPage2.swift */; };
@@ -37,6 +39,8 @@
 		AD56EA9629786AA900BD9F59 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		AD56EA9D29786AA900BD9F59 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AD56EAA229786AA900BD9F59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AD5F5A3A29845AAC00441743 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		AD8EB7D529886B330084A61A /* SwiftUIHostingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIHostingVC.swift; sourceTree = "<group>"; };
 		ADD39B0E2983038200888559 /* AuthorizationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationView.swift; sourceTree = "<group>"; };
 		ADD39B10298305D900888559 /* TutorialPage1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialPage1.swift; sourceTree = "<group>"; };
 		ADD39B122983063500888559 /* TutorialPage2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialPage2.swift; sourceTree = "<group>"; };
@@ -121,6 +125,7 @@
 		ADD39B17298317D500888559 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				AD8EB7D529886B330084A61A /* SwiftUIHostingVC.swift */,
 				ADD39B18298317E400888559 /* GoToVC.swift */,
 			);
 			path = Controller;
@@ -159,6 +164,7 @@
 				DE7319C52980581B00A6197C /* UIControl.swift */,
 				DE4C8EC929822BA80065C813 /* CLLocationManagerDelegate.swift */,
 				DE4C8ECB2982F2D50065C813 /* MKMapViewDelegate.swift */,
+				AD5F5A3A29845AAC00441743 /* UIColor.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -269,10 +275,12 @@
 				DE7319C3298054D500A6197C /* SongButtonView.swift in Sources */,
 				DE4C8ECC2982F2D50065C813 /* MKMapViewDelegate.swift in Sources */,
 				DE4C8EC82981C32A0065C813 /* TabBarController.swift in Sources */,
+				AD8EB7D629886B330084A61A /* SwiftUIHostingVC.swift in Sources */,
 				DE7319B7297F5FA900A6197C /* AppContainer.swift in Sources */,
 				ADD39B0F2983038200888559 /* AuthorizationView.swift in Sources */,
 				AD56EA9529786AA900BD9F59 /* AppDelegate.swift in Sources */,
 				DE4C8EC52981A9330065C813 /* LocationController.swift in Sources */,
+				AD5F5A3B29845AAC00441743 /* UIColor.swift in Sources */,
 				DE4C8ECA29822BA80065C813 /* CLLocationManagerDelegate.swift in Sources */,
 				ADD39B19298317E400888559 /* GoToVC.swift in Sources */,
 				ADD39B152983063D00888559 /* TutorialPage3.swift in Sources */,
@@ -415,6 +423,7 @@
 				DEVELOPMENT_TEAM = 67AYPRFZH8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Songo/Info.plist;
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Deixa usar ae";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Aceita pls";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -426,7 +435,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Academy.les.inf.puc-rio.Songo";
+				PRODUCT_BUNDLE_IDENTIFIER = "Academy.les.inf.puc-rio.Songo1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -444,6 +453,7 @@
 				DEVELOPMENT_TEAM = 67AYPRFZH8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Songo/Info.plist;
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Deixa usar ae";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Aceita pls";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -455,7 +465,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Academy.les.inf.puc-rio.Songo";
+				PRODUCT_BUNDLE_IDENTIFIER = "Academy.les.inf.puc-rio.Songo1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

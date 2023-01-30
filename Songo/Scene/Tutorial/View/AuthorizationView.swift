@@ -29,28 +29,30 @@ struct AuthorizationView: View {
                         
                         TutorialPage1()
                             .tabItem({
-                                Image(systemName: "1.square")
+                                Image(systemName: "1.circle")
                             })
                             .tag(1)
                         
                         TutorialPage2().tabItem({
-                            Image(systemName: "2.square")
+                            Image(systemName: "2.circle")
                         }).tag(2)
                         
                         TutorialPage3().tabItem({
-                            Image(systemName: "3.square")
+                            Image(systemName: "3.circle")
                         }).tag(3)
                        
                     }
                     .tabViewStyle(.page(indexDisplayMode: .always))
+                    .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
+
                     
-                   // Spacer().frame(height: 25)
+                    Spacer().frame(height: 25)
                 }
                 
             
         }
         .edgesIgnoringSafeArea(.all)
-        .background(Color.blue)
+        .background(Color(UIColor.fundoSecundario))
         .onChange(of: selectedTab) { [selectedTab] value in
 //            if selectedTab < value{
 //                generator.selectionChanged()
@@ -58,10 +60,7 @@ struct AuthorizationView: View {
         }
         
         
-        Text(texto)
-            .onAppear{
-                requestAuthorization()
-            }
+       
         
     }
 }

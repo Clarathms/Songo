@@ -19,5 +19,9 @@
 			</array>
 		</dict>
 	</dict>
+	<key>UIFileSharingEnabled</key>
+	<true/>
+	<key>kTCCServiceMediaLibrary</key>
+	<string>descrição</string>
 </dict>
 </plist>

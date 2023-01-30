@@ -34,7 +34,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // 6. Set the window and make it keyAndVisible
         self.window = window
         window.makeKeyAndVisible()
-        window.rootViewController = appContainer.createTabBarControllerScene()
+        //window.rootViewController = appContainer.createTabBarControllerScene()
+        window.rootViewController = ViewControllerTutorial()
     }
     // Mostra tutorial caso seja a primeira vez no app
 //    func getRootViewController() -> UIViewController {

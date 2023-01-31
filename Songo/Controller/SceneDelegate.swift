@@ -34,6 +34,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // 6. Set the window and make it keyAndVisible
         self.window = window
         window.makeKeyAndVisible()
+
         window.rootViewController = ViewControllerTutorial()
     }
     
@@ -77,6 +78,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 
-
+   
 }
 

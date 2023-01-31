@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AD1E24552989BB7A00D344E3 /* extensionTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1E24542989BB7A00D344E3 /* extensionTabBar.swift */; };
+		AD1E24582989BC0000D344E3 /* ProtocolTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1E24572989BC0000D344E3 /* ProtocolTabBar.swift */; };
 		AD56EA9529786AA900BD9F59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD56EA9429786AA900BD9F59 /* AppDelegate.swift */; };
 		AD56EA9729786AA900BD9F59 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD56EA9629786AA900BD9F59 /* SceneDelegate.swift */; };
 		AD56EA9E29786AA900BD9F59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD56EA9D29786AA900BD9F59 /* Assets.xcassets */; };
@@ -40,6 +42,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AD1E24542989BB7A00D344E3 /* extensionTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionTabBar.swift; sourceTree = "<group>"; };
+		AD1E24572989BC0000D344E3 /* ProtocolTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolTabBar.swift; sourceTree = "<group>"; };
 		AD56EA9129786AA900BD9F59 /* Songo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Songo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD56EA9429786AA900BD9F59 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AD56EA9629786AA900BD9F59 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -120,6 +124,8 @@
 			isa = PBXGroup;
 			children = (
 				DE4C8EC72981C32A0065C813 /* TabBarController.swift */,
+				AD1E24542989BB7A00D344E3 /* extensionTabBar.swift */,
+				AD1E24572989BC0000D344E3 /* ProtocolTabBar.swift */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
@@ -324,6 +330,7 @@
 				DE7319BD297F635A00A6197C /* MapView.swift in Sources */,
 				DE5DD18E298874C4002BEB3F /* TutorialPage1.swift in Sources */,
 				DE7319C62980581B00A6197C /* UIControl.swift in Sources */,
+				AD1E24582989BC0000D344E3 /* ProtocolTabBar.swift in Sources */,
 				DE7319C3298054D500A6197C /* SongButtonView.swift in Sources */,
 				DE5DD193298875BC002BEB3F /* UIColor.swift in Sources */,
 				DE4C8ECC2982F2D50065C813 /* MKMapViewDelegate.swift in Sources */,
@@ -350,6 +357,7 @@
 				DE7319CA29806C1300A6197C /* CircleRangeView.swift in Sources */,
 				DE5DD17129833224002BEB3F /* SongRepository.swift in Sources */,
 				DE7319C8298061AF00A6197C /* SongPlaylistView.swift in Sources */,
+				AD1E24552989BB7A00D344E3 /* extensionTabBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

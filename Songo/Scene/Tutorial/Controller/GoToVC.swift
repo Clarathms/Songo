@@ -17,20 +17,12 @@ struct GoToVC : UIViewControllerRepresentable {
     var appContainer: AppContainer = AppContainer()
     typealias UIViewControllerType = TabBarController
     
-
     func makeUIViewController(context: Context) -> TabBarController {
-        var config = appContainer.createTabBarControllerScene()
+        let config = appContainer.createTabBarControllerScene()
+        
+       // config.tabBarController?.navigationItem.hidesBackButton = true
         return config
     }
-    
-//    func updateUIViewController(_ uiViewController: MapViewController, context: Context) {
-//        //
-//
-//    }
-//
-    
-    
-    
     
 }
 

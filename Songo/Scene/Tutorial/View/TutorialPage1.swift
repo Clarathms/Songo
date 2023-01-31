@@ -40,9 +40,10 @@ struct TutorialPage1: View {
                                 .font(.subheadline)
                                 .foregroundColor(.gray)
                         }.padding(.top)
+
                         
                     }.position(x:UIScreen.main.bounds.midX*1.08,y:UIScreen.main.bounds.midY*1.2)
-                
+
 
                 }
             

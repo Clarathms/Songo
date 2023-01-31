@@ -20,8 +20,6 @@ struct TutorialBase: View {
 
     var body: some View {
         
-        
-        
         //let yExtension: CGFloat = 50
         NavigationView{
                 VStack(alignment: .leading, spacing: 0){

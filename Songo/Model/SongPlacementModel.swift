@@ -11,33 +11,27 @@ import MusicKit
 
 
 class SongPlacementModel: NSObject, MKAnnotation{
-    
-    let currentAppleMusic = AppleMusicController().currentMusicPlaying?.item
+       
     var latitude: Double
     var longitude: Double
     var coordinate: CLLocationCoordinate2D {
         CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude)
     }
     var addedAt: CVTimeStamp
+    var musicTitle: String
+    var musicAlbum: String
+    var musicPicture: Artwork?
+    var artist: String
     
-//    var musicTitle: String {
-////        SongFilter.id//        let title = currentAppleMusic?.title ?? "no music title found"
-////        return title
-//
-//    }
-//    var musicAlbum: String {
-//        var title = currentAppleMusic
-//    }
-//    var albumPic: String
-//    var songName: String
-    
-    
-    init(latitude: Double, longitude: Double, addedAt: CVTimeStamp, appleMusicAuthorized: MusicAuthorization.Status) {
+    init(latitude: Double, longitude: Double, addedAt: CVTimeStamp, musicTitle: String, musicAlbum: String, musicPicture: Artwork? = nil, artist: String) {
         self.latitude = latitude
         self.longitude = longitude
         self.addedAt = addedAt
+        self.musicTitle = musicTitle
+        self.musicAlbum = musicAlbum
+        self.musicPicture = musicPicture
+        self.artist = artist
     }
-    
 //    //TODO: When multiple annotations can ocupy the same location, this function will be obsolute.
 //    public static func == (lhs: SongModel, rhs: SongModel) -> Bool{
 //        return lhs.isEqual(rhs)

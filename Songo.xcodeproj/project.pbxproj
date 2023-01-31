@@ -18,7 +18,7 @@
 		DE5DD17129833224002BEB3F /* SongRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD16F29833224002BEB3F /* SongRepository.swift */; };
 		DE5DD17229833224002BEB3F /* SongPlacementModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD17029833224002BEB3F /* SongPlacementModel.swift */; };
 		DE5DD175298421C3002BEB3F /* SongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD174298421C3002BEB3F /* SongViewController.swift */; };
-		DE5DD178298421F8002BEB3F /* SongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD177298421F8002BEB3F /* SongView.swift */; };
+		DE5DD178298421F8002BEB3F /* CurrentSongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD177298421F8002BEB3F /* CurrentSongView.swift */; };
 		DE5DD17B29843B38002BEB3F /* AppleMusicController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD17A29843B38002BEB3F /* AppleMusicController.swift */; };
 		DE5DD17E2984813D002BEB3F /* AppleMusicService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD17D2984813D002BEB3F /* AppleMusicService.swift */; };
 		DE5DD18A298874C4002BEB3F /* ViewControllerTutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD181298874C4002BEB3F /* ViewControllerTutorial.swift */; };
@@ -53,7 +53,7 @@
 		DE5DD16F29833224002BEB3F /* SongRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongRepository.swift; sourceTree = "<group>"; };
 		DE5DD17029833224002BEB3F /* SongPlacementModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongPlacementModel.swift; sourceTree = "<group>"; };
 		DE5DD174298421C3002BEB3F /* SongViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongViewController.swift; sourceTree = "<group>"; };
-		DE5DD177298421F8002BEB3F /* SongView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongView.swift; sourceTree = "<group>"; };
+		DE5DD177298421F8002BEB3F /* CurrentSongView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentSongView.swift; sourceTree = "<group>"; };
 		DE5DD17A29843B38002BEB3F /* AppleMusicController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicController.swift; sourceTree = "<group>"; };
 		DE5DD17D2984813D002BEB3F /* AppleMusicService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicService.swift; sourceTree = "<group>"; };
 		DE5DD181298874C4002BEB3F /* ViewControllerTutorial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerTutorial.swift; sourceTree = "<group>"; };
@@ -146,7 +146,7 @@
 		DE5DD176298421EF002BEB3F /* View */ = {
 			isa = PBXGroup;
 			children = (
-				DE5DD177298421F8002BEB3F /* SongView.swift */,
+				DE5DD177298421F8002BEB3F /* CurrentSongView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -335,7 +335,7 @@
 				DE7319B7297F5FA900A6197C /* AppContainer.swift in Sources */,
 				DE5DD17E2984813D002BEB3F /* AppleMusicService.swift in Sources */,
 				DE5DD17229833224002BEB3F /* SongPlacementModel.swift in Sources */,
-				DE5DD178298421F8002BEB3F /* SongView.swift in Sources */,
+				DE5DD178298421F8002BEB3F /* CurrentSongView.swift in Sources */,
 				DE5DD175298421C3002BEB3F /* SongViewController.swift in Sources */,
 				AD56EA9529786AA900BD9F59 /* AppDelegate.swift in Sources */,
 				DE4C8EC52981A9330065C813 /* LocationController.swift in Sources */,

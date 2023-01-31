@@ -34,13 +34,13 @@ struct TutorialPage1: View {
                         Text("Seja bem-vindo ao SoundMap!")
                             .font(.headline)
                         Text("No SoundMap você conseguirá \n montar sua identidade sonoro-musical  \n através da sua localização.")
-                            .lineLimit(3)
-                            .font(.subheadline)
-                            .multilineTextAlignment(.center)
-                        
-                        NavigationLink(destination: GoToVC()) {
-                            Text("Pular")
+                                .lineLimit(3)
                                 .font(.subheadline)
+                                .multilineTextAlignment(.center)
+                            
+                            NavigationLink(destination: GoToVC()) {
+                                Text("Pular")
+                                    .font(.subheadline)
                                 .foregroundColor(.gray)
                         }.padding(.top)
                         
@@ -48,16 +48,11 @@ struct TutorialPage1: View {
                 
 
                 }
-        }.task {
-            let subCheck = await appleMusicController.lastSubscriptionUpdate().makeSubscriptionOffer
-//                DispatchQueue.main.async {
-            subscriptionOfferOptions.messageIdentifier = .playMusic
-            isShowingOffer = subCheck
-//                }
         }.musicSubscriptionOffer(isPresented: $isShowingOffer, options: subscriptionOfferOptions)
             .onAppear{
-//                appleMusicController.getSearchResponse()
-                
+                Task {
+                    await dump(appleMusicController.getCurrentMusic())
+                }
                 appleMusicController.checkAppleMusicAuthorization()
             
         }

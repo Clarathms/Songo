@@ -17,6 +17,9 @@ struct TutorialBase: View {
     @State private var selectedTab = 1
     @State private var lastTab = 0
    // @Binding var showingTutorial:Bool
+    @State private var isShowingOffer = true
+    @State private var subscriptionOfferOptions: MusicSubscriptionOffer.Options = .default
+    let appleMusicController: AppleMusicController = AppleMusicController()
 
     var body: some View {
         
@@ -46,8 +49,13 @@ struct TutorialBase: View {
                     .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
                     .background(Color(UIColor.fundoSecundario))
                   //  .ignoresSafeArea(.all)
-                    
                   //  Spacer().frame(height: 25)
+                }.task {
+                    let subCheck = await appleMusicController.lastSubscriptionUpdate().makeSubscriptionOffer
+        //                DispatchQueue.main.async {
+                    subscriptionOfferOptions.messageIdentifier = .playMusic
+                    isShowingOffer = subCheck
+        //                }
                 }
                 
             

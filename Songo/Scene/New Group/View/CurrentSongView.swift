@@ -9,6 +9,6 @@ import Foundation
 import MusicKit
 import UIKit
 
-class SongView: UIView {
+class CurrentSongView: UIView {
     
 }

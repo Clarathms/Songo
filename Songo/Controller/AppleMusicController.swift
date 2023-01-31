@@ -10,25 +10,25 @@ import MusicKit
 
 class AppleMusicController {
     
+    private var currentMusic: Song?
+    var currentTitle: String { currentMusic?.title ?? "No title found" }
+    var currentArtist: String { currentMusic?.artistName ?? "No artist found" }
+    var currentPicture: Artwork? { currentMusic?.artwork }
+    var currentAlbum: String { currentMusic?.albumTitle ?? "No album found" }
     var appleMusicAuthorization: MusicAuthorization.Status = .notDetermined
     
-    var currentMusicPlaying = SystemMusicPlayer.shared.queue.currentEntry
-    
-    var currentMusicRequest: MusicCatalogSearchRequest {
-        return MusicCatalogSearchRequest(term: currentMusicPlaying?.title ?? "não", types: [Song.self])
-    }
-    
-    func getSearchResponse() {
+    private func getCurrentMusic()  {
         Task {
+            var currentMusicPlaying = SystemMusicPlayer.shared.queue.currentEntry?.item?.id
             do {
+                var currentMusicRequest: MusicCatalogResourceRequest<Song> {MusicCatalogResourceRequest<Song>(matching: \.id, equalTo: currentMusicPlaying!)}
                 let searchResponse = try await currentMusicRequest.response()
-                dump(searchResponse)
+                currentMusic = searchResponse.items.first
             } catch {
                 print("Search request failed with error: \(error).")
             }
         }
     }
-
 
     func lastSubscriptionUpdate() async -> (makeSubscriptionOffer:Bool, canPlayMusic:Bool) {
         var appleMusicSubscription: MusicSubscription?

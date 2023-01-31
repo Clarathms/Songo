@@ -30,7 +30,6 @@ class TabBarController: UITabBarController {
 
     override func loadView() {
         super.loadView()
-        appleMusicController.checkAppleMusicAuthorization()
         locationController.checkLocationServices()
         setApplicationViewControllers()
     }

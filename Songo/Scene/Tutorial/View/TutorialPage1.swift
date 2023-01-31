@@ -10,8 +10,13 @@ import SwiftUI
 import MusicKit
 
 struct TutorialPage1: View {
+    
     @State var texto: String = "oi"
+    @State private var isShowingOffer = true
+    @State private var subscriptionOfferOptions: MusicSubscriptionOffer.Options = .default
     let appleMusicController: AppleMusicController = AppleMusicController()
+   
+    
     var body: some View {
         ZStack{
            // Text("foi")
@@ -21,23 +26,48 @@ struct TutorialPage1: View {
                 .frame(width: UIScreen.main.bounds.width*1.1,height: UIScreen.main.bounds.height/1.1)
                 .foregroundColor(Color.white)
                 .position(x:UIScreen.main.bounds.midX*1.4,y:UIScreen.main.bounds.midY/1.08)
-                .overlay{
+                .overlay {
                     VStack(spacing: 20){
                         Text("Seja bem-vindo ao SoundMap!")
                             .font(.headline)
                         Text("No SoundMap você conseguira montar \n sua identidade sonoro-musical \n através da sua localização.")
                             .font(.subheadline)
                             .multilineTextAlignment(.center)
+                        
 
                     }.position(x:UIScreen.main.bounds.midX*1.1,y:UIScreen.main.bounds.midY*1.2)
                 }
-            
-        }.onAppear{
+        }.task {
+            let subCheck = await appleMusicController.lastSubscriptionUpdate().makeSubscriptionOffer
+//                DispatchQueue.main.async {
+            subscriptionOfferOptions.messageIdentifier = .playMusic
+            subscriptionOfferOptions.itemID = "123"
+
+                isShowingOffer = subCheck
+//                }
+        }.musicSubscriptionOffer(isPresented: $isShowingOffer, options: subscriptionOfferOptions)
+            .onAppear{
             appleMusicController.checkAppleMusicAuthorization()
+            
+        }
+            
+        }
+    
+    
+    
+    private var subscriptionOfferButton: some View {
+        Button(action: offerButtonSelected) {
+            HStack {
+                Image(systemName: "applelogo")
+                Text("Join")
             }
-       
+            .frame(maxWidth: 200)
+        }
     }
     
+    private func offerButtonSelected() {
+        isShowingOffer.toggle()
+     }
 }
 struct TutorialPage1_Previews: PreviewProvider {
     static var previews: some View {

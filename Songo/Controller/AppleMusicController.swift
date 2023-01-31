@@ -7,10 +7,12 @@
 
 import Foundation
 import MusicKit
+import SwiftUI
 
 class AppleMusicController {
     
     var appleMusicAuthorization: MusicAuthorization.Status = .notDetermined
+
     func lastSubscriptionUpdate() async -> (makeSubscriptionOffer:Bool, canPlayMusic:Bool) {
         var appleMusicSubscription: MusicSubscription?
             for await status in MusicSubscription.subscriptionUpdates {
@@ -25,9 +27,8 @@ class AppleMusicController {
             case .notDetermined:
                 appleMusicAuthorization = await MusicAuthorization.request()
             case .authorized:
-                Task{
-                    lastSubscriptionUpdate
-                }
+                Task {lastSubscriptionUpdate}
+
             default:
                 // TODO: Arrumar a lógica não posso dar fatal error
                 appleMusicAuthorization = await MusicAuthorization.request()

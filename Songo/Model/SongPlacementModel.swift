@@ -11,24 +11,27 @@ import MusicKit
 
 
 class SongPlacementModel: NSObject, MKAnnotation{
+       
     var latitude: Double
     var longitude: Double
     var coordinate: CLLocationCoordinate2D {
         CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude)
     }
     var addedAt: CVTimeStamp
-    var id: String
-//    var albumPic: String
-//    var songName: String
+    var musicTitle: String
+    var musicAlbum: String
+    var musicPicture: Artwork?
+    var artist: String
     
-    
-    init(latitude: Double, longitude: Double, addedAt: CVTimeStamp, appleMusicAuthorized: MusicAuthorization.Status, id: String) {
+    init(latitude: Double, longitude: Double, addedAt: CVTimeStamp, musicTitle: String, musicAlbum: String, musicPicture: Artwork? = nil, artist: String) {
         self.latitude = latitude
         self.longitude = longitude
         self.addedAt = addedAt
-        self.id = id
+        self.musicTitle = musicTitle
+        self.musicAlbum = musicAlbum
+        self.musicPicture = musicPicture
+        self.artist = artist
     }
-    
 //    //TODO: When multiple annotations can ocupy the same location, this function will be obsolute.
 //    public static func == (lhs: SongModel, rhs: SongModel) -> Bool{
 //        return lhs.isEqual(rhs)

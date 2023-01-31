@@ -10,12 +10,15 @@ import SwiftUI
 import MusicKit
 
 struct TutorialPage1: View {
+    
     @State var texto: String = "oi"
+    @State private var isShowingOffer = true
+    @State private var subscriptionOfferOptions: MusicSubscriptionOffer.Options = .default
     let appleMusicController: AppleMusicController = AppleMusicController()
+   
+    
     var body: some View {
-        ZStack{
-           // Text("foi")
-        
+        ZStack{        
             Text(texto)
             Rectangle()
                 .frame(width: UIScreen.main.bounds.width/2,height: UIScreen.main.bounds.height/1.15)
@@ -31,13 +34,13 @@ struct TutorialPage1: View {
                         Text("Seja bem-vindo ao SoundMap!")
                             .font(.headline)
                         Text("No SoundMap você conseguirá \n montar sua identidade sonoro-musical  \n através da sua localização.")
-                            .lineLimit(3)
-                            .font(.subheadline)
-                            .multilineTextAlignment(.center)
-                        
-                        NavigationLink(destination: GoToVC()) {
-                            Text("Pular")
+                                .lineLimit(3)
                                 .font(.subheadline)
+                                .multilineTextAlignment(.center)
+                            
+                            NavigationLink(destination: GoToVC()) {
+                                Text("Pular")
+                                    .font(.subheadline)
                                 .foregroundColor(.gray)
                         }.padding(.top)
 
@@ -46,13 +49,32 @@ struct TutorialPage1: View {
 
 
                 }
+        }.musicSubscriptionOffer(isPresented: $isShowingOffer, options: subscriptionOfferOptions)
+            .onAppear{
+                Task {
+                    await dump(appleMusicController.getCurrentMusic())
+                }
+                appleMusicController.checkAppleMusicAuthorization()
             
-        }.onAppear{
-            appleMusicController.checkAppleMusicAuthorization()
+        }
+            
+        }
+    
+    
+    
+    private var subscriptionOfferButton: some View {
+        Button(action: offerButtonSelected) {
+            HStack {
+                Image(systemName: "applelogo")
+                Text("Join")
             }
-       
+            .frame(maxWidth: 200)
+        }
     }
     
+    private func offerButtonSelected() {
+        isShowingOffer.toggle()
+     }
 }
 struct TutorialPage1_Previews: PreviewProvider {
     static var previews: some View {

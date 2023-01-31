@@ -7,11 +7,28 @@
 
 import Foundation
 import MusicKit
-import SwiftUI
 
 class AppleMusicController {
     
     var appleMusicAuthorization: MusicAuthorization.Status = .notDetermined
+    
+    var currentMusicPlaying = SystemMusicPlayer.shared.queue.currentEntry
+    
+    var currentMusicRequest: MusicCatalogSearchRequest {
+        return MusicCatalogSearchRequest(term: currentMusicPlaying?.title ?? "não", types: [Song.self])
+    }
+    
+    func getSearchResponse() {
+        Task {
+            do {
+                let searchResponse = try await currentMusicRequest.response()
+                dump(searchResponse)
+            } catch {
+                print("Search request failed with error: \(error).")
+            }
+        }
+    }
+
 
     func lastSubscriptionUpdate() async -> (makeSubscriptionOffer:Bool, canPlayMusic:Bool) {
         var appleMusicSubscription: MusicSubscription?
@@ -34,6 +51,5 @@ class AppleMusicController {
                 appleMusicAuthorization = await MusicAuthorization.request()
             }
         }
-       
     }
 }

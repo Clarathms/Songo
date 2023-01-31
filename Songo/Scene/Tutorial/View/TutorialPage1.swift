@@ -18,9 +18,7 @@ struct TutorialPage1: View {
    
     
     var body: some View {
-        ZStack{
-           // Text("foi")
-        
+        ZStack{        
             Text(texto)
             RoundedRectangle(cornerSize: .init(width: 120, height: 120))
                 .frame(width: UIScreen.main.bounds.width*1.1,height: UIScreen.main.bounds.height/1.1)
@@ -33,7 +31,6 @@ struct TutorialPage1: View {
                         Text("No SoundMap você conseguira montar \n sua identidade sonoro-musical \n através da sua localização.")
                             .font(.subheadline)
                             .multilineTextAlignment(.center)
-                        
 
                     }.position(x:UIScreen.main.bounds.midX*1.1,y:UIScreen.main.bounds.midY*1.2)
                 }
@@ -41,13 +38,13 @@ struct TutorialPage1: View {
             let subCheck = await appleMusicController.lastSubscriptionUpdate().makeSubscriptionOffer
 //                DispatchQueue.main.async {
             subscriptionOfferOptions.messageIdentifier = .playMusic
-            subscriptionOfferOptions.itemID = "123"
-
-                isShowingOffer = subCheck
+            isShowingOffer = subCheck
 //                }
         }.musicSubscriptionOffer(isPresented: $isShowingOffer, options: subscriptionOfferOptions)
             .onAppear{
-            appleMusicController.checkAppleMusicAuthorization()
+//                appleMusicController.getSearchResponse()
+                
+                appleMusicController.checkAppleMusicAuthorization()
             
         }
             

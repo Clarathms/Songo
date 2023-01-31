@@ -10,12 +10,15 @@ import SwiftUI
 import MusicKit
 
 struct TutorialPage1: View {
+    
     @State var texto: String = "oi"
+    @State private var isShowingOffer = true
+    @State private var subscriptionOfferOptions: MusicSubscriptionOffer.Options = .default
     let appleMusicController: AppleMusicController = AppleMusicController()
+   
+    
     var body: some View {
-        ZStack{
-           // Text("foi")
-        
+        ZStack{        
             Text(texto)
             Rectangle()
                 .frame(width: UIScreen.main.bounds.width/2,height: UIScreen.main.bounds.height/1.15)
@@ -45,13 +48,37 @@ struct TutorialPage1: View {
                 
 
                 }
+        }.task {
+            let subCheck = await appleMusicController.lastSubscriptionUpdate().makeSubscriptionOffer
+//                DispatchQueue.main.async {
+            subscriptionOfferOptions.messageIdentifier = .playMusic
+            isShowingOffer = subCheck
+//                }
+        }.musicSubscriptionOffer(isPresented: $isShowingOffer, options: subscriptionOfferOptions)
+            .onAppear{
+//                appleMusicController.getSearchResponse()
+                
+                appleMusicController.checkAppleMusicAuthorization()
             
-        }.onAppear{
-            appleMusicController.checkAppleMusicAuthorization()
+        }
+            
+        }
+    
+    
+    
+    private var subscriptionOfferButton: some View {
+        Button(action: offerButtonSelected) {
+            HStack {
+                Image(systemName: "applelogo")
+                Text("Join")
             }
-       
+            .frame(maxWidth: 200)
+        }
     }
     
+    private func offerButtonSelected() {
+        isShowingOffer.toggle()
+     }
 }
 struct TutorialPage1_Previews: PreviewProvider {
     static var previews: some View {

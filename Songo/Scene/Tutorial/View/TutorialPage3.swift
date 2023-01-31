@@ -11,43 +11,48 @@ import SwiftUI
 struct TutorialPage3: View {
     var body: some View {
         ZStack{
-            RoundedRectangle(cornerSize: .init(width: 120, height: 120))
-                .frame(width: UIScreen.main.bounds.width*1.5,height: UIScreen.main.bounds.height/1.1)
+            Rectangle()
+                .frame(width: UIScreen.main.bounds.width/2,height: UIScreen.main.bounds.height/1.15)
                 .foregroundColor(Color.white)
-                .position(x:UIScreen.main.bounds.midX/3.6,y:UIScreen.main.bounds.midY/1.08)
-                .overlay{
-                    VStack{
-                        VStack(spacing: 20){
-                            Text("Seja bem-vindo ao SoundMap!")
-                                .font(.headline)
-                            Text("No SoundMap você conseguira montar \n sua identidade sonoro-musical \n através da sua localização.")
-                                .font(.subheadline)
-                                .multilineTextAlignment(.center)
-                        }
-                        NavigationLink(destination: GoToVC()) {
-                            RoundedRectangle(cornerSize: .init(width: 20, height: 20))
-                            
-                                .frame(width: UIScreen.main.bounds.width/2.5,height: UIScreen.main.bounds.width/5)
-                                .foregroundColor(Color("corBotao"))
-                                .innerShadow(using: RoundedRectangle(cornerSize: .init(width: 20, height: 20)))
-                                .shadow(radius: 20)
-                                .overlay {
-                                    Text("Mapa")
-                                        .padding()
-                                    
-                                        .font(.custom("Skia", size: 30))
-                                }
-                                //.position(x:UIScreen.main.bounds.midX/1.01,y:UIScreen.main.bounds.midY*1.3)
-                        }
-                        
-        
-                    }.position(x:UIScreen.main.bounds.midX*0.85,y:UIScreen.main.bounds.midY*1.2)
-                    
+                .position(x:UIScreen.main.bounds.midX/2,y:UIScreen.main.bounds.midY/1.63)
+
+            VStack{
+                VStack(spacing: 20){
+                    Text("Seja bem-vindo ao SoundMap!")
+                        .font(.headline)
+                    Text("No SoundMap você conseguira montar \n sua identidade sonoro-musical \n através da sua localização.")
+                        .font(.subheadline)
+                        .multilineTextAlignment(.center)
                 }
+                NavigationLink(destination: GoToVC()) {
+                    Text("Vamos lá")
+//                        .font(.subheadline)
+                        .bold()
+                        .foregroundColor(.white)
+                        .background(
+                            RoundedRectangle(cornerRadius: 30)
+                                .foregroundColor(Color(UIColor.fundoSecundario))
+                                .frame(width: UIScreen.main.bounds.width/4.2, height: UIScreen.main.bounds.height/16)
             
+                        )
+                }.padding(.top,30)
+
+                }
+                
+                
+            }.position(x:UIScreen.main.bounds.midX*0.85,y:UIScreen.main.bounds.midY*1.2)
+        
+                .background(
+                   
+                    RoundedRectangle(cornerSize: .init(width: 130, height: 130))
+                        .frame(width: UIScreen.main.bounds.width/1.2,height: UIScreen.main.bounds.height/1.15)
+                        .foregroundColor(Color.white)
+                        .position(x:UIScreen.main.bounds.midX/1.05,y:UIScreen.main.bounds.midY/1.1)
+                )
         }
-    }
+    
 }
+
 struct TutorialPage3_Previews: PreviewProvider {
     static var previews: some View {
         TutorialPage3()

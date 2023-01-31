@@ -17,19 +17,33 @@ struct TutorialPage1: View {
            // Text("foi")
         
             Text(texto)
-            RoundedRectangle(cornerSize: .init(width: 120, height: 120))
-                .frame(width: UIScreen.main.bounds.width*1.1,height: UIScreen.main.bounds.height/1.1)
+            Rectangle()
+                .frame(width: UIScreen.main.bounds.width/2,height: UIScreen.main.bounds.height/1.15)
                 .foregroundColor(Color.white)
-                .position(x:UIScreen.main.bounds.midX*1.4,y:UIScreen.main.bounds.midY/1.08)
+                .position(x:UIScreen.main.bounds.midX*2,y:UIScreen.main.bounds.midY/1.1)
+
+            RoundedRectangle(cornerSize: .init(width: 130, height: 130))
+                .frame(width: UIScreen.main.bounds.width,height: UIScreen.main.bounds.height/1.15)
+                .foregroundColor(Color.white)
+                .position(x:UIScreen.main.bounds.midX*1.2,y:UIScreen.main.bounds.midY/1.1)
                 .overlay{
                     VStack(spacing: 20){
                         Text("Seja bem-vindo ao SoundMap!")
                             .font(.headline)
-                        Text("No SoundMap você conseguira montar \n sua identidade sonoro-musical \n através da sua localização.")
+                        Text("No SoundMap você conseguirá \n montar sua identidade sonoro-musical  \n através da sua localização.")
+                            .lineLimit(3)
                             .font(.subheadline)
                             .multilineTextAlignment(.center)
+                        
+                        NavigationLink(destination: GoToVC()) {
+                            Text("Pular")
+                                .font(.subheadline)
+                                .foregroundColor(.gray)
+                        }.padding(.top)
+                        
+                    }.position(x:UIScreen.main.bounds.midX*1.08,y:UIScreen.main.bounds.midY*1.2)
+                
 
-                    }.position(x:UIScreen.main.bounds.midX*1.1,y:UIScreen.main.bounds.midY*1.2)
                 }
             
         }.onAppear{

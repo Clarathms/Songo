@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import MusicKit
 
-struct AuthorizationView: View {
+struct TutorialBase: View {
     
     @State var isAuthorized = false
     @State var texto: String = "oi"
@@ -23,30 +23,31 @@ struct AuthorizationView: View {
         
         
         //let yExtension: CGFloat = 50
-        GeometryReader{ geometry in
+        NavigationView{
                 VStack(alignment: .leading, spacing: 0){
                     TabView(selection: $selectedTab){
                         
                         TutorialPage1()
                             .tabItem({
-                                Image(systemName: "1.circle")
+                                Image(systemName: "circle")
                             })
                             .tag(1)
                         
                         TutorialPage2().tabItem({
-                            Image(systemName: "2.circle")
+                            Image(systemName: "circle")
                         }).tag(2)
                         
                         TutorialPage3().tabItem({
-                            Image(systemName: "3.circle")
+                            Image(systemName: "circle")
                         }).tag(3)
                        
                     }
                     .tabViewStyle(.page(indexDisplayMode: .always))
                     .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
-
+                    .background(Color(UIColor.fundoSecundario))
+                  //  .ignoresSafeArea(.all)
                     
-                    Spacer().frame(height: 25)
+                  //  Spacer().frame(height: 25)
                 }
                 
             
@@ -65,7 +66,7 @@ struct AuthorizationView: View {
     }
 }
 
-extension AuthorizationView {
+extension TutorialBase {
     func requestAuthorization() {
         // detach
         Task{
@@ -93,6 +94,6 @@ extension AuthorizationView {
 
 struct AuthorizationView_Previews: PreviewProvider {
     static var previews: some View {
-        AuthorizationView()
+        TutorialBase()
     }
 }

@@ -10,7 +10,7 @@ import SwiftUI
 
 class ViewControllerTutorial: UIViewController {
     
-    let contentView = UIHostingController(rootView: AuthorizationView())
+    let contentView = UIHostingController(rootView: TutorialBase())
     
     override func viewDidLoad() {
         super.viewDidLoad()

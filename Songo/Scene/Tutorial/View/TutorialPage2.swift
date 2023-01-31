@@ -10,22 +10,27 @@ import SwiftUI
 struct TutorialPage2: View {
     var body: some View {
         ZStack{
-            RoundedRectangle(cornerSize: .init(width: 120, height: 120))
-                .frame(width: UIScreen.main.bounds.width*1.5,height: UIScreen.main.bounds.height/1.1)
-                .foregroundColor(Color.white)
-                .position(x:UIScreen.main.bounds.midX,y:UIScreen.main.bounds.midY/1.08)
-                .overlay{
                     VStack(spacing: 20){
-                        Text("Seja bem-vindo ao SoundMap!")
+                        Text("Lembre do momento atráves de playlists")
                             .font(.headline)
-                        Text("No SoundMap você conseguira montar \n sua identidade sonoro-musical \n através da sua localização.")
+                        Text("No SoundMap você conseguira montar \n sua identidade sonoro-musical através da \n sua localização.")
                             .font(.subheadline)
                             .multilineTextAlignment(.center)
                         
-                    }.position(x:UIScreen.main.bounds.midX,y:UIScreen.main.bounds.midY*1.2)
+                        NavigationLink(destination: GoToVC()) {
+                            Text("Pular")
+                                .font(.subheadline)
+                                .foregroundColor(.gray)
+                        }.padding(.top)
+                        
+                    }.position(x:UIScreen.main.bounds.midX/1.02,y:UIScreen.main.bounds.midY*1.2)
                     
-                }
-        }
+                
+        }.background( Rectangle()
+                      //                .frame(width: UIScreen.main.bounds.width*1.5,height: UIScreen.main.bounds.height/1.1)
+                          .frame(width: UIScreen.main.bounds.width*1.2,height: UIScreen.main.bounds.height/1.15)
+                          .foregroundColor(Color.white)
+                          .position(x:UIScreen.main.bounds.midX,y:UIScreen.main.bounds.midY/1.097))
     }
 }
 struct TutorialPage2_Previews: PreviewProvider {

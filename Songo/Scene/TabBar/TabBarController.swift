@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SwiftUI
 
 class TabBarController: UITabBarController {
     typealias Factory = MapSceneFactory
@@ -33,7 +34,9 @@ class TabBarController: UITabBarController {
         appleMusicController.checkAppleMusicAuthorization()
         locationController.checkLocationServices()
         setApplicationViewControllers()
+        
     }
+   
     
     func setApplicationViewControllers() {
         

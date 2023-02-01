@@ -32,6 +32,7 @@ class SongPlacementModel: NSObject, MKAnnotation{
         self.musicPicture = musicPicture
         self.artist = artist
     }
+    
 //    //TODO: When multiple annotations can ocupy the same location, this function will be obsolute.
 //    public static func == (lhs: SongModel, rhs: SongModel) -> Bool{
 //        return lhs.isEqual(rhs)

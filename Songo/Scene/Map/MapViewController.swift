@@ -50,8 +50,10 @@ class MapViewController: BaseViewController<MapView> {
     
     override func viewDidLoad() {
         navigationController?.setNavigationBarHidden(true, animated: false)
-        
+        mainView.setupMapView()
+        setupMapReactiveButton()
         setupLocationManager()
+        setupGestures()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,4 +62,58 @@ class MapViewController: BaseViewController<MapView> {
         guard let location = locationController.location?.coordinate else { return }
         updateOverlay(location: location)
     }
+    
+    func setupMapReactiveButton() {
+        mainView.reactiveButton.addTarget(self, action: #selector(handleButtonAction), for: .touchUpInside)
+    }
+    
+    /// Function that changes the button state and return it to the `reactiveButton`.
+    func updateReactiveButton() {
+        
+        guard isLocationOn,
+              let userLocation = locationController.location
+        else { mainView.reactiveButton.setButtonState(state: .userNotFocus); return }
+        
+        let centerCoordinate = CLLocation(latitude: mainView.region.center.latitude, longitude: mainView.region.center.longitude)
+        
+        let distanceFromUserToMapCenterRegion = userLocation.distance(from: centerCoordinate)
+        
+        if distanceFromUserToMapCenterRegion > 5 {
+            mainView.reactiveButton.setButtonState(state: .userNotFocus)
+            return
+        } //else
+        
+        mainView.reactiveButton.setButtonState(state: .addCurrentSong)
+        
+        
+    }
+    /// Sets the object that changes the properties by the state.
+    @objc func handleButtonAction() {
+        switch mainView.reactiveButton.state {
+        case .userNotFocus:
+            isLocationOn ? goToMyLocation() : requesLocationAuthorization()
+
+        default:
+            break
+        }
+    }
+    /// Set the action button that redirect the user
+    /// camera to the user location at the map.
+    func goToMyLocation() {
+        guard let userLocation = locationController.location else { return }
+        isTrackingUserModeEnabled = true
+        mainView.setCenter(userLocation.coordinate, animated: true)
+//        updateAnnotations()
+    }
+    
+    func requesLocationAuthorization() {
+        present(redirectToSettingsAlert, animated: true, completion: nil)
+    }
+    let redirectToSettingsAlert: UIAlertController = {
+        let title = NSLocalizedString("Configurações", comment: "MapViewController: title for alert redirectToSettings")
+        let message = NSLocalizedString("Por favor, altere as permissões de localização do Cogu.", comment: "MapViewController: message for alert redirectToSettings")
+        let preferredStyle = UIAlertController.Style.alert
+        let alert = UIAlertController(title: title, message: message, preferredStyle: preferredStyle)
+        return alert
+    }()
 }

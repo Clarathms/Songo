@@ -41,7 +41,7 @@ extension MapViewController: CLLocationManagerDelegate {
         
         updateOverlay(location: location.coordinate)
         
-//        updateReactiveButton()
+        updateReactiveButton()
     }
     
     /// Fucntion that is called every time that users changes the location services authorization.

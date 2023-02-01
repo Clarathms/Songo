@@ -35,7 +35,19 @@ class MapView: MKMapView  {
         showsUserLocation = (isLocationOn ? true : false)
         addSubview(reactiveButton)
         mapType = .mutedStandard
+        setupReactiveButtonConstraints()
         showsBuildings = false
+    }
+    
+    /// Setup the `ReactiveButton`constraints.
+    func setupReactiveButtonConstraints() {
+        reactiveButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            reactiveButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -120),
+            reactiveButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            reactiveButton.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width * 0.9),
+            reactiveButton.heightAnchor.constraint(equalToConstant: 51)
+        ])
     }
     
     /// Set the center of the camera to the user`s location.

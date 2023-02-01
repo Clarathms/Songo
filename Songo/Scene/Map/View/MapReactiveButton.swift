@@ -15,8 +15,10 @@ class MapReactiveButton: SongButtonView {
         
         setTitle(NSLocalizedString("Adicionar música atual", comment: "MapReactiveButton: title for MapReactiveButton"), for: .addCurrentSong)
         
-        contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        
+//        contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        setTitle(NSLocalizedString("Localização atual", comment: "MapReactiveButton: title for MapReactiveButton"), for: .userNotFocus)
+        setImage(UIImage(systemName: "location.fill"), for: .userNotFocus)
+        tintColor = .white
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

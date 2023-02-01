@@ -17,17 +17,15 @@ class AppleMusicController {
     var currentAlbum: String { currentMusic?.albumTitle ?? "No album found" }
     var appleMusicAuthorization: MusicAuthorization.Status = .notDetermined
     
-    private func getCurrentMusic()  {
-        Task {
+    func getCurrentMusic() async {
             var currentMusicPlaying = SystemMusicPlayer.shared.queue.currentEntry?.item?.id
             do {
-                var currentMusicRequest: MusicCatalogResourceRequest<Song> {MusicCatalogResourceRequest<Song>(matching: \.id, equalTo: currentMusicPlaying!)}
+                var currentMusicRequest: MusicCatalogResourceRequest<Song> { MusicCatalogResourceRequest<Song>(matching: \.id, equalTo: currentMusicPlaying!) }
                 let searchResponse = try await currentMusicRequest.response()
                 currentMusic = searchResponse.items.first
             } catch {
                 print("Search request failed with error: \(error).")
             }
-        }
     }
 
     func lastSubscriptionUpdate() async -> (makeSubscriptionOffer:Bool, canPlayMusic:Bool) {
@@ -45,7 +43,6 @@ class AppleMusicController {
                 appleMusicAuthorization = await MusicAuthorization.request()
             case .authorized:
                 Task {lastSubscriptionUpdate}
-
             default:
                 // TODO: Arrumar a lógica não posso dar fatal error
                 appleMusicAuthorization = await MusicAuthorization.request()

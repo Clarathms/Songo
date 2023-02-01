@@ -51,7 +51,10 @@ struct TutorialPage1: View {
         }.musicSubscriptionOffer(isPresented: $isShowingOffer, options: subscriptionOfferOptions)
             .onAppear{
                 Task {
-                    await dump(appleMusicController.getCurrentMusic())
+                    await appleMusicController.getCurrentMusic()
+                    dump(appleMusicController.currentTitle)
+                    dump(appleMusicController.currentAlbum)
+                    dump(appleMusicController.currentArtist)
                 }
                 appleMusicController.checkAppleMusicAuthorization()
             

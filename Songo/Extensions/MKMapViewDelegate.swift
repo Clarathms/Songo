@@ -10,8 +10,16 @@ import MapKit
 import UIKit
 
 extension MapViewController: MKMapViewDelegate {
+        
+    func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
+        updateReactiveButton()
+    }
     
     func setupMapViewDelegate() {
         mainView.delegate = self
+    }
+    
+    func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
+        updateReactiveButton()
     }
 }

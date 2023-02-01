@@ -94,23 +94,6 @@ class TabBarController: UITabBarController {
         navigationController?.navigationBar.isHidden = true
     }
     
-//    func addConstraint() {
-//     //   tabBarController.translatesAutoresizingMaskIntoConstraints = false
-//        NSLayoutConstraint.activate([
-//            tabBarController?.topAnchor.constraint(equalTo: self.view.topAnchor),
-//            tabBarController?.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-//            tabBarController?.view.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-//            tabBarController?.view.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
-//        ])
-//    }
-//    func addConstraint() {
-//
-//        let view = UIView(frame: .zero)
-//        view.translatesAutoresizingMaskIntoConstraints = false
-//        NSLayoutConstraint.activate([
-//            tabBarController.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
-//])
-//    }
 }
 
 

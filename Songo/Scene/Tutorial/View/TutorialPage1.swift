@@ -15,7 +15,8 @@ struct TutorialPage1: View {
     @State private var isShowingOffer = true
     @State private var subscriptionOfferOptions: MusicSubscriptionOffer.Options = .default
     let appleMusicController: AppleMusicController = AppleMusicController()
-   
+    @State var isPresented: Bool = false
+
     
     var body: some View {
         ZStack{        
@@ -38,12 +39,14 @@ struct TutorialPage1: View {
                                 .font(.subheadline)
                                 .multilineTextAlignment(.center)
                             
-                            NavigationLink(destination: GoToVC()) {
-                                Text("Pular")
-                                    .font(.subheadline)
+                        Button {
+                            isPresented = true
+                        } label: {
+                            Text("Pular")
+                                .font(.subheadline)
                                 .foregroundColor(.gray)
-                        }.padding(.top)
-
+                        }
+                        .padding(.top,30)
                         
                     }.position(x:UIScreen.main.bounds.midX*1.08,y:UIScreen.main.bounds.midY*1.2)
 
@@ -51,12 +54,15 @@ struct TutorialPage1: View {
                 }
         }.musicSubscriptionOffer(isPresented: $isShowingOffer, options: subscriptionOfferOptions)
             .onAppear{
-                Task {
-                    await dump(appleMusicController.getCurrentMusic())
-                }
+//                Task {
+//                    await dump(appleMusicController.getCurrentMusic())
+//                }
                 appleMusicController.checkAppleMusicAuthorization()
             
         }
+            .fullScreenCover(isPresented: $isPresented) {
+                GoToVC().edgesIgnoringSafeArea(.all)
+            }
             
         }
     

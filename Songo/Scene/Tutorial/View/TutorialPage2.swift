@@ -8,6 +8,8 @@ import Foundation
 import SwiftUI
 
 struct TutorialPage2: View {
+    @State var isPresented: Bool = false
+
     var body: some View {
         ZStack{
                     VStack(spacing: 20){
@@ -16,21 +18,27 @@ struct TutorialPage2: View {
                         Text("No SoundMap você conseguira montar \n sua identidade sonoro-musical através da \n sua localização.")
                             .font(.subheadline)
                             .multilineTextAlignment(.center)
-                        
-                        NavigationLink(destination: GoToVC()) {
+                        Button {
+                            isPresented = true
+                        } label: {
                             Text("Pular")
                                 .font(.subheadline)
                                 .foregroundColor(.gray)
-                        }.padding(.top)
+                        }
+                        .padding(.top,30)
                         
-                    }.position(x:UIScreen.main.bounds.midX/1.02,y:UIScreen.main.bounds.midY*1.2)
-                    
+                    }.position(x:UIScreen.main.bounds.midX*1.08,y:UIScreen.main.bounds.midY*1.2)
+
                 
         }.background( Rectangle()
                       //                .frame(width: UIScreen.main.bounds.width*1.5,height: UIScreen.main.bounds.height/1.1)
                           .frame(width: UIScreen.main.bounds.width*1.2,height: UIScreen.main.bounds.height/1.15)
                           .foregroundColor(Color.white)
                           .position(x:UIScreen.main.bounds.midX,y:UIScreen.main.bounds.midY/1.097))
+        
+        .fullScreenCover(isPresented: $isPresented) {
+            GoToVC().edgesIgnoringSafeArea(.all)
+        }
     }
 }
 struct TutorialPage2_Previews: PreviewProvider {

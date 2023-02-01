@@ -8,7 +8,7 @@
 import Foundation
 import MapKit
 import MusicKit
-
+import CoreLocation
 
 class SongPlacementModel: NSObject, MKAnnotation{
        
@@ -17,20 +17,19 @@ class SongPlacementModel: NSObject, MKAnnotation{
     var coordinate: CLLocationCoordinate2D {
         CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude)
     }
-    var addedAt: CVTimeStamp
-    var musicTitle: String
-    var musicAlbum: String
-    var musicPicture: Artwork?
-    var artist: String
+//    var addedAt: CVTimeStamp
+    var title: String?
+    var imageName: String?
+    var subtitle: String?
+
     
-    init(latitude: Double, longitude: Double, addedAt: CVTimeStamp, musicTitle: String, musicAlbum: String, musicPicture: Artwork? = nil, artist: String) {
+    init(latitude: Double, longitude: Double) {
         self.latitude = latitude
         self.longitude = longitude
-        self.addedAt = addedAt
-        self.musicTitle = musicTitle
-        self.musicAlbum = musicAlbum
-        self.musicPicture = musicPicture
-        self.artist = artist
+//        self.addedAt = addedAt
+//        self.musicTitle = musicTitle
+//        self.musicPicture = musicPicture
+//        self.artist = artist
     }
     
 //    //TODO: When multiple annotations can ocupy the same location, this function will be obsolute.

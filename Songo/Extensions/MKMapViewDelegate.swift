@@ -20,6 +20,12 @@ extension MapViewController: MKMapViewDelegate {
     }
     
     func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
+        print(#function)
         updateReactiveButton()
     }
+    
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        print("A")
+    }
+    
 }

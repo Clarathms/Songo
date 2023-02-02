@@ -21,9 +21,9 @@ struct TutorialPage3: View {
             
             VStack{
                 VStack(spacing: 20){
-                    Text("Seja bem-vindo ao SoundMap!")
-                        .font(.headline)
-                    Text("No SoundMap você conseguira montar \n sua identidade sonoro-musical \n através da sua localização.")
+                    Text("Atenção!")
+                        .font(.title)
+                    Text("Para utilizar o aplicativo, \n é necessário ter conta no Apple Music")
                         .font(.subheadline)
                         .multilineTextAlignment(.center)
                 }
@@ -41,7 +41,7 @@ struct TutorialPage3: View {
                                 .frame(width: UIScreen.main.bounds.width/4.2, height: UIScreen.main.bounds.height/16)
                         )
                 }
-                .padding(.top,30)
+                .padding(.top,50)
                 
             }.position(x:UIScreen.main.bounds.midX*0.85,y:UIScreen.main.bounds.midY*1.2)
             

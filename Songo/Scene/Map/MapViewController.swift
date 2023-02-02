@@ -82,6 +82,9 @@ class MapViewController: BaseViewController<MapView> {
     func setupMapReactiveButton() {
         mainView.reactiveButton.addTarget(self, action: #selector(handleButtonAction), for: .touchUpInside)
     }
+    func setupMapLocationButton() {
+        mainView.reactiveButton.addTarget(self, action: #selector(handleButtonAction), for: .touchUpInside)
+    }
     
     /// Function that changes the button state and return it to the `reactiveButton`.
     func updateReactiveButton() {
@@ -115,7 +118,14 @@ class MapViewController: BaseViewController<MapView> {
             break
         }
     }
-    
+    @objc func handleLocationButtonAction() {
+        switch mainView.reactiveButton.state {
+        case .userNotFocus:
+            isLocationOn ? goToMyLocation() : requesLocationAuthorization()
+        default:
+            break
+        }
+    }
     func addPlacement() {
         guard let userLocation = locationController.location?.coordinate else { return }
         locationController.updateLastLocation()

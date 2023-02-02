@@ -20,12 +20,10 @@ class AppleMusicController {
     
     func getCurrentMusic() async {
         let currentMusicPlaying = SystemMusicPlayer.shared.queue.currentEntry?.item?.id
-        print(currentMusicPlaying)
             do {
                 var currentMusicRequest: MusicCatalogResourceRequest<Song> { MusicCatalogResourceRequest<Song>(matching: \.id, equalTo: currentMusicPlaying!) }
                 let searchResponse = try await currentMusicRequest.response()
                 currentMusic = searchResponse.items.first
-                print(currentMusic)
             } catch {
                 print("Search request failed with error: \(error).")
             }

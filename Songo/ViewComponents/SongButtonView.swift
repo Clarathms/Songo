@@ -38,12 +38,13 @@ class SongButtonView: UIButton {
         self.titleLabel?.font = .boldSystemFont(ofSize: 10)
         layer.cornerRadius = 12
         isEnabled = true
-        widthAnchor.constraint(equalToConstant: 9 * UIScreen.main.bounds.width / 10).isActive = true
+        widthAnchor.constraint(equalToConstant: 9 * UIScreen.main.bounds.width / 15).isActive = true
         heightAnchor.constraint(equalToConstant: 51).isActive = true
         addDropShadow()
+//        setTitleColor(.white, for: .normal)
+//        setTitleColor(.blue, for: .disabled)
         setTitleColor(.white, for: .normal)
         setTitleColor(.blue, for: .disabled)
-        
 ///       talvez não precise
 
 //        setTitle(NSLocalizedString("Adicionar música atual", comment: "MapReactiveButton: title for MapReactiveButton"), for: .addCurrentSong)

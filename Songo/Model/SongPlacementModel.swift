@@ -9,25 +9,26 @@ import Foundation
 import MapKit
 import MusicKit
 import CoreLocation
+import SwiftUI
 
-class SongPlacementModel: NSObject, MKAnnotation{
+class SongPlacementModel: NSObject, MKAnnotation {
        
     var latitude: Double
     var longitude: Double
-    var coordinate: CLLocationCoordinate2D {
+    @objc dynamic var coordinate: CLLocationCoordinate2D {
         CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude)
     }
 //    var addedAt: CVTimeStamp
-    var title: String?
-    var imageName: String?
+    var musicTitle: String?
+    var imageName: ArtworkImage?
     var subtitle: String?
 
     
-    init(latitude: Double, longitude: Double) {
+    init(latitude: Double, longitude: Double, musicTitle: String?) {
         self.latitude = latitude
         self.longitude = longitude
 //        self.addedAt = addedAt
-//        self.musicTitle = musicTitle
+        self.musicTitle = musicTitle
 //        self.musicPicture = musicPicture
 //        self.artist = artist
     }

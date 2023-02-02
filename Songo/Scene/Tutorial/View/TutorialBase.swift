@@ -48,13 +48,8 @@ struct TutorialBase: View {
                     .background(Color(UIColor.fundoSecundario))
                   //  .ignoresSafeArea(.all)
                   //  Spacer().frame(height: 25)
-                }.task {
-                    let subCheck = await appleMusicController.lastSubscriptionUpdate().makeSubscriptionOffer
-        //                DispatchQueue.main.async {
-                    subscriptionOfferOptions.messageIdentifier = .playMusic
-                    isShowingOffer = subCheck
-        //                }
                 }
+            
                 
             
         }

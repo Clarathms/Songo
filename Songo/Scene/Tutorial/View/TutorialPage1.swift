@@ -50,7 +50,13 @@ struct TutorialPage1: View {
                         
                     }.position(x:UIScreen.main.bounds.midX*1.08,y:UIScreen.main.bounds.midY*1.2)
 
-
+                    .task {
+                            let subCheck = await appleMusicController.lastSubscriptionUpdate().makeSubscriptionOffer
+                //                DispatchQueue.main.async {
+                            subscriptionOfferOptions.messageIdentifier = .playMusic
+                            isShowingOffer = subCheck
+                //                }
+                        }
                 }
         }.musicSubscriptionOffer(isPresented: $isShowingOffer, options: subscriptionOfferOptions)
             .onAppear{

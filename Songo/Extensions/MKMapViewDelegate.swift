@@ -20,12 +20,24 @@ extension MapViewController: MKMapViewDelegate {
     }
     
     func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
-        print(#function)
         updateReactiveButton()
     }
     
-    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        print("A")
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        var annotationView: MKAnnotationView?
+        guard let annotation = annotation as? SongPlacementModel else {
+            print("Cant convert annotation")
+            return nil
+        }
+        annotationView = setupSongPlacementView(for: annotation, on: mapView)
+        
+        return annotationView
+       
     }
+    
+    private func setupSongPlacementView (for annotation: SongPlacementModel, on mapView: MKMapView) -> MKAnnotationView {
+        return mapView.dequeueReusableAnnotationView(withIdentifier: SongPlacementView.reuseIdentifier, for: annotation)
+    }
+
     
 }

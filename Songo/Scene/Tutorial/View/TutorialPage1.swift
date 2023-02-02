@@ -16,7 +16,7 @@ struct TutorialPage1: View {
     @State private var subscriptionOfferOptions: MusicSubscriptionOffer.Options = .default
     let appleMusicController: AppleMusicController = AppleMusicController()
     @State var isPresented: Bool = false
-
+    
     
     var body: some View {
         ZStack{        
@@ -60,9 +60,6 @@ struct TutorialPage1: View {
                 }
         }.musicSubscriptionOffer(isPresented: $isShowingOffer, options: subscriptionOfferOptions)
             .onAppear{
-//                Task {
-//                    await dump(appleMusicController.getCurrentMusic())
-//                }
                 appleMusicController.checkAppleMusicAuthorization()
             
         }

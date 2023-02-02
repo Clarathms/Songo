@@ -27,7 +27,7 @@ struct TutorialPage2: View {
                         }
                         .padding(.top,30)
                         
-                    }.position(x:UIScreen.main.bounds.midX*1.08,y:UIScreen.main.bounds.midY*1.2)
+                    }.position(x:UIScreen.main.bounds.midX,y:UIScreen.main.bounds.midY*1.2)
 
                 
         }.background( Rectangle()

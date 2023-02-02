@@ -17,7 +17,8 @@ class MapView: MKMapView  {
     var reactiveButton = MapReactiveButton()
     var isLocationOn: Bool
     var isAuthenticated: Bool
-    
+    var locationButton = MapLocationButton()
+
     //MARK: - Initializers
     init(isLocationOn: Bool, isAuthenticated: Bool) {
         self.isLocationOn = isLocationOn
@@ -34,6 +35,7 @@ class MapView: MKMapView  {
             
         showsUserLocation = (isLocationOn ? true : false)
         addSubview(reactiveButton)
+        addSubview(locationButton)
         mapType = .mutedStandard
         setupReactiveButtonConstraints()
         showsBuildings = false

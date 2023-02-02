@@ -7,22 +7,25 @@
 
 import Foundation
 import MusicKit
+import SwiftUI
 
 class AppleMusicController {
     
     private var currentMusic: Song?
     var currentTitle: String { currentMusic?.title ?? "No title found" }
     var currentArtist: String { currentMusic?.artistName ?? "No artist found" }
-    var currentPicture: Artwork? { currentMusic?.artwork }
+    var currentPicture: ArtworkImage? { ArtworkImage((currentMusic?.artwork!)!, height: 5) }
     var currentAlbum: String { currentMusic?.albumTitle ?? "No album found" }
     var appleMusicAuthorization: MusicAuthorization.Status = .notDetermined
     
     func getCurrentMusic() async {
-            var currentMusicPlaying = SystemMusicPlayer.shared.queue.currentEntry?.item?.id
+        let currentMusicPlaying = SystemMusicPlayer.shared.queue.currentEntry?.item?.id
+        print(currentMusicPlaying)
             do {
                 var currentMusicRequest: MusicCatalogResourceRequest<Song> { MusicCatalogResourceRequest<Song>(matching: \.id, equalTo: currentMusicPlaying!) }
                 let searchResponse = try await currentMusicRequest.response()
                 currentMusic = searchResponse.items.first
+                print(currentMusic)
             } catch {
                 print("Search request failed with error: \(error).")
             }

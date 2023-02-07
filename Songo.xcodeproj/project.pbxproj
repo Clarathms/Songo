@@ -47,7 +47,7 @@
 		DE7319C8298061AF00A6197C /* SongPlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319C7298061AF00A6197C /* SongPlaylistView.swift */; };
 		DE7319CA29806C1300A6197C /* CircleRangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319C929806C1300A6197C /* CircleRangeView.swift */; };
 		DEEF6AA62991869A0046DD90 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEEF6AA52991869A0046DD90 /* Localizable.strings */; };
-		DEEF6AA829918B3D0046DD90 /* PlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEF6AA729918B3D0046DD90 /* PlaylistViewController.swift */; };
+		DEEF6AA829918B3D0046DD90 /* MapPlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEF6AA729918B3D0046DD90 /* MapPlaylistViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,7 +93,7 @@
 		DE7319C7298061AF00A6197C /* SongPlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongPlaylistView.swift; sourceTree = "<group>"; };
 		DE7319C929806C1300A6197C /* CircleRangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleRangeView.swift; sourceTree = "<group>"; };
 		DEEF6AA52991869A0046DD90 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
-		DEEF6AA729918B3D0046DD90 /* PlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistViewController.swift; sourceTree = "<group>"; };
+		DEEF6AA729918B3D0046DD90 /* MapPlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPlaylistViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,7 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				DE4F3467298B05C7004EE2F9 /* SongPlacementCreationViewController.swift */,
-				DEEF6AA729918B3D0046DD90 /* PlaylistViewController.swift */,
+				DEEF6AA729918B3D0046DD90 /* MapPlaylistViewController.swift */,
 				DE4F3469298B05F6004EE2F9 /* View */,
 			);
 			path = SongPlacement;
@@ -379,7 +379,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DEEF6AA829918B3D0046DD90 /* PlaylistViewController.swift in Sources */,
+				DEEF6AA829918B3D0046DD90 /* MapPlaylistViewController.swift in Sources */,
 				DE7319BD297F635A00A6197C /* MapView.swift in Sources */,
 				DE5DD18E298874C4002BEB3F /* TutorialPage1.swift in Sources */,
 				DE7319C62980581B00A6197C /* UIControl.swift in Sources */,

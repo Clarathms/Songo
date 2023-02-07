@@ -52,7 +52,7 @@ class SongPlacementView: MKAnnotationView {
         label.font = UIFont.preferredFont(forTextStyle: .caption1)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.preferredMaxLayoutWidth = maxContentWidth
-        
+
         return label
     }()
         
@@ -109,9 +109,9 @@ class SongPlacementView: MKAnnotationView {
          the view's oppurtunity to update itself to display content for the new annotation.
          */
         if let annotation = annotation as? SongPlacementModel {
-            label.text = annotation.musicTitle
+//            label.text = annotation.musicTitle
             
-            if let imageName = annotation.imageName, let image = UIImage(named: "") {
+            if let image = annotation.musicPicture {
                 imageView.image = image
                 
                 /*
@@ -177,59 +177,4 @@ class SongPlacementView: MKAnnotationView {
         size.height += contentInsets.top + contentInsets.bottom
         return size
     }
-    
-//    private let maxContentWidth = CGFloat(90)
-//
-//    static var reuseIdentifier = "SongPlacementView"
-//
-//    override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
-//        super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
-//
-//        addSubview(imageView)
-//        addSubview(label)
-//
-//        NSLayoutConstraint.activate([
-//            imageView.topAnchor.constraint(equalTo: self.topAnchor),
-//            imageView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-//            imageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-//            imageView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-//            label.topAnchor.constraint(equalTo: self.topAnchor),
-//            label.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-//            label.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-//            label.trailingAnchor.constraint(equalTo: self.trailingAnchor)
-//        ])
-//    }
-//
-//    required init?(coder aDecoder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-//
-//    override func prepareForDisplay() {
-//        super.prepareForDisplay()
-//        if let annotation = annotation as? SongPlacementModel{
-//            label.text = annotation.musicTitle
-//        }
-//        label.text = "bla bla"
-//    }
-//
-//    private lazy var label: UILabel = {
-//        let label = UILabel(frame: .zero)
-//        label.lineBreakMode = .byWordWrapping
-//        label.numberOfLines = 0
-//        label.font = UIFont.preferredFont(forTextStyle: .caption1)
-//        label.translatesAutoresizingMaskIntoConstraints = false
-//        label.preferredMaxLayoutWidth = maxContentWidth
-//
-//        return label
-//    }()
-//
-//    private lazy var imageView: UIImageView = {
-//        let imageView = UIImageView(image: nil)
-//        return imageView
-//    }()
-//
-//
-//    override var intrinsicContentSize: CGSize {
-//        return CGSize(width: 200, height: 200)
-//    }
 }

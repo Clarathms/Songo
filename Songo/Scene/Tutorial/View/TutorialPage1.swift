@@ -52,10 +52,8 @@ struct TutorialPage1: View {
 
                     .task {
                             let subCheck = await appleMusicController.lastSubscriptionUpdate().makeSubscriptionOffer
-                //                DispatchQueue.main.async {
                             subscriptionOfferOptions.messageIdentifier = .playMusic
                             isShowingOffer = subCheck
-                //                }
                         }
                 }
         }.musicSubscriptionOffer(isPresented: $isShowingOffer, options: subscriptionOfferOptions)

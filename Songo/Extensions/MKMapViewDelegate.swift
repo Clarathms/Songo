@@ -25,18 +25,16 @@ extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         var annotationView: MKAnnotationView?
-        guard let annotation = annotation as? SongPlacementModel else {
-            print("Cant convert annotation")
+        guard let annotation = annotation as? MusicPlacementModel else {
             return nil
         }
         annotationView = setupSongPlacementView(for: annotation, on: mapView)
         
         return annotationView
-       
     }
     
     @objc func rightButtonClick() {
-        let playlistNavController = PlaylistViewController()
+        let playlistNavController = MapPlaylistViewController()
         playlistNavController.modalPresentationStyle = .popover
         let presentationController = playlistNavController.popoverPresentationController
         presentationController?.permittedArrowDirections = .any
@@ -44,7 +42,7 @@ extension MapViewController: MKMapViewDelegate {
         present(playlistNavController, animated: true, completion: nil)
     }
     
-    private func setupSongPlacementView (for annotation: SongPlacementModel, on mapView: MKMapView) -> MKAnnotationView {
+    private func setupSongPlacementView (for annotation: MusicPlacementModel, on mapView: MKMapView) -> MKAnnotationView {
         let view = mapView.dequeueReusableAnnotationView(withIdentifier: SongPlacementView.reuseIdentifier, for: annotation)
         view.canShowCallout = true
         let rightButton = UIButton(type: .detailDisclosure)

@@ -17,7 +17,7 @@ class MapReactiveButton: SongButtonView {
         setImage(UIImage(systemName: "plus.fill"), for: .addCurrentSong)
         
         setTitle(NSLocalizedString("Localização atual", comment: "MapReactiveButton: title for MapReactiveButton"), for: .userNotFocus)
-        setImage(UIImage(systemName: "plus.fill"), for: .userNotFocus)
+        setImage(UIImage(systemName: "pencil"), for: .userNotFocus)
         tintColor = .white
     }
     

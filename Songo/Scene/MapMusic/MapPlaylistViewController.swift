@@ -9,7 +9,8 @@ import Foundation
 import UIKit
 
 class MapPlaylistViewController: UIViewController {
-    var coverView: UIImage? = appleMusicController.currentPicture
+//    var coverView: UIImage? = appleMusicController.currentPicture
+    
     override func viewDidLoad() {
         super.viewDidLoad()
        
@@ -26,5 +27,6 @@ class MapPlaylistViewController: UIViewController {
 //        ])
             
     }
+ 
     
 }

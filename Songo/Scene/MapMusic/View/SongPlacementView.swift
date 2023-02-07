@@ -108,7 +108,7 @@ class SongPlacementView: MKAnnotationView {
          so the view can be put into a known default state, and `prepareForDisplay()` right before the annotation view is displayed. This method is
          the view's oppurtunity to update itself to display content for the new annotation.
          */
-        if let annotation = annotation as? SongPlacementModel {
+        if let annotation = annotation as? MusicPlacementModel {
 //            label.text = annotation.musicTitle
             
             if let image = annotation.musicPicture {

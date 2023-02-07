@@ -11,7 +11,7 @@ import MusicKit
 import CoreLocation
 import SwiftUI
 
-class SongPlacementModel: NSObject, MKAnnotation {
+class MusicPlacementModel: NSObject, MKAnnotation {
        
     var latitude: Double
     var longitude: Double
@@ -19,16 +19,16 @@ class SongPlacementModel: NSObject, MKAnnotation {
         CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude)
     }
 //    var addedAt: CVTimeStamp
-    var musicTitle: String?
+    var title: String?
     var musicPicture: UIImage?
     var artist: String?
 
     
-    init(latitude: Double, longitude: Double, musicTitle: String?, musicPicture: UIImage?, artist: String?) {
+    init(latitude: Double, longitude: Double, title: String?, musicPicture: UIImage?, artist: String?) {
         self.latitude = latitude
         self.longitude = longitude
 //        self.addedAt = addedAt
-        self.musicTitle = musicTitle
+        self.title = title
         self.musicPicture = musicPicture
         self.artist = artist
     }

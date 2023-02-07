@@ -16,6 +16,7 @@ struct TutorialPage1: View {
     @State private var subscriptionOfferOptions: MusicSubscriptionOffer.Options = .default
     let appleMusicController: AppleMusicController = AppleMusicController()
     @State var isPresented: Bool = false
+    @State var teste : Bool = false
     
     
     var body: some View {
@@ -38,31 +39,40 @@ struct TutorialPage1: View {
                                 .lineLimit(3)
                                 .font(.subheadline)
                                 .multilineTextAlignment(.center)
+                        if !teste {
+                            Button {
+                                isPresented = true
+                            } label: {
+                                Text("Pular")
+                                    .font(.subheadline)
+                                    .foregroundColor(.gray)
+                            }
+                            .padding(.top,30)
                             
-                        Button {
-                            isPresented = true
-                        } label: {
-                            Text("Pular")
-                                .font(.subheadline)
-                                .foregroundColor(.gray)
+                            .position(x:UIScreen.main.bounds.midX*1.08,y:UIScreen.main.bounds.midY*1.2)
                         }
-                        .padding(.top,30)
-                        
-                    }.position(x:UIScreen.main.bounds.midX*1.08,y:UIScreen.main.bounds.midY*1.2)
+
+                        }
+                       
 
                     .task {
                             let subCheck = await appleMusicController.lastSubscriptionUpdate().makeSubscriptionOffer
-                //                DispatchQueue.main.async {
+                        DispatchQueue.main.async {
+                            if isShowingOffer {
+                                teste = true
+                            }
                             subscriptionOfferOptions.messageIdentifier = .playMusic
                             isShowingOffer = subCheck
-                //                }
+                                }
                         }
                 }
         }.musicSubscriptionOffer(isPresented: $isShowingOffer, options: subscriptionOfferOptions)
             .onAppear{
                 appleMusicController.checkAppleMusicAuthorization()
+        
             
         }
+       
             .fullScreenCover(isPresented: $isPresented) {
                 GoToVC().edgesIgnoringSafeArea(.all)
             }
@@ -71,19 +81,19 @@ struct TutorialPage1: View {
     
     
     
-    private var subscriptionOfferButton: some View {
-        Button(action: offerButtonSelected) {
-            HStack {
-                Image(systemName: "applelogo")
-                Text("Join")
-            }
-            .frame(maxWidth: 200)
-        }
-    }
-    
-    private func offerButtonSelected() {
-        isShowingOffer.toggle()
-     }
+//    private var subscriptionOfferButton: some View {
+//        Button(action: offerButtonSelected) {
+//            HStack {
+//                Image(systemName: "applelogo")
+//                Text("Join")
+//            }
+//            .frame(maxWidth: 200)
+//        }
+//    }
+//    
+//    private func offerButtonSelected() {
+//        isShowingOffer.toggle()
+//     }
 }
 struct TutorialPage1_Previews: PreviewProvider {
     static var previews: some View {

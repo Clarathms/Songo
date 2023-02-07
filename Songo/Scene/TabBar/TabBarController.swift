@@ -12,7 +12,11 @@ import SwiftUI
 
 class TabBarController: UITabBarController {
     typealias Factory = MapSceneFactory
-    
+    typealias ProfileFactory = ProfileSceneFactory
+    typealias PlaylistFactory = PlaylistSceneFactory
+
+    let profileFactory : ProfileFactory
+    let playlistFactory : PlaylistFactory
     let factory: Factory
     public var currentItem: UITabBarItem?
 
@@ -20,10 +24,12 @@ class TabBarController: UITabBarController {
     let locationController: LocationController
     let appleMusicController: AppleMusicController
     
-    init(factory: Factory, locationController: LocationController, appleMusicController: AppleMusicController) {
+    init(factory: Factory, locationController: LocationController, appleMusicController: AppleMusicController,profileFactory: ProfileFactory, playlistFactory: PlaylistFactory) {
         self.locationController = locationController
         self.factory = factory
         self.appleMusicController = appleMusicController
+        self.profileFactory = profileFactory
+        self.playlistFactory = playlistFactory
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -55,8 +61,8 @@ class TabBarController: UITabBarController {
        // let mapNavigationController = UINavigationController(rootViewController: mapViewController)
         let mapNavigationController = factory.createMapScene()
 
-        let playlistNavigationController = factory.createMapScene()
-        let profileNavigationController = factory.createMapScene()
+        let playlistNavigationController = playlistFactory.createPlaylistScene()
+        let profileNavigationController = profileFactory.createProfileScene()
        // self.navigationItem.setHidesBackButton(true, animated:true)
         
         // 1 tab

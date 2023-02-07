@@ -13,7 +13,7 @@ import MapKit
 class SongPlacementController {
 
     let mapView: MKMapView
-    let mainButton = SongButtonView()
+ //   let mainButton = SongButtonView()
     private var mapViewController: UIViewController?
 //    let locationController: LocationController
     var allPlacements: [MKAnnotation] = []

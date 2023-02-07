@@ -83,7 +83,7 @@ class MapViewController: BaseViewController<MapView> {
         mainView.reactiveButton.addTarget(self, action: #selector(handleButtonAction), for: .touchUpInside)
     }
     func setupMapLocationButton() {
-        mainView.reactiveButton.addTarget(self, action: #selector(handleButtonAction), for: .touchUpInside)
+        mainView.locationButton.addTarget(self, action: #selector(handleButtonAction), for: .touchUpInside)
     }
     
     /// Function that changes the button state and return it to the `reactiveButton`.

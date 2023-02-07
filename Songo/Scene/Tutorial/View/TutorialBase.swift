@@ -46,8 +46,6 @@ struct TutorialBase: View {
                     .tabViewStyle(.page(indexDisplayMode: .always))
                     .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
                     .background(Color(UIColor.fundoSecundario))
-                  //  .ignoresSafeArea(.all)
-                  //  Spacer().frame(height: 25)
                 }
             
                 

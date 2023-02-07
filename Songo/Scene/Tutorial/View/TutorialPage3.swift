@@ -32,7 +32,6 @@ struct TutorialPage3: View {
                     isPresented = true
                 } label: {
                     Text("Vamos lá")
-                    //                        .font(.subheadline)
                         .bold()
                         .foregroundColor(.white)
                         .background(

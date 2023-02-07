@@ -27,7 +27,7 @@ class SongButtonView: UIButton {
 //Coloca cor no botão e no texto mas não entendi a sintaxe
     override public var isEnabled: Bool {
         didSet {
-            backgroundColor = isEnabled ? .blue: .white
+            backgroundColor = isEnabled ? .black: .white
             tintColor = isEnabled ? .white : .blue
         }
     }
@@ -36,19 +36,15 @@ class SongButtonView: UIButton {
     init() {
         super.init(frame: .zero)
         self.titleLabel?.font = .boldSystemFont(ofSize: 10)
-        layer.cornerRadius = 12
+        layer.cornerRadius = 10
         isEnabled = true
-        widthAnchor.constraint(equalToConstant: 9 * UIScreen.main.bounds.width / 10).isActive = true
-        heightAnchor.constraint(equalToConstant: 51).isActive = true
+        widthAnchor.constraint(equalToConstant: 30 * UIScreen.main.bounds.width / 5).isActive = true
+        heightAnchor.constraint(equalToConstant: 70).isActive = true
         addDropShadow()
 //        setTitleColor(.white, for: .normal)
 //        setTitleColor(.blue, for: .disabled)
-        setTitleColor(.white, for: .normal)
+        setTitleColor(.white, for: .userNotFocus)
         setTitleColor(.white, for: .addCurrentSong)
-///       talvez não precise
-
-//        setTitle(NSLocalizedString("Adicionar música atual", comment: "MapReactiveButton: title for MapReactiveButton"), for: .addCurrentSong)
-//        contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     }
     
     required init?(coder: NSCoder) {
@@ -71,7 +67,7 @@ class SongButtonView: UIButton {
     
     /// Add the DropShadow effect on `CoguButtonView`.
     private func addDropShadow() {
-        layer.shadowColor = UIColor.blue.cgColor
+        layer.shadowColor = UIColor.black.cgColor
         layer.shadowOffset = CGSize(width: 0, height: 5)
         layer.shadowOpacity = 0.2
         layer.shadowRadius = 5.0

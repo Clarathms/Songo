@@ -20,17 +20,17 @@ class SongPlacementModel: NSObject, MKAnnotation {
     }
 //    var addedAt: CVTimeStamp
     var musicTitle: String?
-    var imageName: ArtworkImage?
-    var subtitle: String?
+    var musicPicture: UIImage?
+    var artist: String?
 
     
-    init(latitude: Double, longitude: Double, musicTitle: String?) {
+    init(latitude: Double, longitude: Double, musicTitle: String?, musicPicture: UIImage?, artist: String?) {
         self.latitude = latitude
         self.longitude = longitude
 //        self.addedAt = addedAt
         self.musicTitle = musicTitle
-//        self.musicPicture = musicPicture
-//        self.artist = artist
+        self.musicPicture = musicPicture
+        self.artist = artist
     }
     
 //    //TODO: When multiple annotations can ocupy the same location, this function will be obsolute.

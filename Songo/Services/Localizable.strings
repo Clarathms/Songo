@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  Songo
+
+  Created by Amanda Melo on 06/02/23.
+  
+*/
+
+"MUSIC_TITLE" = appleMusicController.currentTitle;
+

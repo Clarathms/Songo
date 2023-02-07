@@ -9,13 +9,14 @@ import Foundation
 import CoreLocation
 import MapKit
 
+
+var appleMusicController: AppleMusicController = AppleMusicController()
 /// The View Controller of the Map Scene
 class MapViewController: BaseViewController<MapView> {
     
 //    typealias Factory = SongPlacementSceneFactory
     
 //    var factory: Factory
-    var appleMusicController: AppleMusicController = AppleMusicController()
     private var displayedPlacements: [MKAnnotation]? {
         willSet {
             if let currentPlacements = displayedPlacements {
@@ -69,7 +70,7 @@ class MapViewController: BaseViewController<MapView> {
         setupLocationManager()
         setupGestures()
         setupMapViewDelegate()
-        registerMapannotationsViews()
+        registerMapAnnotationsViews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -129,21 +130,23 @@ class MapViewController: BaseViewController<MapView> {
     func addPlacement() {
         guard let userLocation = locationController.location?.coordinate else { return }
         locationController.updateLastLocation()
-        let placement = createPlacement(location: userLocation, music: appleMusicController)
-        print(placement)
-        displayedPlacements = placement
+        Task{
+            let placement = await createPlacement(location: userLocation, music: appleMusicController)
+            print(placement)
+            
+            displayedPlacements = placement
+        }
     }
     
-    public func createPlacement(location: CLLocationCoordinate2D, music: AppleMusicController) -> [MKAnnotation] {
+    public func createPlacement (location: CLLocationCoordinate2D, music: AppleMusicController) async -> [MKAnnotation] {
 
-        let placement = SongPlacementModel(latitude: location.latitude, longitude: location.longitude, musicTitle: music.currentTitle)
-
+        let placement = await SongPlacementModel(latitude: location.latitude, longitude: location.longitude, musicTitle: music.currentTitle, musicPicture: music.getCurrentPicture(), artist: music.currentArtist)
         allPlacements.append(placement)
     
         return allPlacements
     }
     
-    private func registerMapannotationsViews() {
+    private func registerMapAnnotationsViews() {
         mainView.register(SongPlacementView.self, forAnnotationViewWithReuseIdentifier: SongPlacementView.reuseIdentifier)
     }
     /// Set the action button that redirect the user

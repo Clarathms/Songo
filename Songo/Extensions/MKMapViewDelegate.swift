@@ -35,9 +35,21 @@ extension MapViewController: MKMapViewDelegate {
        
     }
     
-    private func setupSongPlacementView (for annotation: SongPlacementModel, on mapView: MKMapView) -> MKAnnotationView {
-        return mapView.dequeueReusableAnnotationView(withIdentifier: SongPlacementView.reuseIdentifier, for: annotation)
-    }
+    @objc func rightButtonClick() {
+        let playlistNavController = PlaylistViewController()
+        playlistNavController.modalPresentationStyle = .popover
+        let presentationController = playlistNavController.popoverPresentationController
+        presentationController?.permittedArrowDirections = .any
 
+        present(playlistNavController, animated: true, completion: nil)
+    }
     
+    private func setupSongPlacementView (for annotation: SongPlacementModel, on mapView: MKMapView) -> MKAnnotationView {
+        let view = mapView.dequeueReusableAnnotationView(withIdentifier: SongPlacementView.reuseIdentifier, for: annotation)
+        view.canShowCallout = true
+        let rightButton = UIButton(type: .detailDisclosure)
+        view.detailCalloutAccessoryView = rightButton
+        rightButton.addTarget(self, action: #selector(rightButtonClick), for: .touchUpInside)
+        return view
+    }
 }

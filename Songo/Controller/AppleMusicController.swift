@@ -14,23 +14,33 @@ class AppleMusicController {
     private var currentMusic: Song?
     var currentTitle: String { currentMusic?.title ?? "No title found" }
     var currentArtist: String { currentMusic?.artistName ?? "No artist found" }
-    var currentPicture: ArtworkImage? { ArtworkImage((currentMusic?.artwork!)!, height: 5) }
+    var currentURLPicture: URL? { currentMusic?.artwork?.url(width: currentMusic?.artwork!.maximumWidth ?? 0, height: currentMusic?.artwork!.maximumHeight ?? 0) }
     var currentAlbum: String { currentMusic?.albumTitle ?? "No album found" }
+    var currentPicture: UIImage?
     var appleMusicAuthorization: MusicAuthorization.Status = .notDetermined
+
+    
+    func getCurrentPicture() async -> UIImage? {
+        
+        if let data = try? Data(contentsOf: currentURLPicture!) {
+            if let image = UIImage(data: data){
+                currentPicture = image
+            }
+        }
+        return currentPicture
+    }
     
     func getCurrentMusic() async {
         let currentMusicPlaying = SystemMusicPlayer.shared.queue.currentEntry?.item?.id
-        print(currentMusicPlaying)
             do {
                 var currentMusicRequest: MusicCatalogResourceRequest<Song> { MusicCatalogResourceRequest<Song>(matching: \.id, equalTo: currentMusicPlaying!) }
                 let searchResponse = try await currentMusicRequest.response()
                 currentMusic = searchResponse.items.first
-                print(currentMusic)
             } catch {
                 print("Search request failed with error: \(error).")
             }
     }
-
+/// Checagem de assinatura do Apple Music e pedido de autorização para trackeamento de informação
     func lastSubscriptionUpdate() async -> (makeSubscriptionOffer:Bool, canPlayMusic:Bool) {
         var appleMusicSubscription: MusicSubscription?
             for await status in MusicSubscription.subscriptionUpdates {

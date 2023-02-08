@@ -112,13 +112,8 @@ class SongPlacementView: MKAnnotationView {
 //            label.text = annotation.musicTitle
             
             if let image = annotation.musicPicture {
+
                 imageView.image = image
-                
-                /*
-                 The image view has a width constraint to keep the image to a reasonable size. A height constraint to keep the aspect ratio
-                 proportions of the image is required to keep the image packed into the stack view. Without this constraint, the image's height
-                 will remain the intrinsic size of the image, resulting in extra height in the stack view that is not desired.
-                 */
                 
                 if let heightConstraint = imageHeightConstraint {
                     imageView.removeConstraint(heightConstraint)
@@ -127,6 +122,16 @@ class SongPlacementView: MKAnnotationView {
                 let ratio = image.size.height / image.size.width
                 imageHeightConstraint = imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: ratio, constant: 0)
                 imageHeightConstraint?.isActive = true
+                updateConstraints()
+                
+                
+                /*
+                 The image view has a width constraint to keep the image to a reasonable size. A height constraint to keep the aspect ratio
+                 proportions of the image is required to keep the image packed into the stack view. Without this constraint, the image's height
+                 will remain the intrinsic size of the image, resulting in extra height in the stack view that is not desired.
+                 */
+                
+                
             }
         }
         

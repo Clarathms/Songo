@@ -14,20 +14,6 @@ import MapKit
 /// The View Controller of the Map Scene
 class MapViewController: BaseViewController<MapView> {
     
-    private var displayedPlacements: [MKAnnotation]? {
-        willSet {
-            if let currentPlacements = displayedPlacements {
-                mainView.removeAnnotations(currentPlacements)
-            }
-        }
-        didSet {
-            if let newPlacements = displayedPlacements {
-                mainView.addAnnotations(newPlacements)
-            }
-        }
-    }
-    var allPlacements: [MKAnnotation] = []
-    
     var appleMusicController: AppleMusicController = AppleMusicController()
     
     let locationController: LocationController
@@ -38,7 +24,6 @@ class MapViewController: BaseViewController<MapView> {
         didSet {
             setupLocationManager()
             mainView.removeOverlays(mainView.overlays)
-            mainView.isLocationOn = isLocationOn
             mainView.setupMapView()
         }
     }
@@ -50,7 +35,8 @@ class MapViewController: BaseViewController<MapView> {
         isAuthenticated = true
         isLocationOn = locationController.isLocationOn
        
-        super.init(mainView: MapView(isLocationOn: isLocationOn, isAuthenticated: isAuthenticated))
+        let mapView = MapView(isAuthenticated: isAuthenticated, appleMusicController: appleMusicController, locationController: locationController)
+        super.init(mainView: mapView)
     }
     
     required init?(coder: NSCoder) {
@@ -78,6 +64,16 @@ class MapViewController: BaseViewController<MapView> {
         isLocationOn = locationController.isLocationOn
         guard let location = locationController.location?.coordinate else { return }
         updateOverlay(location: location)
+        
+        Task {
+            mainView.displayedPlacements = await AppData.shared.loadMusics()
+        }
+
+    }
+    override func viewDidAppear(_ animated: Bool) {
+//        Task {
+//            mainView.displayedPlacements = await AppData.shared.loadMusics()
+//        }
     }
     
     func setupMapReactiveButton() {
@@ -113,7 +109,7 @@ class MapViewController: BaseViewController<MapView> {
             Task{
                 await appleMusicController.getCurrentMusic()
                 dump(appleMusicController.currentTitle)
-                addPlacement()
+                mainView.addPlacement()
             }
         default:
             break
@@ -129,36 +125,6 @@ class MapViewController: BaseViewController<MapView> {
         }
     }
     
-    func addPlacement() {
-        guard let userLocation = locationController.location?.coordinate else { return }
-        locationController.updateLastLocation()
-        
-        if canAddPlacement(userLocation) == PlacementStatus.isEmpty {
-            Task{
-                let placement = await createPlacement(location: userLocation, music: appleMusicController)
-                
-                displayedPlacements = placement
-            }
-            return
-        } else if canAddPlacement(userLocation) == PlacementStatus.hasMusic {
-            // TODO: adiciona música na view de playlist
-            
-            return
-        }
-        // TODO: checa se tem essa música na view de playlist
-        // TODO: pop-up avisando que tem a mesma música nesta playlist
-    }
-    
-    public func createPlacement (location: CLLocationCoordinate2D, music: AppleMusicController) async -> [MKAnnotation] {
-
-        let placement = await MusicPlacementModel(latitude: location.latitude, longitude: location.longitude, title: music.currentTitle, musicPicture: music.getCurrentPicture(), artist: music.currentArtist)
-
-            placement.title = music.currentTitle
-        allPlacements.append(placement)
-        
-        return allPlacements
-    }
-
     private func registerMapPlacementViews() {
         mainView.register(SongPlacementView.self, forAnnotationViewWithReuseIdentifier: SongPlacementView.reuseIdentifier)
     }
@@ -171,33 +137,7 @@ class MapViewController: BaseViewController<MapView> {
 //        updateAnnotations()
     }
     
-    enum PlacementStatus {
-        case isEmpty
-        case hasMusic
-        case hasSameMusic
-    }
-    /// Check if user can add annotation.
-    /// - Parameter userLocation: Current user location.
-    /// - Returns: Returns if userLocation variable is not being used in any other annotation.
-    private func canAddPlacement(_ userLocation: CLLocationCoordinate2D) -> PlacementStatus {
-        Task {
-            await appleMusicController.getCurrentMusic()
-        }
-        
-        if !allPlacements.isEmpty {
-            for annotations in allPlacements{
-                //TODO: determinar e calcular distancia para que as músicas sejam consideradas no mesmo local
-                if annotations.coordinate == userLocation {
-                    if annotations.title == appleMusicController.currentTitle {
-                        return .hasSameMusic
-                    }
-                    return .hasMusic
-                }
-            }
-        }
-        return .isEmpty
-    }
-    
+
     func requestLocationAuthorization() {
         present(redirectToSettingsAlert, animated: true, completion: nil)
     }

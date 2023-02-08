@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+
 class MapPlaylistViewController: UIViewController {
 //    var coverView: UIImage? = appleMusicController.currentPicture
     
@@ -28,5 +29,6 @@ class MapPlaylistViewController: UIViewController {
             
     }
  
+    
     
 }

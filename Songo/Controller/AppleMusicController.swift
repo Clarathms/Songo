@@ -20,16 +20,6 @@ class AppleMusicController {
     var appleMusicAuthorization: MusicAuthorization.Status = .notDetermined
 
     
-    func getCurrentPicture() async -> UIImage? {
-        
-        if let data = try? Data(contentsOf: currentURLPicture!) {
-            if let image = UIImage(data: data){
-                currentPicture = image
-            }
-        }
-        return currentPicture
-    }
-    
     func getCurrentMusic() async {
         let currentMusicPlaying = SystemMusicPlayer.shared.queue.currentEntry?.item?.id
             do {

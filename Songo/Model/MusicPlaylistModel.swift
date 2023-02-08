@@ -6,15 +6,14 @@
 //
 
 import Foundation
-import UIKit
 
-class MusicPlaylistModel {
+class MusicPlaylistModel: Codable {
     
     var musicTitle: String
     var artist: String
-    var musicPicture: UIImage
+    var musicPicture: URL
     
-    init(musicTitle: String, artist: String, musicPicture: UIImage) {
+    init(musicTitle: String, artist: String, musicPicture: URL) {
         self.musicTitle = musicTitle
         self.artist = artist
         self.musicPicture = musicPicture

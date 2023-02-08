@@ -44,13 +44,11 @@
 		DE7319C12980486800A6197C /* MapReactiveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319C02980486800A6197C /* MapReactiveButton.swift */; };
 		DE7319C3298054D500A6197C /* SongButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319C2298054D500A6197C /* SongButtonView.swift */; };
 		DE7319C62980581B00A6197C /* UIControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319C52980581B00A6197C /* UIControl.swift */; };
-		DE7319C8298061AF00A6197C /* SongPlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319C7298061AF00A6197C /* SongPlaylistView.swift */; };
 		DE7319CA29806C1300A6197C /* CircleRangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319C929806C1300A6197C /* CircleRangeView.swift */; };
 		DEEF6AA62991869A0046DD90 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEEF6AA52991869A0046DD90 /* Localizable.strings */; };
 		DEEF6AA829918B3D0046DD90 /* MapPlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEF6AA729918B3D0046DD90 /* MapPlaylistViewController.swift */; };
 		DEEF6AAA2992C5630046DD90 /* MapPlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEF6AA92992C5630046DD90 /* MapPlaylistView.swift */; };
 		DEEF6AAD2992C6520046DD90 /* CodableExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = DEEF6AAC2992C6520046DD90 /* CodableExtensions */; };
-		DEEF6AAF2992C6910046DD90 /* DAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEF6AAE2992C6910046DD90 /* DAO.swift */; };
 		DEEF6AB12992C6ED0046DD90 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEF6AB02992C6ED0046DD90 /* AppData.swift */; };
 		DEEF6AB32992F8C40046DD90 /* MusicPlaylistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEF6AB22992F8C40046DD90 /* MusicPlaylistModel.swift */; };
 /* End PBXBuildFile section */
@@ -95,12 +93,10 @@
 		DE7319C02980486800A6197C /* MapReactiveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapReactiveButton.swift; sourceTree = "<group>"; };
 		DE7319C2298054D500A6197C /* SongButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongButtonView.swift; sourceTree = "<group>"; };
 		DE7319C52980581B00A6197C /* UIControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIControl.swift; sourceTree = "<group>"; };
-		DE7319C7298061AF00A6197C /* SongPlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongPlaylistView.swift; sourceTree = "<group>"; };
 		DE7319C929806C1300A6197C /* CircleRangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleRangeView.swift; sourceTree = "<group>"; };
 		DEEF6AA52991869A0046DD90 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		DEEF6AA729918B3D0046DD90 /* MapPlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPlaylistViewController.swift; sourceTree = "<group>"; };
 		DEEF6AA92992C5630046DD90 /* MapPlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPlaylistView.swift; sourceTree = "<group>"; };
-		DEEF6AAE2992C6910046DD90 /* DAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DAO.swift; sourceTree = "<group>"; };
 		DEEF6AB02992C6ED0046DD90 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		DEEF6AB22992F8C40046DD90 /* MusicPlaylistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlaylistModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -191,7 +187,6 @@
 			children = (
 				DE5DD16F29833224002BEB3F /* SongRepository.swift */,
 				DE5DD17029833224002BEB3F /* MusicPlacementModel.swift */,
-				DEEF6AAE2992C6910046DD90 /* DAO.swift */,
 				DEEF6AB02992C6ED0046DD90 /* AppData.swift */,
 				DEEF6AB22992F8C40046DD90 /* MusicPlaylistModel.swift */,
 			);
@@ -316,7 +311,6 @@
 				DE7319BC297F635A00A6197C /* MapView.swift */,
 				AD68738D298C454300EF5F61 /* MapLocationButton.swift */,
 				DE7319C02980486800A6197C /* MapReactiveButton.swift */,
-				DE7319C7298061AF00A6197C /* SongPlaylistView.swift */,
 				DE7319C929806C1300A6197C /* CircleRangeView.swift */,
 				DE4C8EC22981A12D0065C813 /* ClusterAnnotationView.swift */,
 			);
@@ -437,9 +431,7 @@
 				DE4F346B298B0605004EE2F9 /* SongPlacementView.swift in Sources */,
 				DE7319CA29806C1300A6197C /* CircleRangeView.swift in Sources */,
 				DE5DD17129833224002BEB3F /* SongRepository.swift in Sources */,
-				DE7319C8298061AF00A6197C /* SongPlaylistView.swift in Sources */,
 				AD1E24552989BB7A00D344E3 /* extensionTabBar.swift in Sources */,
-				DEEF6AAF2992C6910046DD90 /* DAO.swift in Sources */,
 				DEEF6AB12992C6ED0046DD90 /* AppData.swift in Sources */,
 				DEEF6AB32992F8C40046DD90 /* MusicPlaylistModel.swift in Sources */,
 			);

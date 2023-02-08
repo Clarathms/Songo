@@ -36,21 +36,22 @@ class SongPlacementController {
     }
     var allPlacements: [MKAnnotation] = []
     
-    func addPlacement() {
+    func addPlacement() async {
         guard let userLocation = locationController.location?.coordinate else { return }
         locationController.updateLastLocation()
         print(userLocation)
-        Task{
-            let placement = await createPlacement(location: userLocation, music: self.appleMusicController)
-            print(placement)
-            
-            displayedPlacements = placement
-        }
+
+        let placement = await createPlacement(location: userLocation, music: self.appleMusicController)
+        print(placement)
+        
+        displayedPlacements = placement
+   
     }
     
     public func createPlacement (location: CLLocationCoordinate2D, music: AppleMusicController) async -> [MKAnnotation] {
 
-        let placement = await MusicPlacementModel(latitude: location.latitude, longitude: location.longitude, title: music.currentTitle, musicPicture: music.getCurrentPicture(), artist: music.currentArtist)
+        let placement = MusicPlacementModel(latitude: location.latitude, longitude: location.longitude, title: music.currentTitle, musicURL: music.currentURLPicture, artist: music.currentArtist)
+        await placement.getCurrentPicture()
         print(music.currentTitle)
         allPlacements.append(placement)
     

@@ -13,6 +13,7 @@ extension MapViewController: MKMapViewDelegate {
         
     func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
         updateReactiveButton()
+        updateLocationButton()
     }
     
     func setupMapViewDelegate() {
@@ -21,6 +22,7 @@ extension MapViewController: MKMapViewDelegate {
     
     func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
         updateReactiveButton()
+        updateLocationButton()
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {

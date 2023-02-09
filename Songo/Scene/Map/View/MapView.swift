@@ -35,9 +35,12 @@ class MapView: MKMapView  {
             
         showsUserLocation = (isLocationOn ? true : false)
         addSubview(reactiveButton)
-     //   addSubview(locationButton)
+        locationButton.layer.masksToBounds = true
+        locationButton.layer.cornerRadius = locationButton.layer.frame.height/2
+        addSubview(locationButton)
         mapType = .mutedStandard
         setupReactiveButtonConstraints()
+        setupLocationButtonConstraints()
         showsBuildings = false
     }
     
@@ -54,10 +57,10 @@ class MapView: MKMapView  {
     func setupLocationButtonConstraints() {
         locationButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            reactiveButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -120),
-            reactiveButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-            reactiveButton.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width * 0.9),
-            reactiveButton.heightAnchor.constraint(equalToConstant: 51)
+            locationButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -190),
+            locationButton.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width ),
+            locationButton.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 150),
+       
         ])
     }
     

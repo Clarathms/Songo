@@ -16,87 +16,76 @@ struct TutorialPage1: View {
     @State private var subscriptionOfferOptions: MusicSubscriptionOffer.Options = .default
     let appleMusicController: AppleMusicController = AppleMusicController()
     @State var isPresented: Bool = false
-    @State var teste : Bool = false
+    @State var chamaBotao : Bool = false
     
+    var botao: some View {
+        Button {
+            isPresented = true
+        } label: {
+            Text("Pular")
+                .font(.subheadline)
+                .foregroundColor(.gray)
+        }
+    }
     
     var body: some View {
-        ZStack{        
-            Text(texto)
+        ZStack{
             Rectangle()
                 .frame(width: UIScreen.main.bounds.width/2,height: UIScreen.main.bounds.height/1.15)
                 .foregroundColor(Color.white)
                 .position(x:UIScreen.main.bounds.midX*2,y:UIScreen.main.bounds.midY/1.1)
-
+            
             RoundedRectangle(cornerSize: .init(width: 130, height: 130))
                 .frame(width: UIScreen.main.bounds.width,height: UIScreen.main.bounds.height/1.15)
                 .foregroundColor(Color.white)
                 .position(x:UIScreen.main.bounds.midX*1.2,y:UIScreen.main.bounds.midY/1.1)
                 .overlay{
-                    VStack(spacing: 20){
-                        Text("Seja bem-vindo ao SoundMap!")
-                            .font(.headline)
-                        Text("No SoundMap você conseguirá \n montar sua identidade sonoro-musical  \n através da sua localização.")
+                    VStack (spacing: 40) {
+                        VStack(spacing: 20){
+                            Text("Seja bem-vindo ao SoundMap!")
+                                .font(.headline)
+                            Text("No SoundMap você conseguirá \n montar sua identidade sonoro-musical  \n através da sua localização.")
                                 .lineLimit(3)
                                 .font(.subheadline)
                                 .multilineTextAlignment(.center)
-                        if !teste {
-                            Button {
-                                isPresented = true
-                            } label: {
-                                Text("Pular")
-                                    .font(.subheadline)
-                                    .foregroundColor(.gray)
-                            }
-                            .padding(.top,30)
-                            
-                            .position(x:UIScreen.main.bounds.midX*1.08,y:UIScreen.main.bounds.midY*1.2)
                         }
-
+                        if chamaBotao {
+                            botao
                         }
-                       
-
+                    }.position(x:UIScreen.main.bounds.midX,y:UIScreen.main.bounds.midY*1.2)
                     .task {
-                            let subCheck = await appleMusicController.lastSubscriptionUpdate().makeSubscriptionOffer
+                        let subCheck = await appleMusicController.lastSubscriptionUpdate().makeSubscriptionOffer
                         DispatchQueue.main.async {
-                            if isShowingOffer {
-                                teste = true
-                            }
                             subscriptionOfferOptions.messageIdentifier = .playMusic
                             isShowingOffer = subCheck
-                                }
+                            if isShowingOffer != subCheck{
+                                isShowingOffer = false
+                            }
+                            if !isShowingOffer{
+                                chamaBotao = true
+                            }
                         }
+                    }
                 }
         }.musicSubscriptionOffer(isPresented: $isShowingOffer, options: subscriptionOfferOptions)
             .onAppear{
                 appleMusicController.checkAppleMusicAuthorization()
-        
-            
-        }
-       
+                isShowingOffer = true
+                
+            }
             .fullScreenCover(isPresented: $isPresented) {
                 GoToVC().edgesIgnoringSafeArea(.all)
             }
-            
-        }
-    
-    
-    
-//    private var subscriptionOfferButton: some View {
-//        Button(action: offerButtonSelected) {
-//            HStack {
-//                Image(systemName: "applelogo")
-//                Text("Join")
-//            }
-//            .frame(maxWidth: 200)
-//        }
-//    }
-//    
-//    private func offerButtonSelected() {
-//        isShowingOffer.toggle()
-//     }
+    }
 }
 struct TutorialPage1_Previews: PreviewProvider {
     static var previews: some View {
         TutorialPage1()
     }
 }
+//                            if isShowingOffer{
+//                                chamaBotao = false
+//                            }
+//                            else{
+//                                chamaBotao = true
+//                            }

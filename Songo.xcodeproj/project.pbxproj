@@ -12,6 +12,7 @@
 		AD56EA9529786AA900BD9F59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD56EA9429786AA900BD9F59 /* AppDelegate.swift */; };
 		AD56EA9729786AA900BD9F59 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD56EA9629786AA900BD9F59 /* SceneDelegate.swift */; };
 		AD56EA9E29786AA900BD9F59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD56EA9D29786AA900BD9F59 /* Assets.xcassets */; };
+		AD655CF929956E1000B85B23 /* LocationButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD655CF829956E1000B85B23 /* LocationButtonView.swift */; };
 		AD68738E298C454300EF5F61 /* MapLocationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD68738D298C454300EF5F61 /* MapLocationButton.swift */; };
 		AD956249299173A40045C68F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD956248299173A40045C68F /* ProfileViewController.swift */; };
 		AD95624B2991A4700045C68F /* PlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD95624A2991A4700045C68F /* PlaylistViewController.swift */; };
@@ -58,6 +59,7 @@
 		AD56EA9629786AA900BD9F59 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		AD56EA9D29786AA900BD9F59 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AD56EAA229786AA900BD9F59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AD655CF829956E1000B85B23 /* LocationButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationButtonView.swift; sourceTree = "<group>"; };
 		AD68738D298C454300EF5F61 /* MapLocationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapLocationButton.swift; sourceTree = "<group>"; };
 		AD956248299173A40045C68F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		AD95624A2991A4700045C68F /* PlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistViewController.swift; sourceTree = "<group>"; };
@@ -138,6 +140,15 @@
 			path = Songo;
 			sourceTree = "<group>";
 		};
+		AD655CFA299593A100B85B23 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				DE7319C02980486800A6197C /* MapReactiveButton.swift */,
+				AD68738D298C454300EF5F61 /* MapLocationButton.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
 		AD956247299173870045C68F /* Profile-Playlists */ = {
 			isa = PBXGroup;
 			children = (
@@ -206,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				DE7319C2298054D500A6197C /* SongButtonView.swift */,
+				AD655CF829956E1000B85B23 /* LocationButtonView.swift */,
 			);
 			path = ViewComponents;
 			sourceTree = "<group>";
@@ -299,9 +311,8 @@
 		DEF2A8E22978864D002697F9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AD655CFA299593A100B85B23 /* Buttons */,
 				DE7319BC297F635A00A6197C /* MapView.swift */,
-				AD68738D298C454300EF5F61 /* MapLocationButton.swift */,
-				DE7319C02980486800A6197C /* MapReactiveButton.swift */,
 				DE7319C7298061AF00A6197C /* SongPlaylistView.swift */,
 				DE7319C929806C1300A6197C /* CircleRangeView.swift */,
 				DE4C8EC22981A12D0065C813 /* ClusterAnnotationView.swift */,
@@ -406,6 +417,7 @@
 				DE4C8ECA29822BA80065C813 /* CLLocationManagerDelegate.swift in Sources */,
 				DE4F3463298AECA3004EE2F9 /* UIGestureRecognizerDelegate.swift in Sources */,
 				DE7319B9297F60BD00A6197C /* MapViewController.swift in Sources */,
+				AD655CF929956E1000B85B23 /* LocationButtonView.swift in Sources */,
 				AD56EA9729786AA900BD9F59 /* SceneDelegate.swift in Sources */,
 				DE4C8EC32981A12D0065C813 /* ClusterAnnotationView.swift in Sources */,
 				AD956249299173A40045C68F /* ProfileViewController.swift in Sources */,

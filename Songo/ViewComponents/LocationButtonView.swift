@@ -1,18 +1,17 @@
 //
-//  SongButtonVIew.swift
+//  LocationButtonView.swift
 //  Songo
 //
-//  Created by Amanda Melo on 24/01/23.
+//  Created by Clara Thaís Maciel e Silva on 09/02/23.
 //
 
 import Foundation
 import UIKit
 
-/// Set the button that assumes different states.
-class SongButtonView: UIButton {
-    
+class LocationButtonView: UIButton {
     // MARK: - Properties
     var _state: UIControl.State = .normal
+
     
     // MARK: - Overrides
 // override no state padrão chama o atual ou atualizada com um valor definido
@@ -27,7 +26,7 @@ class SongButtonView: UIButton {
 //Coloca cor no botão e no texto mas não entendi a sintaxe
     override public var isEnabled: Bool {
         didSet {
-            backgroundColor = isEnabled ? .black: .black
+            backgroundColor = isEnabled ? .fundo: .fundo
             tintColor = isEnabled ? .white : .white
         }
     }
@@ -35,16 +34,11 @@ class SongButtonView: UIButton {
     // MARK: - Initializers
     init() {
         super.init(frame: .zero)
-        self.titleLabel?.font = .boldSystemFont(ofSize: 10)
-        layer.cornerRadius = 10
-        isEnabled = true
-        widthAnchor.constraint(equalToConstant: 30 * UIScreen.main.bounds.width / 5).isActive = true
-        heightAnchor.constraint(equalToConstant: 70).isActive = true
+        isEnabled = true // chama a cor definida
+        widthAnchor.constraint(equalToConstant:  UIScreen.main.bounds.width/8 ).isActive = true
+        heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.width/8 ).isActive = true
         addDropShadow()
-//        setTitleColor(.white, for: .normal)
-//        setTitleColor(.blue, for: .disabled)
         setTitleColor(.white, for: .userNotFocus)
-        setTitleColor(.white, for: .addCurrentSong)
     }
     
     required init?(coder: NSCoder) {
@@ -73,4 +67,9 @@ class SongButtonView: UIButton {
         layer.shadowRadius = 5.0
         layer.masksToBounds = false
     }
+
+    
+    
+    
+    
 }

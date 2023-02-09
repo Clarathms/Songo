@@ -65,12 +65,16 @@ class MapViewController: BaseViewController<MapView> {
     
     override func viewDidLoad() {
         navigationController?.setNavigationBarHidden(true, animated: false)
-        mainView.setupMapView()
         setupMapReactiveButton()
+        setupMapLocationButton()
         setupLocationManager()
         setupGestures()
         setupMapViewDelegate()
         registerMapAnnotationsViews()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        mainView.setupMapView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -81,7 +85,7 @@ class MapViewController: BaseViewController<MapView> {
     }
     
     func setupMapReactiveButton() {
-        mainView.reactiveButton.addTarget(self, action: #selector(handleButtonAction), for: .touchUpInside)
+        mainView.reactiveButton.addTarget(self, action: #selector(handleReactiveButtonAction), for: .touchUpInside)
     }
     func setupMapLocationButton() {
         mainView.locationButton.addTarget(self, action: #selector(handleButtonAction), for: .touchUpInside)
@@ -89,23 +93,25 @@ class MapViewController: BaseViewController<MapView> {
     
     /// Function that changes the button state and return it to the `reactiveButton`.
     func updateReactiveButton() {
+        mainView.reactiveButton.setButtonState(state: .addCurrentSong)
+    }
+    
+    func updateLocationButton() {
         guard isLocationOn,
               let userLocation = locationController.location
-        else { mainView.reactiveButton.setButtonState(state: .userNotFocus); return }
+        else { mainView.locationButton.setButtonState(state: .userNotFocus); return }
         
         let centerCoordinate = CLLocation(latitude: mainView.region.center.latitude, longitude: mainView.region.center.longitude)
         
         let distanceFromUserToMapCenterRegion = userLocation.distance(from: centerCoordinate)
         
         if distanceFromUserToMapCenterRegion > 5 {
-            mainView.reactiveButton.setButtonState(state: .userNotFocus)
+            mainView.locationButton.setButtonState(state: .userNotFocus)
             return
-        } //else
-        mainView.reactiveButton.setButtonState(state: .addCurrentSong)
+        } 
     }
-    
     /// Sets the object that changes the properties by the state.
-    @objc func handleButtonAction() {
+    @objc func handleReactiveButtonAction() {
         switch mainView.reactiveButton.state {
         case .userNotFocus:
             isLocationOn ? goToMyLocation() : requesLocationAuthorization()
@@ -119,8 +125,23 @@ class MapViewController: BaseViewController<MapView> {
             break
         }
     }
+    @objc func handleButtonAction() {
+        switch mainView.locationButton.state {
+        case .userNotFocus:
+            isLocationOn ? goToMyLocation() : requesLocationAuthorization()
+        case .addCurrentSong:
+            Task{
+                await appleMusicController.getCurrentMusic()
+                dump(appleMusicController.currentTitle)
+                addPlacement()
+            }
+        default:
+            break
+        }
+    }
+
     @objc func handleLocationButtonAction() {
-        switch mainView.reactiveButton.state {
+        switch mainView.locationButton.state {
         case .userNotFocus:
             isLocationOn ? goToMyLocation() : requesLocationAuthorization()
         default:

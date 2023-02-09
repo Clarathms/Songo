@@ -7,10 +7,31 @@
 
 import Foundation
 import SwiftUI
+import MusicKit
 
 struct TutorialPage3: View {
     
+    
     @State var isPresented: Bool = false
+    @State var chamaBotao : Bool = false
+    @State private var isShowingOffer = true
+    @State private var subscriptionOfferOptions: MusicSubscriptionOffer.Options = .default
+    let appleMusicController: AppleMusicController = AppleMusicController()
+    
+    var botao: some View {
+        Button {
+            isPresented = true
+        } label: {
+            Text("Vamos lá")
+                .bold()
+                .foregroundColor(.white)
+                .background(
+                    RoundedRectangle(cornerRadius: 30)
+                        .foregroundColor(Color(UIColor.fundoSecundario))
+                        .frame(width: UIScreen.main.bounds.width/4.2, height: UIScreen.main.bounds.height/16)
+                )
+        }
+    }
     
     var body: some View {
         ZStack{
@@ -19,7 +40,7 @@ struct TutorialPage3: View {
                 .foregroundColor(Color.white)
                 .position(x:UIScreen.main.bounds.midX/2,y:UIScreen.main.bounds.midY/1.1)
             
-            VStack{
+            VStack(spacing: 40){
                 VStack(spacing: 20){
                     Text("Atenção!")
                         .font(.title)
@@ -27,23 +48,39 @@ struct TutorialPage3: View {
                         .font(.subheadline)
                         .multilineTextAlignment(.center)
                 }
-                
-                Button {
-                    isPresented = true
-                } label: {
-                    Text("Vamos lá")
-                        .bold()
-                        .foregroundColor(.white)
-                        .background(
-                            RoundedRectangle(cornerRadius: 30)
-                                .foregroundColor(Color(UIColor.fundoSecundario))
-                                .frame(width: UIScreen.main.bounds.width/4.2, height: UIScreen.main.bounds.height/16)
-                        )
+                if chamaBotao {
+                    botao
                 }
-                .padding(.top,50)
                 
-            }.position(x:UIScreen.main.bounds.midX*0.85,y:UIScreen.main.bounds.midY*1.2)
-            
+//                Button {
+//                    isPresented = true
+//                } label: {
+//                    Text("Vamos lá")
+//                        .bold()
+//                        .foregroundColor(.white)
+//                        .background(
+//                            RoundedRectangle(cornerRadius: 30)
+//                                .foregroundColor(Color(UIColor.fundoSecundario))
+//                                .frame(width: UIScreen.main.bounds.width/4.2, height: UIScreen.main.bounds.height/16)
+//                        )
+//                }
+//                .padding(.top,50)
+                
+            }.position(x:UIScreen.main.bounds.midX,y:UIScreen.main.bounds.midY*1.2)
+            //.position(x:UIScreen.main.bounds.midX*0.85,y:UIScreen.main.bounds.midY*1.2)
+                .task {
+                    let subCheck = await appleMusicController.lastSubscriptionUpdate().makeSubscriptionOffer
+                    DispatchQueue.main.async {
+                        subscriptionOfferOptions.messageIdentifier = .playMusic
+                        isShowingOffer = subCheck
+                        if isShowingOffer != subCheck{
+                            isShowingOffer = false
+                        }
+                        if isShowingOffer{
+                            chamaBotao = true
+                        }
+                    }
+                }
                 .background(
                     
                     RoundedRectangle(cornerSize: .init(width: 130, height: 130))

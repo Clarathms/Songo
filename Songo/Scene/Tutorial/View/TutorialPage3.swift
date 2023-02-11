@@ -76,7 +76,7 @@ struct TutorialPage3: View {
                         if isShowingOffer != subCheck{
                             isShowingOffer = false
                         }
-                        if isShowingOffer{
+                        if !isShowingOffer{
                             chamaBotao = true
                         }
                     }

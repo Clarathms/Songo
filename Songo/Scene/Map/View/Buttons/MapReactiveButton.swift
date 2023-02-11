@@ -9,51 +9,51 @@ import Foundation
 import MusicKit
 import UIKit
 
+
 class MapReactiveButton: SongButtonView {
-    
-    //    @State var plusIcon = UIImage(systemName: "plus")
-    let warningImage = UIImage(systemName: "plus")
-    let myImageView:UIImageView = UIImageView()
+
+//    var appleMusicController1: AppleMusicController = AppleMusicController()
+
+ //   let myImageView:UIImageView = UIImageView()
 //    var titleController = AppleMusicController().currentTitle
 
+    let containerView = UIView(frame: CGRect(x:0,y:0,width:320,height:500))
+      let image1 = UIImageView()
 
-//    var tituloMusica: String {
-//        appleMusicController.getCurrentMusic()
-//    }
-    
+
     var image : UIImage? {
-        let warningImage = UIImage(systemName: "plus")
+        let recebeImg = UIImage(systemName: "plus")
         let myImageView:UIImageView = UIImageView()
         
         myImageView.contentMode = UIView.ContentMode.scaleAspectFit
-        myImageView.frame.size.width = .zero
-        myImageView.frame.size.height = .zero
+//        myImageView.frame.size.width = .zero
+//        myImageView.frame.size.height =
+
         myImageView.tintColor = .white
-        //  myImageView.center = self.view.center
-        myImageView.image = warningImage
-        
-        
-        return warningImage
+        myImageView.sizeToFit()
+        myImageView.image = recebeImg
+
+        return recebeImg
         
     }
-    
+
+    let imageView2: UIImageView  =  {
+       let iv = UIImageView()
+       iv.contentMode = .scaleAspectFit
+       iv.image = UIImage(named: "plus")
+       return iv
+   }()
+
     
     override init() {
         super.init()
+       // var coverView: UIImage? = self.appleMusicController1.currentPicture
+
 //        setTitle(NSLocalizedString(titleController ?? "Sem musica", comment: "MapReactiveButton: title for MapReactiveButton"), for: .addCurrentSong)
+     //   setImage(coverView, for: .disabled)
         setImage(image, for: .addCurrentSong)
-        
-        //   setupImage()
-        //
-        //        setTitle(NSLocalizedString("Localização atual", comment: "MapReactiveButton: title for MapReactiveButton"), for: .userNotFocus)
-        //        setImage(UIImage(systemName: "square.and.arrow.up"), for: .userNotFocus)
         tintColor = .white
 
-   
-        
-//        image.wi.constraint(equalToConstant: UIScreen.main.bounds.width * 10 ).isActive = true
-//        image.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height * 10).isActive = true
-//             
 
         
     }
@@ -71,14 +71,16 @@ class MapReactiveButton: SongButtonView {
         isEnabled = (state == .locationOccupied) ? false : true
     }
     
-    func addConstraint() {
-        myImageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-       
-            myImageView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width * 10 ),
-            myImageView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height * 10)
-            
-        ])
-    }
+//    func addConstraint() {
+//        image.translatesAutoresizingMaskIntoConstraints = false
+//
+//        NSLayoutConstraint.activate([
+//
+//            image.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width * 10 ),
+//            image.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height * 10)
+//
+//        ])
+//    }
+ 
+    
 }

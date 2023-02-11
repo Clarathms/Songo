@@ -6,17 +6,29 @@
 //
 
 import Foundation
+import MapKit
 
-class MusicPlaylistModel: Codable {
+class MusicPlaylistModel: MKClusterAnnotation {
     
-    var musicTitle: String
-    var artist: String
-    var musicPicture: URL
+    var musicTitles: String
+    var artists: String
+    var musicPlacements: [MusicPlacementModel]
+    var musicPictures: [UIImage] = []
+
     
-    init(musicTitle: String, artist: String, musicPicture: URL) {
-        self.musicTitle = musicTitle
-        self.artist = artist
-        self.musicPicture = musicPicture
+    init(musicTitles: String, artists: String, musicPictures: UIImage, musicPlacements: [MusicPlacementModel]) {
+        self.musicPlacements = musicPlacements
+        self.musicTitles = musicTitles
+        self.artists = artists
+        self.musicPictures = {
+            var images: [UIImage] = []
+            for music in musicPlacements {
+                images.append(music.musicPicture ?? UIImage())
+            }
+            return images
+        }()
+
+        super.init(memberAnnotations: musicPlacements)
     }
     
 }

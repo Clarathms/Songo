@@ -9,9 +9,9 @@ import Foundation
 import UIKit
 import MapKit
 
-class SongPlacementView: MKAnnotationView {
+class MusicPlacementView: MKAnnotationView {
     
-    static var reuseIdentifier = "SongPlacementView"
+    static var reuseIdentifier = "MusicPlacementView"
     
     private let boxInset = CGFloat(10)
     private let interItemSpacing = CGFloat(10)
@@ -67,6 +67,7 @@ class SongPlacementView: MKAnnotationView {
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         
+        clusteringIdentifier = "song"
         backgroundColor = UIColor.clear
         addSubview(backgroundMaterial)
         
@@ -124,13 +125,13 @@ class SongPlacementView: MKAnnotationView {
                 imageHeightConstraint?.isActive = true
                 updateConstraints()
                 
-                
                 /*
                  The image view has a width constraint to keep the image to a reasonable size. A height constraint to keep the aspect ratio
                  proportions of the image is required to keep the image packed into the stack view. Without this constraint, the image's height
                  will remain the intrinsic size of the image, resulting in extra height in the stack view that is not desired.
                  */
-                
+//                displayPriority = .defaultHigh
+//                zPriority = .max
                 
             }
         }

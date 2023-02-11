@@ -19,7 +19,6 @@ class MapView: MKMapView  {
     var isLocationOn: Bool {
         locationController?.isLocationOn ?? false
     }
-    var isAuthenticated: Bool
     var locationButton = MapLocationButton()
     weak var appleMusicController: AppleMusicController?
     weak var locationController: LocationController?
@@ -43,10 +42,9 @@ class MapView: MKMapView  {
     var allPlacements: [MKAnnotation] = []
 
     //MARK: - Initializers
-    init(isAuthenticated: Bool, appleMusicController: AppleMusicController, locationController: LocationController) {
+    init(appleMusicController: AppleMusicController, locationController: LocationController) {
         self.appleMusicController = appleMusicController
         self.locationController = locationController
-        self.isAuthenticated = isAuthenticated
         super.init(frame: .zero)
 
     }
@@ -148,19 +146,20 @@ class MapView: MKMapView  {
         guard let userLocation = locationController.location?.coordinate else { return }
         locationController.updateLastLocation()
         
-//        if canAddPlacement(userLocation) == PlacementStatus.isEmpty {
+        switch canAddPlacement(userLocation) {
+        case .isEmpty:
             Task {
                 let placement = await createPlacement(location: userLocation, music: appleMusicController)
                 
                 displayedPlacements = placement
             }
-            
-            return
-//        } else if canAddPlacement(userLocation) == PlacementStatus.hasMusic {
-//            // TODO: adiciona música na view de playlist
-//
-//            return
-//        }
+        case .hasMusic:
+            break
+        case .hasSameMusic:
+            break
+        }
+
+        // TODO: adiciona música na view de playlist
         // TODO: checa se tem essa música na view de playlist
         // TODO: pop-up avisando que tem a mesma música nesta playlist
     }

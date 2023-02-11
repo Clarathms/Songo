@@ -31,6 +31,7 @@ class AppData: Codable {
             await music.getCurrentPicture()
             loadedMusics.append(music)
         }
+        print(loadedMusics.count)
         return loadedMusics
     }
     

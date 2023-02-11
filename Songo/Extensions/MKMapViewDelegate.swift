@@ -22,6 +22,12 @@ extension MapViewController: MKMapViewDelegate {
     func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
         updateReactiveButton()
     }
+//    func mapView(_ mapView: MKMapView, clusterAnnotationForMemberAnnotations memberAnnotations: [MKAnnotation]) -> MKClusterAnnotation {
+//        print(memberAnnotations.count)
+//        if let annotationModel = memberAnnotations.first as? MusicPlacementModel {
+//        }
+//        return MKClusterAnnotation(memberAnnotations: memberAnnotations)
+//    }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         var annotationView: MKAnnotationView?
@@ -43,7 +49,7 @@ extension MapViewController: MKMapViewDelegate {
     }
     
     private func setupSongPlacementView (for annotation: MusicPlacementModel, on mapView: MKMapView) -> MKAnnotationView {
-        let view = mapView.dequeueReusableAnnotationView(withIdentifier: SongPlacementView.reuseIdentifier, for: annotation)
+        let view = mapView.dequeueReusableAnnotationView(withIdentifier: MusicPlacementView.reuseIdentifier, for: annotation)
         view.canShowCallout = true
         let rightButton = UIButton(type: .detailDisclosure)
         view.detailCalloutAccessoryView = rightButton

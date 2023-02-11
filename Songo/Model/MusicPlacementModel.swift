@@ -75,7 +75,7 @@ class MusicPlacementModel: NSObject, MKAnnotation {
     
     func getCurrentPicture() async  {
         
-        guard let url = self.musicURL else {return}
+        guard let url = self.musicURL else { return }
         
         if let data = try? Data(contentsOf: url) {
             if let image = UIImage(data: data){
@@ -83,6 +83,6 @@ class MusicPlacementModel: NSObject, MKAnnotation {
             }
         }
     }
-    
-    
 }
+
+

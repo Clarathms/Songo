@@ -17,8 +17,6 @@ class MapViewController: BaseViewController<MapView> {
     var appleMusicController: AppleMusicController = AppleMusicController()
     
     let locationController: LocationController
-    // Variable that holds the value (true or false) if the user is logged or not.
-    var isAuthenticated: Bool
     // Variable that holds the value (true or false) if the user authorized the location service or not.
     var isLocationOn: Bool {
         didSet {
@@ -32,10 +30,9 @@ class MapViewController: BaseViewController<MapView> {
     
     init(locationController: LocationController) {
         self.locationController = locationController
-        isAuthenticated = true
         isLocationOn = locationController.isLocationOn
        
-        let mapView = MapView(isAuthenticated: isAuthenticated, appleMusicController: appleMusicController, locationController: locationController)
+        let mapView = MapView(appleMusicController: appleMusicController, locationController: locationController)
         super.init(mainView: mapView)
     }
     
@@ -126,7 +123,8 @@ class MapViewController: BaseViewController<MapView> {
     }
     
     private func registerMapPlacementViews() {
-        mainView.register(SongPlacementView.self, forAnnotationViewWithReuseIdentifier: SongPlacementView.reuseIdentifier)
+//        mainView.register(ClusterPlacementView.self, forAnnotationViewWithReuseIdentifier: ClusterPlacementView.reuseIdentifier)
+        mainView.register(MusicPlacementView.self, forAnnotationViewWithReuseIdentifier: MusicPlacementView.reuseIdentifier)
     }
     /// Set the action button that redirect the user
     /// camera to the user location at the map.

@@ -67,7 +67,7 @@ class MusicPlacementView: MKAnnotationView {
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         
-        clusteringIdentifier = "song"
+//        clusteringIdentifier = "song"
         backgroundColor = UIColor.clear
         addSubview(backgroundMaterial)
         
@@ -119,7 +119,7 @@ class MusicPlacementView: MKAnnotationView {
                 if let heightConstraint = imageHeightConstraint {
                     imageView.removeConstraint(heightConstraint)
                 }
-                
+
                 let ratio = image.size.height / image.size.width
                 imageHeightConstraint = imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: ratio, constant: 0)
                 imageHeightConstraint?.isActive = true
@@ -130,8 +130,8 @@ class MusicPlacementView: MKAnnotationView {
                  proportions of the image is required to keep the image packed into the stack view. Without this constraint, the image's height
                  will remain the intrinsic size of the image, resulting in extra height in the stack view that is not desired.
                  */
-//                displayPriority = .defaultHigh
-//                zPriority = .max
+                displayPriority = .defaultHigh
+                zPriority = .min
                 
             }
         }

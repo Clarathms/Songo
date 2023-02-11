@@ -123,7 +123,7 @@ class MapViewController: BaseViewController<MapView> {
     }
     
     private func registerMapPlacementViews() {
-//        mainView.register(ClusterPlacementView.self, forAnnotationViewWithReuseIdentifier: ClusterPlacementView.reuseIdentifier)
+//        mainView.register(ClusterPlacementView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultClusterAnnotationViewReuseIdentifier)
         mainView.register(MusicPlacementView.self, forAnnotationViewWithReuseIdentifier: MusicPlacementView.reuseIdentifier)
     }
     /// Set the action button that redirect the user

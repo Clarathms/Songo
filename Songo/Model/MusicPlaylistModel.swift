@@ -10,16 +10,16 @@ import MapKit
 
 class MusicPlaylistModel: MKClusterAnnotation {
     
-    var musicTitles: String
-    var artists: String
+//    var musicTitles: String
+//    var artists: String
     var musicPlacements: [MusicPlacementModel]
     var musicPictures: [UIImage] = []
 
     
-    init(musicTitles: String, artists: String, musicPictures: UIImage, musicPlacements: [MusicPlacementModel]) {
+    init(musicPlacements: [MusicPlacementModel]) {
         self.musicPlacements = musicPlacements
-        self.musicTitles = musicTitles
-        self.artists = artists
+//        self.musicTitles = musicTitles
+//        self.artists = artists
         self.musicPictures = {
             var images: [UIImage] = []
             for music in musicPlacements {

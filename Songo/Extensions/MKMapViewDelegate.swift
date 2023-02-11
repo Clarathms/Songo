@@ -23,10 +23,28 @@ extension MapViewController: MKMapViewDelegate {
         updateReactiveButton()
     }
 //    func mapView(_ mapView: MKMapView, clusterAnnotationForMemberAnnotations memberAnnotations: [MKAnnotation]) -> MKClusterAnnotation {
-//        print(memberAnnotations.count)
-//        if let annotationModel = memberAnnotations.first as? MusicPlacementModel {
+//        print(memberAnnotations.count, "******")
+//        var clusterAnnotation = MKClusterAnnotation(memberAnnotations: memberAnnotations)
+//        return clusterAnnotation
+//    }
+//    func mapView(_ mapView: MKMapView, clusterAnnotationForMemberAnnotations memberAnnotations: [MKAnnotation]) -> MKClusterAnnotation {
+//
+//        MKAnnotationView().clusteringIdentifier = "song"
+//        
+//        guard let convertAnnotation = memberAnnotations as? [MusicPlacementModel] else { return MKClusterAnnotation(memberAnnotations: memberAnnotations) }
+//        
+//        let clusterAnnotation = MusicPlaylistModel(musicPlacements: convertAnnotation)
+//        return clusterAnnotation
+//    }
+    
+//    func mapView(_ mapView: MKMapView, viewFor annotation: MKClusterAnnotation) -> MKAnnotationView? {
+//        var clusterAnnotation: MKAnnotationView?
+//        guard let annotation = annotation as? MusicPlaylistModel else {
+//            return nil
 //        }
-//        return MKClusterAnnotation(memberAnnotations: memberAnnotations)
+//        clusterAnnotation = setupClusterPlacementView(for: annotation, on: mapView)
+//
+//        return clusterAnnotation
 //    }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -34,7 +52,7 @@ extension MapViewController: MKMapViewDelegate {
         guard let annotation = annotation as? MusicPlacementModel else {
             return nil
         }
-        annotationView = setupSongPlacementView(for: annotation, on: mapView)
+        annotationView = setupMusicPlacementView(for: annotation, on: mapView)
         
         return annotationView
     }
@@ -48,12 +66,21 @@ extension MapViewController: MKMapViewDelegate {
         present(playlistNavController, animated: true, completion: nil)
     }
     
-    private func setupSongPlacementView (for annotation: MusicPlacementModel, on mapView: MKMapView) -> MKAnnotationView {
+    private func setupMusicPlacementView (for annotation: MusicPlacementModel, on mapView: MKMapView) -> MKAnnotationView {
         let view = mapView.dequeueReusableAnnotationView(withIdentifier: MusicPlacementView.reuseIdentifier, for: annotation)
         view.canShowCallout = true
         let rightButton = UIButton(type: .detailDisclosure)
         view.detailCalloutAccessoryView = rightButton
         rightButton.addTarget(self, action: #selector(rightButtonClick), for: .touchUpInside)
+        return view
+    }
+    
+    private func setupClusterPlacementView (for annotation: MusicPlaylistModel, on mapView: MKMapView) -> MKAnnotationView {
+        let view = mapView.dequeueReusableAnnotationView(withIdentifier: ClusterPlacementView.reuseIdentifier, for: annotation)
+//        let rightButton = UIButton(type: .detailDisclosure)
+        view.canShowCallout = true
+//        view.detailCalloutAccessoryView = rightButton
+//        rightButton.addTarget(self, action: #selector(rightButtonClick), for: .touchUpInside)
         return view
     }
 }

@@ -17,6 +17,7 @@ class MapReactiveButton: SongButtonView {
  //   let myImageView:UIImageView = UIImageView()
 //    var titleController = AppleMusicController().currentTitle
 
+  //  var curTitle : appl
     let containerView = UIView(frame: CGRect(x:0,y:0,width:320,height:500))
       let image1 = UIImageView()
 

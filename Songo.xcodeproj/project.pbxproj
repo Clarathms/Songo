@@ -143,8 +143,6 @@
 		AD655CFA299593A100B85B23 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
-				DE7319C02980486800A6197C /* MapReactiveButton.swift */,
-				AD68738D298C454300EF5F61 /* MapLocationButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -312,6 +310,8 @@
 			isa = PBXGroup;
 			children = (
 				AD655CFA299593A100B85B23 /* Buttons */,
+				AD68738D298C454300EF5F61 /* MapLocationButton.swift */,
+				DE7319C02980486800A6197C /* MapReactiveButton.swift */,
 				DE7319BC297F635A00A6197C /* MapView.swift */,
 				DE7319C7298061AF00A6197C /* SongPlaylistView.swift */,
 				DE7319C929806C1300A6197C /* CircleRangeView.swift */,

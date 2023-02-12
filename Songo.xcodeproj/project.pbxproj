@@ -296,7 +296,6 @@
 		DEADE266299890BD00A1F2EE /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
-				DE7319C02980486800A6197C /* MapReactiveButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -318,6 +317,7 @@
 			isa = PBXGroup;
 			children = (
 				DEADE266299890BD00A1F2EE /* Buttons */,
+				DE7319C02980486800A6197C /* MapReactiveButton.swift */,
 				DE7319BC297F635A00A6197C /* MapView.swift */,
 				AD68738D298C454300EF5F61 /* MapLocationButton.swift */,
 				DE7319C929806C1300A6197C /* CircleRangeView.swift */,

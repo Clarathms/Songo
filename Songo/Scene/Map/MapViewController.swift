@@ -10,35 +10,18 @@ import CoreLocation
 import MapKit
 
 
-var appleMusicController: AppleMusicController = AppleMusicController()
+
 /// The View Controller of the Map Scene
 class MapViewController: BaseViewController<MapView> {
     
-//    typealias Factory = SongPlacementSceneFactory
+    var appleMusicController: AppleMusicController = AppleMusicController()
     
-//    var factory: Factory
-    private var displayedPlacements: [MKAnnotation]? {
-        willSet {
-            if let currentPlacements = displayedPlacements {
-                mainView.removeAnnotations(currentPlacements)
-            }
-        }
-        didSet {
-            if let newPlacements = displayedPlacements {
-                mainView.addAnnotations(newPlacements)
-            }
-        }
-    }
-    var allPlacements: [MKAnnotation] = []
     let locationController: LocationController
-    // Variable that holds the value (true or false) if the user is logged or not.
-    var isAuthenticated: Bool
     // Variable that holds the value (true or false) if the user authorized the location service or not.
     var isLocationOn: Bool {
         didSet {
             setupLocationManager()
             mainView.removeOverlays(mainView.overlays)
-            mainView.isLocationOn = isLocationOn
             mainView.setupMapView()
         }
     }
@@ -47,10 +30,10 @@ class MapViewController: BaseViewController<MapView> {
     
     init(locationController: LocationController) {
         self.locationController = locationController
-        isAuthenticated = true
         isLocationOn = locationController.isLocationOn
-        
-        super.init(mainView: MapView(isLocationOn: isLocationOn, isAuthenticated: isAuthenticated))
+       
+        let mapView = MapView(appleMusicController: appleMusicController, locationController: locationController)
+        super.init(mainView: mapView)
     }
     
     required init?(coder: NSCoder) {
@@ -70,7 +53,7 @@ class MapViewController: BaseViewController<MapView> {
         setupLocationManager()
         setupGestures()
         setupMapViewDelegate()
-        registerMapAnnotationsViews()
+        registerMapPlacementViews()
     }
     
     override func viewDidLayoutSubviews() {
@@ -82,6 +65,16 @@ class MapViewController: BaseViewController<MapView> {
         isLocationOn = locationController.isLocationOn
         guard let location = locationController.location?.coordinate else { return }
         updateOverlay(location: location)
+        
+        Task {
+            mainView.displayedPlacements = await AppData.shared.loadMusics()
+        }
+
+    }
+    override func viewDidAppear(_ animated: Bool) {
+//        Task {
+//            mainView.displayedPlacements = await AppData.shared.loadMusics()
+//        }
     }
     
     func setupMapReactiveButton() {
@@ -128,47 +121,31 @@ class MapViewController: BaseViewController<MapView> {
     @objc func handleButtonAction() {
         switch mainView.locationButton.state {
         case .userNotFocus:
-            isLocationOn ? goToMyLocation() : requesLocationAuthorization()
+            isLocationOn ? goToMyLocation() : requestLocationAuthorization()
         case .addCurrentSong:
             Task{
                 await appleMusicController.getCurrentMusic()
                 dump(appleMusicController.currentTitle)
-                addPlacement()
+                mainView.addPlacement()
             }
         default:
             break
         }
     }
+    
 
     @objc func handleLocationButtonAction() {
         switch mainView.locationButton.state {
         case .userNotFocus:
-            isLocationOn ? goToMyLocation() : requesLocationAuthorization()
+            isLocationOn ? goToMyLocation() : requestLocationAuthorization()
         default:
             break
         }
     }
-    func addPlacement() {
-        guard let userLocation = locationController.location?.coordinate else { return }
-        locationController.updateLastLocation()
-        Task{
-            let placement = await createPlacement(location: userLocation, music: appleMusicController)
-            print(placement)
-            
-            displayedPlacements = placement
-        }
-    }
     
-    public func createPlacement (location: CLLocationCoordinate2D, music: AppleMusicController) async -> [MKAnnotation] {
-
-        let placement = await SongPlacementModel(latitude: location.latitude, longitude: location.longitude, musicTitle: music.currentTitle, musicPicture: music.getCurrentPicture(), artist: music.currentArtist)
-        allPlacements.append(placement)
-    
-        return allPlacements
-    }
-    
-    private func registerMapAnnotationsViews() {
-        mainView.register(SongPlacementView.self, forAnnotationViewWithReuseIdentifier: SongPlacementView.reuseIdentifier)
+    private func registerMapPlacementViews() {
+//        mainView.register(ClusterPlacementView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultClusterAnnotationViewReuseIdentifier)
+        mainView.register(MusicPlacementView.self, forAnnotationViewWithReuseIdentifier: MusicPlacementView.reuseIdentifier)
     }
     /// Set the action button that redirect the user
     /// camera to the user location at the map.
@@ -179,46 +156,11 @@ class MapViewController: BaseViewController<MapView> {
 //        updateAnnotations()
     }
     
-    /// Set the interaction that add a new anotation.
-    /// to the Array mapAnnotation.
-//    func addAnnotation() {
-//        guard let userLocation = locationController.location?.coordinate else { return }
-//
-//        if canAddAnnotation(userLocation) {
-//            locationController.updateLastLocation()
-////            let songSearchViewController = factory.createSongSearchScene()
-//            let navController = UINavigationController(rootViewController: songSearchViewController)
-//            present(navController, animated: true)
-//        }
-//    }
-////
-//    /// Check if user can add annotation.
-//    /// - Parameter userLocation: Current user location.
-//    /// - Returns: Returns if userLocation variable is not being used in any other annotation.
-//    private func canAddAnnotation(_ userLocation: CLLocationCoordinate2D) -> Bool {
-//        let allAnnotations = displayAnnotations
-//        if !allAnnotations.isEmpty {
-//            for annotations in allAnnotations{
-//                if annotations.coordinate == userLocation {
-//                    return false
-//                }
-//            }
-//        }
-//        return true
-//    }
-//    
-//    //MARK: - Properties
-//    var displayAnnotations = Set<SongPlacementModel>() {
-//        didSet {
-//            mainView.removeAnnotations(mainView.annotations)
-//            mainView.addAnnotations(Array<SongPlacementModel>(displayAnnotations))
-//        }
-//    }
-//    
-    
-    func requesLocationAuthorization() {
+
+    func requestLocationAuthorization() {
         present(redirectToSettingsAlert, animated: true, completion: nil)
     }
+    
     let redirectToSettingsAlert: UIAlertController = {
         let title = NSLocalizedString("Configurações", comment: "MapViewController: title for alert redirectToSettings")
         let message = NSLocalizedString("Por favor, altere as permissões de localização do Cogu.", comment: "MapViewController: message for alert redirectToSettings")

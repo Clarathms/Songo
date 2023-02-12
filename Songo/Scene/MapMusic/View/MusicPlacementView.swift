@@ -9,9 +9,9 @@ import Foundation
 import UIKit
 import MapKit
 
-class SongPlacementView: MKAnnotationView {
+class MusicPlacementView: MKAnnotationView {
     
-    static var reuseIdentifier = "SongPlacementView"
+    static var reuseIdentifier = "MusicPlacementView"
     
     private let boxInset = CGFloat(10)
     private let interItemSpacing = CGFloat(10)
@@ -67,6 +67,7 @@ class SongPlacementView: MKAnnotationView {
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         
+//        clusteringIdentifier = "song"
         backgroundColor = UIColor.clear
         addSubview(backgroundMaterial)
         
@@ -108,25 +109,30 @@ class SongPlacementView: MKAnnotationView {
          so the view can be put into a known default state, and `prepareForDisplay()` right before the annotation view is displayed. This method is
          the view's oppurtunity to update itself to display content for the new annotation.
          */
-        if let annotation = annotation as? SongPlacementModel {
+        if let annotation = annotation as? MusicPlacementModel {
 //            label.text = annotation.musicTitle
             
             if let image = annotation.musicPicture {
+
                 imageView.image = image
+                
+                if let heightConstraint = imageHeightConstraint {
+                    imageView.removeConstraint(heightConstraint)
+                }
+
+                let ratio = image.size.height / image.size.width
+                imageHeightConstraint = imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: ratio, constant: 0)
+                imageHeightConstraint?.isActive = true
+                updateConstraints()
                 
                 /*
                  The image view has a width constraint to keep the image to a reasonable size. A height constraint to keep the aspect ratio
                  proportions of the image is required to keep the image packed into the stack view. Without this constraint, the image's height
                  will remain the intrinsic size of the image, resulting in extra height in the stack view that is not desired.
                  */
+                displayPriority = .defaultHigh
+                zPriority = .min
                 
-                if let heightConstraint = imageHeightConstraint {
-                    imageView.removeConstraint(heightConstraint)
-                }
-                
-                let ratio = image.size.height / image.size.width
-                imageHeightConstraint = imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: ratio, constant: 0)
-                imageHeightConstraint?.isActive = true
             }
         }
         

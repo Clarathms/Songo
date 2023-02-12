@@ -19,7 +19,7 @@ struct TutorialBase: View {
    // @Binding var showingTutorial:Bool
     @State private var isShowingOffer = true
     @State private var subscriptionOfferOptions: MusicSubscriptionOffer.Options = .default
-    let appleMusicController: AppleMusicController = AppleMusicController()
+    //let appleMusicController: AppleMusicController = AppleMusicController()
 
     var body: some View {
         

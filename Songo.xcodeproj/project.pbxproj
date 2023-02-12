@@ -12,7 +12,6 @@
 		AD56EA9529786AA900BD9F59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD56EA9429786AA900BD9F59 /* AppDelegate.swift */; };
 		AD56EA9729786AA900BD9F59 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD56EA9629786AA900BD9F59 /* SceneDelegate.swift */; };
 		AD56EA9E29786AA900BD9F59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD56EA9D29786AA900BD9F59 /* Assets.xcassets */; };
-		AD655CF929956E1000B85B23 /* LocationButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD655CF829956E1000B85B23 /* LocationButtonView.swift */; };
 		AD68738E298C454300EF5F61 /* MapLocationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD68738D298C454300EF5F61 /* MapLocationButton.swift */; };
 		AD956249299173A40045C68F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD956248299173A40045C68F /* ProfileViewController.swift */; };
 		AD95624B2991A4700045C68F /* PlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD95624A2991A4700045C68F /* PlaylistViewController.swift */; };
@@ -144,13 +143,6 @@
 				AD56EAA229786AA900BD9F59 /* Info.plist */,
 			);
 			path = Songo;
-			sourceTree = "<group>";
-		};
-		AD655CFA299593A100B85B23 /* Buttons */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Buttons;
 			sourceTree = "<group>";
 		};
 		AD956247299173870045C68F /* Profile-Playlists */ = {
@@ -306,6 +298,8 @@
 		DEADE266299890BD00A1F2EE /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				AD68738D298C454300EF5F61 /* MapLocationButton.swift */,
+				DE7319C02980486800A6197C /* MapReactiveButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -327,12 +321,7 @@
 			isa = PBXGroup;
 			children = (
 				DEADE266299890BD00A1F2EE /* Buttons */,
-				DE7319C02980486800A6197C /* MapReactiveButton.swift */,
 				DE7319BC297F635A00A6197C /* MapView.swift */,
-				AD68738D298C454300EF5F61 /* MapLocationButton.swift */,
-				DE7319C02980486800A6197C /* MapReactiveButton.swift */,
-				DE7319BC297F635A00A6197C /* MapView.swift */,
-				DE7319C7298061AF00A6197C /* SongPlaylistView.swift */,
 				DE7319C929806C1300A6197C /* CircleRangeView.swift */,
 			);
 			path = View;

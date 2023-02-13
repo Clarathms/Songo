@@ -54,11 +54,6 @@ class MapReactiveButton: SongButtonView {
      //   setImage(coverView, for: .disabled)
         setImage(image, for: .addCurrentSong)
         
-        setTitle(NSLocalizedString("Adicionar música atual", comment: "MapReactiveButton: title for MapReactiveButton"), for: .addCurrentSong)
-        setImage(UIImage(systemName: "plus.app.fill"), for: .addCurrentSong)
-        
-        setTitle(NSLocalizedString("Localização atual", comment: "MapReactiveButton: title for MapReactiveButton"), for: .userNotFocus)
-        setImage(UIImage(systemName: "location.fill"), for: .userNotFocus)
         tintColor = .white
 
 

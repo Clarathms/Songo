@@ -67,9 +67,6 @@ class LocationButtonView: UIButton {
         layer.shadowRadius = 5.0
         layer.masksToBounds = false
     }
-
-    
-    
-    
     
 }
+

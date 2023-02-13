@@ -9,10 +9,10 @@ import Foundation
 import MusicKit
 import SwiftUI
 
-class AppleMusicController: MapReactiveButton {
+class AppleMusicController {
     
     private var currentMusic: Song?
-    override var currentTitle: String { currentMusic?.title ?? "No title found" }
+    var currentTitle: String { currentMusic?.title ?? "No title found" }
     var currentArtist: String { currentMusic?.artistName ?? "No artist found" }
     var currentURLPicture: URL? { currentMusic?.artwork?.url(width: currentMusic?.artwork!.maximumWidth ?? 0, height: currentMusic?.artwork!.maximumHeight ?? 0) }
     var currentAlbum: String { currentMusic?.albumTitle ?? "No album found" }

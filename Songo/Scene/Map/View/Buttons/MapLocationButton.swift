@@ -8,16 +8,18 @@
 import Foundation
 import UIKit
 
+
+
 class MapLocationButton: LocationButtonView {
-    
+
     override init() {
         super.init()
-      
+
         setImage(UIImage(systemName: "location.fill"), for: .userNotFocus)
-      
+
         tintColor = .white
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

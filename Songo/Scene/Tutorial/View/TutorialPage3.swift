@@ -16,7 +16,7 @@ struct TutorialPage3: View {
     @State var chamaBotao : Bool = false
     @State private var isShowingOffer = true
     @State private var subscriptionOfferOptions: MusicSubscriptionOffer.Options = .default
-    let appleMusicController: AppleMusicController = AppleMusicController()
+    let appleMusicService: AppleMusicService = AppleMusicService()
     
     var botao: some View {
         Button {
@@ -69,7 +69,7 @@ struct TutorialPage3: View {
             }.position(x:UIScreen.main.bounds.midX,y:UIScreen.main.bounds.midY*1.2)
             //.position(x:UIScreen.main.bounds.midX*0.85,y:UIScreen.main.bounds.midY*1.2)
                 .task {
-                    let subCheck = await appleMusicController.lastSubscriptionUpdate().makeSubscriptionOffer
+                    let subCheck = await appleMusicService.lastSubscriptionUpdate().makeSubscriptionOffer
                     DispatchQueue.main.async {
                         subscriptionOfferOptions.messageIdentifier = .playMusic
                         isShowingOffer = subCheck

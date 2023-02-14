@@ -8,35 +8,48 @@
 import Foundation
 import MusicKit
 
-struct AppleMusicService {
-    var appleMusicAuthorization: MusicAuthorization.Status
-    var appleMusicSubscription: MusicSubscription?
+class AppleMusicService {
+    
+    private var currentMusic: Song?
+    var currentTitle: String { currentMusic?.title ?? "No title found" }
+    var currentArtist: String { currentMusic?.artistName ?? "No artist found" }
+    var currentURLPicture: URL? { currentMusic?.artwork?.url(width: currentMusic?.artwork!.maximumWidth ?? 0, height: currentMusic?.artwork!.maximumHeight ?? 0) }
+    var currentAlbum: String { currentMusic?.albumTitle ?? "No album found" }
+    var currentPicture: UIImage?
+    var appleMusicAuthorization: MusicAuthorization.Status = .notDetermined
 
-    private var makeSubscriptionOffer: Bool {
-        return appleMusicSubscription?.canBecomeSubscriber ?? false
-    }
-    private var canPlayMusic: Bool {
-        return appleMusicSubscription?.canPlayCatalogContent ?? false
+    
+    func getCurrentMusic() async {
+        let currentMusicPlaying = SystemMusicPlayer.shared.queue.currentEntry?.item?.id
+            do {
+                var currentMusicRequest: MusicCatalogResourceRequest<Song> { MusicCatalogResourceRequest<Song>(matching: \.id, equalTo: currentMusicPlaying!) }
+                let searchResponse = try await currentMusicRequest.response()
+                currentMusic = searchResponse.items.first
+            } catch {
+                print("Search request failed with error: \(error).")
+            }
     }
     
-    mutating func checkAppleMusicSubscription () async {
-        for await status in MusicSubscription.subscriptionUpdates {
-            appleMusicSubscription = status
+//MARK: - Checagem de assinatura do Apple Music e pedido de autorização para trackeamento de informação
+    func lastSubscriptionUpdate() async -> (makeSubscriptionOffer:Bool, canPlayMusic:Bool) {
+        var appleMusicSubscription: MusicSubscription?
+            for await status in MusicSubscription.subscriptionUpdates {
+                appleMusicSubscription = status
         }
+        return (appleMusicSubscription?.canBecomeSubscriber ?? false, appleMusicSubscription?.canPlayCatalogContent ?? false)
     }
-    mutating func checkAppleMusicAuthorization() async {
-        switch appleMusicAuthorization {
-        case .notDetermined:
-            appleMusicAuthorization = await MusicAuthorization.request()
-        case .authorized:
-            DispatchQueue.main.async {
-                var texto = "autorizado"
+    
+    func checkAppleMusicAuthorization()  {
+        Task{
+            switch appleMusicAuthorization {
+            case .notDetermined:
+                appleMusicAuthorization = await MusicAuthorization.request()
+            case .authorized:
+                Task {lastSubscriptionUpdate}
+            default:
+                // TODO: Arrumar a lógica não posso dar fatal error
+                appleMusicAuthorization = await MusicAuthorization.request()
             }
-        default:
-            fatalError("No button should be displayed for current authorization status: \(appleMusicAuthorization).")
-//            DispatchQueue.main.async {
-//                var texto = "não autorizado"
-//            }
         }
     }
 }

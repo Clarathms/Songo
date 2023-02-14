@@ -20,7 +20,7 @@ class MapView: MKMapView  {
         locationController?.isLocationOn ?? false
     }
     var locationButton = MapLocationButton()
-    weak var appleMusicController: AppleMusicController?
+    weak var appleMusicService: AppleMusicService?
     weak var locationController: LocationController?
     
     var displayedPlacements: [MKAnnotation]? {
@@ -42,8 +42,8 @@ class MapView: MKMapView  {
     var allPlacements: [MKAnnotation] = []
 
     //MARK: - Initializers
-    init(appleMusicController: AppleMusicController, locationController: LocationController) {
-        self.appleMusicController = appleMusicController
+    init(appleMusicService: AppleMusicService, locationController: LocationController) {
+        self.appleMusicService = appleMusicService
         self.locationController = locationController
         super.init(frame: .zero)
 
@@ -112,16 +112,16 @@ class MapView: MKMapView  {
     /// - Returns: Returns if userLocation variable is not being used in any other annotation.
     private func canAddPlacement(_ userLocation: CLLocationCoordinate2D) -> PlacementStatus {
         
-        guard let appleMusicController = appleMusicController else { fatalError("No appleMusicController at \(#function)") }
+        guard let appleMusicService = appleMusicService else { fatalError("No appleMusicService at \(#function)") }
         Task {
-            await appleMusicController.getCurrentMusic()
+            await appleMusicService.getCurrentMusic()
         }
         
         if !allPlacements.isEmpty {
             for annotations in allPlacements{
                 //TODO: determinar e calcular distancia para que as músicas sejam consideradas no mesmo local
                 if annotations.coordinate == userLocation {
-                    if annotations.title == appleMusicController.currentTitle {
+                    if annotations.title == appleMusicService.currentTitle {
                         return .hasSameMusic
                     }
                     return .hasMusic
@@ -131,10 +131,10 @@ class MapView: MKMapView  {
         return .isEmpty
     }
     
-    public func createPlacement (location: CLLocationCoordinate2D, music: AppleMusicController) async -> [MKAnnotation] {
+    public func createPlacement (location: CLLocationCoordinate2D, music: AppleMusicService) async -> [MKAnnotation] {
 
         let placement = MusicPlacementModel(latitude: location.latitude, longitude: location.longitude, title: music.currentTitle, musicURL: music.currentURLPicture, artist: music.currentArtist)
-        await placement.getCurrentPicture()
+        await placement.getApplePicture()
         allPlacements.append(placement)
         AppData.shared.update(musics: allPlacements)
         
@@ -144,15 +144,19 @@ class MapView: MKMapView  {
     func addPlacement() {
         
         guard let locationController = locationController,
-        let appleMusicController = appleMusicController else { fatalError("No locationController or appleMusicController at \(#function)") }
+        let appleMusicService = appleMusicService else { fatalError("No locationController or appleMusicService at \(#function)") }
         
-        guard let userLocation = locationController.location?.coordinate else { return }
+        guard let userLocation2 = locationController.location?.coordinate else { return }
+        var userLocation = userLocation2
+        userLocation.latitude += CLLocationDegrees.random(in: -0.002...0.002)
+        userLocation.longitude += CLLocationDegrees.random(in: -0.002...0.002)
+
         locationController.updateLastLocation()
         
         switch canAddPlacement(userLocation) {
         case .isEmpty:
             Task {
-                let placement = await createPlacement(location: userLocation, music: appleMusicController)
+                let placement = await createPlacement(location: userLocation, music: appleMusicService)
                 
                 displayedPlacements = placement
             }

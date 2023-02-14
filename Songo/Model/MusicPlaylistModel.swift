@@ -15,6 +15,10 @@ class MusicPlaylistModel: MKClusterAnnotation {
     var musicPlacements: [MusicPlacementModel]
     var musicPictures: [UIImage] = []
 
+    //TODO: Uma maneira é criar um contrutor que receba as annotations
+//    init(annotation: MKAnnotation) {
+//        super.init(memberAnnotations: [])
+//    }
     
     init(musicPlacements: [MusicPlacementModel]) {
         self.musicPlacements = musicPlacements

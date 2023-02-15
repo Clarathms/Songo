@@ -66,15 +66,15 @@ class MapViewController: BaseViewController<MapView> {
         guard let location = locationController.location?.coordinate else { return }
         updateOverlay(location: location)
         
-        Task {
-            mainView.displayedPlacements = await AppData.shared.loadMusics()
-        }
-
-    }
-    override func viewDidAppear(_ animated: Bool) {
 //        Task {
 //            mainView.displayedPlacements = await AppData.shared.loadMusics()
 //        }
+
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        Task {
+            mainView.displayedPlacements = await AppData.shared.loadMusics()
+        }
     }
     
     func setupMapReactiveButton() {
@@ -110,7 +110,7 @@ class MapViewController: BaseViewController<MapView> {
 //            isLocationOn ? goToMyLocation() : requestLocationAuthorization()
         case .addCurrentSong:
             Task{
-                await appleMusicService.getCurrentMusic()
+                await AppleMusicService.getCurrentMusic()
                 dump(appleMusicService.currentTitle)
                 mainView.addPlacement()
             }

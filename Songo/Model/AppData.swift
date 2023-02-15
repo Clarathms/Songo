@@ -9,13 +9,29 @@ import Foundation
 import CodableExtensions
 import MapKit
 
+var MusicService: MusicProtocol.Type = SpotifyService.self
+
 class AppData: Codable {
+    
+//    func xxx() {
+//
+//        let escolha = 1
+//
+//        if escolha == 1 {
+//            MusicService = AppleMusicService.self
+//        } else {
+//            MusicService = SpotifyService.self
+//        }
+//
+//        let meuMusicService = MusicService.init()
+//
+//    }
+    
     init() {}
     
     static var shared: AppData = AppData()
     
     private var addedMusic: [MusicPlacementModelPersistence] = []
-
     
     func update(musics: [MKAnnotation]) {
         

@@ -68,7 +68,7 @@ class MusicPlacementView: MKAnnotationView {
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         
-//        clusteringIdentifier = "song"
+        clusteringIdentifier = "song"
         backgroundColor = UIColor.clear
         addSubview(backgroundMaterial)
         

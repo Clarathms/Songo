@@ -7,8 +7,11 @@
 
 import Foundation
 
-class SpotifyService: NSObject {
+class SpotifyService: NSObject, MusicProtocol {
     
+    required override init() {
+        super.init()
+    }
     // MARK: - Fetch token and request access
     lazy var appRemote: SPTAppRemote = {
         let appRemote = SPTAppRemote(configuration: configuration, logLevel: .debug)
@@ -100,9 +103,23 @@ class SpotifyService: NSObject {
     var currentArtist: String { currentTrack?.artist.name ?? "No artist found" }
     var currentAlbum: String { currentTrack?.album.name ?? "No album found" }
     var currentImageIdentifier: String { currentTrack?.imageIdentifier ?? "No image found" }
+    var currentPhotoData: Data? {
+        var data: Data? 
+        
+    }
     
     func update(playerState: SPTAppRemotePlayerState) {
         currentTrack = playerState.track
+    }
+    
+    func geticture() {
+        SpotifyService().appRemote.imageAPI?.fetchImage(forItem: musicImageIdentifier as! SPTAppRemoteImageRepresentable, with: CGSize.zero, callback: { [weak self] (image, error) in
+            if let error = error {
+                print("Error fetching track image: " + error.localizedDescription)
+            } else if let image = image as? UIImage {
+                self?.musicPicture = image
+            }
+        })
     }
 //    func fetchPlayerState() {
 //        appRemote.playerAPI?.getPlayerState({ [weak self] (playerState, error) in

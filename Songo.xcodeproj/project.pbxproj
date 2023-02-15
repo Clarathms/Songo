@@ -43,6 +43,8 @@
 		DE66A937299C099800BD21FA /* SpotifyConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE66A936299C099800BD21FA /* SpotifyConnectViewController.swift */; };
 		DE66A93B299C117A00BD21FA /* SpotifyDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE66A93A299C117A00BD21FA /* SpotifyDelegate.swift */; };
 		DE66A93D299C19F000BD21FA /* SpotifyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE66A93C299C19F000BD21FA /* SpotifyService.swift */; };
+		DE66A93F299D489500BD21FA /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE66A93E299D489500BD21FA /* Array.swift */; };
+		DE66A941299D54B300BD21FA /* MusicProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE66A940299D54B300BD21FA /* MusicProtocol.swift */; };
 		DE7319B7297F5FA900A6197C /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319B6297F5FA900A6197C /* AppContainer.swift */; };
 		DE7319B9297F60BD00A6197C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319B8297F60BD00A6197C /* MapViewController.swift */; };
 		DE7319BB297F610C00A6197C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319BA297F610C00A6197C /* BaseViewController.swift */; };
@@ -98,6 +100,8 @@
 		DE66A936299C099800BD21FA /* SpotifyConnectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyConnectViewController.swift; sourceTree = "<group>"; };
 		DE66A93A299C117A00BD21FA /* SpotifyDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyDelegate.swift; sourceTree = "<group>"; };
 		DE66A93C299C19F000BD21FA /* SpotifyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyService.swift; sourceTree = "<group>"; };
+		DE66A93E299D489500BD21FA /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		DE66A940299D54B300BD21FA /* MusicProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicProtocol.swift; sourceTree = "<group>"; };
 		DE7319B6297F5FA900A6197C /* AppContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainer.swift; sourceTree = "<group>"; };
 		DE7319B8297F60BD00A6197C /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		DE7319BA297F610C00A6197C /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -238,6 +242,7 @@
 		DE5DD17C2984812B002BEB3F /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				DE66A940299D54B300BD21FA /* MusicProtocol.swift */,
 				DE5DD17D2984813D002BEB3F /* AppleMusicService.swift */,
 				DE66A93C299C19F000BD21FA /* SpotifyService.swift */,
 				DE66A934299C060600BD21FA /* ConstantsSpotify.swift */,
@@ -307,6 +312,7 @@
 				DE4F3462298AECA3004EE2F9 /* UIGestureRecognizerDelegate.swift */,
 				DE4F3464298B048C004EE2F9 /* CLLocationCoordinate2D.swift */,
 				DE66A93A299C117A00BD21FA /* SpotifyDelegate.swift */,
+				DE66A93E299D489500BD21FA /* Array.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -425,6 +431,7 @@
 				DE7319C62980581B00A6197C /* UIControl.swift in Sources */,
 				AD1E24582989BC0000D344E3 /* ProtocolTabBar.swift in Sources */,
 				DE7319C3298054D500A6197C /* SongButtonView.swift in Sources */,
+				DE66A93F299D489500BD21FA /* Array.swift in Sources */,
 				DE5DD193298875BC002BEB3F /* UIColor.swift in Sources */,
 				DE4C8ECC2982F2D50065C813 /* MKMapViewDelegate.swift in Sources */,
 				DE66A937299C099800BD21FA /* SpotifyConnectViewController.swift in Sources */,
@@ -435,6 +442,7 @@
 				AD68738E298C454300EF5F61 /* MapLocationButton.swift in Sources */,
 				DE4C8EC82981C32A0065C813 /* TabBarController.swift in Sources */,
 				DE5DD18A298874C4002BEB3F /* ViewControllerTutorial.swift in Sources */,
+				DE66A941299D54B300BD21FA /* MusicProtocol.swift in Sources */,
 				DE5DD18D298874C4002BEB3F /* TutorialPage3.swift in Sources */,
 				DE7319B7297F5FA900A6197C /* AppContainer.swift in Sources */,
 				DE5DD17E2984813D002BEB3F /* AppleMusicService.swift in Sources */,

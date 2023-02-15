@@ -24,16 +24,19 @@ class MapView: MKMapView  {
     weak var locationController: LocationController?
     
     var displayedPlacements: [MKAnnotation]? {
-        willSet {
-            if let currentPlacements = displayedPlacements {
-                removeAnnotations(currentPlacements)
-                print("removendo...")
-            }
-        }
+//        willSet {
+//            if let currentPlacements = displayedPlacements {
+//                removeAnnotations(currentPlacements)
+//                print("removendo...")
+//            }
+//        }
         didSet {
             if let newPlacements = displayedPlacements {
-                addAnnotations(newPlacements)
-//                AppData.shared.update(musics: newPlacements)
+                let previousCount: Int = oldValue?.count ?? 0
+                let newPlacement = Array(newPlacements.suffix(newPlacements.count - previousCount))
+                print("Vai mostrar ", newPlacements.count - previousCount)
+                addAnnotations(newPlacement)
+//                                AppData.shared.update(musics: newPlacements)
                 print("mostrando...")
             }
         }
@@ -114,7 +117,7 @@ class MapView: MKMapView  {
         
         guard let appleMusicService = appleMusicService else { fatalError("No appleMusicService at \(#function)") }
         Task {
-            await appleMusicService.getCurrentMusic()
+            await AppleMusicService.getCurrentMusic()
         }
         
         if !allPlacements.isEmpty {
@@ -131,7 +134,7 @@ class MapView: MKMapView  {
         return .isEmpty
     }
     
-    public func createPlacement (location: CLLocationCoordinate2D, music: AppleMusicService) async -> [MKAnnotation] {
+    public func createPlacements (location: CLLocationCoordinate2D, music: AppleMusicService) async -> [MKAnnotation] {
 
         let placement = MusicPlacementModel(latitude: location.latitude, longitude: location.longitude, title: music.currentTitle, musicURL: music.currentURLPicture, artist: music.currentArtist)
         await placement.getApplePicture()
@@ -148,17 +151,17 @@ class MapView: MKMapView  {
         
         guard let userLocation2 = locationController.location?.coordinate else { return }
         var userLocation = userLocation2
-        userLocation.latitude += CLLocationDegrees.random(in: -0.002...0.002)
-        userLocation.longitude += CLLocationDegrees.random(in: -0.002...0.002)
+        userLocation.latitude += CLLocationDegrees.random(in: -0.02...0.02)
+        userLocation.longitude += CLLocationDegrees.random(in: -0.02...0.02)
 
         locationController.updateLastLocation()
         
         switch canAddPlacement(userLocation) {
         case .isEmpty:
             Task {
-                let placement = await createPlacement(location: userLocation, music: appleMusicService)
+                let placements = await createPlacements(location: userLocation, music: appleMusicService)
                 
-                displayedPlacements = placement
+                displayedPlacements = placements
             }
         case .hasMusic:
             break

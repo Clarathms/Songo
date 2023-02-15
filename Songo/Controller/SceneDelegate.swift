@@ -40,17 +40,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     //TODO: acertar scene com a view devida para a autenticação com o Spotify
-    //    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
-    //        guard let url = URLContexts.first?.url else { return }
-    //            let parameters = rootViewController.appRemote.authorizationParameters(from: url)
-    //            if let code = parameters?["code"] {
-    //                rootViewController.responseCode = code
-    //            } else if let access_token = parameters?[SPTAppRemoteAccessTokenKey] {
-    //                rootViewController.accessToken = access_token
-    //            } else if let error_description = parameters?[SPTAppRemoteErrorDescriptionKey] {
-    //                print("No access token error =", error_description)
-    //            }
-    //    }
+//        func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+//            guard let url = URLContexts.first?.url else { return }
+//            let parameters = spotifyService.appRemote.authorizationParameters(from: url)
+//                if let code = parameters?["code"] {
+//                    window.rootViewController.responseCode = code
+//                } else if let access_token = parameters?[SPTAppRemoteAccessTokenKey] {
+//                    window.rootViewController.accessToken = access_token
+//                } else if let error_description = parameters?[SPTAppRemoteErrorDescriptionKey] {
+//                    print("No access token error =", error_description)
+//                }
+//        }
     
     
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -90,7 +90,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             // to restore the scene back to its current state.
             AppData.shared.saveData()
         }
-        
         
 
 }

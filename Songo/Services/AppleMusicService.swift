@@ -8,7 +8,17 @@
 import Foundation
 import MusicKit
 
-class AppleMusicService {
+class AppleMusicService: MusicProtocol {
+    var currentPhotoData: Data
+    
+    required init() {
+        <#code#>
+    }
+    
+    static func getCurrentMusic() async -> MusicProtocol {
+        <#code#>
+    }
+    
     
     private var currentMusic: Song?
     var currentTitle: String { currentMusic?.title ?? "No title found" }
@@ -18,15 +28,24 @@ class AppleMusicService {
     var currentPicture: UIImage?
     var appleMusicAuthorization: MusicAuthorization.Status = .notDetermined
 
+    init(currentMusic: Song) {
+        self.currentMusic = currentMusic
+        
+    }
     
-    func getCurrentMusic() async {
+    
+    static func getCurrentMusic() async throws -> MusicProtocol {
         let currentMusicPlaying = SystemMusicPlayer.shared.queue.currentEntry?.item?.id
             do {
                 var currentMusicRequest: MusicCatalogResourceRequest<Song> { MusicCatalogResourceRequest<Song>(matching: \.id, equalTo: currentMusicPlaying!) }
                 let searchResponse = try await currentMusicRequest.response()
-                currentMusic = searchResponse.items.first
+                guard let song = searchResponse.items.first else {
+                    // tratar que deu riom
+                    throw MusicRequestError.musicRequestIsEmpty
+                }
+                return AppleMusicService(currentMusic: song)
             } catch {
-                print("Search request failed with error: \(error).")
+                throw error
             }
     }
     

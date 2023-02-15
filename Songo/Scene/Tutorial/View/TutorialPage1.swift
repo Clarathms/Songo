@@ -13,7 +13,7 @@ struct TutorialPage1: View {
     
     @State private var isShowingOffer = true
     @State private var subscriptionOfferOptions: MusicSubscriptionOffer.Options = .default
-    let appleMusicController: AppleMusicController = AppleMusicController()
+    let appleMusicService: AppleMusicService = AppleMusicService()
     @State var isPresented: Bool = false
     @State var chamaBotao : Bool = false
     @State var teste: Bool = true
@@ -54,7 +54,7 @@ struct TutorialPage1: View {
                         }
                     }.position(x:UIScreen.main.bounds.midX,y:UIScreen.main.bounds.midY*1.2)
                     .task {
-                        let subCheck = await appleMusicController.lastSubscriptionUpdate().makeSubscriptionOffer
+                        let subCheck = await appleMusicService.lastSubscriptionUpdate().makeSubscriptionOffer
                         DispatchQueue.main.async {
                             subscriptionOfferOptions.messageIdentifier = .playMusic
                             isShowingOffer = subCheck
@@ -69,7 +69,7 @@ struct TutorialPage1: View {
                 }
         }.musicSubscriptionOffer(isPresented: $isShowingOffer, options: subscriptionOfferOptions)
             .onAppear{
-                appleMusicController.checkAppleMusicAuthorization()
+                appleMusicService.checkAppleMusicAuthorization()
                 isShowingOffer = true
                 
             }

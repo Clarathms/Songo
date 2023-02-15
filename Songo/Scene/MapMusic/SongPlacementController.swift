@@ -13,13 +13,13 @@ import MapKit
 class SongPlacementController {
     
     let mapView: MapView
-    let appleMusicController: AppleMusicController
+    let appleMusicService: AppleMusicService
     let locationController: LocationController
     
-    init(mapView: MapView, locationController: LocationController, appleMusicController: AppleMusicController) {
+    init(mapView: MapView, locationController: LocationController, appleMusicService: AppleMusicService) {
         self.mapView = mapView
         self.locationController = locationController
-        self.appleMusicController = appleMusicController
+        self.appleMusicService = appleMusicService
     }
     
     private var displayedPlacements: [MKAnnotation]? {
@@ -41,17 +41,17 @@ class SongPlacementController {
         locationController.updateLastLocation()
         print(userLocation)
 
-        let placement = await createPlacement(location: userLocation, music: self.appleMusicController)
+        let placement = await createPlacement(location: userLocation, music: self.appleMusicService)
         print(placement)
         
         displayedPlacements = placement
    
     }
     
-    public func createPlacement (location: CLLocationCoordinate2D, music: AppleMusicController) async -> [MKAnnotation] {
+    public func createPlacement (location: CLLocationCoordinate2D, music: AppleMusicService) async -> [MKAnnotation] {
 
         let placement = MusicPlacementModel(latitude: location.latitude, longitude: location.longitude, title: music.currentTitle, musicURL: music.currentURLPicture, artist: music.currentArtist)
-        await placement.getCurrentPicture()
+        await placement.getApplePicture()
         print(music.currentTitle)
         allPlacements.append(placement)
     

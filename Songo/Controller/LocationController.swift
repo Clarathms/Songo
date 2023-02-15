@@ -67,7 +67,7 @@ class LocationController: CLLocationManager {
         if CLLocationManager.locationServicesEnabled() {
             checkLocationAuthorization()
         } else {
-            return
+            return 
         }
     }
 }

@@ -28,7 +28,7 @@ class AppData: Codable {
         var loadedMusics: [MusicPlacementModel] = []
         
         for music in self.addedMusic.map({MusicPlacementModel(persistence: $0)}) {
-            await music.getCurrentPicture()
+            await music.getApplePicture()
             loadedMusics.append(music)
         }
         print(loadedMusics.count)

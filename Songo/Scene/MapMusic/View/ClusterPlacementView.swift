@@ -21,13 +21,18 @@ class ClusterPlacementView: MKAnnotationView {
     }
     static var reuseIdentifier = "ClusterPlacementView"
     
+    var countAnnot = 0
     override func prepareForDisplay() {
         super.prepareForDisplay()
-        
-        if let cluster = annotation as? MusicPlaylistModel {
-            let totalSongs = cluster.memberAnnotations.count
-            image = drawRatio(to: totalSongs, wholeColor: .fundoSecundario)
-            displayPriority = .defaultHigh
+        countAnnot += 1
+        print("countAnnot:", countAnnot)
+        if let cluster = annotation as? MKClusterAnnotation {
+            print(annotation?.title?.debugDescription ?? "NoTitle")
+            if let mkCluster = cluster as? MusicPlaylistModel {
+                let totalSongs = cluster.memberAnnotations.count
+                image = drawRatio(to: totalSongs, wholeColor: .fundoSecundario)
+                displayPriority = .defaultHigh
+            }
         }
     }
     

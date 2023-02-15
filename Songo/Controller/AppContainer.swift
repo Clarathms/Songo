@@ -13,9 +13,9 @@ class AppContainer {
     
 //    private lazy var songPlacementCreationViewController: SongPlacementCreationViewController = SongPlacementCreationViewController()!
     
-    private lazy var appleMusicController: AppleMusicController = AppleMusicController()
+    private lazy var appleMusicService: AppleMusicService = AppleMusicService()
     /// The `TabBarController` used by the entire app
-    private lazy var tabBarController: TabBarController = TabBarController(factory: self, locationController: locationController, appleMusicController: appleMusicController,profileFactory: self,playlistFactory: self)
+    private lazy var tabBarController: TabBarController = TabBarController(factory: self, locationController: locationController, appleMusicService: appleMusicService,profileFactory: self,playlistFactory: self)
     
 }
 // ******* Cria a Cena de Mapa ********

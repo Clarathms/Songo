@@ -29,7 +29,7 @@
 		DE5DD17229833224002BEB3F /* MusicPlacementModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD17029833224002BEB3F /* MusicPlacementModel.swift */; };
 		DE5DD175298421C3002BEB3F /* SongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD174298421C3002BEB3F /* SongViewController.swift */; };
 		DE5DD178298421F8002BEB3F /* CurrentSongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD177298421F8002BEB3F /* CurrentSongView.swift */; };
-		DE5DD17B29843B38002BEB3F /* AppleMusicController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD17A29843B38002BEB3F /* AppleMusicController.swift */; };
+		DE5DD17B29843B38002BEB3F /* AppleMusicService1.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD17A29843B38002BEB3F /* AppleMusicService1.swift */; };
 		DE5DD17E2984813D002BEB3F /* AppleMusicService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD17D2984813D002BEB3F /* AppleMusicService.swift */; };
 		DE5DD18A298874C4002BEB3F /* ViewControllerTutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD181298874C4002BEB3F /* ViewControllerTutorial.swift */; };
 		DE5DD18C298874C4002BEB3F /* GoToVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD183298874C4002BEB3F /* GoToVC.swift */; };
@@ -39,6 +39,11 @@
 		DE5DD190298874C4002BEB3F /* TutorialBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD188298874C4002BEB3F /* TutorialBase.swift */; };
 		DE5DD193298875BC002BEB3F /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD192298875BC002BEB3F /* UIColor.swift */; };
 		DE66A92E299AA47100BD21FA /* LocationButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD655CF829956E1000B85B23 /* LocationButtonView.swift */; };
+		DE66A930299AB3DA00BD21FA /* SpotifyiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE66A92F299AB3D900BD21FA /* SpotifyiOS.framework */; };
+		DE66A935299C060600BD21FA /* ConstantsSpotify.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE66A934299C060600BD21FA /* ConstantsSpotify.swift */; };
+		DE66A937299C099800BD21FA /* SpotifyConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE66A936299C099800BD21FA /* SpotifyConnectViewController.swift */; };
+		DE66A93B299C117A00BD21FA /* SpotifyDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE66A93A299C117A00BD21FA /* SpotifyDelegate.swift */; };
+		DE66A93D299C19F000BD21FA /* SpotifyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE66A93C299C19F000BD21FA /* SpotifyService.swift */; };
 		DE7319B7297F5FA900A6197C /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319B6297F5FA900A6197C /* AppContainer.swift */; };
 		DE7319B9297F60BD00A6197C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319B8297F60BD00A6197C /* MapViewController.swift */; };
 		DE7319BB297F610C00A6197C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319BA297F610C00A6197C /* BaseViewController.swift */; };
@@ -47,7 +52,6 @@
 		DE7319C3298054D500A6197C /* SongButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319C2298054D500A6197C /* SongButtonView.swift */; };
 		DE7319C62980581B00A6197C /* UIControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319C52980581B00A6197C /* UIControl.swift */; };
 		DE7319CA29806C1300A6197C /* CircleRangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319C929806C1300A6197C /* CircleRangeView.swift */; };
-		DEEF6AA62991869A0046DD90 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEEF6AA52991869A0046DD90 /* Localizable.strings */; };
 		DEEF6AA829918B3D0046DD90 /* MapPlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEF6AA729918B3D0046DD90 /* MapPlaylistViewController.swift */; };
 		DEEF6AAA2992C5630046DD90 /* MapPlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEF6AA92992C5630046DD90 /* MapPlaylistView.swift */; };
 		DEEF6AAD2992C6520046DD90 /* CodableExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = DEEF6AAC2992C6520046DD90 /* CodableExtensions */; };
@@ -81,7 +85,7 @@
 		DE5DD17029833224002BEB3F /* MusicPlacementModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicPlacementModel.swift; sourceTree = "<group>"; };
 		DE5DD174298421C3002BEB3F /* SongViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongViewController.swift; sourceTree = "<group>"; };
 		DE5DD177298421F8002BEB3F /* CurrentSongView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentSongView.swift; sourceTree = "<group>"; };
-		DE5DD17A29843B38002BEB3F /* AppleMusicController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicController.swift; sourceTree = "<group>"; };
+		DE5DD17A29843B38002BEB3F /* AppleMusicService1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicService1.swift; sourceTree = "<group>"; };
 		DE5DD17D2984813D002BEB3F /* AppleMusicService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicService.swift; sourceTree = "<group>"; };
 		DE5DD181298874C4002BEB3F /* ViewControllerTutorial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerTutorial.swift; sourceTree = "<group>"; };
 		DE5DD183298874C4002BEB3F /* GoToVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoToVC.swift; sourceTree = "<group>"; };
@@ -90,6 +94,12 @@
 		DE5DD187298874C4002BEB3F /* TutorialPage2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialPage2.swift; sourceTree = "<group>"; };
 		DE5DD188298874C4002BEB3F /* TutorialBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialBase.swift; sourceTree = "<group>"; };
 		DE5DD192298875BC002BEB3F /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		DE66A92F299AB3D900BD21FA /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyiOS.framework; sourceTree = "<group>"; };
+		DE66A931299AC1C600BD21FA /* Songo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Songo-Bridging-Header.h"; sourceTree = "<group>"; };
+		DE66A934299C060600BD21FA /* ConstantsSpotify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantsSpotify.swift; sourceTree = "<group>"; };
+		DE66A936299C099800BD21FA /* SpotifyConnectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyConnectViewController.swift; sourceTree = "<group>"; };
+		DE66A93A299C117A00BD21FA /* SpotifyDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyDelegate.swift; sourceTree = "<group>"; };
+		DE66A93C299C19F000BD21FA /* SpotifyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyService.swift; sourceTree = "<group>"; };
 		DE7319B6297F5FA900A6197C /* AppContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainer.swift; sourceTree = "<group>"; };
 		DE7319B8297F60BD00A6197C /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		DE7319BA297F610C00A6197C /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -98,7 +108,6 @@
 		DE7319C2298054D500A6197C /* SongButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongButtonView.swift; sourceTree = "<group>"; };
 		DE7319C52980581B00A6197C /* UIControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIControl.swift; sourceTree = "<group>"; };
 		DE7319C929806C1300A6197C /* CircleRangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleRangeView.swift; sourceTree = "<group>"; };
-		DEEF6AA52991869A0046DD90 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		DEEF6AA729918B3D0046DD90 /* MapPlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPlaylistViewController.swift; sourceTree = "<group>"; };
 		DEEF6AA92992C5630046DD90 /* MapPlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPlaylistView.swift; sourceTree = "<group>"; };
 		DEEF6AB02992C6ED0046DD90 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
@@ -111,6 +120,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DEEF6AAD2992C6520046DD90 /* CodableExtensions in Frameworks */,
+				DE66A930299AB3DA00BD21FA /* SpotifyiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,11 +149,13 @@
 				DE5DD16E29833224002BEB3F /* Model */,
 				DE5DD17929842314002BEB3F /* ViewComponents */,
 				DEF2A8E129788633002697F9 /* Controller */,
+				DE5DD17C2984812B002BEB3F /* Services */,
 				DE7319BE2980481900A6197C /* Scene */,
 				DE7319C42980580700A6197C /* Extensions */,
-				DE5DD17C2984812B002BEB3F /* Services */,
 				AD56EA9D29786AA900BD9F59 /* Assets.xcassets */,
 				AD56EAA229786AA900BD9F59 /* Info.plist */,
+				DE66A92F299AB3D900BD21FA /* SpotifyiOS.framework */,
+				DE66A931299AC1C600BD21FA /* Songo-Bridging-Header.h */,
 			);
 			path = Songo;
 			sourceTree = "<group>";
@@ -229,7 +241,8 @@
 			isa = PBXGroup;
 			children = (
 				DE5DD17D2984813D002BEB3F /* AppleMusicService.swift */,
-				DEEF6AA52991869A0046DD90 /* Localizable.strings */,
+				DE66A93C299C19F000BD21FA /* SpotifyService.swift */,
+				DE66A934299C060600BD21FA /* ConstantsSpotify.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -239,6 +252,7 @@
 			children = (
 				DE5DD180298874C4002BEB3F /* Controller */,
 				DE5DD184298874C4002BEB3F /* View */,
+				DE66A936299C099800BD21FA /* SpotifyConnectViewController.swift */,
 			);
 			path = Tutorial;
 			sourceTree = "<group>";
@@ -294,6 +308,7 @@
 				DE4C8ECB2982F2D50065C813 /* MKMapViewDelegate.swift */,
 				DE4F3462298AECA3004EE2F9 /* UIGestureRecognizerDelegate.swift */,
 				DE4F3464298B048C004EE2F9 /* CLLocationCoordinate2D.swift */,
+				DE66A93A299C117A00BD21FA /* SpotifyDelegate.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -315,7 +330,7 @@
 				AD56EA9629786AA900BD9F59 /* SceneDelegate.swift */,
 				DE7319BA297F610C00A6197C /* BaseViewController.swift */,
 				DE4C8EC42981A9330065C813 /* LocationController.swift */,
-				DE5DD17A29843B38002BEB3F /* AppleMusicController.swift */,
+				DE5DD17A29843B38002BEB3F /* AppleMusicService1.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -366,6 +381,7 @@
 				TargetAttributes = {
 					AD56EA9029786AA900BD9F59 = {
 						CreatedOnToolsVersion = 14.2;
+						LastSwiftMigration = 1420;
 					};
 				};
 			};
@@ -396,7 +412,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD56EA9E29786AA900BD9F59 /* Assets.xcassets in Resources */,
-				DEEF6AA62991869A0046DD90 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,8 +431,11 @@
 				AD7E5B6C299AC0AB00A1FB66 /* AddCurrentSongView.swift in Sources */,
 				DE5DD193298875BC002BEB3F /* UIColor.swift in Sources */,
 				DE4C8ECC2982F2D50065C813 /* MKMapViewDelegate.swift in Sources */,
+				DE66A937299C099800BD21FA /* SpotifyConnectViewController.swift in Sources */,
+				DE66A935299C060600BD21FA /* ConstantsSpotify.swift in Sources */,
 				DE5DD190298874C4002BEB3F /* TutorialBase.swift in Sources */,
 				DE5DD18F298874C4002BEB3F /* TutorialPage2.swift in Sources */,
+				DE66A93D299C19F000BD21FA /* SpotifyService.swift in Sources */,
 				AD68738E298C454300EF5F61 /* MapLocationButton.swift in Sources */,
 				DE4C8EC82981C32A0065C813 /* TabBarController.swift in Sources */,
 				DE5DD18A298874C4002BEB3F /* ViewControllerTutorial.swift in Sources */,
@@ -431,7 +449,8 @@
 				DE5DD175298421C3002BEB3F /* SongViewController.swift in Sources */,
 				AD56EA9529786AA900BD9F59 /* AppDelegate.swift in Sources */,
 				DE4C8EC52981A9330065C813 /* LocationController.swift in Sources */,
-				DE5DD17B29843B38002BEB3F /* AppleMusicController.swift in Sources */,
+				DE5DD17B29843B38002BEB3F /* AppleMusicService1.swift in Sources */,
+				DE66A93B299C117A00BD21FA /* SpotifyDelegate.swift in Sources */,
 				DE4C8ECA29822BA80065C813 /* CLLocationManagerDelegate.swift in Sources */,
 				DE4F3463298AECA3004EE2F9 /* UIGestureRecognizerDelegate.swift in Sources */,
 				DE7319B9297F60BD00A6197C /* MapViewController.swift in Sources */,
@@ -575,9 +594,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 67AYPRFZH8;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Songo",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Songo/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SoundMap;
@@ -587,7 +611,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -599,6 +623,8 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Songo/Songo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -609,9 +635,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 67AYPRFZH8;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Songo",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Songo/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SoundMap;
@@ -621,11 +652,12 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				"LD_RUNPATH_SEARCH_PATHS[arch=*]" = "-ObjC";
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Academy.les.inf.puc-rio.Songo1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -633,6 +665,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Songo/Songo-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

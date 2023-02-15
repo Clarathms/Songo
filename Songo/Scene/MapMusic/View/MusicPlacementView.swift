@@ -23,6 +23,7 @@ class MusicPlacementView: MKAnnotationView {
     private lazy var backgroundMaterial: UIVisualEffectView = {
         let view = UIVisualEffectView(effect: blurEffect)
         view.translatesAutoresizingMaskIntoConstraints = false
+        self.backgroundColor = .yellow
         return view
     }()
     

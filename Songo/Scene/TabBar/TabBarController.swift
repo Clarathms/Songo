@@ -22,12 +22,12 @@ class TabBarController: UITabBarController {
 
     
     let locationController: LocationController
-    let appleMusicController: AppleMusicController
+    let appleMusicService: AppleMusicService
     
-    init(factory: Factory, locationController: LocationController, appleMusicController: AppleMusicController,profileFactory: ProfileFactory, playlistFactory: PlaylistFactory) {
+    init(factory: Factory, locationController: LocationController, appleMusicService: AppleMusicService,profileFactory: ProfileFactory, playlistFactory: PlaylistFactory) {
         self.locationController = locationController
         self.factory = factory
-        self.appleMusicController = appleMusicController
+        self.appleMusicService = appleMusicService
         self.profileFactory = profileFactory
         self.playlistFactory = playlistFactory
         super.init(nibName: nil, bundle: nil)
@@ -41,7 +41,7 @@ class TabBarController: UITabBarController {
         super.loadView()
         
 //        self.tabBarController?.navigationItem.hidesBackButton = true
-        appleMusicController.checkAppleMusicAuthorization()
+        appleMusicService.checkAppleMusicAuthorization()
         locationController.checkLocationServices()
         setApplicationViewControllers()
         setupBar()

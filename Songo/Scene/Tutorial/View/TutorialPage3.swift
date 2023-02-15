@@ -11,7 +11,7 @@ import MusicKit
 
 struct TutorialPage3: View {
     
-    
+  //  @State teste: Bool = true
     @State var isPresented: Bool = false
     @State var chamaBotao : Bool = false
     @State private var isShowingOffer = true
@@ -51,6 +51,7 @@ struct TutorialPage3: View {
                 if chamaBotao {
                     botao
                 }
+            
                 
 //                Button {
 //                    isPresented = true

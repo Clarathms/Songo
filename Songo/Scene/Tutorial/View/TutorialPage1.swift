@@ -11,12 +11,12 @@ import MusicKit
 
 struct TutorialPage1: View {
     
-    @State var texto: String = "oi"
     @State private var isShowingOffer = true
     @State private var subscriptionOfferOptions: MusicSubscriptionOffer.Options = .default
     let appleMusicController: AppleMusicController = AppleMusicController()
     @State var isPresented: Bool = false
     @State var chamaBotao : Bool = false
+    @State var teste: Bool = true
     
     var botao: some View {
         Button {

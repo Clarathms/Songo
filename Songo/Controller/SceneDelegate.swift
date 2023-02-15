@@ -10,6 +10,8 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    var appContainer: AppContainer = AppContainer()
+
     //var appContainer: AppContainer = AppContainer()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -34,8 +36,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // 6. Set the window and make it keyAndVisible
         self.window = window
         window.makeKeyAndVisible()
-
-        window.rootViewController = ViewControllerTutorial()
+        Task{
+            
+            if AppData.isFirstLaunch() == true {
+                window.rootViewController = appContainer.createTabBarControllerScene()
+            }else{
+                window.rootViewController = ViewControllerTutorial()
+            }
+        }
+        
     }
     
 //    func getRootViewController() -> UIViewController {

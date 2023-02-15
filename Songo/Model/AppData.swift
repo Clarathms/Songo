@@ -51,4 +51,17 @@ class AppData: Codable {
             Self.shared = AppData()
         }
     }
+    class func isFirstLaunch() -> Bool {
+        let defaults = UserDefaults.standard
+                
+                if defaults.bool(forKey: "isAppAlreadyLaunchedOnce"){
+                    print("Não é a primeira vez no app")
+                    return true
+                }else{
+                    defaults.set(true, forKey: "isAppAlreadyLaunchedOnce")
+                    print("Primeira vez no app")
+                    return false
+                }
+    }
 }
+

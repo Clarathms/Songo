@@ -15,6 +15,7 @@ import MapKit
 class MapViewController: BaseViewController<MapView> {
     
     var appleMusicController: AppleMusicController = AppleMusicController()
+    var mapView:MapView
     
     let locationController: LocationController
     // Variable that holds the value (true or false) if the user authorized the location service or not.
@@ -32,7 +33,7 @@ class MapViewController: BaseViewController<MapView> {
         self.locationController = locationController
         isLocationOn = locationController.isLocationOn
        
-        let mapView = MapView(appleMusicController: appleMusicController, locationController: locationController)
+        self.mapView = MapView(appleMusicController: appleMusicController, locationController: locationController)
         super.init(mainView: mapView)
     }
     
@@ -78,7 +79,9 @@ class MapViewController: BaseViewController<MapView> {
     }
     
     func setupMapReactiveButton() {
-        mainView.reactiveButton.addTarget(self, action: #selector(handleAddSongButtonAction), for: .touchUpInside)
+        mainView.reactiveButton!.addTarget(self, action: #selector(handleAddSongButtonAction), for: .touchUpInside)
+        //mainView.currentSongView?.addSongButton.addTarget(<#T##Any?#>, action: <#T##Selector#>, for: <#T##UIControl.Event#>)
+        //mainView.currentSongView!.addSongButton.addTarget(self, action: #selector(handleAddSongButtonAction), for: .touchUpInside)
     }
     func setupMapLocationButton() {
         mainView.locationButton.addTarget(self, action: #selector(handleLocationButtonAction), for: .touchUpInside)
@@ -86,7 +89,8 @@ class MapViewController: BaseViewController<MapView> {
     
     /// Function that changes the button state and return it to the `reactiveButton`.
     func updateReactiveButton() {
-        mainView.reactiveButton.setButtonState(state: .addCurrentSong)
+        mainView.reactiveButton!.setButtonState(state: .addCurrentSong)
+        //mainView.currentSongView!.addSongButton.setButtonState(state: .addCurrentSong)
     }
     
     func updateLocationButton() {
@@ -105,13 +109,16 @@ class MapViewController: BaseViewController<MapView> {
     }
     /// Sets the object that changes the properties by the state.
     @objc func handleAddSongButtonAction() {
-        switch mainView.reactiveButton.state {
+        
+        switch mainView.currentSongView!.state {
 //        case .userNotFocus:
 //            isLocationOn ? goToMyLocation() : requestLocationAuthorization()
         case .addCurrentSong:
             Task{
                 await appleMusicController.getCurrentMusic()
                 dump(appleMusicController.currentTitle)
+                print("--------------------")
+                print(appleMusicController.currentTitle)
                 mainView.addPlacement()
             }
         default:

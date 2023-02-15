@@ -17,7 +17,7 @@ class ProfileViewController: UIViewController {
     override func loadView() {
         view = UIView(frame: UIScreen.main.bounds)
         view.backgroundColor = .fundoSecundario
-        
+            
         setupImage()
         setupText()
         self.view = view
@@ -27,6 +27,7 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addConstraint()
+            
     }
     
     func setupText () {

@@ -15,7 +15,11 @@ import CoreLocation
 class MapView: MKMapView  {
     
     //MARK: - Properties
-    var reactiveButton = MapReactiveButton()
+    var currentSongView: AddCurrentSongView?
+    //var reactiveButton = MapReactiveButton()
+    
+    var reactiveButton:MapReactiveButton?
+    
     var isLocationOn: Bool {
         locationController?.isLocationOn ?? false
     }
@@ -45,7 +49,15 @@ class MapView: MKMapView  {
     init(appleMusicController: AppleMusicController, locationController: LocationController) {
         self.appleMusicController = appleMusicController
         self.locationController = locationController
+        
         super.init(frame: .zero)
+        
+        self.currentSongView = AddCurrentSongView(width: UIScreen.main.bounds.width * 0.9, height: 81, mapView: self)
+//        self.reactiveButton = MapReactiveButton(x: Float(self.bounds.maxX/1.5), y: Float(self.bounds.maxY/6), width: Float(self.bounds.size.width * 0.15), height: Float(self.bounds.size.height * 0.5), mapView: self)
+        //self.reactiveButton = MapReactiveButton(x: Float(UIScreen.main.bounds.maxX/3.5), y: Float(UIScreen.main.bounds.midY/10), width:Float(UIScreen.main.bounds.width * 0.2), height: 70)
+        self.reactiveButton = MapReactiveButton(x: Float(UIScreen.main.bounds.width/1.2), y: Float(UIScreen.main.bounds.height/1.22), width:Float(UIScreen.main.bounds.width/9), height: Float(UIScreen.main.bounds.width/9))
+        print("aaaaaaaaaa")
+        print(UIScreen.main.bounds.width)
 
     }
     
@@ -55,9 +67,10 @@ class MapView: MKMapView  {
     
     /// Setup the `MapView` settings, `reactiveButton` and set the status of the user location with `showsUserLocation`.
     func setupMapView() {
-            
+        
         showsUserLocation = (isLocationOn ? true : false)
-        addSubview(reactiveButton)
+        addSubview(currentSongView!)
+        addSubview(reactiveButton!)
         locationButton.layer.masksToBounds = true
         locationButton.layer.cornerRadius = locationButton.layer.frame.height/2
         addSubview(locationButton)
@@ -69,12 +82,12 @@ class MapView: MKMapView  {
     
     /// Setup the `ReactiveButton`constraints.
     func setupReactiveButtonConstraints() {
-        reactiveButton.translatesAutoresizingMaskIntoConstraints = false
+        currentSongView!.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            reactiveButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -120),
-            reactiveButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-            reactiveButton.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width * 0.9),
-            reactiveButton.heightAnchor.constraint(equalToConstant: 51)
+            currentSongView!.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -120),
+         //   currentSongView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            currentSongView!.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width * 0.9),
+            currentSongView!.heightAnchor.constraint(equalToConstant: 51)
         ])
     }
     func setupLocationButtonConstraints() {
@@ -132,7 +145,7 @@ class MapView: MKMapView  {
     }
     
     public func createPlacement (location: CLLocationCoordinate2D, music: AppleMusicController) async -> [MKAnnotation] {
-
+        
         let placement = MusicPlacementModel(latitude: location.latitude, longitude: location.longitude, title: music.currentTitle, musicURL: music.currentURLPicture, artist: music.currentArtist)
         await placement.getCurrentPicture()
         allPlacements.append(placement)
@@ -146,8 +159,13 @@ class MapView: MKMapView  {
         guard let locationController = locationController,
         let appleMusicController = appleMusicController else { fatalError("No locationController or appleMusicController at \(#function)") }
         
-        guard let userLocation = locationController.location?.coordinate else { return }
+//        guard let userLocation = locationController.location?.coordinate else { return }
         locationController.updateLastLocation()
+        
+        guard let userLocation2 = locationController.location?.coordinate else { return }
+                var userLocation = userLocation2
+//                userLocation.latitude += CLLocationDegrees.random(in: -0.02...0.02)
+//                userLocation.longitude += CLLocationDegrees.random(in: -0.02...0.02)
         
         switch canAddPlacement(userLocation) {
         case .isEmpty:

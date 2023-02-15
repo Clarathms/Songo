@@ -19,12 +19,13 @@ class MapView: MKMapView  {
     //var reactiveButton = MapReactiveButton()
     
     var reactiveButton:MapReactiveButton?
-    
+    var userLocation = userLocation2
+
     var isLocationOn: Bool {
         locationController?.isLocationOn ?? false
     }
     var locationButton = MapLocationButton()
-    weak var appleMusicController: AppleMusicController?
+    weak var appleMusicService: AppleMusicService?
     weak var locationController: LocationController?
     
     var displayedPlacements: [MKAnnotation]? {
@@ -37,28 +38,28 @@ class MapView: MKMapView  {
         didSet {
             if let newPlacements = displayedPlacements {
                 addAnnotations(newPlacements)
-//                AppData.shared.update(musics: newPlacements)
+                //                AppData.shared.update(musics: newPlacements)
                 print("mostrando...")
             }
         }
     }
     
     var allPlacements: [MKAnnotation] = []
-
+    
     //MARK: - Initializers
-    init(appleMusicController: AppleMusicController, locationController: LocationController) {
-        self.appleMusicController = appleMusicController
+    init(appleMusicService: AppleMusicService, locationController: LocationController) {
+        self.appleMusicService = appleMusicService
         self.locationController = locationController
         
         super.init(frame: .zero)
         
         self.currentSongView = AddCurrentSongView(width: UIScreen.main.bounds.width * 0.9, height: 81, mapView: self)
-//        self.reactiveButton = MapReactiveButton(x: Float(self.bounds.maxX/1.5), y: Float(self.bounds.maxY/6), width: Float(self.bounds.size.width * 0.15), height: Float(self.bounds.size.height * 0.5), mapView: self)
+        //        self.reactiveButton = MapReactiveButton(x: Float(self.bounds.maxX/1.5), y: Float(self.bounds.maxY/6), width: Float(self.bounds.size.width * 0.15), height: Float(self.bounds.size.height * 0.5), mapView: self)
         //self.reactiveButton = MapReactiveButton(x: Float(UIScreen.main.bounds.maxX/3.5), y: Float(UIScreen.main.bounds.midY/10), width:Float(UIScreen.main.bounds.width * 0.2), height: 70)
         self.reactiveButton = MapReactiveButton(x: Float(UIScreen.main.bounds.width/1.2), y: Float(UIScreen.main.bounds.height/1.22), width:Float(UIScreen.main.bounds.width/9), height: Float(UIScreen.main.bounds.width/9))
         print("aaaaaaaaaa")
         print(UIScreen.main.bounds.width)
-
+        
     }
     
     required init?(coder: NSCoder) {
@@ -85,7 +86,7 @@ class MapView: MKMapView  {
         currentSongView!.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             currentSongView!.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -120),
-         //   currentSongView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            //   currentSongView.centerXAnchor.constraint(equalTo: centerXAnchor),
             currentSongView!.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width * 0.9),
             currentSongView!.heightAnchor.constraint(equalToConstant: 51)
         ])
@@ -96,7 +97,7 @@ class MapView: MKMapView  {
             locationButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -190),
             locationButton.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width ),
             locationButton.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 150),
-       
+            
         ])
     }
     
@@ -125,16 +126,16 @@ class MapView: MKMapView  {
     /// - Returns: Returns if userLocation variable is not being used in any other annotation.
     private func canAddPlacement(_ userLocation: CLLocationCoordinate2D) -> PlacementStatus {
         
-        guard let appleMusicController = appleMusicController else { fatalError("No appleMusicController at \(#function)") }
+        guard let appleMusicService = appleMusicService else { fatalError("No appleMusicService at \(#function)") }
         Task {
-            await appleMusicController.getCurrentMusic()
+            await appleMusicService.getCurrentMusic()
         }
         
         if !allPlacements.isEmpty {
             for annotations in allPlacements{
                 //TODO: determinar e calcular distancia para que as músicas sejam consideradas no mesmo local
                 if annotations.coordinate == userLocation {
-                    if annotations.title == appleMusicController.currentTitle {
+                    if annotations.title == appleMusicService.currentTitle {
                         return .hasSameMusic
                     }
                     return .hasMusic
@@ -146,42 +147,51 @@ class MapView: MKMapView  {
     
     public func createPlacement (location: CLLocationCoordinate2D, music: AppleMusicController) async -> [MKAnnotation] {
         
-        let placement = MusicPlacementModel(latitude: location.latitude, longitude: location.longitude, title: music.currentTitle, musicURL: music.currentURLPicture, artist: music.currentArtist)
-        await placement.getCurrentPicture()
-        allPlacements.append(placement)
-        AppData.shared.update(musics: allPlacements)
-        
-        return await AppData.shared.loadMusics()
-    }
-    
-    func addPlacement() {
-        
-        guard let locationController = locationController,
-        let appleMusicController = appleMusicController else { fatalError("No locationController or appleMusicController at \(#function)") }
-        
-//        guard let userLocation = locationController.location?.coordinate else { return }
-        locationController.updateLastLocation()
-        
-        guard let userLocation2 = locationController.location?.coordinate else { return }
-                var userLocation = userLocation2
-//                userLocation.latitude += CLLocationDegrees.random(in: -0.02...0.02)
-//                userLocation.longitude += CLLocationDegrees.random(in: -0.02...0.02)
-        
-        switch canAddPlacement(userLocation) {
-        case .isEmpty:
-            Task {
-                let placement = await createPlacement(location: userLocation, music: appleMusicController)
-                
-                displayedPlacements = placement
-            }
-        case .hasMusic:
-            break
-        case .hasSameMusic:
-            break
+        public func createPlacement (location: CLLocationCoordinate2D, music: AppleMusicService) async -> [MKAnnotation] {
+            
+            let placement = MusicPlacementModel(latitude: location.latitude, longitude: location.longitude, title: music.currentTitle, musicURL: music.currentURLPicture, artist: music.currentArtist)
+            await placement.getApplePicture()
+            allPlacements.append(placement)
+            AppData.shared.update(musics: allPlacements)
+            
+            return await AppData.shared.loadMusics()
         }
-
-        // TODO: adiciona música na view de playlist
-        // TODO: checa se tem essa música na view de playlist
-        // TODO: pop-up avisando que tem a mesma música nesta playlist
+        
+        func addPlacement() {
+            
+            guard let locationController = locationController,
+                  let appleMusicService = appleMusicService else { fatalError("No locationController or appleMusicService at \(#function)") }
+            
+            //        guard let userLocation = locationController.location?.coordinate else { return }
+            guard let userLocation2 = locationController.location?.coordinate else { return }
+            var userLocation = userLocation2
+            userLocation.latitude += CLLocationDegrees.random(in: -0.002...0.002)
+            userLocation.longitude += CLLocationDegrees.random(in: -0.002...0.002)
+            
+            locationController.updateLastLocation()
+            
+            guard let userLocation2 = locationController.location?.coordinate else { return }
+            //                userLocation.latitude += CLLocationDegrees.random(in: -0.02...0.02)
+            //                userLocation.longitude += CLLocationDegrees.random(in: -0.02...0.02)
+            
+            switch canAddPlacement(userLocation) {
+            case .isEmpty:
+                Task {
+                    let placement = await createPlacement(location: userLocation, music: appleMusicService)
+                    
+                    displayedPlacements = placement
+                }
+            case .hasMusic:
+                break
+            case .hasSameMusic:
+                break
+            }
+            
+            // TODO: adiciona música na view de playlist
+            // TODO: checa se tem essa música na view de playlist
+            // TODO: pop-up avisando que tem a mesma música nesta playlist
+        }
+        
     }
+
 }

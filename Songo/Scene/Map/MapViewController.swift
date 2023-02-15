@@ -14,8 +14,9 @@ import MapKit
 /// The View Controller of the Map Scene
 class MapViewController: BaseViewController<MapView> {
     
-    var appleMusicController: AppleMusicController = AppleMusicController()
+    var appleMusicController: AppleMusicService = AppleMusicService()
     var mapView:MapView
+    var appleMusicService: AppleMusicService = AppleMusicService()
     
     let locationController: LocationController
     // Variable that holds the value (true or false) if the user authorized the location service or not.
@@ -33,7 +34,8 @@ class MapViewController: BaseViewController<MapView> {
         self.locationController = locationController
         isLocationOn = locationController.isLocationOn
        
-        self.mapView = MapView(appleMusicController: appleMusicController, locationController: locationController)
+        self.mapView = MapView(appleMusicService: appleMusicController, locationController: locationController)
+        let mapView = MapView(appleMusicService: appleMusicService, locationController: locationController)
         super.init(mainView: mapView)
     }
     
@@ -119,6 +121,8 @@ class MapViewController: BaseViewController<MapView> {
                 dump(appleMusicController.currentTitle)
                 print("--------------------")
                 print(appleMusicController.currentTitle)
+                await appleMusicService.getCurrentMusic()
+                dump(appleMusicService.currentTitle)
                 mainView.addPlacement()
             }
         default:
@@ -136,7 +140,7 @@ class MapViewController: BaseViewController<MapView> {
     }
     
     private func registerMapPlacementViews() {
-//        mainView.register(ClusterPlacementView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultClusterAnnotationViewReuseIdentifier)
+//        mainView.register(ClusterPlacementView.self, forAnnotationViewWithReuseIdentifier: ClusterPlacementView.reuseIdentifier)
         mainView.register(MusicPlacementView.self, forAnnotationViewWithReuseIdentifier: MusicPlacementView.reuseIdentifier)
     }
     /// Set the action button that redirect the user

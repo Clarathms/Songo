@@ -19,7 +19,6 @@ class MapView: MKMapView  {
     //var reactiveButton = MapReactiveButton()
     
     var reactiveButton:MapReactiveButton?
-    var userLocation = userLocation2
 
     var isLocationOn: Bool {
         locationController?.isLocationOn ?? false
@@ -53,13 +52,12 @@ class MapView: MKMapView  {
         
         super.init(frame: .zero)
         
-        self.currentSongView = AddCurrentSongView(width: UIScreen.main.bounds.width * 0.9, height: 81, mapView: self)
+        self.currentSongView = AddCurrentSongView(width: UIScreen.main.bounds.width * 0.9, height: 81, mapView: self, appleMusicService: appleMusicService)
         //        self.reactiveButton = MapReactiveButton(x: Float(self.bounds.maxX/1.5), y: Float(self.bounds.maxY/6), width: Float(self.bounds.size.width * 0.15), height: Float(self.bounds.size.height * 0.5), mapView: self)
         //self.reactiveButton = MapReactiveButton(x: Float(UIScreen.main.bounds.maxX/3.5), y: Float(UIScreen.main.bounds.midY/10), width:Float(UIScreen.main.bounds.width * 0.2), height: 70)
         self.reactiveButton = MapReactiveButton(x: Float(UIScreen.main.bounds.width/1.2), y: Float(UIScreen.main.bounds.height/1.22), width:Float(UIScreen.main.bounds.width/9), height: Float(UIScreen.main.bounds.width/9))
-        print("aaaaaaaaaa")
-        print(UIScreen.main.bounds.width)
-        
+  
+
     }
     
     required init?(coder: NSCoder) {
@@ -145,9 +143,8 @@ class MapView: MKMapView  {
         return .isEmpty
     }
     
-    public func createPlacement (location: CLLocationCoordinate2D, music: AppleMusicController) async -> [MKAnnotation] {
         
-        public func createPlacement (location: CLLocationCoordinate2D, music: AppleMusicService) async -> [MKAnnotation] {
+    func createPlacement (location: CLLocationCoordinate2D, music: AppleMusicService) async -> [MKAnnotation] {
             
             let placement = MusicPlacementModel(latitude: location.latitude, longitude: location.longitude, title: music.currentTitle, musicURL: music.currentURLPicture, artist: music.currentArtist)
             await placement.getApplePicture()
@@ -170,7 +167,7 @@ class MapView: MKMapView  {
             
             locationController.updateLastLocation()
             
-            guard let userLocation2 = locationController.location?.coordinate else { return }
+//            guard let userLocation2 = locationController.location?.coordinate else { return }
             //                userLocation.latitude += CLLocationDegrees.random(in: -0.02...0.02)
             //                userLocation.longitude += CLLocationDegrees.random(in: -0.02...0.02)
             
@@ -192,6 +189,5 @@ class MapView: MKMapView  {
             // TODO: pop-up avisando que tem a mesma música nesta playlist
         }
         
-    }
 
 }

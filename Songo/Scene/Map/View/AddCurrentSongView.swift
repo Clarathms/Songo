@@ -8,11 +8,12 @@
 import Foundation
 import UIKit
 import MusicKit
+import CoreLocation
+import MapKit
 
 public class AddCurrentSongView: UIView {
-    
+    weak var appleMusicService: AppleMusicService?
     var background: UIView!
-    let warningImage = UIImage(systemName: "exclamationmark.triangle.fill")
     let myImageView:UIImageView = UIImageView()
     
     var albumImage: UIImageView!
@@ -20,54 +21,44 @@ public class AddCurrentSongView: UIView {
     
     var currentArtist =  UILabel(frame: CGRect(x: UIScreen.main.bounds.maxX/5.5, y: UIScreen.main.bounds.midY/50, width: UIScreen.main.bounds.width/2, height:  UIScreen.main.bounds.height/9))
 
-    var currentAlbum = "Álbum"
+    var currentAlbum = UILabel(frame: CGRect(x: UIScreen.main.bounds.maxX/2, y: UIScreen.main.bounds.midY/50, width: UIScreen.main.bounds.width/2, height:  UIScreen.main.bounds.height/9))
     var circleImg = UIImage(systemName: "circle.fill")
     var mapView:MapView
+//    var musicPlacement: MusicPlacementModelPersistence
 
-    //var addSongButton: UIImageView!
-    //var addSongButton: MapReactiveButton!
-//    var AddSongButton : UIImageView {
-//        let recebeImg = UIImage(systemName: "plus")
-//        var myImageView:UIImageView = UIImageView()
-//
-//        myImageView.contentMode = UIView.ContentMode.scaleAspectFit
-////        myImageView.frame.size.width = .zero
-////        myImageView.frame.size.height =
-//
-//        myImageView.tintColor = .white
-//        myImageView.sizeToFit()
-//        myImageView.image = recebeImg
-//        myImageView =  UIImageView(frame: CGRect(x: self.bounds.maxX/28, y: self.bounds.maxY/6, width: self.bounds.size.width * 0.2, height: self.bounds.size.height * 0.8))
-//        return myImageView
-//    }
-
+  
     //var songButtonView = SongButtonView()
     var state: UIControl.State = .addCurrentSong
-  //  var reactiveButton = MapReactiveButton
+    var musicURL : URL?
+    var musicPicture: UIImage?
+    var allPlacements: [MKAnnotation] = []
+
+    //var reactiveButton = MapReactiveButton
     
     
-    init(width:CGFloat, height:Int, mapView: MapView) {
+    init(width:CGFloat, height:Int, mapView: MapView, appleMusicService: AppleMusicService) {
         self.mapView = mapView
         super.init(frame: CGRect(x: 0, y: 0, width: Int(width), height: height))
-        for family in UIFont.familyNames {
-                print("family:", family)
-                for font in UIFont.fontNames(forFamilyName: family) {
-                    print("font:", font)
-                }
-            }
+      
         
         setupBackground()
+
+        Task {
+            await appleMusicService.getCurrentMusic()
+            self.currentTitle.text = appleMusicService.currentTitle
+            self.currentArtist.text = appleMusicService.currentArtist
+            self.currentAlbum.text = appleMusicService.currentAlbum
+           // self.albumImage.image = appleMusicService.currentPicture
+
+//            self.musicPicture = UIImage(data: <#T##Data#>appleMusicService.currentURLPicture
+            // print(currentTitle.text)
+           // await getApplePicture()
+
+        }
         setupImage()
         setupCurrentTitle()
         setupArtist()
-        //setupAddSongButton()
-        //songButtonView.setImage(self.addSongButton.image, for: .addCurrentSong)
-
-        //        reactiveButton = MapReactiveButton(frame: CGRect(x: self.bounds.maxX/28, y: self.bounds.maxY/6, width: self.bounds.size.width * 0.2, height: self.bounds.size.height * 0.8))
-//        addSubview(reactiveButton)
-//        setupReactiveButtonConstraints()
-//        songButtonView.setImage(AddSongButton, for: .addCurrentSong)
-//        tintColor = .white
+        setupAlbum()
 
     }
     
@@ -85,30 +76,29 @@ public class AddCurrentSongView: UIView {
     
     
     func setupImage() {
-        self.albumImage = UIImageView(image: UIImage(named: "imagemCapa"))
+        self.albumImage = UIImageView(image: musicPicture)
         self.albumImage = UIImageView(frame: CGRect(x: self.bounds.maxX/28, y: self.bounds.maxY/6, width: self.bounds.size.width * 0.2, height: self.bounds.size.height * 0.8))
-        self.albumImage.image = UIImage(named: "imagemCapa")
+        self.albumImage.image = musicPicture
         self.albumImage.layer.masksToBounds = true
         self.albumImage.layer.cornerRadius = 8
         self.addSubview(self.albumImage)
     }
     
     func setupCurrentTitle (){
-        self.currentTitle.text = "Sign of The Times"
-    //    self.currentTitle = UILabel(frame: CGRect(x: self.bounds.midX, y: self.bounds.midY,width: self.bounds.size.width * 10,height: self.bounds.size.height * 10))
-     //   self.currentTitle.font = .preferredFont(forTextStyle: .headline, compatibleWith: .current)
+      //  self.currentTitle.text = "Sign of The Times"
+
         self.currentTitle.textColor = .white
         self.currentTitle.textAlignment = .center
         self.currentTitle.numberOfLines = 1
         self.currentTitle.font = UIFont(name:"Inter", size: 5.0)
         self.currentTitle.font = UIFont.boldSystemFont(ofSize: 17)
-        self.addSubview(currentTitle)
+        self.addSubview(self.currentTitle)
+
     }
 
     func setupArtist (){
-        self.currentArtist.text = "Harry Styles . \(currentAlbum)"
-    //    self.currentTitle = UILabel(frame: CGRect(x: self.bounds.midX, y: self.bounds.midY,width: self.bounds.size.width * 10,height: self.bounds.size.height * 10))
-     //   self.currentTitle.font = .preferredFont(forTextStyle: .headline, compatibleWith: .current)
+      //  self.currentArtist.text = "Harry Styles . \(currentAlbum)"
+    
         self.currentArtist.textColor = .white
         self.currentArtist.textAlignment = .center
         self.currentArtist.numberOfLines = 1
@@ -116,39 +106,36 @@ public class AddCurrentSongView: UIView {
         self.currentArtist.font = UIFont.systemFont(ofSize: 15)
         self.addSubview(currentArtist)
     }
+    func setupAlbum (){
+      //  self.currentArtist.text = "Harry Styles . \(currentAlbum)"
     
-//        func setupReactiveButtonConstraints() {
-//            reactiveButton.translatesAutoresizingMaskIntoConstraints = false
-//            NSLayoutConstraint.activate([
-//                reactiveButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -120),
-//             //   currentSongView.centerXAnchor.constraint(equalTo: centerXAnchor),
-//                reactiveButton.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width * 0.9),
-//                reactiveButton.heightAnchor.constraint(equalToConstant: 51)
-//            ])
+        self.currentAlbum.textColor = .white
+        self.currentAlbum.textAlignment = .center
+        self.currentAlbum.numberOfLines = 1
+        self.currentAlbum.font = UIFont(name:"Inter", size: 20.0)
+        self.currentAlbum.font = UIFont.systemFont(ofSize: 15)
+        self.addSubview(currentAlbum)
+    }
+//    func createPlacement (music: AppleMusicService) async -> [MKAnnotation] {
+//        var musicPlacement: MusicPlacementModel
+////            let placement = MusicPlacementModel(latitude: location.latitude, longitude: location.longitude, title: music.currentTitle, musicURL: music.currentURLPicture, artist: music.currentArtist)
+//        await musicPlacement.getApplePicture()
+//           // allPlacements.append(placement)
+//            AppData.shared.update(musics: allPlacements)
+//
+//            return await AppData.shared.loadMusics()
 //        }
-    
-//    func setupAddSongButton() {
-////        self.addSongButton = UIImageView(image: UIImage(systemName: "plus"))
-////        self.addSongButton = UIImageView(frame: CGRect(x: self.bounds.maxX/1.5, y: self.bounds.maxY/6, width: self.bounds.size.width * 0.15, height: self.bounds.size.height * 0.5))
-////        self.addSongButton.image =  UIImage(systemName: "plus")
-////        self.addSongButton.tintColor = .white
 //
-////        let tap = UITapGestureRecognizer(target: self, action: #selector(AddCurrentSongView.tappedMe))
-////
-////        self.addSongButton.addGestureRecognizer(tap)
-////        self.addSongButton.isUserInteractionEnabled = true
-//        //self.addSongButton = MapReactiveButton(x: Float(self.bounds.maxX/1.5), y: Float(self.bounds.maxY/6), width: Float(self.bounds.size.width * 0.15), height: Float(self.bounds.size.height * 0.5), mapView: mapView)
-//
-//        //self.addSubview(self.addSongButton)
-//    }
-   
-//    @objc func tappedMe()
-//    {
-//        print("Tapped on Image")
-//
-//       // self.addSongButton.setButtonState(state: state)
-//
-//    }
+    func getApplePicture() async {
+        guard let url = self.musicURL else { return }
+        if let data = try? Data(contentsOf: url) {
+            if let image = UIImage(data: data){
+                self.musicPicture = image
+                print("--------------------///f------------")
+                print(appleMusicService?.currentURLPicture!)
+            }
+        }
+    }
 }
 
 

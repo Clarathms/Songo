@@ -24,20 +24,14 @@ extension MapViewController: MKMapViewDelegate {
         updateReactiveButton()
         updateLocationButton()
     }
-//    func mapView(_ mapView: MKMapView, clusterAnnotationForMemberAnnotations memberAnnotations: [MKAnnotation]) -> MKClusterAnnotation {
-//        print(memberAnnotations.count, "******")
-//        var clusterAnnotation = MKClusterAnnotation(memberAnnotations: memberAnnotations)
-//        return clusterAnnotation
-//    }
-//    func mapView(_ mapView: MKMapView, clusterAnnotationForMemberAnnotations memberAnnotations: [MKAnnotation]) -> MKClusterAnnotation {
-//
-//        MKAnnotationView().clusteringIdentifier = "song"
-//        
-//        guard let convertAnnotation = memberAnnotations as? [MusicPlacementModel] else { return MKClusterAnnotation(memberAnnotations: memberAnnotations) }
-//        
-//        let clusterAnnotation = MusicPlaylistModel(musicPlacements: convertAnnotation)
-//        return clusterAnnotation
-//    }
+
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        if let clusterPlacement = view.annotation as? ClusterPlacementView, clusterPlacement.isKind(of: MusicPlacementModel.self) {
+            let pin = view.annotation
+            
+            
+        }
+    }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         

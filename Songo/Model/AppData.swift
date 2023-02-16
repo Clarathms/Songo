@@ -53,6 +53,7 @@ class AppData: Codable {
         for music in self.addedMusic.map({MusicPlacementModel(persistence: $0)}) {
             loadedMusics.append(music)
         }
+//        loadedMusics = self.addedMusic.map({MusicPlacementModel(persistence: $0)})
         print("loaded", loadedMusics.count)
         return loadedMusics
     }

@@ -115,6 +115,7 @@ class MapViewController: BaseViewController<MapView> {
     override func viewDidAppear(_ animated: Bool) {
         Task {
             mainView.displayedPlacements = await AppData.shared.loadMusics()
+            await mainView.allPlacements.append(contentsOf: AppData.shared.loadMusics())
         }
     }
     
@@ -170,8 +171,8 @@ class MapViewController: BaseViewController<MapView> {
     }
     
     private func registerMapPlacementViews() {
-//        mainView.register(ClusterPlacementView.self, forAnnotationViewWithReuseIdentifier: ClusterPlacementView.reuseIdentifier)
         mainView.register(MusicPlacementView.self, forAnnotationViewWithReuseIdentifier: MusicPlacementView.reuseIdentifier)
+        mainView.register(ClusterPlacementView.self, forAnnotationViewWithReuseIdentifier: ClusterPlacementView.reuseIdentifier)
     }
     /// Set the action button that redirect the user
     /// camera to the user location at the map.

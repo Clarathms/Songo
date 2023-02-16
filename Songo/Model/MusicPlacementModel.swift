@@ -18,27 +18,25 @@ class MusicPlacementModelPersistence: Codable {
     var latitude: Double
     var longitude: Double
     var title: String?
-    var musicURL: URL?
     var artist: String?
-    var musicImageIdentifier: String?
+    var musicData: Data?
+
     
-    init(latitude: Double, longitude: Double, title: String?, musicURL: URL? = nil, artist: String?, musicImageIdentifier: String? = nil) {
+    init(latitude: Double, longitude: Double, title: String?, artist: String?, musicData: Data?) {
         self.latitude = latitude
         self.longitude = longitude
         //        self.addedAt = addedAt
         self.title = title
-        self.musicURL = musicURL
         self.artist = artist
-        self.musicImageIdentifier = musicImageIdentifier
+        self.musicData = musicData
     }
     
     init(music: MusicPlacementModel) {
         latitude = music.latitude
         longitude = music.longitude
         title = music.title
-        musicURL = music.musicURL
         artist = music.artist
-        musicImageIdentifier = music.musicImageIdentifier
+        musicData = music.musicData
     }
     
 }
@@ -54,51 +52,48 @@ class MusicPlacementModel: NSObject, MKAnnotation {
     //TODO: mostrar o dia e a hora que a música foi adicionada
     //    var addedAt: CVTimeStamp
     var title: String?
-    var musicPicture: UIImage?
+    var musicPicture: UIImage? { UIImage(data: musicData ?? Data()) }
     var artist: String?
-    var musicURL: URL?
-    var musicImageIdentifier: String?
+    var musicData: Data?
     
     
-    init(latitude: Double, longitude: Double, title: String?, musicURL: URL? = nil, artist: String?, musicImageIdentifier: String? = nil) {
+    init(latitude: Double, longitude: Double, title: String?, artist: String?, musicData: Data?) {
         self.latitude = latitude
         self.longitude = longitude
         //        self.addedAt = addedAt
         self.title = title
-        self.musicURL = musicURL
         self.artist = artist
-        self.musicImageIdentifier = musicImageIdentifier
+        self.musicData = musicData
     }
     
     init(persistence: MusicPlacementModelPersistence) {
         latitude = persistence.latitude
         longitude = persistence.longitude
         title = persistence.title
-        musicURL = persistence.musicURL
         artist = persistence.artist
-        musicImageIdentifier = persistence.musicImageIdentifier
+        musicData = persistence.musicData
     }
     
-    func getApplePicture() async  {
-        
-        guard let url = self.musicURL else { return }
-        
-        if let data = try? Data(contentsOf: url) {
-            if let image = UIImage(data: data){
-                musicPicture = image
-            }
-        }
-    }
-    
-    func getSpotifyPicture() {
-        SpotifyService().appRemote.imageAPI?.fetchImage(forItem: musicImageIdentifier as! SPTAppRemoteImageRepresentable, with: CGSize.zero, callback: { [weak self] (image, error) in
-            if let error = error {
-                print("Error fetching track image: " + error.localizedDescription)
-            } else if let image = image as? UIImage {
-                self?.musicPicture = image
-            }
-        })
-    }
+//    func getApplePicture() async  {
+//
+//        guard let url = self.musicURL else { return }
+//
+//        if let data = try? Data(contentsOf: url) {
+//            if let image = UIImage(data: data){
+//                musicPicture = image
+//            }
+//        }
+//    }
+//
+//    func getSpotifyPicture() {
+//        SpotifyService().appRemote.imageAPI?.fetchImage(forItem: musicImageIdentifier as! SPTAppRemoteImageRepresentable, with: CGSize.zero, callback: { [weak self] (image, error) in
+//            if let error = error {
+//                print("Error fetching track image: " + error.localizedDescription)
+//            } else if let image = image as? UIImage {
+//                self?.musicPicture = image
+//            }
+//        })
+//    }
 }
 
 

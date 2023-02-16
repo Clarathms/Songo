@@ -28,6 +28,47 @@ class MapViewController: BaseViewController<MapView> {
     // Variable that holds the value (true or false) if the camera should follow the user location or not.
     var isTrackingUserModeEnabled: Bool = false
     
+    var currentZoomLevel: Int?  {
+        didSet {
+            // if we have crossed the max zoom level, request a refresh
+            // so that all annotations are redrawn with clustering enabled/disabled
+            guard let currentZoomLevel = self.currentZoomLevel else { return }
+            guard let previousZoomLevel = oldValue else { return }
+
+            if isRefreshRequired(previousZoomLevel: previousZoomLevel, currentZoomLevel: currentZoomLevel) {
+                refreshMap()
+            }
+        }
+    }
+    
+    // Constant that holds the value of the maximum zoom level where there annotations should not cluster.
+    private let maxZoomLevel = 9
+
+    // Computed Variable that set if the annotations will cluster or not.
+    var shouldCluster: Bool {
+        if let zoomLevel = currentZoomLevel, zoomLevel <= maxZoomLevel {
+            return false
+        }
+        return true
+    }
+    
+    private func isRefreshRequired(previousZoomLevel: Int, currentZoomLevel: Int) -> Bool {
+        var refreshRequired = false
+        if currentZoomLevel > self.maxZoomLevel && previousZoomLevel <= self.maxZoomLevel {
+            refreshRequired = true
+        }
+        if currentZoomLevel <= self.maxZoomLevel && previousZoomLevel > self.maxZoomLevel {
+            refreshRequired = true
+        }
+        return refreshRequired
+    }
+    
+    private func refreshMap() {
+        let annotations = mainView.annotations
+        mainView.removeAnnotations(annotations)
+        mainView.addAnnotations(annotations)
+    }
+    
     init(locationController: LocationController) {
         self.locationController = locationController
         isLocationOn = locationController.isLocationOn
@@ -110,7 +151,7 @@ class MapViewController: BaseViewController<MapView> {
 //            isLocationOn ? goToMyLocation() : requestLocationAuthorization()
         case .addCurrentSong:
             Task{
-                await AppleMusicService.getCurrentMusic()
+                await appleMusicService.getCurrentMusic()
                 dump(appleMusicService.currentTitle)
                 mainView.addPlacement()
             }

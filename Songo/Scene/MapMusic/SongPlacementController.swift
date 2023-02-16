@@ -50,8 +50,8 @@ class SongPlacementController {
     
     public func createPlacement (location: CLLocationCoordinate2D, music: AppleMusicService) async -> [MKAnnotation] {
 
-        let placement = MusicPlacementModel(latitude: location.latitude, longitude: location.longitude, title: music.currentTitle, musicURL: music.currentURLPicture, artist: music.currentArtist)
-        await placement.getApplePicture()
+        let placement = MusicPlacementModel(latitude: location.latitude, longitude: location.longitude, title: music.currentTitle, artist: music.currentArtist, musicData: music.currentPhotoData)
+//        placement.musicPicture
         print(music.currentTitle)
         allPlacements.append(placement)
     

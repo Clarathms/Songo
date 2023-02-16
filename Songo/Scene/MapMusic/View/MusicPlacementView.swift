@@ -23,7 +23,6 @@ class MusicPlacementView: MKAnnotationView {
     private lazy var backgroundMaterial: UIVisualEffectView = {
         let view = UIVisualEffectView(effect: blurEffect)
         view.translatesAutoresizingMaskIntoConstraints = false
-        self.backgroundColor = .yellow
         return view
     }()
     
@@ -68,7 +67,6 @@ class MusicPlacementView: MKAnnotationView {
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         
-        clusteringIdentifier = "song"
         backgroundColor = UIColor.clear
         addSubview(backgroundMaterial)
         

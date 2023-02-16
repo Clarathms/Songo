@@ -29,6 +29,8 @@ class AppData: Codable {
     
     init() {}
     
+//    var currentStreaming: MusicProtocol.Type
+    
     static var shared: AppData = AppData()
     
     private var addedMusic: [MusicPlacementModelPersistence] = []
@@ -36,18 +38,22 @@ class AppData: Codable {
     func update(musics: [MKAnnotation]) {
         
         let musicPlacementModels = musics.compactMap({$0 as? MusicPlacementModel})
-        
-        addedMusic.append(contentsOf: musicPlacementModels.map({MusicPlacementModelPersistence(music: $0)}))
+        addedMusic = musicPlacementModels.map({MusicPlacementModelPersistence(music: $0)})
+//        addedMusic.append(contentsOf: musicPlacementModels.map({MusicPlacementModelPersistence(music: $0)}))
+        print("added", addedMusic.count)
+    }
+    
+    func chooseStreaming() {
+    
     }
     
     func loadMusics() async -> [MusicPlacementModel] {
         var loadedMusics: [MusicPlacementModel] = []
         
         for music in self.addedMusic.map({MusicPlacementModel(persistence: $0)}) {
-            await music.getApplePicture()
             loadedMusics.append(music)
         }
-        print(loadedMusics.count)
+        print("loaded", loadedMusics.count)
         return loadedMusics
     }
     

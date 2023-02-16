@@ -50,13 +50,20 @@ extension MapViewController: MKMapViewDelegate {
 //    }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        var annotationView: MKAnnotationView?
-        guard let annotation = annotation as? MusicPlacementModel else {
-            return nil
-        }
-        annotationView = setupMusicPlacementView(for: annotation, on: mapView)
         
-        return annotationView
+        var placementView: MKAnnotationView?
+        
+        guard let placement = annotation as? MusicPlacementModel else { return nil }
+        placementView = setupMusicPlacementView(for: placement, on: mapView)
+        
+        if let musicPlacementView = placementView as? MusicPlacementView {
+            if shouldCluster {
+                musicPlacementView.clusteringIdentifier = "music"
+            } else {
+                musicPlacementView.clusteringIdentifier = nil
+            }
+        }
+        return placementView
     }
     
     @objc func rightButtonClick() {

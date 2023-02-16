@@ -104,23 +104,22 @@ class SpotifyService: NSObject, MusicProtocol {
     var currentAlbum: String { currentTrack?.album.name ?? "No album found" }
     var currentImageIdentifier: String { currentTrack?.imageIdentifier ?? "No image found" }
     var currentPhotoData: Data? {
-        var data: Data? 
-        
+        var dataImage: Data?
+        guard let track = currentTrack else { return nil }
+        appRemote.imageAPI?.fetchImage(forItem: track, with: CGSize.zero, callback: { [weak self] (image, error) in
+            if let error = error {
+                print("Error fetching track image: " + error.localizedDescription)
+            } else if let image = image as? Data {
+                dataImage = image
+            }
+        })
+        return dataImage
     }
     
     func update(playerState: SPTAppRemotePlayerState) {
         currentTrack = playerState.track
     }
     
-    func geticture() {
-        SpotifyService().appRemote.imageAPI?.fetchImage(forItem: musicImageIdentifier as! SPTAppRemoteImageRepresentable, with: CGSize.zero, callback: { [weak self] (image, error) in
-            if let error = error {
-                print("Error fetching track image: " + error.localizedDescription)
-            } else if let image = image as? UIImage {
-                self?.musicPicture = image
-            }
-        })
-    }
 //    func fetchPlayerState() {
 //        appRemote.playerAPI?.getPlayerState({ [weak self] (playerState, error) in
 //            if let error = error {

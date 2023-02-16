@@ -28,7 +28,7 @@ class ClusterPlacementView: MKAnnotationView {
         print("countAnnot:", countAnnot)
         if let cluster = annotation as? MKClusterAnnotation {
             print(annotation?.title?.debugDescription ?? "NoTitle")
-            if let mkCluster = cluster as? MusicPlaylistModel {
+            if cluster is MusicPlaylistModel {
                 let totalSongs = cluster.memberAnnotations.count
                 image = drawRatio(to: totalSongs, wholeColor: .fundoSecundario)
                 displayPriority = .defaultHigh

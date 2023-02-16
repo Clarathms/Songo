@@ -24,18 +24,20 @@ class MapView: MKMapView  {
     weak var locationController: LocationController?
     
     var displayedPlacements: [MKAnnotation]? {
-//        willSet {
-//            if let currentPlacements = displayedPlacements {
-//                removeAnnotations(currentPlacements)
-//                print("removendo...")
-//            }
-//        }
+        willSet {
+            if let currentPlacements = displayedPlacements {
+                print("removendo", currentPlacements.count)
+                removeAnnotations(currentPlacements)
+                print("removendo...")
+            }
+        }
         didSet {
             if let newPlacements = displayedPlacements {
-                let previousCount: Int = oldValue?.count ?? 0
-                let newPlacement = Array(newPlacements.suffix(newPlacements.count - previousCount))
-                print("Vai mostrar ", newPlacements.count - previousCount)
-                addAnnotations(newPlacement)
+//                let previousCount: Int = oldValue?.count ?? 0
+//                let newPlacement = Array(newPlacements.suffix(newPlacements.count - previousCount))
+//                print("Vai mostrar ", newPlacement.count - previousCount)
+                print("mostrando", newPlacements.count)
+                addAnnotations(newPlacements)
 //                                AppData.shared.update(musics: newPlacements)
                 print("mostrando...")
             }
@@ -117,7 +119,7 @@ class MapView: MKMapView  {
         
         guard let appleMusicService = appleMusicService else { fatalError("No appleMusicService at \(#function)") }
         Task {
-            await AppleMusicService.getCurrentMusic()
+            await appleMusicService.getCurrentMusic()
         }
         
         if !allPlacements.isEmpty {
@@ -136,9 +138,10 @@ class MapView: MKMapView  {
     
     public func createPlacements (location: CLLocationCoordinate2D, music: AppleMusicService) async -> [MKAnnotation] {
 
-        let placement = MusicPlacementModel(latitude: location.latitude, longitude: location.longitude, title: music.currentTitle, musicURL: music.currentURLPicture, artist: music.currentArtist)
-        await placement.getApplePicture()
+        let placement = MusicPlacementModel(latitude: location.latitude, longitude: location.longitude, title: music.currentTitle, artist: music.currentArtist, musicData: music.currentPhotoData)
+//        await placement.getApplePicture()
         allPlacements.append(placement)
+        print("all", allPlacements.count)
         AppData.shared.update(musics: allPlacements)
         
         return await AppData.shared.loadMusics()
@@ -160,7 +163,7 @@ class MapView: MKMapView  {
         case .isEmpty:
             Task {
                 let placements = await createPlacements(location: userLocation, music: appleMusicService)
-                
+                    
                 displayedPlacements = placements
             }
         case .hasMusic:

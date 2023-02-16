@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 
-class MapPlaylistViewController: UIViewController {
+class MapPlaylistViewController: BaseViewController<MapPlaylistView> {
 //    var coverView: UIImage? = appleMusicController.currentPicture
     
     override func viewDidLoad() {
@@ -17,15 +17,7 @@ class MapPlaylistViewController: UIViewController {
        
         self.view.backgroundColor = .fundo
         
-//        coverView?.translatesAutoresizingMaskIntoConstraints = false
-//        self.view.addSubview(coverView!)
-//
-//        NSLayoutConstraint.activate ([
-//            coverView!.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-//            coverView!.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-//            coverView!.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-//            coverView!.topAnchor.constraint(equalTo: self.view.topAnchor),
-//        ])
+
             
     }
  

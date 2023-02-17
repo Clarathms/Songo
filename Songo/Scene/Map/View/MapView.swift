@@ -22,6 +22,8 @@ class MapView: MKMapView  {
     var locationButton = MapLocationButton()
     weak var appleMusicService: AppleMusicService?
     weak var locationController: LocationController?
+    private var currentStreaming: MusicProtocol?
+
     
     var displayedPlacements: [MKAnnotation]? {
         willSet {
@@ -112,6 +114,21 @@ class MapView: MKMapView  {
         case hasSameMusic
     }
     
+    func updateStreaming() {
+        switch AppData.shared.currentStreaming {
+        case .appleMusic:
+            let Streaming: MusicProtocol.Type = AppleMusicService.self
+            currentStreaming = Streaming.init()
+            print("escolha --------", AppData.shared.currentStreaming)
+        case .spotify:
+            let Streaming: MusicProtocol.Type = SpotifyService.self
+            currentStreaming = Streaming.init()
+            print("escolha --------", AppData.shared.currentStreaming)
+        default:
+            print("-------brekou")
+            break
+        }
+    }
     /// Check if user can add annotation.
     /// - Parameter userLocation: Current user location.
     /// - Returns: Returns if userLocation variable is not being used in any other annotation.
@@ -136,21 +153,22 @@ class MapView: MKMapView  {
         return .isEmpty
     }
     
-    public func createPlacements (location: CLLocationCoordinate2D, music: AppleMusicService) async -> [MKAnnotation] {
-
+    public func createPlacements (location: CLLocationCoordinate2D, music: MusicProtocol) async -> [MKAnnotation] {
+        
         let placement = MusicPlacementModel(latitude: location.latitude, longitude: location.longitude, title: music.currentTitle, artist: music.currentArtist, musicData: music.currentPhotoData)
 //        await placement.getApplePicture()
         allPlacements.append(placement)
         print("all", allPlacements.count)
+        print("nome-------", placement.title)
         AppData.shared.update(musics: allPlacements)
         
         return await AppData.shared.loadMusics()
     }
     
     func addPlacement() {
-        
-        guard let locationController = locationController,
-        let appleMusicService = appleMusicService else { fatalError("No locationController or appleMusicService at \(#function)") }
+
+        guard let locationController = locationController else { fatalError("No locationController at \(#function)") }
+//        let appleMusicService = appleMusicService else { fatalError("No locationController or appleMusicService at \(#function)") }
         
         guard let userLocation2 = locationController.location?.coordinate else { return }
         var userLocation = userLocation2
@@ -162,7 +180,7 @@ class MapView: MKMapView  {
         switch canAddPlacement(userLocation) {
         case .isEmpty:
             Task {
-                let placements = await createPlacements(location: userLocation, music: appleMusicService)
+                let placements = await createPlacements(location: userLocation, music: currentStreaming!)
                     
                 displayedPlacements = placements
             }

@@ -14,6 +14,9 @@ import MapKit
 /// The View Controller of the Map Scene
 class MapViewController: BaseViewController<MapView> {
     
+    typealias Factory = MapPlaylistSceneFactory
+    
+    var factory: Factory
     var appleMusicService: AppleMusicService = AppleMusicService()
     
     let locationController: LocationController
@@ -69,10 +72,11 @@ class MapViewController: BaseViewController<MapView> {
         mainView.addAnnotations(annotations)
     }
     
-    init(locationController: LocationController) {
+    init(locationController: LocationController, factory: Factory) {
         self.locationController = locationController
         isLocationOn = locationController.isLocationOn
-       
+        self.factory = factory
+        
         let mapView = MapView(appleMusicService: appleMusicService, locationController: locationController)
         super.init(mainView: mapView)
     }
@@ -106,6 +110,7 @@ class MapViewController: BaseViewController<MapView> {
         isLocationOn = locationController.isLocationOn
         guard let location = locationController.location?.coordinate else { return }
         updateOverlay(location: location)
+        mainView.updateStreaming()
         
 //        Task {
 //            mainView.displayedPlacements = await AppData.shared.loadMusics()
@@ -147,18 +152,17 @@ class MapViewController: BaseViewController<MapView> {
     }
     /// Sets the object that changes the properties by the state.
     @objc func handleAddSongButtonAction() {
-        switch mainView.reactiveButton.state {
-//        case .userNotFocus:
-//            isLocationOn ? goToMyLocation() : requestLocationAuthorization()
-        case .addCurrentSong:
-            Task{
-                await appleMusicService.getCurrentMusic()
-                dump(appleMusicService.currentTitle)
+        print(AppData.shared.currentStreaming)
+        switch AppData.shared.currentStreaming {
+        case .appleMusic:
                 mainView.addPlacement()
-            }
+                
+        case .spotify:
+            mainView.addPlacement()
         default:
             break
         }
+        
     }
 
     @objc func handleLocationButtonAction() {

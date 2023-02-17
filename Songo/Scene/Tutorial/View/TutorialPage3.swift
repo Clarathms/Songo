@@ -17,17 +17,35 @@ struct TutorialPage3: View {
     @State private var isShowingOffer = true
     @State private var subscriptionOfferOptions: MusicSubscriptionOffer.Options = .default
     let appleMusicService: AppleMusicService = AppleMusicService()
-    
-    var botao: some View {
+    let spotifyService: SpotifyService = SpotifyService()
+    var botaoAppleMusic: some View {
         Button {
             isPresented = true
+            AppData.shared.currentStreaming = StreamChoice.appleMusic
         } label: {
-            Text("Vamos lá")
+            Text("Login com Apple Music")
                 .bold()
                 .foregroundColor(.white)
                 .background(
                     RoundedRectangle(cornerRadius: 30)
                         .foregroundColor(Color(UIColor.fundoSecundario))
+                        .frame(width: UIScreen.main.bounds.width/4.2, height: UIScreen.main.bounds.height/16)
+                )
+        }
+    }
+    var botaoSpotify: some View {
+        Button {
+            isPresented = true
+            guard let sessionManager = spotifyService.sessionManager else { return }
+            sessionManager.initiateSession(with: scopes, options: .clientOnly)
+            AppData.shared.currentStreaming = StreamChoice.spotify
+        } label: {
+            Text("Login com Spotify")
+                .bold()
+                .foregroundColor(.black)
+                .background(
+                    RoundedRectangle(cornerRadius: 30)
+                        .foregroundColor(.green)
                         .frame(width: UIScreen.main.bounds.width/4.2, height: UIScreen.main.bounds.height/16)
                 )
         }
@@ -48,9 +66,12 @@ struct TutorialPage3: View {
                         .font(.subheadline)
                         .multilineTextAlignment(.center)
                 }
-                if chamaBotao {
-                    botao
-                }
+                botaoAppleMusic
+                botaoSpotify
+                
+//                if chamaBotao {
+//                    botaoAppleMusic
+//                }
                 
 //                Button {
 //                    isPresented = true

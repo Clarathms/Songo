@@ -26,10 +26,17 @@ extension MapViewController: MKMapViewDelegate {
     }
 
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        if let clusterPlacement = view.annotation as? ClusterPlacementView, clusterPlacement.isKind(of: MusicPlacementModel.self) {
+        if let clusterPlacement = view.annotation as? ClusterPlacementView, clusterPlacement.isKind(of: MKClusterAnnotation.self) {
             let pin = view.annotation
+            let playlistViewController = factory.createMapPlaylistScene()
+            
+            // Create half-modal
+            playlistViewController.modalPresentationStyle = .custom
+//            playlistViewController.transitioningDelegate = self
+            present(playlistViewController, animated: true)
             
             
+            mapView.deselectAnnotation(pin, animated: true)
         }
     }
     
@@ -61,7 +68,7 @@ extension MapViewController: MKMapViewDelegate {
     }
     
     @objc func rightButtonClick() {
-        let playlistNavController = MapPlaylistViewController()
+        let playlistNavController = MapPlaylistController(mainView: MapPlaylistView())
         playlistNavController.modalPresentationStyle = .popover
         let presentationController = playlistNavController.popoverPresentationController
         presentationController?.permittedArrowDirections = .any

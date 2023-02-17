@@ -20,7 +20,9 @@ class AppleMusicService: MusicProtocol {
     var currentAlbum: String { currentMusic?.albumTitle ?? "No album found" }
     var currentPhotoData: Data? {
         guard let url = currentURLPicture else { return nil }
-        return try? Data(contentsOf: url)
+        let data = try? Data(contentsOf: url)
+        print(UIImage(data: data!)?.size)
+        return data
     }
     
     func getCurrentMusic() async {

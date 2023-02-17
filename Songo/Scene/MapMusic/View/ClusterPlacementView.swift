@@ -95,7 +95,11 @@ class ClusterPlacementView: MKAnnotationView {
                 imageView.removeConstraint(heightConstraint)
             }
 
-            let ratio = clusterImage.size.height / clusterImage.size.width
+            var ratio: CGFloat = 1
+            if clusterImage.size != CGSize.zero {
+                ratio = clusterImage.size.height / clusterImage.size.width
+            }
+            
             imageHeightConstraint = imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: ratio, constant: 0)
             imageHeightConstraint?.isActive = true
             updateConstraints()

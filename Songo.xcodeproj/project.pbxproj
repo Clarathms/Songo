@@ -53,7 +53,7 @@
 		DE7319C3298054D500A6197C /* SongButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319C2298054D500A6197C /* SongButtonView.swift */; };
 		DE7319C62980581B00A6197C /* UIControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319C52980581B00A6197C /* UIControl.swift */; };
 		DE7319CA29806C1300A6197C /* CircleRangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319C929806C1300A6197C /* CircleRangeView.swift */; };
-		DEEF6AA829918B3D0046DD90 /* MapPlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEF6AA729918B3D0046DD90 /* MapPlaylistViewController.swift */; };
+		DEEF6AA829918B3D0046DD90 /* MapPlaylistController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEF6AA729918B3D0046DD90 /* MapPlaylistController.swift */; };
 		DEEF6AAA2992C5630046DD90 /* MapPlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEF6AA92992C5630046DD90 /* MapPlaylistView.swift */; };
 		DEEF6AAD2992C6520046DD90 /* CodableExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = DEEF6AAC2992C6520046DD90 /* CodableExtensions */; };
 		DEEF6AB12992C6ED0046DD90 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEF6AB02992C6ED0046DD90 /* AppData.swift */; };
@@ -110,7 +110,7 @@
 		DE7319C2298054D500A6197C /* SongButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongButtonView.swift; sourceTree = "<group>"; };
 		DE7319C52980581B00A6197C /* UIControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIControl.swift; sourceTree = "<group>"; };
 		DE7319C929806C1300A6197C /* CircleRangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleRangeView.swift; sourceTree = "<group>"; };
-		DEEF6AA729918B3D0046DD90 /* MapPlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPlaylistViewController.swift; sourceTree = "<group>"; };
+		DEEF6AA729918B3D0046DD90 /* MapPlaylistController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPlaylistController.swift; sourceTree = "<group>"; };
 		DEEF6AA92992C5630046DD90 /* MapPlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPlaylistView.swift; sourceTree = "<group>"; };
 		DEEF6AB02992C6ED0046DD90 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		DEEF6AB22992F8C40046DD90 /* MusicPlaylistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlaylistModel.swift; sourceTree = "<group>"; };
@@ -185,7 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				DE4F3467298B05C7004EE2F9 /* SongPlacementController.swift */,
-				DEEF6AA729918B3D0046DD90 /* MapPlaylistViewController.swift */,
+				DEEF6AA729918B3D0046DD90 /* MapPlaylistController.swift */,
 				DE4F3469298B05F6004EE2F9 /* View */,
 			);
 			path = MapMusic;
@@ -425,7 +425,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DEEF6AA829918B3D0046DD90 /* MapPlaylistViewController.swift in Sources */,
+				DEEF6AA829918B3D0046DD90 /* MapPlaylistController.swift in Sources */,
 				DE7319BD297F635A00A6197C /* MapView.swift in Sources */,
 				DE5DD18E298874C4002BEB3F /* TutorialPage1.swift in Sources */,
 				DE7319C62980581B00A6197C /* UIControl.swift in Sources */,

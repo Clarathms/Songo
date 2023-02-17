@@ -18,18 +18,21 @@ struct TutorialPage3: View {
     @State private var subscriptionOfferOptions: MusicSubscriptionOffer.Options = .default
     let appleMusicService: AppleMusicService = AppleMusicService()
     let spotifyService: SpotifyService = SpotifyService()
+    var appleImg = Image(systemName: "applelogo")
     var botaoAppleMusic: some View {
         Button {
             isPresented = true
             AppData.shared.currentStreaming = StreamChoice.appleMusic
         } label: {
-            Text("Login com Apple Music")
+            Text("\(appleImg)  Login com Apple Music")
                 .bold()
                 .foregroundColor(.white)
                 .background(
-                    RoundedRectangle(cornerRadius: 30)
-                        .foregroundColor(Color(UIColor.fundoSecundario))
-                        .frame(width: UIScreen.main.bounds.width/4.2, height: UIScreen.main.bounds.height/16)
+                    RoundedRectangle(cornerRadius: 10)
+                        .foregroundColor(.black)
+                        .frame(width: UIScreen.main.bounds.width/1.5, height: UIScreen.main.bounds.height/16)
+                        .shadow(color: .gray, radius: 3, x: 0, y: 2)
+
                 )
         }
     }
@@ -42,11 +45,13 @@ struct TutorialPage3: View {
         } label: {
             Text("Login com Spotify")
                 .bold()
-                .foregroundColor(.black)
+                .foregroundColor(.white)
                 .background(
                     RoundedRectangle(cornerRadius: 30)
                         .foregroundColor(.green)
-                        .frame(width: UIScreen.main.bounds.width/4.2, height: UIScreen.main.bounds.height/16)
+                        .frame(width: UIScreen.main.bounds.width/1.5, height: UIScreen.main.bounds.height/16)
+                        .shadow(color: .gray, radius: 3, x: 0, y: 2)
+
                 )
         }
     }
@@ -58,11 +63,11 @@ struct TutorialPage3: View {
                 .foregroundColor(Color.white)
                 .position(x:UIScreen.main.bounds.midX/2,y:UIScreen.main.bounds.midY/1.1)
             
-            VStack(spacing: 40){
+            VStack(spacing: 60){
                 VStack(spacing: 20){
                     Text("Atenção!")
                         .font(.title)
-                    Text("Para utilizar o aplicativo, \n é necessário ter conta no Apple Music")
+                    Text("Para utilizar o aplicativo, \n é necessário ter conta no Apple Music \n ou Spotify")
                         .font(.subheadline)
                         .multilineTextAlignment(.center)
                 }
@@ -87,7 +92,7 @@ struct TutorialPage3: View {
 //                }
 //                .padding(.top,50)
                 
-            }.position(x:UIScreen.main.bounds.midX,y:UIScreen.main.bounds.midY*1.2)
+            }.position(x:UIScreen.main.bounds.midX/1.2,y:UIScreen.main.bounds.midY*1.2)
             //.position(x:UIScreen.main.bounds.midX*0.85,y:UIScreen.main.bounds.midY*1.2)
                 .task {
                     let subCheck = await appleMusicService.lastSubscriptionUpdate().makeSubscriptionOffer

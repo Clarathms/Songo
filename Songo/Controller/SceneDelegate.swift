@@ -43,7 +43,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 window.rootViewController = appContainer.createTabBarControllerScene()
             }else{
                 window.rootViewController = ViewControllerTutorial()
-            }
+           }
         }
         
         

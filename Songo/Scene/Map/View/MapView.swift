@@ -25,6 +25,8 @@ class MapView: MKMapView  {
     }
     var locationButton = MapLocationButton()
     weak var appleMusicService: AppleMusicService?
+    weak var spotifyService: SpotifyService?
+
     weak var locationController: LocationController?
     private var currentStreaming: MusicProtocol?
 
@@ -132,10 +134,13 @@ class MapView: MKMapView  {
             let Streaming: MusicProtocol.Type = AppleMusicService.self
             currentStreaming = Streaming.init()
             print("escolha --------", AppData.shared.currentStreaming)
+         
         case .spotify:
             let Streaming: MusicProtocol.Type = SpotifyService.self
             currentStreaming = Streaming.init()
             print("escolha --------", AppData.shared.currentStreaming)
+            
+            
         default:
             print("-------brekou")
             break

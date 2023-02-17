@@ -13,9 +13,11 @@ class AppContainer {
     
 //    private lazy var songPlacementCreationViewController: SongPlacementCreationViewController = SongPlacementCreationViewController()!
     
-    private lazy var appleMusicService: AppleMusicService = AppleMusicService()
+//    private lazy var appleMusicService: AppleMusicService = AppleMusicService()
     /// The `TabBarController` used by the entire app
-    private lazy var tabBarController: TabBarController = TabBarController(factory: self, locationController: locationController, appleMusicService: appleMusicService,profileFactory: self,playlistFactory: self)
+    private lazy var tabBarController: TabBarController = TabBarController(factory: self, locationController: locationController, profileFactory: self, playlistFactory: self)
+    
+    private lazy var mapPlaylistController: MapPlaylistController = MapPlaylistController(mainView: MapPlaylistView())
     
 }
 // ******* Cria a Cena de Mapa ********
@@ -31,7 +33,7 @@ protocol MapSceneFactory {
 extension AppContainer: MapSceneFactory {
     
     func createMapScene() -> MapViewController {
-        return MapViewController(locationController: locationController)
+        return MapViewController(locationController: locationController, factory: self)
     }
     
 }
@@ -74,13 +76,13 @@ extension AppContainer: TabBarControllerSceneFactory {
         return tabBarController
     }
 }
-//
-//protocol SongPlacementSceneFactory {
-//    func createSongPlacement() -> SongPlacementCreationViewController
-//}
-//
-//extension AppContainer: SongPlacementSceneFactory {
-//    func createSongPlacement() -> SongPlacementCreationViewController {
-//        return songPlacementCreationViewController
-//    }
-//}
+
+protocol MapPlaylistSceneFactory {
+    func createMapPlaylistScene() -> MapPlaylistController
+}
+
+extension AppContainer: MapPlaylistSceneFactory {
+    func createMapPlaylistScene() -> MapPlaylistController {
+        return mapPlaylistController
+    }
+}

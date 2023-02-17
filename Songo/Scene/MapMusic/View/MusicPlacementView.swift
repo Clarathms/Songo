@@ -119,8 +119,11 @@ class MusicPlacementView: MKAnnotationView {
                 if let heightConstraint = imageHeightConstraint {
                     imageView.removeConstraint(heightConstraint)
                 }
-
-                let ratio = image.size.height / image.size.width
+                var ratio: CGFloat = 1
+                if image.size != CGSize.zero {
+                    ratio = image.size.height / image.size.width
+                }
+                
                 imageHeightConstraint = imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: ratio, constant: 0)
                 imageHeightConstraint?.isActive = true
                 updateConstraints()

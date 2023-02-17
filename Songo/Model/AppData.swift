@@ -10,6 +10,10 @@ import CodableExtensions
 import MapKit
 
 var MusicService: MusicProtocol.Type = SpotifyService.self
+//MusicService.init() = SpotifyService.self
+
+
+
 
 class AppData: Codable {
     
@@ -29,7 +33,7 @@ class AppData: Codable {
     
     init() {}
     
-//    var currentStreaming: MusicProtocol.Type
+    var currentStreaming: StreamChoice?
     
     static var shared: AppData = AppData()
     
@@ -39,12 +43,7 @@ class AppData: Codable {
         
         let musicPlacementModels = musics.compactMap({$0 as? MusicPlacementModel})
         addedMusic = musicPlacementModels.map({MusicPlacementModelPersistence(music: $0)})
-//        addedMusic.append(contentsOf: musicPlacementModels.map({MusicPlacementModelPersistence(music: $0)}))
         print("added", addedMusic.count)
-    }
-    
-    func chooseStreaming() {
-    
     }
     
     func loadMusics() async -> [MusicPlacementModel] {
@@ -54,8 +53,13 @@ class AppData: Codable {
             await music.getApplePicture()
             loadedMusics.append(music)
         }
+//        loadedMusics = self.addedMusic.map({MusicPlacementModel(persistence: $0)})
         print("loaded", loadedMusics.count)
         return loadedMusics
+    }
+    
+    func loadStreaming() {
+        
     }
     
     func saveData() {
@@ -88,3 +92,8 @@ class AppData: Codable {
     }
 }
 
+enum StreamChoice: Codable {
+    case appleMusic
+    case spotify
+    case none
+}

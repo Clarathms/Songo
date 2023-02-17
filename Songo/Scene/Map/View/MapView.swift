@@ -178,29 +178,31 @@ class MapView: MKMapView  {
     }
     
     func addPlacement() {
-
+        
         guard let locationController = locationController else { fatalError("No locationController at \(#function)") }
-//        let appleMusicService = appleMusicService else { fatalError("No locationController or appleMusicService at \(#function)") }
+        //        let appleMusicService = appleMusicService else { fatalError("No locationController or appleMusicService at \(#function)") }
         
         guard let userLocation2 = locationController.location?.coordinate else { return }
         var userLocation = userLocation2
         userLocation.latitude += CLLocationDegrees.random(in: -0.02...0.02)
         userLocation.longitude += CLLocationDegrees.random(in: -0.02...0.02)
-
+        
         locationController.updateLastLocation()
         
         switch canAddPlacement(userLocation) {
         case .isEmpty:
             Task {
                 let placements = await createPlacements(location: userLocation, music: currentStreaming!)
-                    
+                
                 displayedPlacements = placements
             }
+        default:
+            break
             
             // TODO: adiciona música na view de playlist
             // TODO: checa se tem essa música na view de playlist
             // TODO: pop-up avisando que tem a mesma música nesta playlist
         }
-        
+    }
 
 }

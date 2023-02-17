@@ -50,7 +50,7 @@ class AppData: Codable {
         var loadedMusics: [MusicPlacementModel] = []
         
         for music in self.addedMusic.map({MusicPlacementModel(persistence: $0)}) {
-            await music.getApplePicture()
+//            await music.getApplePicture()
             loadedMusics.append(music)
         }
 //        loadedMusics = self.addedMusic.map({MusicPlacementModel(persistence: $0)})

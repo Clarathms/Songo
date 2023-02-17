@@ -43,7 +43,6 @@
 		DE66A935299C060600BD21FA /* ConstantsSpotify.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE66A934299C060600BD21FA /* ConstantsSpotify.swift */; };
 		DE66A937299C099800BD21FA /* SpotifyConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE66A936299C099800BD21FA /* SpotifyConnectViewController.swift */; };
 		DE66A93B299C117A00BD21FA /* SpotifyDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE66A93A299C117A00BD21FA /* SpotifyDelegate.swift */; };
-		DE66A93D299C19F000BD21FA /* SpotifyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE66A93C299C19F000BD21FA /* SpotifyService.swift */; };
 		DE7319B7297F5FA900A6197C /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319B6297F5FA900A6197C /* AppContainer.swift */; };
 		DE7319B9297F60BD00A6197C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319B8297F60BD00A6197C /* MapViewController.swift */; };
 		DE7319BB297F610C00A6197C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7319BA297F610C00A6197C /* BaseViewController.swift */; };
@@ -99,7 +98,6 @@
 		DE66A934299C060600BD21FA /* ConstantsSpotify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantsSpotify.swift; sourceTree = "<group>"; };
 		DE66A936299C099800BD21FA /* SpotifyConnectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyConnectViewController.swift; sourceTree = "<group>"; };
 		DE66A93A299C117A00BD21FA /* SpotifyDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyDelegate.swift; sourceTree = "<group>"; };
-		DE66A93C299C19F000BD21FA /* SpotifyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyService.swift; sourceTree = "<group>"; };
 		DE7319B6297F5FA900A6197C /* AppContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainer.swift; sourceTree = "<group>"; };
 		DE7319B8297F60BD00A6197C /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		DE7319BA297F610C00A6197C /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -241,7 +239,6 @@
 			isa = PBXGroup;
 			children = (
 				DE5DD17D2984813D002BEB3F /* AppleMusicService.swift */,
-				DE66A93C299C19F000BD21FA /* SpotifyService.swift */,
 				DE66A934299C060600BD21FA /* ConstantsSpotify.swift */,
 			);
 			path = Services;
@@ -435,7 +432,6 @@
 				DE66A935299C060600BD21FA /* ConstantsSpotify.swift in Sources */,
 				DE5DD190298874C4002BEB3F /* TutorialBase.swift in Sources */,
 				DE5DD18F298874C4002BEB3F /* TutorialPage2.swift in Sources */,
-				DE66A93D299C19F000BD21FA /* SpotifyService.swift in Sources */,
 				AD68738E298C454300EF5F61 /* MapLocationButton.swift in Sources */,
 				DE4C8EC82981C32A0065C813 /* TabBarController.swift in Sources */,
 				DE5DD18A298874C4002BEB3F /* ViewControllerTutorial.swift in Sources */,

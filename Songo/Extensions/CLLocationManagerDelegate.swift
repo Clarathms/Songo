@@ -42,6 +42,7 @@ extension MapViewController: CLLocationManagerDelegate {
         updateOverlay(location: location.coordinate)
         
         updateReactiveButton()
+        //self.mapView.currentSongView?.addSongButton.updateReactiveButton()
         updateLocationButton()
     }
     

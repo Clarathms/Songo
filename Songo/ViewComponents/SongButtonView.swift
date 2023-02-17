@@ -27,22 +27,27 @@ class SongButtonView: UIButton {
 //Coloca cor no botão e no texto mas não entendi a sintaxe
     override public var isEnabled: Bool {
         didSet {
-            backgroundColor = isEnabled ? .black: .black
+            //backgroundColor = isEnabled ? .black: .black
             tintColor = isEnabled ? .white : .white
         }
     }
     
     // MARK: - Initializers
-    init() {
-        super.init(frame: .zero)
+    init(x: Float, y: Float, width: Float, height: Float) {
+        super.init(frame: CGRect(x: CGFloat(x), y: CGFloat(y), width: CGFloat(width), height: CGFloat(height)))
+        
+    
+                
         self.titleLabel?.font = .boldSystemFont(ofSize: 10)
         layer.cornerRadius = 10
         isEnabled = true
-        widthAnchor.constraint(equalToConstant: 30 * UIScreen.main.bounds.width / 5).isActive = true
-        heightAnchor.constraint(equalToConstant: 70).isActive = true
+//        widthAnchor.constraint(equalToConstant: 30 * UIScreen.main.bounds.width / 5).isActive = true
+//        heightAnchor.constraint(equalToConstant: 70).isActive = true
         addDropShadow()
 //        setTitleColor(.white, for: .normal)
-//        setTitleColor(.blue, for: .disabled)
+//        setTitleColor(.blue, for: .disabled)'
+        //setTitle("teste", for: .addCurrentSong)
+        tintColor = .white
         setTitleColor(.white, for: .userNotFocus)
         setTitleColor(.white, for: .addCurrentSong)
     }

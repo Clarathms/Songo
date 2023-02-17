@@ -51,6 +51,7 @@ class AppData: Codable {
         var loadedMusics: [MusicPlacementModel] = []
         
         for music in self.addedMusic.map({MusicPlacementModel(persistence: $0)}) {
+            await music.getApplePicture()
             loadedMusics.append(music)
         }
         print("loaded", loadedMusics.count)
@@ -73,4 +74,17 @@ class AppData: Codable {
             Self.shared = AppData()
         }
     }
+    class func isFirstLaunch() -> Bool {
+        let defaults = UserDefaults.standard
+                
+                if defaults.bool(forKey: "isAppAlreadyLaunchedOnce"){
+                    print("Não é a primeira vez no app")
+                    return true
+                }else{
+                    defaults.set(true, forKey: "isAppAlreadyLaunchedOnce")
+                    print("Primeira vez no app")
+                    return false
+                }
+    }
 }
+

@@ -10,6 +10,8 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
+    var appContainer: AppContainer = AppContainer()
+
     //var appContainer: AppContainer = AppContainer()
     var spotifyService: SpotifyService = SpotifyService()
     
@@ -35,6 +37,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // 6. Set the window and make it keyAndVisible
         self.window = window
         window.makeKeyAndVisible()
+        Task{
+            
+            if AppData.isFirstLaunch() == true {
+                window.rootViewController = appContainer.createTabBarControllerScene()
+            }else{
+                window.rootViewController = ViewControllerTutorial()
+            }
+        }
+        
         
         window.rootViewController = ViewControllerTutorial()
     }
@@ -90,6 +101,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             // to restore the scene back to its current state.
             AppData.shared.saveData()
         }
+        
         
 
 }

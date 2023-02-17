@@ -26,7 +26,7 @@ class MapView: MKMapView  {
     var locationButton = MapLocationButton()
     weak var appleMusicService: AppleMusicService?
     weak var locationController: LocationController?
-    private var currentStreaming: MusicProtocol?
+    var currentStreaming: MusicProtocol?
 
     
     var displayedPlacements: [MKAnnotation]? {

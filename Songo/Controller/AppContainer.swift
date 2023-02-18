@@ -11,9 +11,8 @@ class AppContainer {
     /// The `LocationController` used by the entire app
     private lazy var locationController: LocationController = LocationController()
     
-//    private lazy var songPlacementCreationViewController: SongPlacementCreationViewController = SongPlacementCreationViewController()!
+    private var currentStreaming: MusicProtocol?
     
-//    private lazy var appleMusicService: AppleMusicService = AppleMusicService()
     /// The `TabBarController` used by the entire app
     private lazy var tabBarController: TabBarController = TabBarController(factory: self, locationController: locationController, profileFactory: self, playlistFactory: self)
     
@@ -22,6 +21,36 @@ class AppContainer {
 }
 // ******* Cria a Cena de Mapa ********
 
+protocol MusicServiceFactory {
+    func updateStreaming() -> MusicProtocol?
+}
+
+extension AppContainer: MusicServiceFactory {
+    func updateStreaming() -> MusicProtocol? {
+        if AppData.shared.currentStreaming == .none {
+            switch AppData.shared.currentStreaming {
+            case .appleMusic:
+                let Streaming: MusicProtocol.Type = AppleMusicService.self
+                currentStreaming = Streaming.init()
+                print("escolha --------", AppData.shared.currentStreaming)
+                return currentStreaming
+                
+            case .spotify:
+                let Streaming: MusicProtocol.Type = SpotifyService.self
+                currentStreaming = Streaming.init()
+                currentStreaming!.authenticate()
+                print("escolha --------", AppData.shared.currentStreaming)
+                return currentStreaming
+                
+            case .none:
+                break
+            }
+        }
+        print("não entrou dnv", currentStreaming?.id)
+        print(AppData.shared.currentStreaming)
+        return currentStreaming
+    }
+}
 //MARK: - Map Factory
 protocol MapSceneFactory {
     

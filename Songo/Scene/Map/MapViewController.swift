@@ -14,11 +14,10 @@ import MapKit
 /// The View Controller of the Map Scene
 class MapViewController: BaseViewController<MapView> {
     
-    typealias Factory = MapPlaylistSceneFactory
+    typealias Factory = MapPlaylistSceneFactory & MusicServiceFactory
     
     var factory: Factory
     var appleMusicService: AppleMusicService = AppleMusicService()
-    
     let locationController: LocationController
     // Variable that holds the value (true or false) if the user authorized the location service or not.
     var isLocationOn: Bool {
@@ -76,8 +75,7 @@ class MapViewController: BaseViewController<MapView> {
         self.locationController = locationController
         isLocationOn = locationController.isLocationOn
         self.factory = factory
-        
-        let mapView = MapView(appleMusicService: appleMusicService, locationController: locationController)
+        let mapView = MapView(appleMusicService: appleMusicService, locationController: locationController, currentStreaming: factory.updateStreaming())
         super.init(mainView: mapView)
     }
     
@@ -110,7 +108,7 @@ class MapViewController: BaseViewController<MapView> {
         isLocationOn = locationController.isLocationOn
         guard let location = locationController.location?.coordinate else { return }
         updateOverlay(location: location)
-        mainView.updateStreaming()
+        
         
 //        Task {
 //            mainView.displayedPlacements = await AppData.shared.loadMusics()

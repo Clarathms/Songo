@@ -24,6 +24,10 @@ class AppleMusicService: MusicProtocol {
         print(UIImage(data: data!)?.size)
         return data
     }
+    var id: StreamChoice = .appleMusic
+    func authenticate() {
+        checkAppleMusicAuthorization()
+    }
     
     func getCurrentMusic() async {
         let currentMusicPlaying = SystemMusicPlayer.shared.queue.currentEntry?.item?.id

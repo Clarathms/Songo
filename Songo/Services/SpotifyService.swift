@@ -12,6 +12,8 @@ class SpotifyService: NSObject, MusicProtocol {
     required override init() {
         super.init()
     }
+    
+    var id: StreamChoice = .spotify
     // MARK: - Fetch token and request access
     lazy var appRemote: SPTAppRemote = {
         let appRemote = SPTAppRemote(configuration: configuration, logLevel: .debug)
@@ -92,13 +94,16 @@ class SpotifyService: NSObject, MusicProtocol {
             task.resume()
         }
     
-    lazy var sessionManager: SPTSessionManager? = {
-        let manager = SPTSessionManager(configuration: configuration, delegate: self)
-        return manager
-    }()
+    func authenticate() {
+        lazy var sessionManager: SPTSessionManager? = {
+            let manager = SPTSessionManager(configuration: configuration, delegate: self)
+            return manager
+        }()
+    }
+    
     
     //MARK: - Get information on user's current behaviour
-    private var currentTrack: SPTAppRemoteTrack?
+    var currentTrack: SPTAppRemoteTrack?
     var currentTitle: String { currentTrack?.name ?? "No title found" }
     var currentArtist: String { currentTrack?.artist.name ?? "No artist found" }
     var currentAlbum: String { currentTrack?.album.name ?? "No album found" }
@@ -106,7 +111,7 @@ class SpotifyService: NSObject, MusicProtocol {
     var currentPhotoData: Data? {
         var dataImage: Data?
         guard let track = currentTrack else { return nil }
-        appRemote.imageAPI?.fetchImage(forItem: track, with: CGSize.zero, callback: { [weak self] (image, error) in
+        appRemote.imageAPI?.fetchImage(forItem: track, with: CGSize.zero, callback: { (image, error) in
             if let error = error {
                 print("Error fetching track image: " + error.localizedDescription)
             } else if let image = image as? Data {
@@ -116,18 +121,23 @@ class SpotifyService: NSObject, MusicProtocol {
         return dataImage
     }
     
-    func update(playerState: SPTAppRemotePlayerState) {
-        currentTrack = playerState.track
+   func update(playerState: SPTAppRemotePlayerState) {
+       if currentTrack?.uri != playerState.track.uri {
+           currentTrack = playerState.track
+       } else {
+           return
+       }
+        print(currentTitle)
     }
     
-//    func fetchPlayerState() {
-//        appRemote.playerAPI?.getPlayerState({ [weak self] (playerState, error) in
-//            if let error = error {
-//                print("Error getting player state:" + error.localizedDescription)
-//            } else if let playerState = playerState as? SPTAppRemotePlayerState {
-//                self?.update(playerState: playerState)
-//            }
-//        })
-//    }
+    func fetchPlayerState() {
+        appRemote.playerAPI?.getPlayerState({ [weak self] (playerState, error) in
+            if let error = error {
+                print("Error getting player state:" + error.localizedDescription)
+            } else if let playerState = playerState as? SPTAppRemotePlayerState {
+                self?.update(playerState: playerState)
+            }
+        })
+    }
 
 }

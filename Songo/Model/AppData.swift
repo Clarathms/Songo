@@ -33,7 +33,7 @@ class AppData: Codable {
     
     init() {}
     
-    var currentStreaming: StreamChoice?
+    var currentStreaming: StreamChoice = .none
     
     static var shared: AppData = AppData()
     
@@ -58,8 +58,8 @@ class AppData: Codable {
         return loadedMusics
     }
     
-    func loadStreaming() {
-        
+    func loadStreamId() -> StreamChoice {
+        return currentStreaming
     }
     
     func saveData() {

@@ -11,9 +11,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
     var appContainer: AppContainer = AppContainer()
-
-    //var appContainer: AppContainer = AppContainer()
-    var spotifyService: SpotifyService = SpotifyService()
+    lazy var spotifyService: SpotifyService? = {
+        return appContainer.updateStreaming() as? SpotifyService
+    }()
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -51,17 +51,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     //TODO: acertar scene com a view devida para a autenticação com o Spotify
-//        func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
-//            guard let url = URLContexts.first?.url else { return }
-//            let parameters = spotifyService.appRemote.authorizationParameters(from: url)
-//                if let code = parameters?["code"] {
-//                    window.rootViewController.responseCode = code
-//                } else if let access_token = parameters?[SPTAppRemoteAccessTokenKey] {
-//                    window.rootViewController.accessToken = access_token
-//                } else if let error_description = parameters?[SPTAppRemoteErrorDescriptionKey] {
-//                    print("No access token error =", error_description)
-//                }
-//        }
+        func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+            if appContainer.updateStreaming()?.id == .spotify {
+                guard let url = URLContexts.first?.url else { return }
+                let parameters = spotifyService?.appRemote.authorizationParameters(from: url)
+                if let code = parameters?["code"] {
+                    spotifyService?.responseCode = code
+                } else if let access_token = parameters?[SPTAppRemoteAccessTokenKey] {
+                    spotifyService?.accessToken = access_token
+                } else if let error_description = parameters?[SPTAppRemoteErrorDescriptionKey] {
+                    print("No access token error =", error_description)
+                }
+            }
+        }
     
     
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -75,17 +77,31 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
-        if let _ = spotifyService.appRemote.connectionParameters.accessToken {
-            spotifyService.appRemote.connect()
+        if appContainer.updateStreaming()?.id == .spotify {
+            if let accessToken = spotifyService?.appRemote.connectionParameters.accessToken {
+                spotifyService?.appRemote.connectionParameters.accessToken = accessToken
+                spotifyService?.appRemote.connect()
+            } else if let accessToken = spotifyService?.accessToken {
+                spotifyService?.appRemote.connectionParameters.accessToken = accessToken
+                spotifyService?.appRemote.connect()
+            }
+            //        if let _ = spotifyService.appRemote.connectionParameters.accessToken {
+            //            spotifyService.appRemote.connect()
+            //        }
         }
     }
         
         func sceneWillResignActive(_ scene: UIScene) {
             // Called when the scene will move from an active state to an inactive state.
             // This may occur due to temporary interruptions (ex. an incoming phone call).
-            if spotifyService.appRemote.isConnected {
-                spotifyService.appRemote.disconnect()
+            if appContainer.updateStreaming()?.id == .spotify {
+                if spotifyService?.appRemote != nil {
+                    if spotifyService!.appRemote.isConnected {
+                        spotifyService?.appRemote.disconnect()
+                    }
+                }
             }
+            
         }
         
         func sceneWillEnterForeground(_ scene: UIScene) {

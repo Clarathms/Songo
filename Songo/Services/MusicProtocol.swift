@@ -14,9 +14,11 @@ protocol MusicProtocol {
     var currentArtist: String { get }
     var currentAlbum: String { get }
     var currentPhotoData: Data? { get }
+    var id: StreamChoice { get }
     
     init()
     
+    func authenticate() 
 //    static func getCurrentMusic() async throws  -> MusicProtocol
 //    static func search(music: String) async  -> MusicList
 //    static func export(playlist: MusicList) async

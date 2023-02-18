@@ -30,7 +30,6 @@
 		DE5DD17229833224002BEB3F /* MusicPlacementModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD17029833224002BEB3F /* MusicPlacementModel.swift */; };
 		DE5DD175298421C3002BEB3F /* SongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD174298421C3002BEB3F /* SongViewController.swift */; };
 		DE5DD178298421F8002BEB3F /* CurrentSongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD177298421F8002BEB3F /* CurrentSongView.swift */; };
-		DE5DD17B29843B38002BEB3F /* AppleMusicService1.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD17A29843B38002BEB3F /* AppleMusicService1.swift */; };
 		DE5DD17E2984813D002BEB3F /* AppleMusicService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD17D2984813D002BEB3F /* AppleMusicService.swift */; };
 		DE5DD18A298874C4002BEB3F /* ViewControllerTutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD181298874C4002BEB3F /* ViewControllerTutorial.swift */; };
 		DE5DD18C298874C4002BEB3F /* GoToVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD183298874C4002BEB3F /* GoToVC.swift */; };
@@ -59,6 +58,7 @@
 		DEEF6AAD2992C6520046DD90 /* CodableExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = DEEF6AAC2992C6520046DD90 /* CodableExtensions */; };
 		DEEF6AB12992C6ED0046DD90 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEF6AB02992C6ED0046DD90 /* AppData.swift */; };
 		DEEF6AB32992F8C40046DD90 /* MusicPlaylistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEF6AB22992F8C40046DD90 /* MusicPlaylistModel.swift */; };
+		DEFB0BA029A02A76006329E4 /* MusicService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFB0B9F29A02A76006329E4 /* MusicService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,7 +88,6 @@
 		DE5DD17029833224002BEB3F /* MusicPlacementModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicPlacementModel.swift; sourceTree = "<group>"; };
 		DE5DD174298421C3002BEB3F /* SongViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongViewController.swift; sourceTree = "<group>"; };
 		DE5DD177298421F8002BEB3F /* CurrentSongView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentSongView.swift; sourceTree = "<group>"; };
-		DE5DD17A29843B38002BEB3F /* AppleMusicService1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicService1.swift; sourceTree = "<group>"; };
 		DE5DD17D2984813D002BEB3F /* AppleMusicService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicService.swift; sourceTree = "<group>"; };
 		DE5DD181298874C4002BEB3F /* ViewControllerTutorial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerTutorial.swift; sourceTree = "<group>"; };
 		DE5DD183298874C4002BEB3F /* GoToVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoToVC.swift; sourceTree = "<group>"; };
@@ -116,6 +115,7 @@
 		DEEF6AA92992C5630046DD90 /* MapPlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPlaylistView.swift; sourceTree = "<group>"; };
 		DEEF6AB02992C6ED0046DD90 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		DEEF6AB22992F8C40046DD90 /* MusicPlaylistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlaylistModel.swift; sourceTree = "<group>"; };
+		DEFB0B9F29A02A76006329E4 /* MusicService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,8 +246,9 @@
 			children = (
 				DE66A940299D54B300BD21FA /* MusicProtocol.swift */,
 				DE5DD17D2984813D002BEB3F /* AppleMusicService.swift */,
-				DE66A934299C060600BD21FA /* ConstantsSpotify.swift */,
+				DEFB0B9F29A02A76006329E4 /* MusicService.swift */,
 				AD6B72E729A004D200DC024F /* SpotifyService.swift */,
+				DE66A934299C060600BD21FA /* ConstantsSpotify.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -336,7 +337,6 @@
 				AD56EA9629786AA900BD9F59 /* SceneDelegate.swift */,
 				DE7319BA297F610C00A6197C /* BaseViewController.swift */,
 				DE4C8EC42981A9330065C813 /* LocationController.swift */,
-				DE5DD17A29843B38002BEB3F /* AppleMusicService1.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -457,9 +457,9 @@
 				DE5DD175298421C3002BEB3F /* SongViewController.swift in Sources */,
 				AD56EA9529786AA900BD9F59 /* AppDelegate.swift in Sources */,
 				DE4C8EC52981A9330065C813 /* LocationController.swift in Sources */,
-				DE5DD17B29843B38002BEB3F /* AppleMusicService1.swift in Sources */,
 				DE66A93B299C117A00BD21FA /* SpotifyDelegate.swift in Sources */,
 				DE4C8ECA29822BA80065C813 /* CLLocationManagerDelegate.swift in Sources */,
+				DEFB0BA029A02A76006329E4 /* MusicService.swift in Sources */,
 				DE4F3463298AECA3004EE2F9 /* UIGestureRecognizerDelegate.swift in Sources */,
 				DE7319B9297F60BD00A6197C /* MapViewController.swift in Sources */,
 				DEEF6AAA2992C5630046DD90 /* MapPlaylistView.swift in Sources */,

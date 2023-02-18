@@ -14,6 +14,7 @@ import CoreLocation
 /// The visualization of the map.
 class MapView: MKMapView  {
     
+
     //MARK: - Properties
     var currentSongView: AddCurrentSongView?
     //var reactiveButton = MapReactiveButton()
@@ -51,11 +52,11 @@ class MapView: MKMapView  {
     }
     
     var allPlacements: [MKAnnotation] = []
-    
     //MARK: - Initializers
-    init(appleMusicService: AppleMusicService, locationController: LocationController) {
+    init(appleMusicService: AppleMusicService, locationController: LocationController, currentStreaming: MusicProtocol?) {
         self.appleMusicService = appleMusicService
         self.locationController = locationController
+        self.currentStreaming = currentStreaming
         
         super.init(frame: .zero)
         
@@ -126,21 +127,25 @@ class MapView: MKMapView  {
         case hasSameMusic
     }
     
-    func updateStreaming() {
-        switch AppData.shared.currentStreaming {
-        case .appleMusic:
-            let Streaming: MusicProtocol.Type = AppleMusicService.self
-            currentStreaming = Streaming.init()
-            print("escolha --------", AppData.shared.currentStreaming)
-        case .spotify:
-            let Streaming: MusicProtocol.Type = SpotifyService.self
-            currentStreaming = Streaming.init()
-            print("escolha --------", AppData.shared.currentStreaming)
-        default:
-            print("-------brekou")
-            break
-        }
-    }
+//    func updateStreaming() {
+//        switch AppData.shared.currentStreaming {
+//        case .appleMusic:
+//            let Streaming: MusicProtocol.Type = AppleMusicService.self
+//            currentStreaming = Streaming.init()
+//            print("escolha --------", AppData.shared.currentStreaming)
+//            
+//        case .spotify:
+//            let Streaming: MusicProtocol.Type = SpotifyService.self
+//            currentStreaming = Streaming.init()
+////            guard let currentStreaming = currentStreaming as? SpotifyService else { return }
+//            currentStreaming!.authenticate()
+//            print("escolha --------", AppData.shared.currentStreaming)
+//            
+//        default:
+//            print("-------brekou")
+//            break
+//        }
+//    }
     /// Check if user can add annotation.
     /// - Parameter userLocation: Current user location.
     /// - Returns: Returns if userLocation variable is not being used in any other annotation.
@@ -166,7 +171,7 @@ class MapView: MKMapView  {
     }
     
     public func createPlacements (location: CLLocationCoordinate2D, music: MusicProtocol) async -> [MKAnnotation] {
-        
+        print("music name -------", music.currentTitle)
         let placement = MusicPlacementModel(latitude: location.latitude, longitude: location.longitude, title: music.currentTitle, artist: music.currentArtist, musicData: music.currentPhotoData)
 //        await placement.getApplePicture()
         allPlacements.append(placement)
@@ -193,7 +198,7 @@ class MapView: MKMapView  {
         case .isEmpty:
             Task {
                 let placements = await createPlacements(location: userLocation, music: currentStreaming!)
-                
+                print("AAAPEGANOME",currentStreaming!.currentTitle)
                 displayedPlacements = placements
             }
         default:

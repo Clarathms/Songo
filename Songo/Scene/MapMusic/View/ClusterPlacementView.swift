@@ -11,8 +11,8 @@ import MapKit
 class ClusterPlacementView: MKAnnotationView {
     
     private let boxInset = CGFloat(10)
-    private let interItemSpacing = CGFloat(10)
-    private let maxContentWidth = CGFloat(90)
+    private let interItemSpacing = CGFloat(5)
+    private let maxContentWidth = CGFloat(45)
     private let contentInsets = UIEdgeInsets(top: 10, left: 30, bottom: 20, right: 20)
     
     private let blurEffect = UIBlurEffect(style: .systemThickMaterial)
@@ -24,7 +24,7 @@ class ClusterPlacementView: MKAnnotationView {
     }()
     
     private lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [imageView])
+        let stackView = UIStackView(arrangedSubviews: imageViewList)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.alignment = .top
@@ -35,12 +35,29 @@ class ClusterPlacementView: MKAnnotationView {
     
     static var reuseIdentifier = "ClusterPlacementView"
     
-    private lazy var imageView: UIImageView = {
+    private lazy var imageView1: UIImageView = {
+        let imageView = UIImageView(image: nil)
+        return imageView
+    }()
+    private lazy var imageView2: UIImageView = {
+        let imageView = UIImageView(image: nil)
+        return imageView
+    }()
+    private lazy var imageView3: UIImageView = {
+        let imageView = UIImageView(image: nil)
+        return imageView
+    }()
+    private lazy var imageView4: UIImageView = {
         let imageView = UIImageView(image: nil)
         return imageView
     }()
     
-    private var imageHeightConstraint: NSLayoutConstraint?
+    private lazy var imageViewList = [imageView1, imageView2, imageView3, imageView4]
+    
+    private var imageHeightConstraint1: NSLayoutConstraint?
+    private var imageHeightConstraint2: NSLayoutConstraint?
+    private var imageHeightConstraint3: NSLayoutConstraint?
+    private var imageHeightConstraint4: NSLayoutConstraint?
     
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
@@ -63,7 +80,11 @@ class ClusterPlacementView: MKAnnotationView {
         stackView.topAnchor.constraint(equalTo: backgroundMaterial.topAnchor, constant: contentInsets.top).isActive = true
         
         // Limit how much the content is allowed to grow.
-        imageView.widthAnchor.constraint(equalToConstant: maxContentWidth).isActive = true
+        imageViewList[0].widthAnchor.constraint(equalToConstant: maxContentWidth).isActive = true
+        imageViewList[1].widthAnchor.constraint(equalToConstant: maxContentWidth).isActive = true
+        imageViewList[2].widthAnchor.constraint(equalToConstant: maxContentWidth).isActive = true
+        imageViewList[3].widthAnchor.constraint(equalToConstant: maxContentWidth).isActive = true
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -73,7 +94,10 @@ class ClusterPlacementView: MKAnnotationView {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        imageView.image = nil
+        imageViewList[0].image = nil
+        imageViewList[1].image = nil
+        imageViewList[2].image = nil
+        imageViewList[3].image = nil
     }
     
     override func prepareForDisplay() {
@@ -85,23 +109,42 @@ class ClusterPlacementView: MKAnnotationView {
         for member in cluster.memberAnnotations {
             guard let music = member as? MusicPlacementModel else { return }
             musicPictures.append(music.musicPicture ?? UIImage())
+            if musicPictures.count == 4 {
+                break
+            }
         }
-        
-        if let clusterImage = musicPictures.first {
-            
-            imageView.image = clusterImage
-            print("TAMANHO", clusterImage.size)
-            if let heightConstraint = imageHeightConstraint {
-                imageView.removeConstraint(heightConstraint)
+            if let heightConstraint = imageHeightConstraint1 {
+                imageViewList[0].removeConstraint(heightConstraint)
+                imageViewList[1].removeConstraint(heightConstraint)
+                imageViewList[2].removeConstraint(heightConstraint)
+                imageViewList[3].removeConstraint(heightConstraint)
             }
 
-            var ratio: CGFloat = 1
-            if clusterImage.size != CGSize.zero {
-                ratio = clusterImage.size.height / clusterImage.size.width
+        var ratio: CGFloat = 1
+        var count = 0
+        for musicPicture in musicPictures {
+            if musicPicture.size != CGSize.zero {
+                imageViewList[count].image = musicPicture
+                ratio = musicPicture.size.height / musicPicture.size.width
+            } else {
+                imageViewList[count].image = .add
             }
-            
-            imageHeightConstraint = imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: ratio, constant: 0)
-            imageHeightConstraint?.isActive = true
+            count += 1
+        }
+        
+        imageHeightConstraint1 = imageViewList[0].heightAnchor.constraint(equalTo: imageViewList[0].widthAnchor, multiplier: ratio, constant: 0)
+        imageHeightConstraint1?.isActive = true
+        
+        imageHeightConstraint2 = imageViewList[1].heightAnchor.constraint(equalTo: imageViewList[1].widthAnchor, multiplier: ratio, constant: 0)
+        imageHeightConstraint2?.isActive = true
+        
+        imageHeightConstraint3 = imageViewList[2].heightAnchor.constraint(equalTo: imageViewList[2].widthAnchor, multiplier: ratio, constant: 0)
+        imageHeightConstraint3?.isActive = true
+        
+        imageHeightConstraint4 = imageViewList[3].heightAnchor.constraint(equalTo: imageViewList[3].widthAnchor, multiplier: ratio, constant: 0)
+        imageHeightConstraint4?.isActive = true
+        
+        
             updateConstraints()
             
             /*
@@ -111,7 +154,6 @@ class ClusterPlacementView: MKAnnotationView {
              */
             displayPriority = .defaultHigh
             zPriority = .min
-        }
         setNeedsLayout()
     }
     

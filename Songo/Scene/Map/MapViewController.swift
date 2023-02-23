@@ -8,17 +8,17 @@
 import Foundation
 import CoreLocation
 import MapKit
-
+import Combine
+import MusicKit
 
 
 /// The View Controller of the Map Scene
 class MapViewController: BaseViewController<MapView> {
     
-    typealias Factory = MapPlaylistSceneFactory
+    typealias Factory = MapPlaylistSceneFactory & MusicServiceFactory
     
     var factory: Factory
     var appleMusicService: AppleMusicService = AppleMusicService()
-    
     let locationController: LocationController
     // Variable that holds the value (true or false) if the user authorized the location service or not.
     var isLocationOn: Bool {
@@ -76,7 +76,6 @@ class MapViewController: BaseViewController<MapView> {
         self.locationController = locationController
         isLocationOn = locationController.isLocationOn
         self.factory = factory
-        
         let mapView = MapView(appleMusicService: appleMusicService, locationController: locationController)
         super.init(mainView: mapView)
     }
@@ -100,7 +99,6 @@ class MapViewController: BaseViewController<MapView> {
         setupMapViewDelegate()
         registerMapPlacementViews()
     }
-    
     override func viewDidLayoutSubviews() {
         mainView.setupMapView()
     }
@@ -110,18 +108,26 @@ class MapViewController: BaseViewController<MapView> {
         isLocationOn = locationController.isLocationOn
         guard let location = locationController.location?.coordinate else { return }
         updateOverlay(location: location)
-        mainView.updateStreaming()
+        
         
 //        Task {
 //            mainView.displayedPlacements = await AppData.shared.loadMusics()
 //        }
 
     }
+    var cancellable: Cancellable?
     override func viewDidAppear(_ animated: Bool) {
         Task {
             mainView.displayedPlacements = await AppData.shared.loadMusics()
             await mainView.allPlacements.append(contentsOf: AppData.shared.loadMusics())
         }
+        mainView.currentStreaming = SceneDelegate.appContainer.currentStreaming
+        
+        cancellable = SystemMusicPlayer.shared.state.objectWillChange.sink(receiveValue: { state in
+            let musicState = SystemMusicPlayer.shared.state.playbackStatus
+            let music1 = SystemMusicPlayer.shared.queue.currentEntry?.item?.id
+            print(music1, "<------")
+        })
     }
     
     func setupMapReactiveButton() {
@@ -155,17 +161,8 @@ class MapViewController: BaseViewController<MapView> {
     }
     /// Sets the object that changes the properties by the state.
     @objc func handleAddSongButtonAction() {
-        print(AppData.shared.currentStreaming)
-        switch AppData.shared.currentStreaming {
-        case .appleMusic:
-                mainView.addPlacement()
-                
-        case .spotify:
-            mainView.addPlacement()
-        default:
-            break
-        }
-        
+        print("alou", mainView.currentStreaming)
+        mainView.addPlacement()
     }
 
     @objc func handleLocationButtonAction() {

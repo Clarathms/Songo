@@ -41,9 +41,8 @@ struct TutorialPage3: View {
     var botaoSpotify: some View {
         Button {
             isPresented = true
-            guard let sessionManager = spotifyService.sessionManager else { return }
-            sessionManager.initiateSession(with: scopes, options: .clientOnly)
             AppData.shared.currentStreaming = StreamChoice.spotify
+            
         } label: {
             Text("Login com Spotify")
                 .bold()

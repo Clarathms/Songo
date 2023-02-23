@@ -10,8 +10,9 @@ import UIKit
 import MusicKit
 import CoreLocation
 import MapKit
+import Combine
 
-public class AddCurrentSongView: UIView {
+class AddCurrentSongView: UIView {
     weak var appleMusicService: AppleMusicService?
     weak var spotifyService: SpotifyService?
     var background: UIView!

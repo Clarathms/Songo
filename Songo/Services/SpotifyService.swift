@@ -9,9 +9,12 @@ import Foundation
 
 class SpotifyService: NSObject, MusicProtocol {
     
+
     required override init() {
         super.init()
     }
+    
+    var id: StreamChoice = .spotify
     // MARK: - Fetch token and request access
     lazy var appRemote: SPTAppRemote = {
         let appRemote = SPTAppRemote(configuration: configuration, logLevel: .debug)
@@ -92,10 +95,15 @@ class SpotifyService: NSObject, MusicProtocol {
             task.resume()
         }
     
-    lazy var sessionManager: SPTSessionManager? = {
-        let manager = SPTSessionManager(configuration: configuration, delegate: self)
-        return manager
-    }()
+    func authenticate() {
+        lazy var sessionManager: SPTSessionManager? = {
+            let manager = SPTSessionManager(configuration: configuration, delegate: self)
+            return manager
+        }()
+        guard let sessionManager = sessionManager else { return }
+        sessionManager.initiateSession(with: scopes, options: .clientOnly)
+    }
+    
     
     //MARK: - Get information on user's current behaviour
     private var currentTrack: SPTAppRemoteTrack?
@@ -103,31 +111,43 @@ class SpotifyService: NSObject, MusicProtocol {
     var currentArtist: String { currentTrack?.artist.name ?? "No artist found" }
     var currentAlbum: String { currentTrack?.album.name ?? "No album found" }
     var currentImageIdentifier: String { currentTrack?.imageIdentifier ?? "No image found" }
-    var currentPhotoData: Data? {
-        var dataImage: Data?
-        guard let track = currentTrack else { return nil }
-        appRemote.imageAPI?.fetchImage(forItem: track, with: CGSize.zero, callback: { [weak self] (image, error) in
+    var currentPhotoData: Data?
+    
+    private func getCurrentPicture(completion: @escaping (Bool) -> Void) {
+        
+        guard let track = currentTrack else { print("morreu-------")
+            return }
+        appRemote.imageAPI?.fetchImage(forItem: track, with: CGSize.zero, callback: { (image, error) in
             if let error = error {
                 print("Error fetching track image: " + error.localizedDescription)
-            } else if let image = image as? Data {
-                dataImage = image
+                completion(false)
+            } else if let image = image as? UIImage {
+                self.currentPhotoData = image.jpegData(compressionQuality: 0.8)
+                print("pegou ------", self.currentPhotoData.debugDescription)
+                completion(true)
             }
         })
-        return dataImage
     }
-    
-    func update(playerState: SPTAppRemotePlayerState) {
-        currentTrack = playerState.track
+    func getCurrentPicture() async -> Bool {
+        await withCheckedContinuation { continuation in
+            getCurrentPicture { photoData in
+                continuation.resume(returning: photoData)
+            }
+        }
     }
-    
-//    func fetchPlayerState() {
-//        appRemote.playerAPI?.getPlayerState({ [weak self] (playerState, error) in
-//            if let error = error {
-//                print("Error getting player state:" + error.localizedDescription)
-//            } else if let playerState = playerState as? SPTAppRemotePlayerState {
-//                self?.update(playerState: playerState)
-//            }
-//        })
-//    }
+   func update(playerState: SPTAppRemotePlayerState) {
+       currentTrack = playerState.track
+//       currentTitle = currentTrack.name
+    }
+
+    func fetchPlayerState() {
+        appRemote.playerAPI?.getPlayerState({ [weak self] (playerState, error) in
+            if let error = error {
+                print("Error getting player state:" + error.localizedDescription)
+            } else if let playerState = playerState as? SPTAppRemotePlayerState {
+                self?.update(playerState: playerState)
+            }
+        })
+    }
 
 }

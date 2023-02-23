@@ -14,7 +14,7 @@ struct GoToVC : UIViewControllerRepresentable {
         
     }
     
-    var appContainer: AppContainer = AppContainer()
+    var appContainer: AppContainer = SceneDelegate.appContainer
     typealias UIViewControllerType = TabBarController
     
     func makeUIViewController(context: Context) -> TabBarController {

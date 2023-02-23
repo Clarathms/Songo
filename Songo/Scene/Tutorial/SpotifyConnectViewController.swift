@@ -25,10 +25,10 @@ class SpotifyConnectViewController: UIViewController {
      }
     
     //MARK: -Actions
-    @objc func didTapConnect(_ button: UIButton) {
-        guard let sessionManager = spotifyService.sessionManager else { return }
-        sessionManager.initiateSession(with: scopes, options: .clientOnly)
-    }
+//    @objc func didTapConnect(_ button: UIButton) {
+//        guard let sessionManager = spotifyService.sessionManager else { return }
+//        sessionManager.initiateSession(with: scopes, options: .clientOnly)
+//    }
     
     // MARK: - Private Helpers
 //    func presentAlertController(title: String, message: String, buttonTitle: String) {

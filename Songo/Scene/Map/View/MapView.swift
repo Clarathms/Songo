@@ -9,17 +9,20 @@ import Foundation
 import MapKit
 import UIKit
 import CoreLocation
-
+import Combine
 
 /// The visualization of the map.
 class MapView: MKMapView  {
     
+
     //MARK: - Properties
     var currentSongView: AddCurrentSongView?
     //var reactiveButton = MapReactiveButton()
     
     var reactiveButton:MapReactiveButton?
-
+    
+//    var appContainer: AppContainer = AppContainer()
+    
     var isLocationOn: Bool {
         locationController?.isLocationOn ?? false
     }
@@ -53,7 +56,6 @@ class MapView: MKMapView  {
     }
     
     var allPlacements: [MKAnnotation] = []
-    
     //MARK: - Initializers
     init(appleMusicService: AppleMusicService, locationController: LocationController) {
         self.appleMusicService = appleMusicService
@@ -86,6 +88,7 @@ class MapView: MKMapView  {
         setupReactiveButtonConstraints()
         setupLocationButtonConstraints()
         showsBuildings = false
+
     }
     
     /// Setup the `ReactiveButton`constraints.
@@ -152,9 +155,9 @@ class MapView: MKMapView  {
     private func canAddPlacement(_ userLocation: CLLocationCoordinate2D) -> PlacementStatus {
         
         guard let appleMusicService = appleMusicService else { fatalError("No appleMusicService at \(#function)") }
-        Task {
-            await appleMusicService.getCurrentMusic()
-        }
+//        Task {
+//            await appleMusicService.getCurrentMusic()
+//        }
         
         if !allPlacements.isEmpty {
             for annotations in allPlacements{
@@ -171,19 +174,19 @@ class MapView: MKMapView  {
     }
     
     public func createPlacements (location: CLLocationCoordinate2D, music: MusicProtocol) async -> [MKAnnotation] {
+        print("music name -------", music.currentTitle)
+        await music.getCurrentPicture()
         
         let placement = MusicPlacementModel(latitude: location.latitude, longitude: location.longitude, title: music.currentTitle, artist: music.currentArtist, musicData: music.currentPhotoData)
-//        await placement.getApplePicture()
         allPlacements.append(placement)
         print("all", allPlacements.count)
-        print("nome-------", placement.title)
+        print("foto-------", music.currentPhotoData.debugDescription)
         AppData.shared.update(musics: allPlacements)
         
         return await AppData.shared.loadMusics()
     }
     
     func addPlacement() {
-        
         guard let locationController = locationController else { fatalError("No locationController at \(#function)") }
         //        let appleMusicService = appleMusicService else { fatalError("No locationController or appleMusicService at \(#function)") }
         

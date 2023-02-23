@@ -58,9 +58,9 @@ class AppData: Codable {
         return loadedMusics
     }
     
-    func loadStreaming() {
-        
-    }
+//    func loadStreamId() -> StreamChoice {
+//        return currentStreaming
+//    }
     
     func saveData() {
            do {
@@ -95,5 +95,4 @@ class AppData: Codable {
 enum StreamChoice: Codable {
     case appleMusic
     case spotify
-    case none
 }

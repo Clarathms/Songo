@@ -8,6 +8,20 @@
 import Foundation
 import UIKit
 
+//var spotifyService: SpotifyService = SpotifyService()
+
+// MARK: - SPTAppRemotePlayerAPIDelegate
+extension SpotifyService: SPTAppRemotePlayerStateDelegate {
+    func playerStateDidChange(_ playerState: SPTAppRemotePlayerState) {
+        print("__________", playerState.description)
+        debugPrint("Spotify Track name: %@", playerState.track.name)
+//        self.currentTrack = playerState.track
+        update(playerState: playerState)
+
+    }
+    
+}
+
 extension SpotifyService: SPTAppRemoteDelegate {
     
     func appRemoteDidEstablishConnection(_ appRemote: SPTAppRemote) {
@@ -17,6 +31,14 @@ extension SpotifyService: SPTAppRemoteDelegate {
                 print("Error subscribing to player state:" + error.localizedDescription)
             }
         })
+//        appRemote.playerAPI?.getPlayerState({ [weak self] (playerState, error) in
+//            if let error = error {
+//                print("Error getting player state:" + error.localizedDescription)
+//            } else if let playState = playerState as? SPTAppRemotePlayerState {
+//                self?.currentTrack = playState.track
+//            }
+//        })
+        fetchPlayerState()
     }
 
     func appRemote(_ appRemote: SPTAppRemote, didDisconnectWithError error: Error?) {
@@ -27,13 +49,6 @@ extension SpotifyService: SPTAppRemoteDelegate {
     func appRemote(_ appRemote: SPTAppRemote, didFailConnectionAttemptWithError error: Error?) {
 //        updateViewBasedOnConnected()
 //        lastPlayerState = nil
-    }
-}
-// MARK: - SPTAppRemotePlayerAPIDelegate
-extension SpotifyService: SPTAppRemotePlayerStateDelegate {
-    func playerStateDidChange(_ playerState: SPTAppRemotePlayerState) {
-        debugPrint("Spotify Track name: %@", playerState.track.name)
-        update(playerState: playerState)
     }
 }
 
@@ -56,4 +71,7 @@ extension SpotifyService: SPTSessionManagerDelegate {
         appRemote.connect()
     }
 }
+
+
+
 

@@ -43,11 +43,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 window.rootViewController = appContainer.createTabBarControllerScene()
             }else{
                 window.rootViewController = ViewControllerTutorial()
-            }
+           }
         }
         
         
-        window.rootViewController = ViewControllerTutorial()
     }
     
     //TODO: acertar scene com a view devida para a autenticação com o Spotify

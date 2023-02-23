@@ -64,7 +64,7 @@ protocol MapSceneFactory {
 extension AppContainer: MapSceneFactory {
     
     func createMapScene() -> MapViewController {
-        return MapViewController(locationController: locationController, factory: self)
+        return MapViewController(locationController: locationController, factory: self,currentStreaming: currentStreaming!)
     }
     
 }

@@ -46,20 +46,25 @@ class AddCurrentSongView: UIView {
     //  //  var appData: AppData
     //    var streamingReceiver: MusicProtocol = MapView.recebeStreaming ?? nil
     
-    init(width:CGFloat, height:Int, mapView: MapView, appleMusicService: AppleMusicService) {
+    init(width:CGFloat, height:Int, mapView: MapView, currentStreaming: MusicProtocol) {
         self.mapView = mapView
         super.init(frame: CGRect(x: 0, y: 0, width: Int(width), height: height))
         Task {
            
-            if currentStreaming == nil {
-                print("***********  Vai crashar!!  **************")
-                self.currentTitle.text = "Sem titulo atual"
-                self.currentArtist.text = "Sem artista atual"
-                self.currentAlbum.text = "Sem album atual"
-            }
-            else {
-                _ = await GetData(music: currentStreaming!)
-            }
+//            if currentStreaming == nil {
+//                print("***********  Vai crashar!!  **************")
+//                self.currentTitle.text = "Sem titulo atual"
+//                self.currentArtist.text = "Sem artista atual"
+//                self.currentAlbum.text = "Sem album atual"
+//            }
+//            else {b
+             
+                  //   GetData(music: currentStreaming!)
+            self.currentTitle.text = SceneDelegate.appContainer.currentStreaming?.currentTitle
+            self.currentArtist.text =  SceneDelegate.appContainer.currentStreaming?.currentArtist
+            self.currentAlbum.text =  SceneDelegate.appContainer.currentStreaming?.currentAlbum
+              
+            //}
         }
         setupBackground()
         
@@ -175,12 +180,12 @@ class AddCurrentSongView: UIView {
 //            }
 //        }
     }
-    func GetData (music: MusicProtocol) {
-        self.currentTitle.text = music.currentTitle
-        self.currentArtist.text = music.currentArtist
-        self.currentAlbum.text = music.currentAlbum
-        
-   }
+//    func GetData (music: MusicProtocol) {
+//        self.currentTitle.text = SceneDelegate.appContainer.currentStreaming?.currentTitle
+//        self.currentArtist.text =  SceneDelegate.appContainer.currentStreaming?.currentArtist
+//        self.currentAlbum.text =  SceneDelegate.appContainer.currentStreaming?.currentAlbum
+//
+//   }
    
 }
 

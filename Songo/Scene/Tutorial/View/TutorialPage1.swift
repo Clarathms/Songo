@@ -78,11 +78,11 @@ struct TutorialPage1: View {
             }
     }
 }
-struct TutorialPage1_Previews: PreviewProvider {
-    static var previews: some View {
-        TutorialPage1()
-    }
-}
+//struct TutorialPage1_Previews: PreviewProvider {
+//    static var previews: some View {
+//        TutorialPage1()
+//    }
+//}
 //                            if isShowingOffer{
 //                                chamaBotao = false
 //                            }

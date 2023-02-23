@@ -28,6 +28,8 @@ class MapView: MKMapView  {
     }
     var locationButton = MapLocationButton()
     weak var appleMusicService: AppleMusicService?
+    weak var spotifyService: SpotifyService?
+
     weak var locationController: LocationController?
     var currentStreaming: MusicProtocol?
 
@@ -129,6 +131,24 @@ class MapView: MKMapView  {
         case hasSameMusic
     }
     
+    func updateStreaming() {
+        switch AppData.shared.currentStreaming {
+        case .appleMusic:
+            let Streaming: MusicProtocol.Type = AppleMusicService.self
+            currentStreaming = Streaming.init()
+            print("escolha --------", AppData.shared.currentStreaming)
+         
+        case .spotify:
+            let Streaming: MusicProtocol.Type = SpotifyService.self
+            currentStreaming = Streaming.init()
+            print("escolha --------", AppData.shared.currentStreaming)
+            
+            
+        default:
+            print("-------brekou")
+            break
+        }
+    }
     /// Check if user can add annotation.
     /// - Parameter userLocation: Current user location.
     /// - Returns: Returns if userLocation variable is not being used in any other annotation.
@@ -180,8 +200,14 @@ class MapView: MKMapView  {
         switch canAddPlacement(userLocation) {
         case .isEmpty:
             Task {
-                let placements = await createPlacements(location: userLocation, music: currentStreaming!)
-                displayedPlacements = placements
+                if currentStreaming != nil{
+                    let placements = await createPlacements(location: userLocation, music: currentStreaming!)
+                    
+                    displayedPlacements = placements
+                }
+                else{
+                    print("NULOO")
+                }
             }
         default:
             break

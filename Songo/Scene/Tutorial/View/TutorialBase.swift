@@ -20,6 +20,11 @@ struct TutorialBase: View {
     @State private var isShowingOffer = true
     @State private var subscriptionOfferOptions: MusicSubscriptionOffer.Options = .default
     //let appleMusicController: AppleMusicController = AppleMusicController()
+    
+//    @State var chamaBotao : Bool = false
+//    //@State var isShowingOffer: Bool = true
+//    let appleMusicService: AppleMusicService = AppleMusicService()
+
 
     var body: some View {
         
@@ -33,6 +38,25 @@ struct TutorialBase: View {
                                 Image(systemName: "circle")
                             })
                             .tag(1)
+//                            .task {
+//                                let subCheck = await appleMusicService.lastSubscriptionUpdate().makeSubscriptionOffer
+//                                DispatchQueue.main.async {
+//                                    subscriptionOfferOptions.messageIdentifier = .playMusic
+//                                    isShowingOffer = subCheck
+//                                    if isShowingOffer != subCheck{
+//                                        isShowingOffer = false
+//                                    }
+//                                    if !isShowingOffer{
+//                                        chamaBotao = true
+//                                    }
+//                                }
+//                            }
+//                            .musicSubscriptionOffer(isPresented: $isShowingOffer, options: subscriptionOfferOptions)
+//                                .onAppear{
+//                                    appleMusicService.checkAppleMusicAuthorization()
+//                                    isShowingOffer = true
+//                                    
+//                                }
                         
                         TutorialPage2().tabItem({
                             Image(systemName: "circle")

@@ -57,13 +57,15 @@ class MapView: MKMapView  {
     
     var allPlacements: [MKAnnotation] = []
     //MARK: - Initializers
-    init(appleMusicService: AppleMusicService, locationController: LocationController) {
-        self.appleMusicService = appleMusicService
+    init(currentStreaming: MusicProtocol, locationController: LocationController ) {
+
+
+        self.currentStreaming = currentStreaming
         self.locationController = locationController
         
         super.init(frame: .zero)
         
-        self.currentSongView = AddCurrentSongView(width: UIScreen.main.bounds.width * 0.9, height: 81, mapView: self, appleMusicService: appleMusicService)
+        self.currentSongView = AddCurrentSongView(width: UIScreen.main.bounds.width * 0.9, height: 81, mapView: self, currentStreaming: currentStreaming)
         //        self.reactiveButton = MapReactiveButton(x: Float(self.bounds.maxX/1.5), y: Float(self.bounds.maxY/6), width: Float(self.bounds.size.width * 0.15), height: Float(self.bounds.size.height * 0.5), mapView: self)
         //self.reactiveButton = MapReactiveButton(x: Float(UIScreen.main.bounds.maxX/3.5), y: Float(UIScreen.main.bounds.midY/10), width:Float(UIScreen.main.bounds.width * 0.2), height: 70)
         self.reactiveButton = MapReactiveButton(x: Float(UIScreen.main.bounds.width/1.2), y: Float(UIScreen.main.bounds.height/1.22), width:Float(UIScreen.main.bounds.width/9), height: Float(UIScreen.main.bounds.width/9))

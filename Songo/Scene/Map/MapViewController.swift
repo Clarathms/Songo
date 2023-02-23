@@ -72,11 +72,11 @@ class MapViewController: BaseViewController<MapView> {
         mainView.addAnnotations(annotations)
     }
     
-    init(locationController: LocationController, factory: Factory) {
+    init(locationController: LocationController, factory: Factory,currentStreaming: MusicProtocol) {
         self.locationController = locationController
         isLocationOn = locationController.isLocationOn
         self.factory = factory
-        let mapView = MapView(appleMusicService: appleMusicService, locationController: locationController)
+        let mapView = MapView(currentStreaming: currentStreaming, locationController: locationController)
         super.init(mainView: mapView)
     }
     
@@ -122,6 +122,7 @@ class MapViewController: BaseViewController<MapView> {
             await mainView.allPlacements.append(contentsOf: AppData.shared.loadMusics())
         }
         mainView.currentStreaming = SceneDelegate.appContainer.currentStreaming
+
         
         cancellable = SystemMusicPlayer.shared.state.objectWillChange.sink(receiveValue: { state in
             let musicState = SystemMusicPlayer.shared.state.playbackStatus

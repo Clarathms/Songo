@@ -121,13 +121,17 @@ class MapViewController: BaseViewController<MapView> {
             mainView.displayedPlacements = await AppData.shared.loadMusics()
             await mainView.allPlacements.append(contentsOf: AppData.shared.loadMusics())
         }
-        mainView.currentStreaming = SceneDelegate.appContainer.currentStreaming
-        
-        cancellable = SystemMusicPlayer.shared.state.objectWillChange.sink(receiveValue: { state in
-            let musicState = SystemMusicPlayer.shared.state.playbackStatus
-            let music1 = SystemMusicPlayer.shared.queue.currentEntry?.item?.id
-            print(music1, "<------")
-        })
+        if AppData.shared.currentStreaming == .appleMusic {
+            SceneDelegate.appContainer.updateStreaming()
+            mainView.currentStreaming = SceneDelegate.appContainer.currentStreaming
+        } else {
+            mainView.currentStreaming = SceneDelegate.appContainer.currentStreaming
+        }
+//        cancellable = SystemMusicPlayer.shared.state.objectWillChange.sink(receiveValue: { state in
+//            let musicState = SystemMusicPlayer.shared.state.playbackStatus
+//            let music1 = SystemMusicPlayer.shared.queue.currentEntry?.item?.id
+//            print(music1, "<------")
+//        })
     }
     
     func setupMapReactiveButton() {

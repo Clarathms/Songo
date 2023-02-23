@@ -17,6 +17,7 @@ class AppleMusicService: MusicProtocol {
     
     // MARK: - Get current music and its data from the user account
     private var currentMusic: Song?
+    var currentMusicID: MusicItemID?
     var currentTitle: String { currentMusic?.title ?? "No title found" }
     var currentArtist: String { currentMusic?.artistName ?? "No artist found" }
     var currentURLPicture: URL? { currentMusic?.artwork?.url(width: currentMusic?.artwork!.maximumWidth ?? 0, height: currentMusic?.artwork!.maximumHeight ?? 0) }
@@ -29,9 +30,24 @@ class AppleMusicService: MusicProtocol {
         checkAppleMusicAuthorization()
         cancellable = SystemMusicPlayer.shared.state.objectWillChange.sink(receiveValue: { state in
             let musicState = SystemMusicPlayer.shared.state.playbackStatus
-            let music1 = SystemMusicPlayer.shared.queue.currentEntry?.item?.id
-            print(music1, "<------")
+            self.currentMusicID = SystemMusicPlayer.shared.queue.currentEntry?.item?.id
+            Task {
+                await self.getCurrentMusic()
+                print(self.currentTitle, "<------")
+            }
+            print(self.currentMusicID)
         })
+    }
+    
+    func getCurrentMusic() async {
+        let currentMusicPlaying = self.currentMusicID
+            do {
+                var currentMusicRequest: MusicCatalogResourceRequest<Song> { MusicCatalogResourceRequest<Song>(matching: \.id, equalTo: currentMusicPlaying!) }
+                let searchResponse = try await currentMusicRequest.response()
+                currentMusic = searchResponse.items.first
+            } catch {
+                print("Search request failed with error: \(error).")
+            }
     }
     
     func getCurrentPicture() async -> Bool{
@@ -41,17 +57,6 @@ class AppleMusicService: MusicProtocol {
             currentPhotoData = data
         }
         return true
-    }
-    
-    func getCurrentMusic() async {
-        let currentMusicPlaying = SystemMusicPlayer.shared.queue.currentEntry?.item?.id
-            do {
-                var currentMusicRequest: MusicCatalogResourceRequest<Song> { MusicCatalogResourceRequest<Song>(matching: \.id, equalTo: currentMusicPlaying!) }
-                let searchResponse = try await currentMusicRequest.response()
-                currentMusic = searchResponse.items.first
-            } catch {
-                print("Search request failed with error: \(error).")
-            }
     }
     
 //MARK: - Checagem de assinatura do Apple Music e pedido de autorização para trackeamento de informação

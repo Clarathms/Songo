@@ -93,8 +93,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             //        if let _ = spotifyService.appRemote.connectionParameters.accessToken {
             //            spotifyService.appRemote.connect()
             //        }
-        } else if AppData.shared.currentStreaming == .appleMusic {
-            return
         }
     }
         
@@ -108,6 +106,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     }
                 }
             }
+//            else if AppData.shared.currentStreaming == .appleMusic {
+//                SceneDelegate.appContainer.updateStreaming()
+//            }
             
         }
         

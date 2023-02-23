@@ -197,9 +197,14 @@ class MapView: MKMapView  {
         switch canAddPlacement(userLocation) {
         case .isEmpty:
             Task {
-                let placements = await createPlacements(location: userLocation, music: currentStreaming!)
-                
-                displayedPlacements = placements
+                if currentStreaming != nil{
+                    let placements = await createPlacements(location: userLocation, music: currentStreaming!)
+                    
+                    displayedPlacements = placements
+                }
+                else{
+                    print("NULOO")
+                }
             }
         default:
             break

@@ -12,6 +12,7 @@ import MusicKit
 struct TutorialPage3: View {
     
   //  @State teste: Bool = true
+    @State private var canShowAppleM = false
     @State var isPresented: Bool = false
     @State var chamaBotao : Bool = false
     @State private var isShowingOffer = true
@@ -19,6 +20,7 @@ struct TutorialPage3: View {
     let appleMusicService: AppleMusicService = AppleMusicService()
     let spotifyService: SpotifyService = SpotifyService()
     var appleImg = Image(systemName: "applelogo")
+    
     var botaoAppleMusic: some View {
         Button {
             isPresented = true
@@ -71,11 +73,14 @@ struct TutorialPage3: View {
                         .font(.subheadline)
                         .multilineTextAlignment(.center)
                 }
-                botaoAppleMusic
-                botaoSpotify
+
                 
-//                if chamaBotao {
-//                    botaoAppleMusic
+                botaoSpotify
+                if chamaBotao {
+                    botaoAppleMusic
+                }
+//                if (chamaBotao : $chamaBotao.wrappedValue) {
+//            
 //                }
                 
 //                Button {
@@ -93,10 +98,13 @@ struct TutorialPage3: View {
 //                .padding(.top,50)
                 
             }.position(x:UIScreen.main.bounds.midX/1.2,y:UIScreen.main.bounds.midY*1.2)
-            //.position(x:UIScreen.main.bounds.midX*0.85,y:UIScreen.main.bounds.midY*1.2)
+//                .task {
+//                    <#code#>
+//                }
                 .task {
                     let subCheck = await appleMusicService.lastSubscriptionUpdate().makeSubscriptionOffer
                     DispatchQueue.main.async {
+                        print("aaaa\(subCheck)")
                         subscriptionOfferOptions.messageIdentifier = .playMusic
                         isShowingOffer = subCheck
                         if isShowingOffer != subCheck{
@@ -120,6 +128,8 @@ struct TutorialPage3: View {
         }
         
     }
+    
+    
 }
 
 struct TutorialPage3_Previews: PreviewProvider {
@@ -128,19 +138,3 @@ struct TutorialPage3_Previews: PreviewProvider {
     }
 }
 
-extension View {
-    func innerShadow<S: Shape>(using shape: S, angle: Angle = .degrees(0), color: Color = .black, width: CGFloat = 6, blur: CGFloat = 8) -> some View {
-        let finalX = CGFloat(cos(angle.radians - .pi / 2))
-        let finalY = CGFloat(sin(angle.radians - .pi / 2))
-        
-        return self
-            .overlay(
-                shape
-                    .stroke(color, lineWidth: width)
-                    .offset(x: finalX * width * 0.3, y: finalY * width * 0.3)
-                    .blur(radius: blur)
-                    .mask(shape)
-            )
-    }
-    
-}

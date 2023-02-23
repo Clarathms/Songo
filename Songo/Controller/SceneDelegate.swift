@@ -47,7 +47,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         
         
-        window.rootViewController = ViewControllerTutorial()
     }
     
     //TODO: acertar scene com a view devida para a autenticação com o Spotify

@@ -33,7 +33,7 @@ class AppData: Codable {
     
     init() {}
     
-    var currentStreaming: StreamChoice = .none
+    var currentStreaming: StreamChoice?
     
     static var shared: AppData = AppData()
     
@@ -58,9 +58,9 @@ class AppData: Codable {
         return loadedMusics
     }
     
-    func loadStreamId() -> StreamChoice {
-        return currentStreaming
-    }
+//    func loadStreamId() -> StreamChoice {
+//        return currentStreaming
+//    }
     
     func saveData() {
            do {
@@ -95,5 +95,4 @@ class AppData: Codable {
 enum StreamChoice: Codable {
     case appleMusic
     case spotify
-    case none
 }

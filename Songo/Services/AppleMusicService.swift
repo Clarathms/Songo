@@ -7,8 +7,11 @@
 
 import Foundation
 import MusicKit
+import Combine
 
 class AppleMusicService: MusicProtocol {
+
+    
     
     required init() {}
     
@@ -18,15 +21,26 @@ class AppleMusicService: MusicProtocol {
     var currentArtist: String { currentMusic?.artistName ?? "No artist found" }
     var currentURLPicture: URL? { currentMusic?.artwork?.url(width: currentMusic?.artwork!.maximumWidth ?? 0, height: currentMusic?.artwork!.maximumHeight ?? 0) }
     var currentAlbum: String { currentMusic?.albumTitle ?? "No album found" }
-    var currentPhotoData: Data? {
-        guard let url = currentURLPicture else { return nil }
-        let data = try? Data(contentsOf: url)
-        print(UIImage(data: data!)?.size)
-        return data
-    }
+    var currentPhotoData: Data?
     var id: StreamChoice = .appleMusic
+
+    var cancellable: Cancellable?
     func authenticate() {
         checkAppleMusicAuthorization()
+        cancellable = SystemMusicPlayer.shared.state.objectWillChange.sink(receiveValue: { state in
+            let musicState = SystemMusicPlayer.shared.state.playbackStatus
+            let music1 = SystemMusicPlayer.shared.queue.currentEntry?.item?.id
+            print(music1, "<------")
+        })
+    }
+    
+    func getCurrentPicture() async -> Bool{
+        guard let url = self.currentURLPicture else { return false }
+        
+        if let data = try? Data(contentsOf: url) {
+            currentPhotoData = data
+        }
+        return true
     }
     
     func getCurrentMusic() async {

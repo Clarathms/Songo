@@ -10,6 +10,7 @@ import UIKit
 import MusicKit
 import CoreLocation
 import MapKit
+import Combine
 
 class AddCurrentSongView: UIView {
     weak var appleMusicService: AppleMusicService?
@@ -42,22 +43,22 @@ class AddCurrentSongView: UIView {
       
         
         setupBackground()
-            Task {
-                await appleMusicService.getCurrentMusic()
-                self.currentTitle.text = appleMusicService.currentTitle
-                self.currentArtist.text = appleMusicService.currentArtist
-                self.currentAlbum.text = appleMusicService.currentAlbum
-                // self.albumImage.image = appleMusicService.currentPicture
-                
-                //            self.musicPicture = UIImage(data: <#T##Data#>appleMusicService.currentURLPicture
-                // print(currentTitle.text)
-                // await getApplePicture()
-                
-            }
-            setupImage()
-            setupCurrentTitle()
-            setupArtist()
-            setupAlbum()
+//            Task {
+//                await appleMusicService.getCurrentMusic()
+//                self.currentTitle.text = appleMusicService.currentTitle
+//                self.currentArtist.text = appleMusicService.currentArtist
+//                self.currentAlbum.text = appleMusicService.currentAlbum
+//                // self.albumImage.image = appleMusicService.currentPicture
+//
+//                //            self.musicPicture = UIImage(data: <#T##Data#>appleMusicService.currentURLPicture
+//                // print(currentTitle.text)
+//                // await getApplePicture()
+//
+//            }
+//            setupImage()
+//            setupCurrentTitle()
+//            setupArtist()
+//            setupAlbum()
 
     }
     

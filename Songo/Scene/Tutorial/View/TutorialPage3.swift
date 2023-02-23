@@ -17,7 +17,7 @@ struct TutorialPage3: View {
     @State private var isShowingOffer = true
     @State private var subscriptionOfferOptions: MusicSubscriptionOffer.Options = .default
     let appleMusicService: AppleMusicService = AppleMusicService()
-//    let spotifyService: SpotifyService = SpotifyService()
+    
     var botaoAppleMusic: some View {
         Button {
             isPresented = true
@@ -36,9 +36,8 @@ struct TutorialPage3: View {
     var botaoSpotify: some View {
         Button {
             isPresented = true
-//            guard let sessionManager = spotifyService.sessionManager else { return }
-//            sessionManager.initiateSession(with: scopes, options: .clientOnly)
             AppData.shared.currentStreaming = StreamChoice.spotify
+            
         } label: {
             Text("Login com Spotify")
                 .bold()

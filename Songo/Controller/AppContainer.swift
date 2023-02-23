@@ -11,7 +11,7 @@ class AppContainer {
     /// The `LocationController` used by the entire app
     private lazy var locationController: LocationController = LocationController()
     
-    private var currentStreaming: MusicProtocol?
+    var currentStreaming: MusicProtocol?
     
     /// The `TabBarController` used by the entire app
     private lazy var tabBarController: TabBarController = TabBarController(factory: self, locationController: locationController, profileFactory: self, playlistFactory: self)
@@ -22,33 +22,35 @@ class AppContainer {
 // ******* Cria a Cena de Mapa ********
 
 protocol MusicServiceFactory {
-    func updateStreaming() -> MusicProtocol?
+    func updateStreaming()
 }
 
 extension AppContainer: MusicServiceFactory {
-    func updateStreaming() -> MusicProtocol? {
-        if AppData.shared.currentStreaming == .none {
+    func updateStreaming() {
+        if currentStreaming?.id == .none {
             switch AppData.shared.currentStreaming {
             case .appleMusic:
                 let Streaming: MusicProtocol.Type = AppleMusicService.self
                 currentStreaming = Streaming.init()
+                currentStreaming?.authenticate()
                 print("escolha --------", AppData.shared.currentStreaming)
-                return currentStreaming
-                
+
             case .spotify:
                 let Streaming: MusicProtocol.Type = SpotifyService.self
+//                guard let spotify = currentStreaming as? SpotifyService else { break }
+//                if spotify.appRemote.isConnected {
+//                    break
+//                }
                 currentStreaming = Streaming.init()
                 currentStreaming!.authenticate()
                 print("escolha --------", AppData.shared.currentStreaming)
-                return currentStreaming
                 
             case .none:
                 break
             }
         }
-        print("não entrou dnv", currentStreaming?.id)
+        print("estado atual")
         print(AppData.shared.currentStreaming)
-        return currentStreaming
     }
 }
 //MARK: - Map Factory

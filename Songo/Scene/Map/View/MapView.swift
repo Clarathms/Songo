@@ -9,7 +9,7 @@ import Foundation
 import MapKit
 import UIKit
 import CoreLocation
-
+import Combine
 
 /// The visualization of the map.
 class MapView: MKMapView  {
@@ -20,7 +20,9 @@ class MapView: MKMapView  {
     //var reactiveButton = MapReactiveButton()
     
     var reactiveButton:MapReactiveButton?
-
+    
+//    var appContainer: AppContainer = AppContainer()
+    
     var isLocationOn: Bool {
         locationController?.isLocationOn ?? false
     }
@@ -53,10 +55,9 @@ class MapView: MKMapView  {
     
     var allPlacements: [MKAnnotation] = []
     //MARK: - Initializers
-    init(appleMusicService: AppleMusicService, locationController: LocationController, currentStreaming: MusicProtocol?) {
+    init(appleMusicService: AppleMusicService, locationController: LocationController) {
         self.appleMusicService = appleMusicService
         self.locationController = locationController
-        self.currentStreaming = currentStreaming
         
         super.init(frame: .zero)
         
@@ -85,6 +86,7 @@ class MapView: MKMapView  {
         setupReactiveButtonConstraints()
         setupLocationButtonConstraints()
         showsBuildings = false
+
     }
     
     /// Setup the `ReactiveButton`constraints.
@@ -127,34 +129,15 @@ class MapView: MKMapView  {
         case hasSameMusic
     }
     
-//    func updateStreaming() {
-//        switch AppData.shared.currentStreaming {
-//        case .appleMusic:
-//            let Streaming: MusicProtocol.Type = AppleMusicService.self
-//            currentStreaming = Streaming.init()
-//            print("escolha --------", AppData.shared.currentStreaming)
-//            
-//        case .spotify:
-//            let Streaming: MusicProtocol.Type = SpotifyService.self
-//            currentStreaming = Streaming.init()
-////            guard let currentStreaming = currentStreaming as? SpotifyService else { return }
-//            currentStreaming!.authenticate()
-//            print("escolha --------", AppData.shared.currentStreaming)
-//            
-//        default:
-//            print("-------brekou")
-//            break
-//        }
-//    }
     /// Check if user can add annotation.
     /// - Parameter userLocation: Current user location.
     /// - Returns: Returns if userLocation variable is not being used in any other annotation.
     private func canAddPlacement(_ userLocation: CLLocationCoordinate2D) -> PlacementStatus {
         
         guard let appleMusicService = appleMusicService else { fatalError("No appleMusicService at \(#function)") }
-        Task {
-            await appleMusicService.getCurrentMusic()
-        }
+//        Task {
+//            await appleMusicService.getCurrentMusic()
+//        }
         
         if !allPlacements.isEmpty {
             for annotations in allPlacements{
@@ -172,18 +155,18 @@ class MapView: MKMapView  {
     
     public func createPlacements (location: CLLocationCoordinate2D, music: MusicProtocol) async -> [MKAnnotation] {
         print("music name -------", music.currentTitle)
+        await music.getCurrentPicture()
+        
         let placement = MusicPlacementModel(latitude: location.latitude, longitude: location.longitude, title: music.currentTitle, artist: music.currentArtist, musicData: music.currentPhotoData)
-//        await placement.getApplePicture()
         allPlacements.append(placement)
         print("all", allPlacements.count)
-        print("nome-------", placement.title)
+        print("foto-------", music.currentPhotoData.debugDescription)
         AppData.shared.update(musics: allPlacements)
         
         return await AppData.shared.loadMusics()
     }
     
     func addPlacement() {
-        
         guard let locationController = locationController else { fatalError("No locationController at \(#function)") }
         //        let appleMusicService = appleMusicService else { fatalError("No locationController or appleMusicService at \(#function)") }
         
@@ -198,7 +181,6 @@ class MapView: MKMapView  {
         case .isEmpty:
             Task {
                 let placements = await createPlacements(location: userLocation, music: currentStreaming!)
-                print("AAAPEGANOME",currentStreaming!.currentTitle)
                 displayedPlacements = placements
             }
         default:

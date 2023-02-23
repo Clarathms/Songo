@@ -18,7 +18,9 @@ protocol MusicProtocol {
     
     init()
     
-    func authenticate() 
+    func authenticate()
+    func getCurrentPicture() async -> Bool
+    
 //    static func getCurrentMusic() async throws  -> MusicProtocol
 //    static func search(music: String) async  -> MusicList
 //    static func export(playlist: MusicList) async

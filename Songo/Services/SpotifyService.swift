@@ -9,6 +9,7 @@ import Foundation
 
 class SpotifyService: NSObject, MusicProtocol {
     
+
     required override init() {
         super.init()
     }
@@ -99,37 +100,46 @@ class SpotifyService: NSObject, MusicProtocol {
             let manager = SPTSessionManager(configuration: configuration, delegate: self)
             return manager
         }()
+        guard let sessionManager = sessionManager else { return }
+        sessionManager.initiateSession(with: scopes, options: .clientOnly)
     }
     
     
     //MARK: - Get information on user's current behaviour
-    var currentTrack: SPTAppRemoteTrack?
+    private var currentTrack: SPTAppRemoteTrack?
     var currentTitle: String { currentTrack?.name ?? "No title found" }
     var currentArtist: String { currentTrack?.artist.name ?? "No artist found" }
     var currentAlbum: String { currentTrack?.album.name ?? "No album found" }
     var currentImageIdentifier: String { currentTrack?.imageIdentifier ?? "No image found" }
-    var currentPhotoData: Data? {
-        var dataImage: Data?
-        guard let track = currentTrack else { return nil }
+    var currentPhotoData: Data?
+    
+    private func getCurrentPicture(completion: @escaping (Bool) -> Void) {
+        
+        guard let track = currentTrack else { print("morreu-------")
+            return }
         appRemote.imageAPI?.fetchImage(forItem: track, with: CGSize.zero, callback: { (image, error) in
             if let error = error {
                 print("Error fetching track image: " + error.localizedDescription)
-            } else if let image = image as? Data {
-                dataImage = image
+                completion(false)
+            } else if let image = image as? UIImage {
+                self.currentPhotoData = image.jpegData(compressionQuality: 0.8)
+                print("pegou ------", self.currentPhotoData.debugDescription)
+                completion(true)
             }
         })
-        return dataImage
     }
-    
+    func getCurrentPicture() async -> Bool {
+        await withCheckedContinuation { continuation in
+            getCurrentPicture { photoData in
+                continuation.resume(returning: photoData)
+            }
+        }
+    }
    func update(playerState: SPTAppRemotePlayerState) {
-       if currentTrack?.uri != playerState.track.uri {
-           currentTrack = playerState.track
-       } else {
-           return
-       }
-        print(currentTitle)
+       currentTrack = playerState.track
+//       currentTitle = currentTrack.name
     }
-    
+
     func fetchPlayerState() {
         appRemote.playerAPI?.getPlayerState({ [weak self] (playerState, error) in
             if let error = error {

@@ -11,7 +11,7 @@ import SwiftUI
 class ViewControllerTutorial: UIViewController {
     
     let contentView = UIHostingController(rootView: TutorialBase())
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(contentView.view)

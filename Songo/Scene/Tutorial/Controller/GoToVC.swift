@@ -14,12 +14,12 @@ struct GoToVC : UIViewControllerRepresentable {
         
     }
     
-    var appContainer: AppContainer = AppContainer()
+    var appContainer: AppContainer = SceneDelegate.appContainer
     typealias UIViewControllerType = TabBarController
     
     func makeUIViewController(context: Context) -> TabBarController {
         let config = appContainer.createTabBarControllerScene()
-
+        
        // config.tabBarController?.navigationItem.hidesBackButton = true
         return config
     }

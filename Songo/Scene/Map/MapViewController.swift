@@ -72,11 +72,11 @@ class MapViewController: BaseViewController<MapView> {
         mainView.addAnnotations(annotations)
     }
     
-    init(locationController: LocationController, factory: Factory) {
+    init(locationController: LocationController, factory: Factory,currentStreaming: MusicProtocol) {
         self.locationController = locationController
         isLocationOn = locationController.isLocationOn
         self.factory = factory
-        let mapView = MapView(appleMusicService: appleMusicService, locationController: locationController)
+        let mapView = MapView(currentStreaming: currentStreaming, locationController: locationController)
         super.init(mainView: mapView)
     }
     

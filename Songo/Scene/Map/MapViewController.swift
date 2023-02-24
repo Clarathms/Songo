@@ -98,9 +98,9 @@ class MapViewController: BaseViewController<MapView> {
         setupMapViewDelegate()
         registerMapPlacementViews()
     }
-//    override func viewDidLayoutSubviews() {
-//        mainView.setupMapView()
-//    }
+    override func viewDidLayoutSubviews() {
+        mainView.setupMapView()
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)

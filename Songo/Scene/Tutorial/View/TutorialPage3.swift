@@ -4,7 +4,6 @@
 //
 //  Created by Clara Thaís Maciel e Silva on 26/01/23.
 //
-
 import Foundation
 import SwiftUI
 import MusicKit
@@ -14,7 +13,7 @@ struct TutorialPage3: View {
   //  @State teste: Bool = true
     @State private var canShowAppleM = false
     @State var isPresented: Bool = false
-    @State var chamaBotao : Bool = false
+    @Binding var chamaBotao : Bool
     @State private var isShowingOffer = true
     @State private var subscriptionOfferOptions: MusicSubscriptionOffer.Options = .default
     let appleMusicService: AppleMusicService = AppleMusicService()
@@ -79,7 +78,7 @@ struct TutorialPage3: View {
                     botaoAppleMusic
                 }
 //                if (chamaBotao : $chamaBotao.wrappedValue) {
-//            
+//
 //                }
                 
 //                Button {
@@ -100,20 +99,20 @@ struct TutorialPage3: View {
 //                .task {
 //                    <#code#>
 //                }
-                .task {
-                    let subCheck = await appleMusicService.lastSubscriptionUpdate().makeSubscriptionOffer
-                    DispatchQueue.main.async {
-                        print("aaaa\(subCheck)")
-                        subscriptionOfferOptions.messageIdentifier = .playMusic
-                        isShowingOffer = subCheck
-                        if isShowingOffer != subCheck{
-                            isShowingOffer = false
-                        }
-                        if !isShowingOffer{
-                            chamaBotao = true
-                        }
-                    }
-                }
+//                .task {
+//                    let subCheck = await appleMusicService.lastSubscriptionUpdate().makeSubscriptionOffer
+//                    DispatchQueue.main.async {
+//                        print("aaaa\(subCheck)")
+//                        subscriptionOfferOptions.messageIdentifier = .playMusic
+//                        isShowingOffer = subCheck
+//                        if isShowingOffer != subCheck{
+//                            isShowingOffer = false
+//                        }
+//                        if !isShowingOffer{
+//                            chamaBotao = true
+//                        }
+//                    }
+//                }
                 .background(
                     
                     RoundedRectangle(cornerSize: .init(width: 130, height: 130))
@@ -131,9 +130,9 @@ struct TutorialPage3: View {
     
 }
 
-struct TutorialPage3_Previews: PreviewProvider {
-    static var previews: some View {
-        TutorialPage3()
-    }
-}
+//struct TutorialPage3_Previews: PreviewProvider {
+//    static var previews: some View {
+//        TutorialPage3()
+//    }
+//}
 

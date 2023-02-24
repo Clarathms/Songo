@@ -14,7 +14,7 @@ struct TutorialPage2: View {
     @State private var subscriptionOfferOptions: MusicSubscriptionOffer.Options = .default
     let appleMusicService: AppleMusicService = AppleMusicService()
 //    @State var isPresented: Bool = false
-    @State var chamaBotao : Bool = false
+    @Binding var chamaBotao : Bool
 
     var botao: some View {
         Button {
@@ -54,19 +54,19 @@ struct TutorialPage2: View {
                               botao
                           }
                       }.position(x:UIScreen.main.bounds.midX,y:UIScreen.main.bounds.midY*1.2)
-                          .task {
-                              let subCheck = await appleMusicService.lastSubscriptionUpdate().makeSubscriptionOffer
-                              DispatchQueue.main.async {
-                                  subscriptionOfferOptions.messageIdentifier = .playMusic
-                                  isShowingOffer = subCheck
-                                  if isShowingOffer != subCheck{
-                                      isShowingOffer = false
-                                  }
-                                  if !isShowingOffer{
-                                      chamaBotao = true
-                                  }
-                              }
-                          }
+//                          .task {
+//                              let subCheck = await appleMusicService.lastSubscriptionUpdate().makeSubscriptionOffer
+//                              DispatchQueue.main.async {
+//                                  subscriptionOfferOptions.messageIdentifier = .playMusic
+//                                  isShowingOffer = subCheck
+//                                  if isShowingOffer != subCheck{
+//                                      isShowingOffer = false
+//                                  }
+//                                  if !isShowingOffer{
+//                                      chamaBotao = true
+//                                  }
+//                              }
+//                          }
                   }
         }
                 
@@ -87,8 +87,8 @@ struct TutorialPage2: View {
         }
     }
 }
-struct TutorialPage2_Previews: PreviewProvider {
-    static var previews: some View {
-        TutorialPage2()
-    }
-}
+//struct TutorialPage2_Previews: PreviewProvider {
+//    static var previews: some View {
+//        TutorialPage2()
+//    }
+//}

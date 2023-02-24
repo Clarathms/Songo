@@ -19,16 +19,12 @@ class MapView: MKMapView  {
     var currentSongView: AddCurrentSongView?
     //var reactiveButton = MapReactiveButton()
     
-    var reactiveButton:MapReactiveButton?
-    
-//    var appContainer: AppContainer = AppContainer()
+    var reactiveButton: MapReactiveButton?
     
     var isLocationOn: Bool {
         locationController?.isLocationOn ?? false
     }
     var locationButton = MapLocationButton()
-    weak var appleMusicService: AppleMusicService?
-    weak var spotifyService: SpotifyService?
 
     weak var locationController: LocationController?
     var currentStreaming: MusicProtocol?
@@ -57,15 +53,15 @@ class MapView: MKMapView  {
     
     var allPlacements: [MKAnnotation] = []
     //MARK: - Initializers
-    init(currentStreaming: MusicProtocol, locationController: LocationController ) {
+    init(locationController: LocationController) {
 
 
-        self.currentStreaming = currentStreaming
+//        self.currentStreaming = currentStreaming
         self.locationController = locationController
         
         super.init(frame: .zero)
         
-        self.currentSongView = AddCurrentSongView(width: UIScreen.main.bounds.width * 0.9, height: 81, mapView: self, currentStreaming: currentStreaming)
+//        self.currentSongView = AddCurrentSongView(width: UIScreen.main.bounds.width * 0.9, height: 81, mapView: self)
         //        self.reactiveButton = MapReactiveButton(x: Float(self.bounds.maxX/1.5), y: Float(self.bounds.maxY/6), width: Float(self.bounds.size.width * 0.15), height: Float(self.bounds.size.height * 0.5), mapView: self)
         //self.reactiveButton = MapReactiveButton(x: Float(UIScreen.main.bounds.maxX/3.5), y: Float(UIScreen.main.bounds.midY/10), width:Float(UIScreen.main.bounds.width * 0.2), height: 70)
         self.reactiveButton = MapReactiveButton(x: Float(UIScreen.main.bounds.width/1.2), y: Float(UIScreen.main.bounds.height/1.22), width:Float(UIScreen.main.bounds.width/9), height: Float(UIScreen.main.bounds.width/9))
@@ -81,16 +77,19 @@ class MapView: MKMapView  {
     func setupMapView() {
         
         showsUserLocation = (isLocationOn ? true : false)
-        addSubview(currentSongView!)
-        addSubview(reactiveButton!)
         locationButton.layer.masksToBounds = true
         locationButton.layer.cornerRadius = locationButton.layer.frame.height/2
         addSubview(locationButton)
         mapType = .mutedStandard
-        setupReactiveButtonConstraints()
         setupLocationButtonConstraints()
         showsBuildings = false
 
+    }
+    func setupCurrentSongView() {
+        addSubview(currentSongView!)
+        addSubview(reactiveButton!)
+        setupReactiveButtonConstraints()
+        currentSongView?.setupCurrentSongview()
     }
     
     /// Setup the `ReactiveButton`constraints.
@@ -145,7 +144,6 @@ class MapView: MKMapView  {
             currentStreaming = Streaming.init()
             print("escolha --------", AppData.shared.currentStreaming)
             
-            
         default:
             print("-------brekou")
             break
@@ -156,16 +154,11 @@ class MapView: MKMapView  {
     /// - Returns: Returns if userLocation variable is not being used in any other annotation.
     private func canAddPlacement(_ userLocation: CLLocationCoordinate2D) -> PlacementStatus {
         
-        guard let appleMusicService = appleMusicService else { fatalError("No appleMusicService at \(#function)") }
-//        Task {
-//            await appleMusicService.getCurrentMusic()
-//        }
-        
         if !allPlacements.isEmpty {
             for annotations in allPlacements{
                 //TODO: determinar e calcular distancia para que as músicas sejam consideradas no mesmo local
                 if annotations.coordinate == userLocation {
-                    if annotations.title == appleMusicService.currentTitle {
+                    if annotations.title == currentStreaming?.currentTitle {
                         return .hasSameMusic
                     }
                     return .hasMusic
@@ -178,7 +171,6 @@ class MapView: MKMapView  {
     public func createPlacements (location: CLLocationCoordinate2D, music: MusicProtocol) async -> [MKAnnotation] {
         print("music name -------", music.currentTitle)
         await music.getCurrentPicture()
-        
         let placement = MusicPlacementModel(latitude: location.latitude, longitude: location.longitude, title: music.currentTitle, artist: music.currentArtist, musicData: music.currentPhotoData)
         allPlacements.append(placement)
         print("all", allPlacements.count)

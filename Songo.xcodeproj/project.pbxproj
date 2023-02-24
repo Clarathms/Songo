@@ -26,6 +26,7 @@
 		DE4F3465298B048C004EE2F9 /* CLLocationCoordinate2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4F3464298B048C004EE2F9 /* CLLocationCoordinate2D.swift */; };
 		DE4F3468298B05C7004EE2F9 /* SongPlacementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4F3467298B05C7004EE2F9 /* SongPlacementController.swift */; };
 		DE4F346B298B0605004EE2F9 /* MusicPlacementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4F346A298B0604004EE2F9 /* MusicPlacementView.swift */; };
+		DE5807FD29A932CB00ADAADE /* CurrentSongController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5807FC29A932CB00ADAADE /* CurrentSongController.swift */; };
 		DE5DD17129833224002BEB3F /* SongRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD16F29833224002BEB3F /* SongRepository.swift */; };
 		DE5DD17229833224002BEB3F /* MusicPlacementModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD17029833224002BEB3F /* MusicPlacementModel.swift */; };
 		DE5DD175298421C3002BEB3F /* SongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD174298421C3002BEB3F /* SongViewController.swift */; };
@@ -84,6 +85,7 @@
 		DE4F3464298B048C004EE2F9 /* CLLocationCoordinate2D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLLocationCoordinate2D.swift; sourceTree = "<group>"; };
 		DE4F3467298B05C7004EE2F9 /* SongPlacementController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongPlacementController.swift; sourceTree = "<group>"; };
 		DE4F346A298B0604004EE2F9 /* MusicPlacementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlacementView.swift; sourceTree = "<group>"; };
+		DE5807FC29A932CB00ADAADE /* CurrentSongController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentSongController.swift; sourceTree = "<group>"; };
 		DE5DD16F29833224002BEB3F /* SongRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongRepository.swift; sourceTree = "<group>"; };
 		DE5DD17029833224002BEB3F /* MusicPlacementModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicPlacementModel.swift; sourceTree = "<group>"; };
 		DE5DD174298421C3002BEB3F /* SongViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongViewController.swift; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 			isa = PBXGroup;
 			children = (
 				DE7319B8297F60BD00A6197C /* MapViewController.swift */,
+				DE5807FC29A932CB00ADAADE /* CurrentSongController.swift */,
 				DEF2A8E22978864D002697F9 /* View */,
 			);
 			path = Map;
@@ -445,6 +448,7 @@
 				AD68738E298C454300EF5F61 /* MapLocationButton.swift in Sources */,
 				DE4C8EC82981C32A0065C813 /* TabBarController.swift in Sources */,
 				DE5DD18A298874C4002BEB3F /* ViewControllerTutorial.swift in Sources */,
+				DE5807FD29A932CB00ADAADE /* CurrentSongController.swift in Sources */,
 				DE66A941299D54B300BD21FA /* MusicProtocol.swift in Sources */,
 				AD6B72E829A004D200DC024F /* SpotifyService.swift in Sources */,
 				DE5DD18D298874C4002BEB3F /* TutorialPage3.swift in Sources */,

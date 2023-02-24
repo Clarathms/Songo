@@ -13,8 +13,6 @@ import MapKit
 import Combine
 
 class AddCurrentSongView: UIView {
-    weak var appleMusicService: AppleMusicService?
-    weak var spotifyService: SpotifyService?
     var background: UIView!
     let myImageView:UIImageView = UIImageView()
     
@@ -32,7 +30,7 @@ class AddCurrentSongView: UIView {
     
     //var songButtonView = SongButtonView()
     var state: UIControl.State = .addCurrentSong
-    var musicURL : URL?
+    var musicData : Data?
     var musicPicture: UIImage?
     var allPlacements: [MKAnnotation] = []
     

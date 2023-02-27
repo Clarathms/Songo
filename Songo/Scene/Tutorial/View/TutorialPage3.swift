@@ -16,8 +16,8 @@ struct TutorialPage3: View {
     @Binding var chamaBotao : Bool
     @State private var isShowingOffer = true
     @State private var subscriptionOfferOptions: MusicSubscriptionOffer.Options = .default
-    let appleMusicService: AppleMusicService = AppleMusicService()
-    let spotifyService: SpotifyService = SpotifyService()
+//    let appleMusicService: AppleMusicService = AppleMusicService()
+//    let spotifyService: SpotifyService = SpotifyService()
     var appleImg = Image(systemName: "applelogo")
     
     var botaoAppleMusic: some View {
@@ -41,7 +41,6 @@ struct TutorialPage3: View {
         Button {
             isPresented = true
             AppData.shared.currentStreaming = StreamChoice.spotify
-            
         } label: {
             Text("Login com Spotify")
                 .bold()

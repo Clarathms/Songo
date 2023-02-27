@@ -10,19 +10,19 @@ import UIKit
 
 class SpotifyConnectViewController: UIViewController {
     
-    let spotifyService: SpotifyService = SpotifyService()
+//    let spotifyService: SpotifyService = SpotifyService()
     
     // MARK: - Subviews
-    let connectButton = UIButton(type: .system)
-
-    func updateViewBasedOnConnected() {
-        if spotifyService.appRemote.isConnected == true {
-             connectButton.isHidden = true
-         }
-         else { // show login
-             connectButton.isHidden = false
-         }
-     }
+//    let connectButton = UIButton(type: .system)
+//
+//    func updateViewBasedOnConnected() {
+//        if spotifyService.appRemote.isConnected == true {
+//             connectButton.isHidden = true
+//         }
+//         else { // show login
+//             connectButton.isHidden = false
+//         }
+//     }
     
     //MARK: -Actions
 //    @objc func didTapConnect(_ button: UIButton) {

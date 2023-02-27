@@ -131,24 +131,6 @@ class MapView: MKMapView  {
         case hasMusic
         case hasSameMusic
     }
-    
-    func updateStreaming() {
-        switch AppData.shared.currentStreaming {
-        case .appleMusic:
-            let Streaming: MusicProtocol.Type = AppleMusicService.self
-            currentStreaming = Streaming.init()
-            print("escolha --------", AppData.shared.currentStreaming)
-         
-        case .spotify:
-            let Streaming: MusicProtocol.Type = SpotifyService.self
-            currentStreaming = Streaming.init()
-            print("escolha --------", AppData.shared.currentStreaming)
-            
-        default:
-            print("-------brekou")
-            break
-        }
-    }
     /// Check if user can add annotation.
     /// - Parameter userLocation: Current user location.
     /// - Returns: Returns if userLocation variable is not being used in any other annotation.

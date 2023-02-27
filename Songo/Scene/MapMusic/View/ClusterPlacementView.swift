@@ -52,12 +52,17 @@ class ClusterPlacementView: MKAnnotationView {
         return imageView
     }()
     
-    private lazy var imageViewList = [imageView1, imageView2, imageView3, imageView4]
+    lazy var imageViewList = [imageView1, imageView2, imageView3, imageView4]
     
     private var imageHeightConstraint1: NSLayoutConstraint?
     private var imageHeightConstraint2: NSLayoutConstraint?
     private var imageHeightConstraint3: NSLayoutConstraint?
     private var imageHeightConstraint4: NSLayoutConstraint?
+    
+    var musicPictures: [UIImage]?
+    var musicTitles: [String]?
+//        var musicAlbuns: [String] = []
+    var musicArtists: [String]?
     
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
@@ -104,15 +109,22 @@ class ClusterPlacementView: MKAnnotationView {
         super.prepareForDisplay()
         
         guard let cluster = annotation as? MKClusterAnnotation else { return }
-        var musicPictures: [UIImage] = []
+        var musicPicturesC: [UIImage] = []
+        var musicTitlesC: [String] = []
+//        var musicAlbuns: [String] = []
+        var musicArtistsC: [String] = []
         
         for member in cluster.memberAnnotations {
             guard let music = member as? MusicPlacementModel else { return }
-            musicPictures.append(music.musicPicture ?? UIImage())
-            if musicPictures.count == 4 {
-                break
-            }
+            musicPicturesC.append(music.musicPicture ?? UIImage())
+            musicArtistsC.append(music.artist ?? " ---- ")
+            musicTitlesC.append(music.title ?? " ----- ")
+//            musicAlbuns.append(music.)
         }
+        musicTitles = musicTitlesC
+        musicArtists = musicArtistsC
+        musicPictures = musicPicturesC
+        
             if let heightConstraint = imageHeightConstraint1 {
                 imageViewList[0].removeConstraint(heightConstraint)
                 imageViewList[1].removeConstraint(heightConstraint)
@@ -122,10 +134,12 @@ class ClusterPlacementView: MKAnnotationView {
 
         var ratio: CGFloat = 1
         var count = 0
-        for musicPicture in musicPictures {
+        for musicPicture in musicPicturesC {
             if musicPicture.size != CGSize.zero {
-                imageViewList[count].image = musicPicture
-                ratio = musicPicture.size.height / musicPicture.size.width
+                if count < imageViewList.count {
+                    imageViewList[count].image = musicPicture
+                    ratio = musicPicture.size.height / musicPicture.size.width
+                }
             } else {
                 imageViewList[count].image = .add
             }

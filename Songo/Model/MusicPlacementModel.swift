@@ -54,6 +54,7 @@ class MusicPlacementModel: NSObject, MKAnnotation {
     var title: String?
     var musicPicture: UIImage? { UIImage(data: musicData ?? Data()) }
     var artist: String?
+//    var album: String?
     var musicData: Data?
     
     
@@ -63,6 +64,7 @@ class MusicPlacementModel: NSObject, MKAnnotation {
         //        self.addedAt = addedAt
         self.title = title
         self.artist = artist
+//        self.album = album
         self.musicData = musicData
     }
     

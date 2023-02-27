@@ -28,9 +28,10 @@ extension MapViewController: MKMapViewDelegate {
     }
 
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        if let clusterPlacement = view.annotation as? ClusterPlacementView, clusterPlacement.isKind(of: MKClusterAnnotation.self) {
+        print(view.annotation)
+        if let clusterPlacement = view.annotation as? MKClusterAnnotation, clusterPlacement.isKind(of: MKClusterAnnotation.self) {
             let pin = view.annotation
-            let playlistViewController = factory.createMapPlaylistScene()
+            let playlistViewController = MapPlaylistController(cluster: clusterPlacement)
             
             // Create half-modal
             playlistViewController.modalPresentationStyle = .custom
@@ -69,15 +70,15 @@ extension MapViewController: MKMapViewDelegate {
         return placementView
     }
     
-    @objc func rightButtonClick() {
-        let playlistNavController = MapPlaylistController(mainView: MapPlaylistView())
-        playlistNavController.modalPresentationStyle = .popover
-        let presentationController = playlistNavController.popoverPresentationController
-        presentationController?.permittedArrowDirections = .any
-
-        present(playlistNavController, animated: true, completion: nil)
-    }
-    
+//    @objc func rightButtonClick() {
+//        let playlistNavController = MapPlaylistController(cluster: <#T##MKClusterAnnotation#> )
+//        playlistNavController.modalPresentationStyle = .popover
+//        let presentationController = playlistNavController.popoverPresentationController
+//        presentationController?.permittedArrowDirections = .any
+//
+//        present(playlistNavController, animated: true, completion: nil)
+//    }
+//
     private func setupMusicPlacementView (for annotation: MusicPlacementModel, on mapView: MKMapView) -> MKAnnotationView {
         let view = mapView.dequeueReusableAnnotationView(withIdentifier: MusicPlacementView.reuseIdentifier, for: annotation)
 //        view.canShowCallout = true
@@ -89,10 +90,10 @@ extension MapViewController: MKMapViewDelegate {
     
     private func setupClusterPlacementView (for annotation: MKClusterAnnotation, on mapView: MKMapView) -> MKAnnotationView {
         let view = mapView.dequeueReusableAnnotationView(withIdentifier: ClusterPlacementView.reuseIdentifier, for: annotation)
-        let rightButton = UIButton(type: .detailDisclosure)
-        view.canShowCallout = true
-        view.detailCalloutAccessoryView = rightButton
-        rightButton.addTarget(self, action: #selector(rightButtonClick), for: .touchUpInside)
+//        let rightButton = UIButton(type: .detailDisclosure)
+//        view.canShowCallout = true
+//        view.detailCalloutAccessoryView = rightButton
+//        rightButton.addTarget(self, action: #selector(rightButtonClick), for: .touchUpInside)
         return view
     }
 }

@@ -13,6 +13,7 @@
 import Foundation
 import UIKit
 import SwiftUI
+import MapKit
 
 class MapPlaylistController: BaseViewController<MapPlaylistView>,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -28,7 +29,16 @@ class MapPlaylistController: BaseViewController<MapPlaylistView>,UITableViewData
     }
     
     //    var coverView: UIImage? = appleMusicController.currentPicture
+class MapPlaylistController: BaseViewController<MapPlaylistView> {
+    var coverView: UIImage = UIImage ()
+    var titleList: [String] = []
+//    var albumList: [String]
+    var artistList: [String] = []
+    var pictureList: [UIImage] = []
+    var annotations: [MKAnnotation] = []
     // var listStyle: ReminderListStyle = .today
+    var listStyle: ReminderListStyle = .today
+    var cluster: MKClusterAnnotation
   //  var listStyle: ReminderListStyle = .today
     var musicData = MapPlaylistController.mapView?.allPlacements
     static var mapView: MapView?
@@ -43,7 +53,32 @@ class MapPlaylistController: BaseViewController<MapPlaylistView>,UITableViewData
     typealias DataSource = UICollectionViewDiffableDataSource<Int, String>
 
     var dataSource: DataSource!
+    
+    init(cluster: MKClusterAnnotation) {
+        self.cluster = cluster
+        annotations = cluster.memberAnnotations
+        
+        for annotation in annotations {
+            if let isModel = annotation as? MusicPlacementModel {
+                titleList.append(isModel.title!)
+                artistList.append(isModel.artist!)
+                pictureList.append(isModel.musicPicture ?? UIImage())
+            }
+        }
+        if let isModel = annotations.first as? MusicPlacementModel {
+            coverView = isModel.musicPicture ?? UIImage()
+        }
 
+        
+        let mapPlaylistView = MapPlaylistView()
+        super.init(mainView: mapPlaylistView)
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

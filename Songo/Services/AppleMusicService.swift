@@ -35,8 +35,8 @@ class AppleMusicService: MusicProtocol {
             let musicState = SystemMusicPlayer.shared.state.playbackStatus
             self.currentMusicID = SystemMusicPlayer.shared.queue.currentEntry?.item?.id
             Task {
-                await self.getCurrentMusic()
-                print(self.currentTitle, "<------")
+                    await self.getCurrentMusic()
+                    print(self.currentTitle, "<------")
             }
             print(self.currentMusicID)
         })

@@ -9,6 +9,7 @@ import Foundation
 import MusicKit
 
 class AppContainer {
+    
     /// The `LocationController` used by the entire app
     private lazy var locationController: LocationController = LocationController()
     
@@ -17,7 +18,7 @@ class AppContainer {
     /// The `TabBarController` used by the entire app
     private lazy var tabBarController: TabBarController = TabBarController(factory: self, locationController: locationController, profileFactory: self, playlistFactory: self)
     
-    private lazy var mapPlaylistController: MapPlaylistController = MapPlaylistController(mainView: MapPlaylistView())
+//    private lazy var mapPlaylistController: MapPlaylistController = MapPlaylistController(mainView: MapPlaylistView())
     
 }
 // ******* Cria a Cena de Mapa ********
@@ -40,10 +41,6 @@ extension AppContainer: MusicServiceFactory {
                 
             case .spotify:
                 let Streaming: MusicProtocol.Type = SpotifyService.self
-//                guard let spotify = currentStreaming as? SpotifyService else { break }
-//                if spotify.appRemote.isConnected {
-//                    break
-//                }
                 currentStreaming = Streaming.init()
                 currentStreaming!.authenticate()
                 print("escolha --------", AppData.shared.currentStreaming)
@@ -111,12 +108,12 @@ extension AppContainer: TabBarControllerSceneFactory {
     }
 }
 
-protocol MapPlaylistSceneFactory {
-    func createMapPlaylistScene() -> MapPlaylistController
-}
+//protocol MapPlaylistSceneFactory {
+//    func createMapPlaylistScene() -> MapPlaylistController
+//}
 
-extension AppContainer: MapPlaylistSceneFactory {
-    func createMapPlaylistScene() -> MapPlaylistController {
-        return mapPlaylistController
-    }
-}
+//extension AppContainer: MapPlaylistSceneFactory {
+//    func createMapPlaylistScene() -> MapPlaylistController {
+//        return mapPlaylistController
+//    }
+//}

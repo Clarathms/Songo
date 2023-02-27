@@ -80,19 +80,19 @@ extension MapViewController: MKMapViewDelegate {
     
     private func setupMusicPlacementView (for annotation: MusicPlacementModel, on mapView: MKMapView) -> MKAnnotationView {
         let view = mapView.dequeueReusableAnnotationView(withIdentifier: MusicPlacementView.reuseIdentifier, for: annotation)
-        view.canShowCallout = true
-        let rightButton = UIButton(type: .detailDisclosure)
-        view.detailCalloutAccessoryView = rightButton
-        rightButton.addTarget(self, action: #selector(rightButtonClick), for: .touchUpInside)
+//        view.canShowCallout = true
+//        let rightButton = UIButton(type: .detailDisclosure)
+//        view.detailCalloutAccessoryView = rightButton
+//        rightButton.addTarget(self, action: #selector(rightButtonClick), for: .touchUpInside)
         return view
     }
     
     private func setupClusterPlacementView (for annotation: MKClusterAnnotation, on mapView: MKMapView) -> MKAnnotationView {
         let view = mapView.dequeueReusableAnnotationView(withIdentifier: ClusterPlacementView.reuseIdentifier, for: annotation)
-//        let rightButton = UIButton(type: .detailDisclosure)
-//        view.canShowCallout = true
-//        view.detailCalloutAccessoryView = rightButton
-//        rightButton.addTarget(self, action: #selector(rightButtonClick), for: .touchUpInside)
+        let rightButton = UIButton(type: .detailDisclosure)
+        view.canShowCallout = true
+        view.detailCalloutAccessoryView = rightButton
+        rightButton.addTarget(self, action: #selector(rightButtonClick), for: .touchUpInside)
         return view
     }
 }

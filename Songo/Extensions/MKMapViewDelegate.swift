@@ -34,7 +34,7 @@ extension MapViewController: MKMapViewDelegate {
             let playlistViewController = MapPlaylistController(cluster: clusterPlacement)
             
             // Create half-modal
-            playlistViewController.modalPresentationStyle = .custom
+            playlistViewController.modalPresentationStyle = .popover
 //            playlistViewController.transitioningDelegate = self
             present(playlistViewController, animated: true)
             

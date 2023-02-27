@@ -154,7 +154,7 @@ class SpotifyService: NSObject, MusicProtocol {
            mapView.currentSongView?.currentTitle.text = MapView.musicTitle
            mapView.currentSongView?.currentAlbum.text = MapView.musicAlbum
            mapView.currentSongView?.currentArtist.text = MapView.musicArtist
-           
+           mapView.currentSongView?.albumImage.image = UIImage(data: MapView.musicPhotoData ?? Data())
 //           mapView.currentSongView?.currentData? = self.currentPhotoData!
           // mapView.currentSongView?.currentPhotoStringAdd? = MapView.musicPhotoString!
            print("****** Novo print *******")

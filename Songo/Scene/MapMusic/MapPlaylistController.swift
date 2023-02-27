@@ -17,14 +17,14 @@ import MapKit
 
 class MapPlaylistController: BaseViewController<MapPlaylistView>,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return musicData!.count
+        return annotations.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath)
         
         // define a parte de info (Nome,etc)
-        cell.textLabel?.text = musicData![indexPath.row].title as! String
+        cell.textLabel?.text = (annotations[indexPath.row].title ?? " -- ")! as String
         return cell
     }
     
@@ -38,8 +38,8 @@ class MapPlaylistController: BaseViewController<MapPlaylistView>,UITableViewData
     // var listStyle: ReminderListStyle = .today
     var cluster: MKClusterAnnotation
   //  var listStyle: ReminderListStyle = .today
-    var musicData = MapPlaylistController.mapView?.allPlacements
-    static var mapView: MapView?
+//    var musicData = MapPlaylistController.mapView?.allPlacements
+//    static var mapView: MapView?
     var musicsTableView = UITableView()
 
 
@@ -80,15 +80,15 @@ class MapPlaylistController: BaseViewController<MapPlaylistView>,UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let listLayout = listLayout()
+//        let listLayout = listLayout()
 //        listStyleSegmentedControl.selectedSegmentIndex = listStyle.rawValue
 ////        listStyleSegmentedControl.addTarget(
 ////            self, action: #selector(didChangeListStyle(_:)), for: .valueChanged)
 //        navigationItem.titleView = listStyleSegmentedControl
 
-//        if #available(iOS 16, *) {
-//            navigationItem.style = .navigator
-//        }
+        if #available(iOS 16, *) {
+            navigationItem.style = .navigator
+        }
  
         getCount()
         
@@ -122,11 +122,11 @@ class MapPlaylistController: BaseViewController<MapPlaylistView>,UITableViewData
     }
     
     func getCount (){
-        var musicCount = self.musicData!.count
+        let musicCount = self.annotations.count
        
         for _ in 1...musicCount {
             print("Print da Anottation ------")
-            print(MapPlaylistController.mapView?.allPlacements)
+            print(annotations)
             musicsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "contactCell")
         }
     }

@@ -17,29 +17,42 @@ class AddCurrentSongView: UIView {
     let myImageView: UIImageView = UIImageView()
     
     var albumImage: UIImageView!
-    var currentTitle = UILabel(frame: CGRect(x: UIScreen.main.bounds.maxX/5.5, y: UIScreen.main.bounds.midY/65, width: UIScreen.main.bounds.width/3, height:  UIScreen.main.bounds.height/15))
+    var currentTitle2: String?
+    var currentTitle = UILabel(frame: CGRect(x: UIScreen.main.bounds.maxX/4.8, y: UIScreen.main.bounds.midY/25, width: UIScreen.main.bounds.width/2, height:  UIScreen.main.bounds.height/25))
     
-    var currentArtist = UILabel(frame: CGRect(x: UIScreen.main.bounds.maxX/5.8, y: UIScreen.main.bounds.midY/50, width: UIScreen.main.bounds.width/3, height:  UIScreen.main.bounds.height/9))
+    var currentArtist = UILabel(frame: CGRect(x: UIScreen.main.bounds.maxX/4.8, y: UIScreen.main.bounds.midY/10, width: UIScreen.main.bounds.width/3, height:  UIScreen.main.bounds.height/25))
     
-    var currentAlbum = UILabel(frame: CGRect(x: UIScreen.main.bounds.maxX/2, y: UIScreen.main.bounds.midY/50, width: UIScreen.main.bounds.width/3, height:  UIScreen.main.bounds.height/9))
+    var currentAlbum = UILabel(frame: CGRect(x: UIScreen.main.bounds.maxX/1.8, y: UIScreen.main.bounds.midY/10, width: UIScreen.main.bounds.width/4, height:  UIScreen.main.bounds.height/25))
     var circleImg = UIImage(systemName: "circle.fill")
     var mapView: MapView
     
-    
+    var currentData: Data?
+    var currentPhotoStringAdd: String?
     //var songButtonView = SongButtonView()
     var state: UIControl.State = .addCurrentSong
     var currentStreaming: MusicProtocol?
+    
     lazy var musicPicture: UIImage? = {
         Task {
             await currentStreaming?.getCurrentPicture()
+            
         }
-       return UIImage(data: currentStreaming?.currentPhotoData ?? Data())
+        return UIImage(data: currentStreaming?.currentPhotoData ?? Data())
+    //    return UIImage(data: self.currentData ?? Data())
     }()
     
-    lazy var musicTitle: String? = { currentStreaming?.currentTitle }()
-    lazy var musicArtist: String? = { currentStreaming?.currentArtist }()
-    lazy var musicAlbum: String? = { currentStreaming?.currentAlbum}()
+    //    lazy var musicPicture: UIImage? = {
+    //        Task {
+    //            await currentStreaming?.getCurrentPicture()
+    //        }
+    //       return UIImage(data: currentStreaming?.currentPhotoData ?? Data())
+    //    }()
+        
     
+//    lazy var musicTitle: String? = { currentStreaming?.currentTitle }()
+//    lazy var musicArtist: String? = { currentStreaming?.currentArtist }()
+//    lazy var musicAlbum: String? = { currentStreaming?.currentAlbum}()
+//
     var allPlacements: [MKAnnotation] = []
     
     //var reactiveButton = MapReactiveButton
@@ -51,16 +64,8 @@ class AddCurrentSongView: UIView {
         self.mapView = mapView
         self.currentStreaming = currentStreaming
         super.init(frame: CGRect(x: 0, y: 0, width: Int(width), height: height))
-           
-//            if currentStreaming == nil {
-//                print("***********  Vai crashar!!  **************")
-//                self.currentTitle.text = "Sem titulo atual"
-//                self.currentArtist.text = "Sem artista atual"
-//                self.currentAlbum.text = "Sem album atual"
-//            }
-//            else {b
-             
-                  //   GetData(music: currentStreaming!)
+           setupCurrentSongview()
+
         
     }
     func setupCurrentSongview() {
@@ -94,31 +99,34 @@ class AddCurrentSongView: UIView {
     }
     
     func setupCurrentTitle (){
-        self.currentTitle.text = musicTitle
-        print(currentStreaming?.currentTitle, "*********")
+      
+        self.currentTitle.text = MapView.musicTitle
+     //   print(currentStreaming?.currentTitle, "*********")
         self.currentTitle.textColor = .white
-        self.currentTitle.textAlignment = .center
+        self.currentTitle.textAlignment = .left
         self.currentTitle.numberOfLines = 1
         self.currentTitle.font = UIFont(name:"Inter", size: 5.0)
         self.currentTitle.font = UIFont.boldSystemFont(ofSize: 17)
+        print( "\(String(describing: self.currentTitle.text)) + ******/////*******")
         self.addSubview(self.currentTitle)
         
     }
     
     func setupArtist (){
-        self.currentArtist.text = musicArtist
+        self.currentArtist.text = MapView.musicArtist
         self.currentArtist.textColor = .white
-        self.currentArtist.textAlignment = .center
+        self.currentArtist.textAlignment = .left
         self.currentArtist.numberOfLines = 1
         self.currentArtist.font = UIFont(name:"Inter", size: 20.0)
         self.currentArtist.font = UIFont.systemFont(ofSize: 15)
         self.addSubview(currentArtist)
+        
     }
     
     func setupAlbum (){
-        self.currentAlbum.text = musicAlbum
+        self.currentAlbum.text = MapView.musicAlbum
         self.currentAlbum.textColor = .white
-        self.currentAlbum.textAlignment = .center
+        self.currentAlbum.textAlignment = .left
         self.currentAlbum.numberOfLines = 1
         self.currentAlbum.font = UIFont(name:"Inter", size: 20.0)
         self.currentAlbum.font = UIFont.systemFont(ofSize: 15)

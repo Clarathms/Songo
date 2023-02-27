@@ -6,8 +6,14 @@
 //
 
 import Foundation
+import MusicKit
 
 typealias MusicList = [MusicProtocol]
+
+protocol MusicProtocolDelegate: AnyObject {
+    func didGet(song: Song)
+    func didGet(song: SPTAppRemoteTrack)
+}
 
 protocol MusicProtocol {
     var currentTitle: String { get }
@@ -15,7 +21,7 @@ protocol MusicProtocol {
     var currentAlbum: String { get }
     var currentPhotoData: Data? { get }
     var id: StreamChoice { get }
-    
+    var delegate: MusicProtocolDelegate? { get set }
     init()
     
     func authenticate()

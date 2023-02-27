@@ -8,6 +8,8 @@
 import Foundation
 
 class SpotifyService: NSObject, MusicProtocol {
+    var delegate: MusicProtocolDelegate?
+    
     
 
     required override init() {
@@ -108,6 +110,7 @@ class SpotifyService: NSObject, MusicProtocol {
     //MARK: - Get information on user's current behaviour
     private var currentTrack: SPTAppRemoteTrack?
     var currentTitle: String { currentTrack?.name ?? "No title found" }
+//    var currentTitle: String { delegate?.didGet(song: SPTAppRemoteTrack)}
     var currentArtist: String { currentTrack?.artist.name ?? "No artist found" }
     var currentAlbum: String { currentTrack?.album.name ?? "No album found" }
     var currentImageIdentifier: String { currentTrack?.imageIdentifier ?? "No image found" }
@@ -125,21 +128,54 @@ class SpotifyService: NSObject, MusicProtocol {
                 self.currentPhotoData = image.jpegData(compressionQuality: 0.8)
                 print("pegou ------", self.currentPhotoData.debugDescription)
                 completion(true)
+//                let mapView = self.delegate as! MapView
+//                mapView.currentSongView?.currentData? = self.currentPhotoData!
+
             }
         })
     }
     func getCurrentPicture() async -> Bool {
-        await withCheckedContinuation { continuation in
+//        print("entrou?")
+         await withCheckedContinuation { continuation in
             getCurrentPicture { photoData in
                 continuation.resume(returning: photoData)
+//                print("Print data atual")
+//                print(self.currentPhotoData)
             }
+           
         }
     }
    func update(playerState: SPTAppRemotePlayerState) {
        currentTrack = playerState.track
-//       currentTitle = currentTrack.name
+       delegate?.didGet(song: currentTrack!)
+       
+       if delegate != nil {
+           let mapView = delegate as! MapView
+           mapView.currentSongView?.currentTitle.text = MapView.musicTitle
+           mapView.currentSongView?.currentAlbum.text = MapView.musicAlbum
+           mapView.currentSongView?.currentArtist.text = MapView.musicArtist
+           
+//           mapView.currentSongView?.currentData? = self.currentPhotoData!
+          // mapView.currentSongView?.currentPhotoStringAdd? = MapView.musicPhotoString!
+           print("****** Novo print *******")
+//           print(mapView.currentSongView?.currentData)
+         //  print(mapView.currentSongView?.currentPhotoStringAdd)
+           print("Novo print *******")
+           print(mapView.currentSongView?.currentTitle.text)
+           //       currentTitle = currentTrack.name
+       }
+       else {
+           
+        print("delegate nulo")
+       }
     }
-
+//    lazy var musicPicture: UIImage? = {
+//        Task {
+//            await currentStreaming?.getCurrentPicture()
+//        }
+//       return UIImage(data: currentStreaming?.currentPhotoData ?? Data())
+//    }()
+    
     func fetchPlayerState() {
         appRemote.playerAPI?.getPlayerState({ [weak self] (playerState, error) in
             if let error = error {

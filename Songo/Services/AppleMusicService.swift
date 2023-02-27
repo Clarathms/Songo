@@ -11,6 +11,8 @@ import Combine
 
 class AppleMusicService: MusicProtocol {
 
+    weak var delegate: MusicProtocolDelegate?
+    
     
     
     required init() {}
@@ -26,6 +28,7 @@ class AppleMusicService: MusicProtocol {
     var id: StreamChoice = .appleMusic
 
     var cancellable: Cancellable?
+    
     func authenticate() {
         checkAppleMusicAuthorization()
         cancellable = SystemMusicPlayer.shared.state.objectWillChange.sink(receiveValue: { state in
@@ -38,6 +41,34 @@ class AppleMusicService: MusicProtocol {
             print(self.currentMusicID)
         })
     }
+    func update(playerState: Song) {
+        
+        print("entrou aqui")
+        currentMusic = playerState.self
+        delegate?.didGet(song: currentMusic!)
+        
+        if delegate != nil {
+            DispatchQueue.main.async {
+                let mapView = self.delegate as! MapView
+                mapView.currentSongView?.currentTitle.text = MapView.musicTitle
+                mapView.currentSongView?.currentAlbum.text = MapView.musicAlbum
+                mapView.currentSongView?.currentArtist.text = MapView.musicArtist
+                
+                //           mapView.currentSongView?.currentData? = self.currentPhotoData!
+                // mapView.currentSongView?.currentPhotoStringAdd? = MapView.musicPhotoString!
+                print("****** Novo print *******")
+                //           print(mapView.currentSongView?.currentData)
+                //  print(mapView.currentSongView?.currentPhotoStringAdd)
+                print("Novo print *******")
+                print(mapView.currentSongView?.currentTitle.text)
+            }
+            //       currentTitle = currentTrack.name
+        }
+        else {
+            
+         print("delegate nulo")
+        }
+     }
     
     func getCurrentMusic() async {
         let currentMusicPlaying = self.currentMusicID
@@ -45,6 +76,25 @@ class AppleMusicService: MusicProtocol {
                 var currentMusicRequest: MusicCatalogResourceRequest<Song> { MusicCatalogResourceRequest<Song>(matching: \.id, equalTo: currentMusicPlaying!) }
                 let searchResponse = try await currentMusicRequest.response()
                 currentMusic = searchResponse.items.first
+            //    delegate?.didGet(song: currentMusic!)
+                update(playerState: currentMusic!)
+//                if delegate != nil {
+//                    Task{ @MainActor in
+//                        let mapView = delegate as! MapView
+//
+//                        mapView.currentSongView?.currentTitle.text = MapView.musicTitle
+//                        mapView.currentSongView?.currentAlbum.text = MapView.musicAlbum
+//                        mapView.currentSongView?.currentArtist.text = MapView.musicArtist
+//
+//                        print("Novo print *******")
+//                        print(mapView.currentSongView?.currentTitle.text!)
+//                        //       currentTitle = currentTrack.name
+//                    }
+//                }
+//                else {
+//
+//                 print("delegate nulo")
+//                }
             } catch {
                 print("Search request failed with error: \(error).")
             }

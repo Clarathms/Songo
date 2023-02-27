@@ -24,6 +24,8 @@ extension SpotifyService: SPTAppRemotePlayerStateDelegate {
 
 extension SpotifyService: SPTAppRemoteDelegate {
     
+    
+    
     func appRemoteDidEstablishConnection(_ appRemote: SPTAppRemote) {
         appRemote.playerAPI?.delegate = self
         appRemote.playerAPI?.subscribe(toPlayerState: { (success, error) in

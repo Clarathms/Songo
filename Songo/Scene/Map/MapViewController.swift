@@ -78,6 +78,7 @@ class MapViewController: BaseViewController<MapView> {
         self.factory = factory
         let mapView = MapView(locationController: locationController)
         super.init(mainView: mapView)
+        
     }
     
     required init?(coder: NSCoder) {
@@ -107,6 +108,9 @@ class MapViewController: BaseViewController<MapView> {
         isLocationOn = locationController.isLocationOn
         guard let location = locationController.location?.coordinate else { return }
         updateOverlay(location: location)
+     
+      //  mainView.currentStreaming?.delegate = mainView
+
 
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -123,6 +127,9 @@ class MapViewController: BaseViewController<MapView> {
         mainView.currentSongView = AddCurrentSongView(width: UIScreen.main.bounds.width * 0.9, height: 81, mapView: mainView, currentStreaming: mainView.currentStreaming)
         mainView.setupCurrentSongView()
         setupMapReactiveButton()
+        
+        mainView.currentStreaming?.delegate = mainView
+
     }
     
     func setupMapReactiveButton() {

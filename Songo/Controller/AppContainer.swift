@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import MusicKit
 
 class AppContainer {
     /// The `LocationController` used by the entire app
@@ -26,6 +27,7 @@ protocol MusicServiceFactory {
 }
 
 extension AppContainer: MusicServiceFactory {
+    
     func updateStreaming() {
         if currentStreaming?.id == .none {
             switch AppData.shared.currentStreaming {
@@ -35,6 +37,7 @@ extension AppContainer: MusicServiceFactory {
                 currentStreaming?.authenticate()
                 print("escolha --------", AppData.shared.currentStreaming)
 
+                
             case .spotify:
                 let Streaming: MusicProtocol.Type = SpotifyService.self
 //                guard let spotify = currentStreaming as? SpotifyService else { break }

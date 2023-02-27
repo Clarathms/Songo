@@ -70,6 +70,7 @@ extension MapViewController: MKMapViewDelegate {
     }
     
     @objc func rightButtonClick() {
+        MapPlaylistController.mapView = mainView
         let playlistNavController = MapPlaylistController(mainView: MapPlaylistView())
         playlistNavController.modalPresentationStyle = .popover
         let presentationController = playlistNavController.popoverPresentationController

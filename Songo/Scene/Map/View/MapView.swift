@@ -10,11 +10,27 @@ import MapKit
 import UIKit
 import CoreLocation
 import Combine
+import MusicKit
 
 /// The visualization of the map.
 class MapView: MKMapView  {
     
+//    lazy var musicTitle = currentStreaming?.currentTitle {
+//
+//        didSet{
+//            self.musicTitle = currentStreaming?.currentTitle
+//
+//       }
+//    }
+   static var musicTitle: String?
+   static var musicArtist: String?
+   static var musicAlbum: String?
+   static var musicData: Data?
 
+    static var musicPhotoString: String?
+//    lazy var musicTitle: String? = { currentStreaming?.currentTitle }()
+//    lazy var musbicArtist: String? = { currentStreaming?.currentArtist }()
+//    lazy var musicAlbum: String? = { currentStreaming?.currentAlbum}()
     //MARK: - Properties
     var currentSongView: AddCurrentSongView?
     //var reactiveButton = MapReactiveButton()
@@ -61,12 +77,13 @@ class MapView: MKMapView  {
         
         super.init(frame: .zero)
         
+        
+      
 //        self.currentSongView = AddCurrentSongView(width: UIScreen.main.bounds.width * 0.9, height: 81, mapView: self)
         //        self.reactiveButton = MapReactiveButton(x: Float(self.bounds.maxX/1.5), y: Float(self.bounds.maxY/6), width: Float(self.bounds.size.width * 0.15), height: Float(self.bounds.size.height * 0.5), mapView: self)
         //self.reactiveButton = MapReactiveButton(x: Float(UIScreen.main.bounds.maxX/3.5), y: Float(UIScreen.main.bounds.midY/10), width:Float(UIScreen.main.bounds.width * 0.2), height: 70)
         self.reactiveButton = MapReactiveButton(x: Float(UIScreen.main.bounds.width/1.2), y: Float(UIScreen.main.bounds.height/1.22), width:Float(UIScreen.main.bounds.width/9), height: Float(UIScreen.main.bounds.width/9))
   
-
     }
     
     required init?(coder: NSCoder) {
@@ -212,4 +229,33 @@ class MapView: MKMapView  {
         }
     }
 
+}
+
+extension MapView: MusicProtocolDelegate {
+    func didGet(song: Song) {
+        print("Recebi musica do apple music")
+//        AppleMusicService.update(currentStreaming)
+        MapView.musicTitle = currentStreaming?.currentTitle
+        MapView.musicArtist = currentStreaming?.currentArtist
+        MapView.musicAlbum = currentStreaming?.currentAlbum
+        print(MapView.musicTitle!)
+        print(MapView.musicArtist!)
+        print(MapView.musicAlbum!)
+    }
+    
+    func didGet(song: SPTAppRemoteTrack) {
+        print("Recebi musica do Spotify")
+        
+        MapView.musicTitle = currentStreaming?.currentTitle
+        MapView.musicArtist = currentStreaming?.currentArtist
+        MapView.musicAlbum = currentStreaming?.currentAlbum
+       // MapView.musicData = currentStreaming?.currentPhotoData
+
+    //    MapView.musicPhotoString = currentStreaming?.currentPhotoData.debugDescription
+        print(MapView.musicTitle!)
+        print(MapView.musicArtist!)
+        print(MapView.musicAlbum!)
+
+        
+    }
 }

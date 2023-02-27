@@ -64,10 +64,12 @@ class LocationController: CLLocationManager {
     /// call checkLocationAuthorization. Else, send a message to the
     /// user turn it on at Configurations.
     func checkLocationServices() {
-        if CLLocationManager.locationServicesEnabled() {
-            checkLocationAuthorization()
-        } else {
-            return 
+        DispatchQueue.global().async {
+            if CLLocationManager.locationServicesEnabled() {
+                self.checkLocationAuthorization()
+            } else {
+                return
+            }
         }
     }
 }

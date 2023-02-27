@@ -29,7 +29,6 @@ class MapPlaylistController: BaseViewController<MapPlaylistView>,UITableViewData
     }
     
     //    var coverView: UIImage? = appleMusicController.currentPicture
-class MapPlaylistController: BaseViewController<MapPlaylistView> {
     var coverView: UIImage = UIImage ()
     var titleList: [String] = []
 //    var albumList: [String]
@@ -37,7 +36,6 @@ class MapPlaylistController: BaseViewController<MapPlaylistView> {
     var pictureList: [UIImage] = []
     var annotations: [MKAnnotation] = []
     // var listStyle: ReminderListStyle = .today
-    var listStyle: ReminderListStyle = .today
     var cluster: MKClusterAnnotation
   //  var listStyle: ReminderListStyle = .today
     var musicData = MapPlaylistController.mapView?.allPlacements

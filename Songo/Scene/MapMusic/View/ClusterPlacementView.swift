@@ -13,7 +13,7 @@ class ClusterPlacementView: MKAnnotationView {
     private let boxInset = CGFloat(10)
     private let interItemSpacing = CGFloat(5)
     private let maxContentWidth = CGFloat(45)
-    private let contentInsets = UIEdgeInsets(top: 10, left: 30, bottom: 20, right: 20)
+    private let contentInsets = UIEdgeInsets(top: 10, left: 20, bottom: 20, right: 20)
     
     private let blurEffect = UIBlurEffect(style: .systemThickMaterial)
     
@@ -24,8 +24,18 @@ class ClusterPlacementView: MKAnnotationView {
         return view
     }()
     
-    private lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: imageViewList)
+    private lazy var stackViewL: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: Array(imageViewList[0...1]))
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.alignment = .top
+        stackView.spacing = interItemSpacing
+        
+        return stackView
+    }()
+    
+    private lazy var stackViewR: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: Array(imageViewList[2...3]))
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.alignment = .top
@@ -38,18 +48,22 @@ class ClusterPlacementView: MKAnnotationView {
     
     private lazy var imageView1: UIImageView = {
         let imageView = UIImageView(image: nil)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     private lazy var imageView2: UIImageView = {
         let imageView = UIImageView(image: nil)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     private lazy var imageView3: UIImageView = {
         let imageView = UIImageView(image: nil)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     private lazy var imageView4: UIImageView = {
         let imageView = UIImageView(image: nil)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
@@ -73,7 +87,8 @@ class ClusterPlacementView: MKAnnotationView {
         backgroundColor = UIColor.clear
         addSubview(backgroundMaterial)
         
-        backgroundMaterial.contentView.addSubview(stackView)
+        backgroundMaterial.contentView.addSubview(stackViewL)
+        backgroundMaterial.contentView.addSubview(stackViewR)
         
         // Make the background material the size of the annotation view container
         backgroundMaterial.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
@@ -82,8 +97,22 @@ class ClusterPlacementView: MKAnnotationView {
         backgroundMaterial.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         
         // Anchor the top and leading edge of the stack view to let it grow to the content size.
-        stackView.leadingAnchor.constraint(equalTo: backgroundMaterial.leadingAnchor, constant: contentInsets.left).isActive = true
-        stackView.topAnchor.constraint(equalTo: backgroundMaterial.topAnchor, constant: contentInsets.top).isActive = true
+        
+        NSLayoutConstraint.activate([
+            stackViewL.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: contentInsets.left),
+        //    stackViewL.trailingAnchor.constraint(equalTo: stackViewR.leadingAnchor, constant: 0).isActive = true
+            stackViewL.topAnchor.constraint(equalTo: self.topAnchor, constant: contentInsets.top),
+            
+            stackViewR.leadingAnchor.constraint(equalTo: stackViewL.trailingAnchor, constant: interItemSpacing),
+            stackViewR.topAnchor.constraint(equalTo: stackViewL.topAnchor, constant: 0),
+            stackViewR.bottomAnchor.constraint(equalTo: stackViewL.bottomAnchor)
+        ])
+        
+        
+        
+        // Anchor the top and leading edge of the stack view to let it grow to the content size.
+     //   stackViewR.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -contentInsets.left).isActive = true
+
         
         // Limit how much the content is allowed to grow.
         imageViewList[0].widthAnchor.constraint(equalToConstant: maxContentWidth).isActive = true
@@ -126,12 +155,12 @@ class ClusterPlacementView: MKAnnotationView {
         musicArtists = musicArtistsC
         musicPictures = musicPicturesC
         
-            if let heightConstraint = imageHeightConstraint1 {
-                imageViewList[0].removeConstraint(heightConstraint)
-                imageViewList[1].removeConstraint(heightConstraint)
-                imageViewList[2].removeConstraint(heightConstraint)
-                imageViewList[3].removeConstraint(heightConstraint)
-            }
+        if let heightConstraint = imageHeightConstraint1 {
+            imageViewList[0].removeConstraint(heightConstraint)
+            imageViewList[1].removeConstraint(heightConstraint)
+            imageViewList[2].removeConstraint(heightConstraint)
+            imageViewList[3].removeConstraint(heightConstraint)
+        }
 
         var ratio: CGFloat = 1
         var count = 0
@@ -149,26 +178,26 @@ class ClusterPlacementView: MKAnnotationView {
         
         imageHeightConstraint1 = imageViewList[0].heightAnchor.constraint(equalTo: imageViewList[0].widthAnchor, multiplier: ratio, constant: 0)
         imageHeightConstraint1?.isActive = true
-        
+
         imageHeightConstraint2 = imageViewList[1].heightAnchor.constraint(equalTo: imageViewList[1].widthAnchor, multiplier: ratio, constant: 0)
         imageHeightConstraint2?.isActive = true
-        
+
         imageHeightConstraint3 = imageViewList[2].heightAnchor.constraint(equalTo: imageViewList[2].widthAnchor, multiplier: ratio, constant: 0)
         imageHeightConstraint3?.isActive = true
-        
+
         imageHeightConstraint4 = imageViewList[3].heightAnchor.constraint(equalTo: imageViewList[3].widthAnchor, multiplier: ratio, constant: 0)
         imageHeightConstraint4?.isActive = true
         
         
-            updateConstraints()
-            
-            /*
-             The image view has a width constraint to keep the image to a reasonable size. A height constraint to keep the aspect ratio
-             proportions of the image is required to keep the image packed into the stack view. Without this constraint, the image's height
-             will remain the intrinsic size of the image, resulting in extra height in the stack view that is not desired.
-             */
-            displayPriority = .defaultHigh
-            zPriority = .min
+        updateConstraints()
+        
+        /*
+         The image view has a width constraint to keep the image to a reasonable size. A height constraint to keep the aspect ratio
+         proportions of the image is required to keep the image packed into the stack view. Without this constraint, the image's height
+         will remain the intrinsic size of the image, resulting in extra height in the stack view that is not desired.
+         */
+        displayPriority = .defaultHigh
+        zPriority = .min
         setNeedsLayout()
     }
     
@@ -210,9 +239,9 @@ class ClusterPlacementView: MKAnnotationView {
     }
     
     override var intrinsicContentSize: CGSize {
-        var size = stackView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
-        size.width += contentInsets.left + contentInsets.right
-        size.height += contentInsets.top + contentInsets.bottom
+        var size = stackViewL.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+        size.width = maxContentWidth*2 + contentInsets.left + interItemSpacing + contentInsets.right - 10//size.width*2 + contentInsets.left + contentInsets.right
+        size.height = maxContentWidth*2 + contentInsets.top + interItemSpacing + contentInsets.bottom - 10//+= contentInsets.top + contentInsets.bottom
         return size
     }
     

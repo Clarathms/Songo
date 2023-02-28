@@ -236,12 +236,17 @@ extension MapView: MusicProtocolDelegate {
     func didGet(song: SPTAppRemoteTrack) {
         print("Recebi musica do Spotify")
         
+//        DispatchQueue.main.async {
+//            Task {
+//                await self.currentStreaming?.getCurrentPicture()
+//                MapView.musicPhotoData = self.currentStreaming?.currentPhotoData
+//                print(MapView.musicPhotoData?.count, "tem coisa")
+//            }
+//        }
         MapView.musicTitle = currentStreaming?.currentTitle
         MapView.musicArtist = currentStreaming?.currentArtist
         MapView.musicAlbum = currentStreaming?.currentAlbum
-        MapView.musicPhotoData = currentStreaming?.currentPhotoData
-
-    //    MapView.musicPhotoString = currentStreaming?.currentPhotoData.debugDescription
+    //    MapView.musicPhotoData = currentStreaming?.currentPhotoData
         print(MapView.musicTitle!)
         print(MapView.musicArtist!)
         print(MapView.musicAlbum!)

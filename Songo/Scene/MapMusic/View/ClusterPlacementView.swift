@@ -18,8 +18,9 @@ class ClusterPlacementView: MKAnnotationView {
     private let blurEffect = UIBlurEffect(style: .systemThickMaterial)
     
     private lazy var backgroundMaterial: UIVisualEffectView = {
-        let view = UIVisualEffectView(effect: blurEffect)
+        let view = UIVisualEffectView(effect: .none)
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .fundo
         return view
     }()
     

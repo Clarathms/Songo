@@ -21,61 +21,47 @@ struct TutorialPage2: View {
             isPresented = true
         } label: {
             Text("Pular")
-                .font(.subheadline)
-                .foregroundColor(.gray)
+                .font(.headline)
+                .foregroundColor(.black)
+                .underline()
         }
     }
     var body: some View {
         ZStack{
             Rectangle()
-              //                .frame(width: UIScreen.main.bounds.width*1.5,height: UIScreen.main.bounds.height/1.1)
+           
+                .frame(width: UIScreen.main.bounds.width*1.2,height: UIScreen.main.bounds.height/1.08)
+                  .foregroundColor(Color(UIColor.fundoSecundario))
+                  .position(x:UIScreen.main.bounds.midX,y:UIScreen.main.bounds.midY/1.097)
+            Rectangle()
+           
                   .frame(width: UIScreen.main.bounds.width*1.2,height: UIScreen.main.bounds.height/1.15)
                   .foregroundColor(Color.white)
                   .position(x:UIScreen.main.bounds.midX,y:UIScreen.main.bounds.midY/1.097)
                   .overlay{
-                      VStack (spacing: 40) {
+                      VStack(spacing:50){
+                      VStack(spacing:-30)  {
+                          Image("ilustr02")
+                              .resizable()
+                              .scaledToFit()
+                              .frame(width: UIScreen.main.bounds.width/2
+                                     , height: UIScreen.main.bounds.height/2)
                           VStack(spacing: 20){
                               Text("Lembre do momento atráves de playlists")
                                   .font(.headline)
                               Text("No SoundMap você conseguira montar \n sua identidade sonoro-musical através da \n sua localização.")
                                   .font(.subheadline)
                                   .multilineTextAlignment(.center)
-                              //                          Button {
-                              //                              isPresented = true
-                              //                          } label: {
-                              //                              Text("Pular")
-                              //                                  .font(.subheadline)
-                              //                                  .foregroundColor(.gray)
-                              //                          }
-                              //                          .padding(.top,30)
+                              
                               
                           }
+                      }
                           if chamaBotao {
                               botao
                           }
-                      }.position(x:UIScreen.main.bounds.midX,y:UIScreen.main.bounds.midY*1.2)
-//                          .task {
-//                              let subCheck = await appleMusicService.lastSubscriptionUpdate().makeSubscriptionOffer
-//                              DispatchQueue.main.async {
-//                                  subscriptionOfferOptions.messageIdentifier = .playMusic
-//                                  isShowingOffer = subCheck
-//                                  if isShowingOffer != subCheck{
-//                                      isShowingOffer = false
-//                                  }
-//                                  if !isShowingOffer{
-//                                      chamaBotao = true
-//                                  }
-//                              }
-//                          }
+                      }.position(x:UIScreen.main.bounds.midX,y:UIScreen.main.bounds.midY/1.3)
                   }
         }
-                
-//        }.background( Rectangle()
-//                      //                .frame(width: UIScreen.main.bounds.width*1.5,height: UIScreen.main.bounds.height/1.1)
-//                          .frame(width: UIScreen.main.bounds.width*1.2,height: UIScreen.main.bounds.height/1.15)
-//                          .foregroundColor(Color.white)
-//                          .position(x:UIScreen.main.bounds.midX,y:UIScreen.main.bounds.midY/1.097))
-        
         .musicSubscriptionOffer(isPresented: $isShowingOffer, options: subscriptionOfferOptions)
             .onAppear{
                 appleMusicService.checkAppleMusicAuthorization()
@@ -87,8 +73,3 @@ struct TutorialPage2: View {
         }
     }
 }
-//struct TutorialPage2_Previews: PreviewProvider {
-//    static var previews: some View {
-//        TutorialPage2()
-//    }
-//}

@@ -53,6 +53,7 @@ class AppleMusicService: MusicProtocol {
                 mapView.currentSongView?.currentTitle.text = MapView.musicTitle
                 mapView.currentSongView?.currentAlbum.text = MapView.musicAlbum
                 mapView.currentSongView?.currentArtist.text = MapView.musicArtist
+                mapView.currentSongView?.artistaString = MapView.musicArtist!
                 
                 //           mapView.currentSongView?.currentData? = self.currentPhotoData!
                 // mapView.currentSongView?.currentPhotoStringAdd? = MapView.musicPhotoString!

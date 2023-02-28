@@ -70,7 +70,11 @@ struct TutorialBase: View {
                     }
                     .tabViewStyle(.page(indexDisplayMode: .always))
                     .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
-                    .background(Color(UIColor.fundoSecundario))
+                    .background(
+                        Image("FotoFundo")
+                        .resizable()
+                        .scaledToFill())
+                    .ignoresSafeArea(.all)
                 }
             
                 

@@ -18,11 +18,12 @@ class MusicPlacementView: MKAnnotationView {
     private let maxContentWidth = CGFloat(90)
     private let contentInsets = UIEdgeInsets(top: 10, left: 30, bottom: 20, right: 20)
     
-    private let blurEffect = UIBlurEffect(style: .systemThickMaterial)
+    private let blurEffect = UIBlurEffect(style: .systemChromeMaterialDark)
     
     private lazy var backgroundMaterial: UIVisualEffectView = {
-        let view = UIVisualEffectView(effect: blurEffect)
+        let view = UIVisualEffectView(effect: .none)
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .fundo
         return view
     }()
     

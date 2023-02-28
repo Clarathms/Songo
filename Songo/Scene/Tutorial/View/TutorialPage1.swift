@@ -29,6 +29,12 @@ struct TutorialPage1: View {
     
     var body: some View {
         ZStack{
+            
+            RoundedRectangle(cornerSize: .init(width: 130, height: 130))
+                .frame(width: UIScreen.main.bounds.width*1.2,height: UIScreen.main.bounds.height/1.08)
+                .foregroundColor(Color(UIColor.fundoSecundario))
+                .position(x:UIScreen.main.bounds.midX*1.3,y:UIScreen.main.bounds.midY/1.1)
+
             Rectangle()
                 .frame(width: UIScreen.main.bounds.width/2,height: UIScreen.main.bounds.height/1.15)
                 .foregroundColor(Color.white)
@@ -38,8 +44,16 @@ struct TutorialPage1: View {
                 .frame(width: UIScreen.main.bounds.width,height: UIScreen.main.bounds.height/1.15)
                 .foregroundColor(Color.white)
                 .position(x:UIScreen.main.bounds.midX*1.2,y:UIScreen.main.bounds.midY/1.1)
+
+            
+
                 .overlay{
-                    VStack (spacing: 40) {
+                    VStack(spacing:-30)  {
+                        Image("ilustr01")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: UIScreen.main.bounds.width/2
+                            , height: UIScreen.main.bounds.height/2)
                         VStack(spacing: 20){
                             Text("Seja bem-vindo ao SoundMap!")
                                 .font(.headline)
@@ -48,25 +62,14 @@ struct TutorialPage1: View {
                                 .font(.subheadline)
                                 .multilineTextAlignment(.center)
                         }
-                        if chamaBotao {
-                            botao
-                        }
-                    }.position(x:UIScreen.main.bounds.midX,y:UIScreen.main.bounds.midY*1.2)
-//                    .task {
-//                        let subCheck = await appleMusicService.lastSubscriptionUpdate().makeSubscriptionOffer
-//                        DispatchQueue.main.async {
-//                            subscriptionOfferOptions.messageIdentifier = .playMusic
-//                            isShowingOffer = subCheck
-//                            if isShowingOffer != subCheck{
-//                                isShowingOffer = false
-//                            }
-//                            if !isShowingOffer{
-//                                chamaBotao = true
-//                            }
-//                        }
-//                    }
+                   
+                    }.position(x:UIScreen.main.bounds.midX*1.08,y:UIScreen.main.bounds.midY/1.3)
+
+                        
                 }
+                
         }.musicSubscriptionOffer(isPresented: $isShowingOffer, options: subscriptionOfferOptions)
+            
             .onAppear{
                 appleMusicService.checkAppleMusicAuthorization()
                 isShowingOffer = true
@@ -77,14 +80,3 @@ struct TutorialPage1: View {
             }
     }
 }
-//struct TutorialPage1_Previews: PreviewProvider {
-//    static var previews: some View {
-//        TutorialPage1()
-//    }
-//}
-//                            if isShowingOffer{
-//                                chamaBotao = false
-//                            }
-//                            else{
-//                                chamaBotao = true
-//                            }

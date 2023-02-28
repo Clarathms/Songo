@@ -14,21 +14,26 @@ import Combine
 
 class AddCurrentSongView: UIView {
     var background: UIView!
-    let myImageView: UIImageView = UIImageView()
     
-    var albumImage: UIImageView!
-    var currentTitle2: String?
+    let myImageView = UIImageView(frame: CGRect(x: UIScreen.main.bounds.maxX/1.35, y: UIScreen.main.bounds.maxY/30, width: UIScreen.main.bounds.width/18, height:  UIScreen.main.bounds.height/35))
+    
+    var albumImage = UIImageView(frame: CGRect(x: UIScreen.main.bounds.maxX/4, y: UIScreen.main.bounds.midY/25, width: UIScreen.main.bounds.width/2, height:  UIScreen.main.bounds.height/25))
+    
+
     var currentTitle = UILabel(frame: CGRect(x: UIScreen.main.bounds.maxX/4.8, y: UIScreen.main.bounds.midY/25, width: UIScreen.main.bounds.width/2, height:  UIScreen.main.bounds.height/25))
     
-    var currentArtist = UILabel(frame: CGRect(x: UIScreen.main.bounds.maxX/4.8, y: UIScreen.main.bounds.midY/10, width: UIScreen.main.bounds.width/3, height:  UIScreen.main.bounds.height/25))
+    var currentArtist = UILabel(frame: CGRect(x: UIScreen.main.bounds.maxX/4.8, y: UIScreen.main.bounds.midY/10, width: UIScreen.main.bounds.width/4.5, height:  UIScreen.main.bounds.height/25))
     
-    var currentAlbum = UILabel(frame: CGRect(x: UIScreen.main.bounds.maxX/1.8, y: UIScreen.main.bounds.midY/10, width: UIScreen.main.bounds.width/4, height:  UIScreen.main.bounds.height/25))
-    var circleImg = UIImage(systemName: "circle.fill")
+    var currentAlbum = UILabel(frame: CGRect(x: UIScreen.main.bounds.maxX/2, y: UIScreen.main.bounds.midY/10, width: UIScreen.main.bounds.width/4, height:  UIScreen.main.bounds.height/25))
+
+    var separationDot = UILabel(frame: CGRect(x: UIScreen.main.bounds.maxX/2.3, y: UIScreen.main.bounds.midY/20, width: UIScreen.main.bounds.width/16, height:  UIScreen.main.bounds.height/20))
+
     var mapView: MapView
+    var artistaString: String = MapView.musicArtist ?? "Sem artista"
+    var albumString: String = MapView.musicAlbum ?? "Sem album"
     
-    var currentData: Data?
-    var currentPhotoStringAdd: String?
-    //var songButtonView = SongButtonView()
+    var labelText = UILabel(frame: CGRect(x: UIScreen.main.bounds.maxX/4.8, y: UIScreen.main.bounds.midY/10, width: UIScreen.main.bounds.width/3, height:  UIScreen.main.bounds.height/25))
+    
     var state: UIControl.State = .addCurrentSong
     var currentStreaming: MusicProtocol?
     
@@ -38,25 +43,13 @@ class AddCurrentSongView: UIView {
             
         }
         return UIImage(data: currentStreaming?.currentPhotoData ?? Data())
-    //    return UIImage(data: self.currentData ?? Data())
     }()
     
-    //    lazy var musicPicture: UIImage? = {
-    //        Task {
-    //            await currentStreaming?.getCurrentPicture()
-    //        }
-    //       return UIImage(data: currentStreaming?.currentPhotoData ?? Data())
-    //    }()
-        
-    
-//    lazy var musicTitle: String? = { currentStreaming?.currentTitle }()
-//    lazy var musicArtist: String? = { currentStreaming?.currentArtist }()
-//    lazy var musicAlbum: String? = { currentStreaming?.currentAlbum}()
-//
-    var allPlacements: [MKAnnotation] = []
-    
-    //var reactiveButton = MapReactiveButton
 
+    var imgListArray :[UIImage] = []
+    var soundFrames: UIImage!
+            
+   
     
     
     
@@ -66,7 +59,7 @@ class AddCurrentSongView: UIView {
         super.init(frame: CGRect(x: 0, y: 0, width: Int(width), height: height))
            setupCurrentSongview()
 
-        
+       
     }
     func setupCurrentSongview() {
         setupBackground()
@@ -74,10 +67,23 @@ class AddCurrentSongView: UIView {
         setupCurrentTitle()
         setupArtist()
         setupAlbum()
+        setupDot()
+        createAnimation()
+      //  image()
+       
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+
+    func setupDot (){
+        self.separationDot.text = "."
+        self.separationDot.textColor = .white
+        self.separationDot.font = UIFont.boldSystemFont(ofSize: 57)
+       // self.separationDot.font = UIFont(name:"Inter", size: 45.0)
+        addSubview(self.separationDot)
     }
     
     func setupBackground() {
@@ -119,6 +125,7 @@ class AddCurrentSongView: UIView {
         self.currentArtist.numberOfLines = 1
         self.currentArtist.font = UIFont(name:"Inter", size: 20.0)
         self.currentArtist.font = UIFont.systemFont(ofSize: 15)
+       
         self.addSubview(currentArtist)
         
     }
@@ -133,16 +140,27 @@ class AddCurrentSongView: UIView {
         self.addSubview(currentAlbum)
     }
     
-    //    func createPlacement (music: AppleMusicService) async -> [MKAnnotation] {
-    //        var musicPlacement: MusicPlacementModel
-    ////            let placement = MusicPlacementModel(latitude: location.latitude, longitude: location.longitude, title: music.currentTitle, musicURL: music.currentURLPicture, artist: music.currentArtist)
-    //        await musicPlacement.getApplePicture()
-    //           // allPlacements.append(placement)
-    //            AppData.shared.update(musics: allPlacements)
-    //
-    //            return await AppData.shared.loadMusics()
-    //        }
-    //
+
+    func image() {
+        self.albumImage.image = UIImage(named: "frame1")
+    }
+    func createAnimation () {
+        for num in 1...10{
+            //let strImageName : String = "foto\(num)"
+            let image  = UIImage(named:"Frame \(num)")
+            imgListArray.append(image!)
+        }
+        
+        self.soundFrames = UIImage.animatedImage(with: imgListArray, duration: 1.5)
+        myImageView.image = self.soundFrames
+        myImageView.layoutIfNeeded()
+        myImageView.startAnimating()
+        addSubview(myImageView)
+//        self.soundFrames.animationImages = imgListArray;
+//        self.soundFrames.animationDuration = 2
+//        //self.imageViewBox.animationRepeatCount = 2
+//        self.soundFrames.startAnimating()
+    }
     }
 
    

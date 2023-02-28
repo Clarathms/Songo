@@ -57,6 +57,9 @@ extension MapViewController: MKMapViewDelegate {
                     musicPlacementView.clusteringIdentifier = nil
                 }
             }
+          
+              
+          
         }
         else if let clusterPlacement = annotation as? MKClusterAnnotation {
             placementView = setupClusterPlacementView(for: clusterPlacement, on: mapView)
@@ -87,6 +90,8 @@ extension MapViewController: MKMapViewDelegate {
 //        rightButton.addTarget(self, action: #selector(rightButtonClick), for: .touchUpInside)
         return view
     }
+
+
     
     private func setupClusterPlacementView (for annotation: MKClusterAnnotation, on mapView: MKMapView) -> MKAnnotationView {
         let view = mapView.dequeueReusableAnnotationView(withIdentifier: ClusterPlacementView.reuseIdentifier, for: annotation)

@@ -44,11 +44,6 @@ class MapPlaylistController: BaseViewController<MapPlaylistView>,UITableViewData
     static var mapView: MapView?
     var musicsTableView = UITableView()
 
-
-    // var collectionView: UICollectionViewController
-//    let listStyleSegmentedControl = UISegmentedControl(items: [
-//        ReminderListStyle.today.name, ReminderListStyle.future.name, ReminderListStyle.all.name
-//    ])
     
     typealias DataSource = UICollectionViewDiffableDataSource<Int, String>
 
@@ -57,6 +52,7 @@ class MapPlaylistController: BaseViewController<MapPlaylistView>,UITableViewData
     init(cluster: MKClusterAnnotation) {
         self.cluster = cluster
         annotations = cluster.memberAnnotations
+        
         
         for annotation in annotations {
             if let isModel = annotation as? MusicPlacementModel {
@@ -72,6 +68,9 @@ class MapPlaylistController: BaseViewController<MapPlaylistView>,UITableViewData
         
         let mapPlaylistView = MapPlaylistView()
         super.init(mainView: mapPlaylistView)
+        setGradientBackground()
+
+        
     }
     
     
@@ -83,15 +82,6 @@ class MapPlaylistController: BaseViewController<MapPlaylistView>,UITableViewData
         super.viewDidLoad()
 
         let listLayout = listLayout()
-//        listStyleSegmentedControl.selectedSegmentIndex = listStyle.rawValue
-////        listStyleSegmentedControl.addTarget(
-////            self, action: #selector(didChangeListStyle(_:)), for: .valueChanged)
-//        navigationItem.titleView = listStyleSegmentedControl
-
-//        if #available(iOS 16, *) {
-//            navigationItem.style = .navigator
-//        }
- 
 
 
         
@@ -140,27 +130,3 @@ class MapPlaylistController: BaseViewController<MapPlaylistView>,UITableViewData
    
     
 }
-//enum ReminderListStyle: Int {
-//    case today
-//    case future
-//    case all
-//
-//    var name: String {
-//        switch self {
-//        case .today:
-//            return NSLocalizedString("Today", comment: "Today style name")
-//        case .future:
-//            return NSLocalizedString("Future", comment: "Future style name")
-//        case .all:
-//            return NSLocalizedString("All", comment: "All style name")
-//        }
-//    }
-
-//}
-//struct Reminder {
-//    var title: String
-//    var dueDate: Date
-//    var notes: String? = nil
-//    var isComplete: Bool = false
-//}
-//

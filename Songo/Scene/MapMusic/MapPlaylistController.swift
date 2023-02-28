@@ -15,18 +15,7 @@ import UIKit
 import SwiftUI
 import MapKit
 
-class MapPlaylistController: BaseViewController<MapPlaylistView>,UITableViewDataSource, UITableViewDelegate{
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return annotations.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = musicsTableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath)
-        
-        // define a parte de info (Nome,etc)
-        cell.textLabel?.text = (annotations[indexPath.row].title ?? " -- ")! as String
-        return cell
-    }
+class MapPlaylistController: BaseViewController<MapPlaylistView> {
     
     //    var coverView: UIImage? = appleMusicController.currentPicture
     var coverView: UIImage = UIImage ()
@@ -62,12 +51,10 @@ class MapPlaylistController: BaseViewController<MapPlaylistView>,UITableViewData
         if let isModel = annotations.first as? MusicPlacementModel {
             coverView = isModel.musicPicture ?? UIImage()
         }
-
         
         let mapPlaylistView = MapPlaylistView()
         super.init(mainView: mapPlaylistView)
         setGradientBackground()
-
         
     }
     
@@ -126,5 +113,23 @@ class MapPlaylistController: BaseViewController<MapPlaylistView>,UITableViewData
         }
     }
    
+    
+}
+
+extension MapPlaylistController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return annotations.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = musicsTableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath)
+        
+        // define a parte de info (Nome,etc)
+        cell.textLabel?.text = (annotations[indexPath.row].title ?? " -- ")! as String
+        return cell
+    }
+}
+extension MapPlaylistController: UITableViewDelegate {
     
 }

@@ -28,7 +28,6 @@ extension MapViewController: MKMapViewDelegate {
     }
 
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        print(view.annotation)
         if let clusterPlacement = view.annotation as? MKClusterAnnotation, clusterPlacement.isKind(of: MKClusterAnnotation.self) {
             let pin = view.annotation
             let playlistViewController = MapPlaylistController(cluster: clusterPlacement)

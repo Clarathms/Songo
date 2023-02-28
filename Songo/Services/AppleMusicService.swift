@@ -34,9 +34,11 @@ class AppleMusicService: MusicProtocol {
         cancellable = SystemMusicPlayer.shared.state.objectWillChange.sink(receiveValue: { state in
             let musicState = SystemMusicPlayer.shared.state.playbackStatus
             self.currentMusicID = SystemMusicPlayer.shared.queue.currentEntry?.item?.id
-            Task {
+            DispatchQueue.main.async {
+                Task {
                     await self.getCurrentMusic()
                     print(self.currentTitle, "<------")
+                }
             }
             print(self.currentMusicID)
         })
@@ -53,8 +55,7 @@ class AppleMusicService: MusicProtocol {
                 mapView.currentSongView?.currentTitle.text = MapView.musicTitle
                 mapView.currentSongView?.currentAlbum.text = MapView.musicAlbum
                 mapView.currentSongView?.currentArtist.text = MapView.musicArtist
-                mapView.currentSongView?.artistaString = MapView.musicArtist!
-                
+                mapView.currentSongView?.albumImage.image = UIImage(data: MapView.musicPhotoData ?? Data())
                 //           mapView.currentSongView?.currentData? = self.currentPhotoData!
                 // mapView.currentSongView?.currentPhotoStringAdd? = MapView.musicPhotoString!
                 print("****** Novo print *******")
@@ -62,6 +63,7 @@ class AppleMusicService: MusicProtocol {
                 //  print(mapView.currentSongView?.currentPhotoStringAdd)
                 print("Novo print *******")
                 print(mapView.currentSongView?.currentTitle.text)
+                print(mapView.currentSongView?.albumImage.image?.size)
             }
             //       currentTitle = currentTrack.name
         }

@@ -25,7 +25,7 @@ class MapView: MKMapView  {
    static var musicTitle: String?
    static var musicArtist: String?
    static var musicAlbum: String?
-   static var musicData: Data?
+   static var musicPhotoData: Data?
 
     static var musicPhotoString: String?
 //    lazy var musicTitle: String? = { currentStreaming?.currentTitle }()
@@ -216,10 +216,18 @@ class MapView: MKMapView  {
 extension MapView: MusicProtocolDelegate {
     func didGet(song: Song) {
         print("Recebi musica do apple music")
-//        AppleMusicService.update(currentStreaming)
+        DispatchQueue.main.async {
+            Task {
+                await self.currentStreaming?.getCurrentPicture()
+                MapView.musicPhotoData = self.currentStreaming?.currentPhotoData
+                print(MapView.musicPhotoData?.count, "tem coisa")
+            }
+        }
         MapView.musicTitle = currentStreaming?.currentTitle
         MapView.musicArtist = currentStreaming?.currentArtist
         MapView.musicAlbum = currentStreaming?.currentAlbum
+        
+        
         print(MapView.musicTitle!)
         print(MapView.musicArtist!)
         print(MapView.musicAlbum!)
@@ -231,7 +239,7 @@ extension MapView: MusicProtocolDelegate {
         MapView.musicTitle = currentStreaming?.currentTitle
         MapView.musicArtist = currentStreaming?.currentArtist
         MapView.musicAlbum = currentStreaming?.currentAlbum
-       // MapView.musicData = currentStreaming?.currentPhotoData
+        MapView.musicPhotoData = currentStreaming?.currentPhotoData
 
     //    MapView.musicPhotoString = currentStreaming?.currentPhotoData.debugDescription
         print(MapView.musicTitle!)

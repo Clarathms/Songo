@@ -34,16 +34,27 @@ class AddCurrentSongView: UIView {
     
     var labelText = UILabel(frame: CGRect(x: UIScreen.main.bounds.maxX/4.8, y: UIScreen.main.bounds.midY/10, width: UIScreen.main.bounds.width/3, height:  UIScreen.main.bounds.height/25))
     
+    
+    var currentPhotoData: Data?
+    var currentPhotoStringAdd: String?
+    //var songButtonView = SongButtonView()
     var state: UIControl.State = .addCurrentSong
     var currentStreaming: MusicProtocol?
+    var musicPicture: UIImage?
     
-    lazy var musicPicture: UIImage? = {
-        Task {
-            await currentStreaming?.getCurrentPicture()
-            
-        }
-        return UIImage(data: currentStreaming?.currentPhotoData ?? Data())
-    }()
+    //    lazy var musicPicture: UIImage? = {
+    //        Task {
+    //            await currentStreaming?.getCurrentPicture()
+    //        }
+    //       return UIImage(data: currentStreaming?.currentPhotoData ?? Data())
+    //    }()
+        
+    
+//    lazy var musicTitle: String? = { currentStreaming?.currentTitle }()
+//    lazy var musicArtist: String? = { currentStreaming?.currentArtist }()
+//    lazy var musicAlbum: String? = { currentStreaming?.currentAlbum}()
+//
+    var allPlacements: [MKAnnotation] = []
     
 
     var imgListArray :[UIImage] = []
@@ -96,9 +107,9 @@ class AddCurrentSongView: UIView {
     
     
     func setupImage() {
-        self.albumImage = UIImageView(image: musicPicture)
+        
         self.albumImage = UIImageView(frame: CGRect(x: self.bounds.maxX/28, y: self.bounds.maxY/6, width: self.bounds.size.width * 0.2, height: self.bounds.size.height * 0.8))
-        self.albumImage.image = musicPicture
+//        self.albumImage.image = musicPicture
         self.albumImage.layer.masksToBounds = true
         self.albumImage.layer.cornerRadius = 8
         self.addSubview(self.albumImage)
@@ -106,7 +117,7 @@ class AddCurrentSongView: UIView {
     
     func setupCurrentTitle (){
       
-        self.currentTitle.text = MapView.musicTitle
+//        self.currentTitle.text = MapView.musicTitle
      //   print(currentStreaming?.currentTitle, "*********")
         self.currentTitle.textColor = .white
         self.currentTitle.textAlignment = .left

@@ -17,16 +17,14 @@ import MapKit
 
 class MapPlaylistController: BaseViewController<MapPlaylistView>,UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return musicData!.count
+        return annotations.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = musicsTableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath)
         
         // define a parte de info (Nome,etc)
-        cell.textLabel?.text = musicData![indexPath.row].title as! String
-        print("BBBBBB")
-        print(cell)
+        cell.textLabel?.text = (annotations[indexPath.row].title ?? " -- ")! as String
         return cell
     }
     
@@ -40,8 +38,8 @@ class MapPlaylistController: BaseViewController<MapPlaylistView>,UITableViewData
     // var listStyle: ReminderListStyle = .today
     var cluster: MKClusterAnnotation
   //  var listStyle: ReminderListStyle = .today
-    var musicData = MapPlaylistController.mapView?.allPlacements
-    static var mapView: MapView?
+//    var musicData = MapPlaylistController.mapView?.allPlacements
+//    static var mapView: MapView?
     var musicsTableView = UITableView()
 
     
@@ -119,11 +117,11 @@ class MapPlaylistController: BaseViewController<MapPlaylistView>,UITableViewData
     }
     
     func getCount (){
-        var musicCount = self.musicData!.count
+        let musicCount = self.annotations.count
        
-        for i in 1...musicCount {
-            print("Print da Anottation \(i) ------")
-            dump(MapPlaylistController.mapView?.allPlacements)
+        for _ in 1...musicCount {
+            print("Print da Anottation ------")
+            print(annotations)
             musicsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "contactCell")
         }
     }

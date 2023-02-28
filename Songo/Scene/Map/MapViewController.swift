@@ -15,8 +15,8 @@ import MusicKit
 /// The View Controller of the Map Scene
 class MapViewController: BaseViewController<MapView> {
     
-    typealias Factory = MapPlaylistSceneFactory & MusicServiceFactory
-    
+    typealias Factory = MusicServiceFactory
+
     var factory: Factory
     var appleMusicService: AppleMusicService = AppleMusicService()
     let locationController: LocationController

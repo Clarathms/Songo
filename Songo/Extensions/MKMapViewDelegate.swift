@@ -33,7 +33,7 @@ extension MapViewController: MKMapViewDelegate {
             let playlistViewController = factory.createMapPlaylistScene()
             
             // Create half-modal
-            playlistViewController.modalPresentationStyle = .custom
+            playlistViewController.modalPresentationStyle = .fullScreen
 //            playlistViewController.transitioningDelegate = self
             present(playlistViewController, animated: true)
             

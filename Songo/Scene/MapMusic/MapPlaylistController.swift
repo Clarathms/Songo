@@ -14,16 +14,18 @@ import Foundation
 import UIKit
 import SwiftUI
 
-class MapPlaylistController: BaseViewController<MapPlaylistView>,UITableViewDataSource{
+class MapPlaylistController: BaseViewController<MapPlaylistView>,UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return musicData!.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath)
+        let cell = musicsTableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath)
         
         // define a parte de info (Nome,etc)
         cell.textLabel?.text = musicData![indexPath.row].title as! String
+        print("BBBBBB")
+        print(cell)
         return cell
     }
     
@@ -57,8 +59,13 @@ class MapPlaylistController: BaseViewController<MapPlaylistView>,UITableViewData
 //            navigationItem.style = .navigator
 //        }
  
-        getCount()
+
+
         
+        getCount()
+        musicsTableView.delegate = self
+        musicsTableView.dataSource = self
+        musicsTableView.reloadData()
         
     }
     
@@ -91,9 +98,9 @@ class MapPlaylistController: BaseViewController<MapPlaylistView>,UITableViewData
     func getCount (){
         var musicCount = self.musicData!.count
        
-        for _ in 1...musicCount {
-            print("Print da Anottation ------")
-            print(MapPlaylistController.mapView?.allPlacements)
+        for i in 1...musicCount {
+            print("Print da Anottation \(i) ------")
+            dump(MapPlaylistController.mapView?.allPlacements)
             musicsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "contactCell")
         }
     }

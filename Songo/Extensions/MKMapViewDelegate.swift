@@ -5,6 +5,12 @@
 //  Created by Amanda Melo on 26/01/23.
 //
 
+//  MKMapViewDelegate.swift
+//  Songo
+//
+//  Created by Amanda Melo on 26/01/23.
+//
+
 import Foundation
 import MapKit
 import UIKit
@@ -32,14 +38,17 @@ extension MapViewController: MKMapViewDelegate {
         if let clusterPlacement = view.annotation as? MKClusterAnnotation, clusterPlacement.isKind(of: MKClusterAnnotation.self) {
             let pin = view.annotation
             let playlistViewController = MapPlaylistController(cluster: clusterPlacement)
-            
+            print("apertei")
             // Create half-modal
             playlistViewController.modalPresentationStyle = .custom
 //            playlistViewController.transitioningDelegate = self
             present(playlistViewController, animated: true)
             
             
-            mapView.deselectAnnotation(pin, animated: true)
+            
+            
+            
+            //mapView.deselectAnnotation(pin, animated: true)
         }
     }
     

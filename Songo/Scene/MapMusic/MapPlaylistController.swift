@@ -82,18 +82,9 @@ class MapPlaylistController: BaseViewController<MapPlaylistView>,UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let listLayout = listLayout()
+//        let listLayout = listLayout()
 //        listStyleSegmentedControl.selectedSegmentIndex = listStyle.rawValue
-////        listStyleSegmentedControl.addTarget(
-////            self, action: #selector(didChangeListStyle(_:)), for: .valueChanged)
 //        navigationItem.titleView = listStyleSegmentedControl
-
-//        if #available(iOS 16, *) {
-//            navigationItem.style = .navigator
-//        }
- 
-
-
         
         getCount()
         musicsTableView.delegate = self
@@ -140,27 +131,3 @@ class MapPlaylistController: BaseViewController<MapPlaylistView>,UITableViewData
    
     
 }
-//enum ReminderListStyle: Int {
-//    case today
-//    case future
-//    case all
-//
-//    var name: String {
-//        switch self {
-//        case .today:
-//            return NSLocalizedString("Today", comment: "Today style name")
-//        case .future:
-//            return NSLocalizedString("Future", comment: "Future style name")
-//        case .all:
-//            return NSLocalizedString("All", comment: "All style name")
-//        }
-//    }
-
-//}
-//struct Reminder {
-//    var title: String
-//    var dueDate: Date
-//    var notes: String? = nil
-//    var isComplete: Bool = false
-//}
-//

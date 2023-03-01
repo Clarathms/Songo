@@ -108,17 +108,18 @@ class MapViewController: BaseViewController<MapView> {
         isLocationOn = locationController.isLocationOn
         guard let location = locationController.location?.coordinate else { return }
         updateOverlay(location: location)
-        if AppData.shared.currentStreaming == .appleMusic {
-            SceneDelegate.appContainer.updateStreaming()
-            mainView.currentStreaming = SceneDelegate.appContainer.currentStreaming
-        }
     }
     override func viewDidAppear(_ animated: Bool) {
+        print(AppData.shared.currentStreaming)
         Task {
             mainView.displayedPlacements = await AppData.shared.loadMusics()
             await mainView.allPlacements.append(contentsOf: AppData.shared.loadMusics())
         }
         if AppData.shared.currentStreaming != .appleMusic {
+            mainView.currentStreaming = SceneDelegate.appContainer.currentStreaming
+        }
+        if AppData.shared.currentStreaming == .appleMusic {
+            SceneDelegate.appContainer.updateStreaming()
             mainView.currentStreaming = SceneDelegate.appContainer.currentStreaming
         }
         mainView.currentSongView = AddCurrentSongView(width: UIScreen.main.bounds.width * 0.9, height: 81, mapView: mainView, currentStreaming: mainView.currentStreaming)

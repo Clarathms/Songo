@@ -40,6 +40,7 @@ extension MapViewController: CLLocationManagerDelegate {
         if isTrackingUserModeEnabled { mainView.setRegionToUserCurrentLocation(userLocation: location) }
         
         updateOverlay(location: location.coordinate)
+//        updateOverlay(location: CLLocationCoordinate2D(latitude: 40.748594910689874, longitude: -73.9856644020802))
         
         updateReactiveButton()
         //self.mapView.currentSongView?.addSongButton.updateReactiveButton()

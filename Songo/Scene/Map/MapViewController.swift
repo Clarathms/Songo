@@ -108,17 +108,18 @@ class MapViewController: BaseViewController<MapView> {
         isLocationOn = locationController.isLocationOn
         guard let location = locationController.location?.coordinate else { return }
         updateOverlay(location: location)
-        if AppData.shared.currentStreaming == .appleMusic {
-            SceneDelegate.appContainer.updateStreaming()
-            mainView.currentStreaming = SceneDelegate.appContainer.currentStreaming
-        }
     }
     override func viewDidAppear(_ animated: Bool) {
+        print(AppData.shared.currentStreaming)
         Task {
             mainView.displayedPlacements = await AppData.shared.loadMusics()
             await mainView.allPlacements.append(contentsOf: AppData.shared.loadMusics())
         }
         if AppData.shared.currentStreaming != .appleMusic {
+            mainView.currentStreaming = SceneDelegate.appContainer.currentStreaming
+        }
+        if AppData.shared.currentStreaming == .appleMusic {
+            SceneDelegate.appContainer.updateStreaming()
             mainView.currentStreaming = SceneDelegate.appContainer.currentStreaming
         }
         mainView.currentSongView = AddCurrentSongView(width: UIScreen.main.bounds.width * 0.9, height: 81, mapView: mainView, currentStreaming: mainView.currentStreaming)
@@ -147,10 +148,12 @@ class MapViewController: BaseViewController<MapView> {
     func updateLocationButton() {
         guard isLocationOn,
               let userLocation = locationController.location
+                
         else { mainView.locationButton.setButtonState(state: .userNotFocus); return }
         
         let centerCoordinate = CLLocation(latitude: mainView.region.center.latitude, longitude: mainView.region.center.longitude)
-        
+
+
         let distanceFromUserToMapCenterRegion = userLocation.distance(from: centerCoordinate)
         
         if distanceFromUserToMapCenterRegion > 5 {
@@ -182,6 +185,7 @@ class MapViewController: BaseViewController<MapView> {
     func goToMyLocation() {
         guard let userLocation = locationController.location else { return }
         isTrackingUserModeEnabled = true
+//        mainView.setCenter(CLLocationCoordinate2D(latitude: 40.748594910689874, longitude: -73.9856644020802), animated: true)
         mainView.setCenter(userLocation.coordinate, animated: true)
 //        updateAnnotations()
     }

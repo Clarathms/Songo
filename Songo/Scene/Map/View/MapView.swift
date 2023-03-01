@@ -133,12 +133,15 @@ class MapView: MKMapView  {
     /// - Parameter userLocation: the location of the user given by the LocationController.
     func setRegionToUserCurrentLocation(userLocation: CLLocation) {
         setCenter(userLocation.coordinate, animated: true)
+//        setCenter(CLLocationCoordinate2D(latitude: 40.748594910689874, longitude: -73.9856644020802), animated: true)
     }
     /// Set the limited zoom region.
     /// - Parameter userLocation: the location of the user given by the LocationController.
     func setRegionToUserCurrentLocationWithZoomLimits(userLocation: CLLocation) {
         let region = MKCoordinateRegion.init(center: userLocation.coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
         setRegion(region, animated: true)
+//        let region = MKCoordinateRegion.init(center: CLLocationCoordinate2D(latitude: 40.748594910689874, longitude: -73.9856644020802), latitudinalMeters: 1000, longitudinalMeters: 1000)
+//        setRegion(region, animated: true)
     }
     
     //MARK: - Annotations
@@ -185,6 +188,9 @@ class MapView: MKMapView  {
         
         guard let userLocation2 = locationController.location?.coordinate else { return }
         var userLocation = userLocation2
+//        CLLocationCoordinate2D(latitude: 40.748594910689874, longitude: -73.9856644020802)
+//        userLocation.latitude += CLLocationDegrees.random(in: -0.02...0.02)
+//        userLocation.longitude =
         userLocation.latitude += CLLocationDegrees.random(in: -0.02...0.02)
         userLocation.longitude += CLLocationDegrees.random(in: -0.02...0.02)
         

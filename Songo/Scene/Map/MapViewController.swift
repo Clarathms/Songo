@@ -147,10 +147,12 @@ class MapViewController: BaseViewController<MapView> {
     func updateLocationButton() {
         guard isLocationOn,
               let userLocation = locationController.location
+                
         else { mainView.locationButton.setButtonState(state: .userNotFocus); return }
         
         let centerCoordinate = CLLocation(latitude: mainView.region.center.latitude, longitude: mainView.region.center.longitude)
-        
+
+
         let distanceFromUserToMapCenterRegion = userLocation.distance(from: centerCoordinate)
         
         if distanceFromUserToMapCenterRegion > 5 {
@@ -182,6 +184,7 @@ class MapViewController: BaseViewController<MapView> {
     func goToMyLocation() {
         guard let userLocation = locationController.location else { return }
         isTrackingUserModeEnabled = true
+//        mainView.setCenter(CLLocationCoordinate2D(latitude: 40.748594910689874, longitude: -73.9856644020802), animated: true)
         mainView.setCenter(userLocation.coordinate, animated: true)
 //        updateAnnotations()
     }

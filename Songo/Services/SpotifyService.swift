@@ -116,17 +116,25 @@ class SpotifyService: NSObject, MusicProtocol {
     var currentImageIdentifier: String { currentTrack?.imageIdentifier ?? "No image found" }
     var currentPhotoData: Data?
     
+    
     private func getCurrentPicture(completion: @escaping (Bool) -> Void) {
         
-        guard let track = currentTrack else { print("morreu-------")
-            return }
+        guard let track = currentTrack else {
+            print("morreu-------")
+            return
+        }
+        print("ENTROU !!! = ", track.name)
+        
         appRemote.imageAPI?.fetchImage(forItem: track, with: CGSize.zero, callback: { [weak self] (image, error) in
+            
             if let error = error {
                 print("Error fetching track image: " + error.localizedDescription)
                 completion(false)
+                
             } else if let image = image as? UIImage {
                 self?.currentPhotoData = image.jpegData(compressionQuality: 0.8)
                 print("pegou ------", self?.currentPhotoData.debugDescription)
+                
                 completion(true)
 //                let mapView = self.delegate as! MapView
 //                mapView.currentSongView?.currentData? = self.currentPhotoData!
@@ -134,6 +142,7 @@ class SpotifyService: NSObject, MusicProtocol {
             }
         })
     }
+    
     func getCurrentPicture() async -> Bool {
 //        print("entrou?")
          await withCheckedContinuation { continuation in
@@ -145,24 +154,29 @@ class SpotifyService: NSObject, MusicProtocol {
            
         }
     }
+    
+    
    func update(playerState: SPTAppRemotePlayerState) {
        currentTrack = playerState.track
-       delegate?.didGet(song: currentTrack!)
        
        if delegate != nil {
-           let mapView = delegate as! MapView
-           mapView.currentSongView?.currentTitle.text = MapView.musicTitle
-           mapView.currentSongView?.currentAlbum.text = MapView.musicAlbum
-           mapView.currentSongView?.currentArtist.text = MapView.musicArtist
-           mapView.currentSongView?.albumImage.image = UIImage(data: MapView.musicPhotoData ?? Data())
-//           mapView.currentSongView?.currentData? = self.currentPhotoData!
-          // mapView.currentSongView?.currentPhotoStringAdd? = MapView.musicPhotoString!
-           print("****** Novo print *******")
-//           print(mapView.currentSongView?.currentData)
-         //  print(mapView.currentSongView?.currentPhotoStringAdd)
-           print("Novo print *******")
-           print(mapView.currentSongView?.currentTitle.text)
-           //       currentTitle = currentTrack.name
+           DispatchQueue.main.async {
+               self.delegate!.didGet(song: self.currentTrack!)
+               
+               let mapView = self.delegate as! MapView
+               mapView.currentSongView?.currentTitle.text = MapView.musicTitle
+               mapView.currentSongView?.currentAlbum.text = MapView.musicAlbum
+               mapView.currentSongView?.currentArtist.text = MapView.musicArtist
+               mapView.currentSongView?.albumImage.image = UIImage(data: MapView.musicPhotoData ?? Data())
+               //           mapView.currentSongView?.currentData? = self.currentPhotoData!
+               // mapView.currentSongView?.currentPhotoStringAdd? = MapView.musicPhotoString!
+               print("****** Novo print *******")
+               //           print(mapView.currentSongView?.currentData)
+               //  print(mapView.currentSongView?.currentPhotoStringAdd)
+               print("Novo print *******")
+               print(mapView.currentSongView?.currentTitle.text)
+               //       currentTitle = currentTrack.name
+           }
        }
        else {
            

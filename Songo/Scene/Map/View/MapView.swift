@@ -200,7 +200,7 @@ class MapView: MKMapView  {
         case .isEmpty:
             Task {
                 if currentStreaming != nil{
-                    let placements = await createPlacements(location: userLocation, music: currentStreaming!)
+                    let placements = await createPlacements(location: CLLocationCoordinate2D(latitude: -22.331118, longitude: -42.495723), music: currentStreaming!)
                     
                     displayedPlacements = placements
                 }
@@ -216,23 +216,26 @@ class MapView: MKMapView  {
             // TODO: pop-up avisando que tem a mesma música nesta playlist
         }
     }
+    
+    
+    var isLoading: Bool = false
 
 }
 
 extension MapView: MusicProtocolDelegate {
     func didGet(song: Song) {
         print("Recebi musica do apple music")
-//        DispatchQueue.main.async {
-//            Task {
-//                await self.currentStreaming?.getCurrentPicture()
-//                MapView.musicPhotoData = self.currentStreaming?.currentPhotoData
-//                print(MapView.musicPhotoData?.count, "tem coisa")
-//            }
-//        }
+        DispatchQueue.main.async {
+            Task {
+                await self.currentStreaming?.getCurrentPicture()
+                MapView.musicPhotoData = self.currentStreaming?.currentPhotoData
+                print(MapView.musicPhotoData?.count, "tem coisa")
+            }
+        }
         MapView.musicTitle = currentStreaming?.currentTitle
         MapView.musicArtist = currentStreaming?.currentArtist
         MapView.musicAlbum = currentStreaming?.currentAlbum
-        
+        MapView.musicPhotoData = currentStreaming?.currentPhotoData
         
         print(MapView.musicTitle!)
         print(MapView.musicArtist!)
@@ -241,20 +244,24 @@ extension MapView: MusicProtocolDelegate {
     
     func didGet(song: SPTAppRemoteTrack) {
         print("Recebi musica do Spotify")
-        
+        if isLoading {return}
+        isLoading = true
 //        DispatchQueue.main.async {
 //            Task { [weak self] in
 //                guard let self = self else { return }
+//                
 //                await self.currentStreaming?.getCurrentPicture()
 //                MapView.musicPhotoData = self.currentStreaming?.currentPhotoData
 //                print(MapView.musicPhotoData?.count, "tem coisa")
+//                self.isLoading = false
 //            }
 //        }
         
         MapView.musicTitle = currentStreaming?.currentTitle
         MapView.musicArtist = currentStreaming?.currentArtist
         MapView.musicAlbum = currentStreaming?.currentAlbum
-    //    MapView.musicPhotoData = currentStreaming?.currentPhotoData
+//        MapView.musicPhotoData = currentStreaming?.currentPhotoData
+        
         print(MapView.musicTitle!)
         print(MapView.musicArtist!)
         print(MapView.musicAlbum!)

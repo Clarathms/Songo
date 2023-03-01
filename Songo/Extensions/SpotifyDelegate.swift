@@ -16,7 +16,9 @@ extension SpotifyService: SPTAppRemotePlayerStateDelegate {
         print("__________", playerState.description)
         debugPrint("Spotify Track name: %@", playerState.track.name)
 //        self.currentTrack = playerState.track
+        fetchArtwork(for: playerState.track)
         update(playerState: playerState)
+        
 
     }
     

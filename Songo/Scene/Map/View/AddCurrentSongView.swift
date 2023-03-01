@@ -18,7 +18,6 @@ class AddCurrentSongView: UIView {
     let myImageView = UIImageView(frame: CGRect(x: UIScreen.main.bounds.maxX/1.35, y: UIScreen.main.bounds.maxY/30, width: UIScreen.main.bounds.width/18, height:  UIScreen.main.bounds.height/35))
     
     var albumImage = UIImageView(frame: CGRect(x: UIScreen.main.bounds.maxX/4, y: UIScreen.main.bounds.midY/25, width: UIScreen.main.bounds.width/2, height:  UIScreen.main.bounds.height/25))
-    
 
     var currentTitle = UILabel(frame: CGRect(x: UIScreen.main.bounds.maxX/4.8, y: UIScreen.main.bounds.midY/25, width: UIScreen.main.bounds.width/2, height:  UIScreen.main.bounds.height/25))
     
@@ -29,15 +28,17 @@ class AddCurrentSongView: UIView {
     var separationDot = UILabel(frame: CGRect(x: UIScreen.main.bounds.maxX/2.3, y: UIScreen.main.bounds.midY/20, width: UIScreen.main.bounds.width/16, height:  UIScreen.main.bounds.height/20))
 
     var mapView: MapView
-    var artistaString: String = MapView.musicArtist ?? "Sem artista"
-    var albumString: String = MapView.musicAlbum ?? "Sem album"
+//    var artistaString: String = MapView.musicArtist ?? "Sem artista"
+//    var albumString: String = MapView.musicAlbum ?? "Sem album"
     
     var labelText = UILabel(frame: CGRect(x: UIScreen.main.bounds.maxX/4.8, y: UIScreen.main.bounds.midY/10, width: UIScreen.main.bounds.width/3, height:  UIScreen.main.bounds.height/25))
     
     
     var currentPhotoData: Data?
     var currentPhotoStringAdd: String?
+    
     //var songButtonView = SongButtonView()
+    
     var state: UIControl.State = .addCurrentSong
     var currentStreaming: MusicProtocol?
     var musicPicture: UIImage?
@@ -53,15 +54,12 @@ class AddCurrentSongView: UIView {
 //    lazy var musicTitle: String? = { currentStreaming?.currentTitle }()
 //    lazy var musicArtist: String? = { currentStreaming?.currentArtist }()
 //    lazy var musicAlbum: String? = { currentStreaming?.currentAlbum}()
-//
+
     var allPlacements: [MKAnnotation] = []
     
 
     var imgListArray :[UIImage] = []
     var soundFrames: UIImage!
-            
-   
-    
     
     
     init(width:CGFloat, height:Int, mapView: MapView, currentStreaming: MusicProtocol?) {
@@ -151,10 +149,10 @@ class AddCurrentSongView: UIView {
         self.addSubview(currentAlbum)
     }
     
-
     func image() {
         self.albumImage.image = UIImage(named: "frame1")
     }
+    
     func createAnimation () {
         for num in 1...10{
             //let strImageName : String = "foto\(num)"

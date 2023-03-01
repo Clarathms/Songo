@@ -200,7 +200,7 @@ class MapView: MKMapView  {
         case .isEmpty:
             Task {
                 if currentStreaming != nil{
-                    let placements = await createPlacements(location: CLLocationCoordinate2D(latitude: -22.331118, longitude: -42.495723), music: currentStreaming!)
+                    let placements = await createPlacements(location: userLocation, music: currentStreaming!)
                     
                     displayedPlacements = placements
                 }

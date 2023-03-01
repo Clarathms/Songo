@@ -13,6 +13,7 @@ import MapKit
 import Combine
 
 class AddCurrentSongView: UIView {
+    
     var background: UIView!
     
     let myImageView = UIImageView(frame: CGRect(x: UIScreen.main.bounds.maxX/1.35, y: UIScreen.main.bounds.maxY/30, width: UIScreen.main.bounds.width/18, height:  UIScreen.main.bounds.height/35))
@@ -32,7 +33,6 @@ class AddCurrentSongView: UIView {
 //    var albumString: String = MapView.musicAlbum ?? "Sem album"
     
     var labelText = UILabel(frame: CGRect(x: UIScreen.main.bounds.maxX/4.8, y: UIScreen.main.bounds.midY/10, width: UIScreen.main.bounds.width/3, height:  UIScreen.main.bounds.height/25))
-    
     
     var currentPhotoData: Data?
     var currentPhotoStringAdd: String?
@@ -56,7 +56,6 @@ class AddCurrentSongView: UIView {
 //    lazy var musicAlbum: String? = { currentStreaming?.currentAlbum}()
 
     var allPlacements: [MKAnnotation] = []
-    
 
     var imgListArray :[UIImage] = []
     var soundFrames: UIImage!
@@ -76,7 +75,7 @@ class AddCurrentSongView: UIView {
         setupCurrentTitle()
         setupArtist()
         setupAlbum()
-        setupDot()
+//        setupDot()
         createAnimation()
       //  image()
        

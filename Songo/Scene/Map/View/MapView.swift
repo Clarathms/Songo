@@ -232,10 +232,11 @@ extension MapView: MusicProtocolDelegate {
                 print(MapView.musicPhotoData?.count, "tem coisa")
             }
         }
+        
         MapView.musicTitle = currentStreaming?.currentTitle
         MapView.musicArtist = currentStreaming?.currentArtist
         MapView.musicAlbum = currentStreaming?.currentAlbum
-        MapView.musicPhotoData = currentStreaming?.currentPhotoData
+//        MapView.musicPhotoData = currentStreaming?.currentPhotoData
         
         print(MapView.musicTitle!)
         print(MapView.musicArtist!)

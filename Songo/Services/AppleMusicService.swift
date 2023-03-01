@@ -32,7 +32,7 @@ class AppleMusicService: MusicProtocol {
     func authenticate() {
         checkAppleMusicAuthorization()
         cancellable = SystemMusicPlayer.shared.state.objectWillChange.sink(receiveValue: { state in
-            let musicState = SystemMusicPlayer.shared.state.playbackStatus
+//            let musicState = SystemMusicPlayer.shared.state.playbackStatus
             self.currentMusicID = SystemMusicPlayer.shared.queue.currentEntry?.item?.id
             DispatchQueue.main.async {
                 Task {

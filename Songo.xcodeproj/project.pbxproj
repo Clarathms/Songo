@@ -15,6 +15,7 @@
 		AD68738E298C454300EF5F61 /* MapLocationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD68738D298C454300EF5F61 /* MapLocationButton.swift */; };
 		AD6B72E829A004D200DC024F /* SpotifyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B72E729A004D200DC024F /* SpotifyService.swift */; };
 		AD7E5B6C299AC0AB00A1FB66 /* AddCurrentSongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7E5B6B299AC0AB00A1FB66 /* AddCurrentSongView.swift */; };
+		AD84BFDF29AF4E010063F819 /* StyleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD84BFDE29AF4E010063F819 /* StyleCell.swift */; };
 		AD956249299173A40045C68F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD956248299173A40045C68F /* ProfileViewController.swift */; };
 		AD95624B2991A4700045C68F /* PlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD95624A2991A4700045C68F /* PlaylistViewController.swift */; };
 		DE4C8EC32981A12D0065C813 /* ClusterPlacementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4C8EC22981A12D0065C813 /* ClusterPlacementView.swift */; };
@@ -77,6 +78,7 @@
 		AD68738D298C454300EF5F61 /* MapLocationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapLocationButton.swift; sourceTree = "<group>"; };
 		AD6B72E729A004D200DC024F /* SpotifyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyService.swift; sourceTree = "<group>"; };
 		AD7E5B6B299AC0AB00A1FB66 /* AddCurrentSongView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCurrentSongView.swift; sourceTree = "<group>"; };
+		AD84BFDE29AF4E010063F819 /* StyleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleCell.swift; sourceTree = "<group>"; };
 		AD956248299173A40045C68F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		AD95624A2991A4700045C68F /* PlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistViewController.swift; sourceTree = "<group>"; };
 		DE4C8EC22981A12D0065C813 /* ClusterPlacementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterPlacementView.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 			children = (
 				DE4F3467298B05C7004EE2F9 /* SongPlacementController.swift */,
 				DEEF6AA729918B3D0046DD90 /* MapPlaylistController.swift */,
+				AD84BFDE29AF4E010063F819 /* StyleCell.swift */,
 				DE58080229AD38B400ADAADE /* PlaylistPresentationController.swift */,
 				DE4F3469298B05F6004EE2F9 /* View */,
 			);
@@ -445,6 +448,7 @@
 				DE7319BD297F635A00A6197C /* MapView.swift in Sources */,
 				DE5DD18E298874C4002BEB3F /* TutorialPage1.swift in Sources */,
 				DE7319C62980581B00A6197C /* UIControl.swift in Sources */,
+				AD84BFDF29AF4E010063F819 /* StyleCell.swift in Sources */,
 				AD1E24582989BC0000D344E3 /* ProtocolTabBar.swift in Sources */,
 				DE7319C3298054D500A6197C /* SongButtonView.swift in Sources */,
 				DE66A93F299D489500BD21FA /* Array.swift in Sources */,

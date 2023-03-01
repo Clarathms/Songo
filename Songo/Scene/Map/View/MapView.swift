@@ -216,13 +216,13 @@ class MapView: MKMapView  {
 extension MapView: MusicProtocolDelegate {
     func didGet(song: Song) {
         print("Recebi musica do apple music")
-        DispatchQueue.main.async {
-            Task {
-                await self.currentStreaming?.getCurrentPicture()
-                MapView.musicPhotoData = self.currentStreaming?.currentPhotoData
-                print(MapView.musicPhotoData?.count, "tem coisa")
-            }
-        }
+//        DispatchQueue.main.async {
+//            Task {
+//                await self.currentStreaming?.getCurrentPicture()
+//                MapView.musicPhotoData = self.currentStreaming?.currentPhotoData
+//                print(MapView.musicPhotoData?.count, "tem coisa")
+//            }
+//        }
         MapView.musicTitle = currentStreaming?.currentTitle
         MapView.musicArtist = currentStreaming?.currentArtist
         MapView.musicAlbum = currentStreaming?.currentAlbum

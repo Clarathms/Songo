@@ -17,5 +17,8 @@ extension UIColor {
         return #colorLiteral(red: 0.6392156863, green: 0.8196078431, blue: 0.8, alpha: 1)
     }
     
+    public class var fundoPlaylist: UIColor {
+        return #colorLiteral(red: 0.0431372549, green: 0.4, blue: 0.3725490196, alpha: 1)
+    }
     
 }

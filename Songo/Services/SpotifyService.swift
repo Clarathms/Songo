@@ -120,13 +120,13 @@ class SpotifyService: NSObject, MusicProtocol {
         
         guard let track = currentTrack else { print("morreu-------")
             return }
-        appRemote.imageAPI?.fetchImage(forItem: track, with: CGSize.zero, callback: { (image, error) in
+        appRemote.imageAPI?.fetchImage(forItem: track, with: CGSize.zero, callback: { [weak self] (image, error) in
             if let error = error {
                 print("Error fetching track image: " + error.localizedDescription)
                 completion(false)
             } else if let image = image as? UIImage {
-                self.currentPhotoData = image.jpegData(compressionQuality: 0.8)
-                print("pegou ------", self.currentPhotoData.debugDescription)
+                self?.currentPhotoData = image.jpegData(compressionQuality: 0.8)
+                print("pegou ------", self?.currentPhotoData.debugDescription)
                 completion(true)
 //                let mapView = self.delegate as! MapView
 //                mapView.currentSongView?.currentData? = self.currentPhotoData!

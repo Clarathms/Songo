@@ -243,12 +243,14 @@ extension MapView: MusicProtocolDelegate {
         print("Recebi musica do Spotify")
         
 //        DispatchQueue.main.async {
-//            Task {
+//            Task { [weak self] in
+//                guard let self = self else { return }
 //                await self.currentStreaming?.getCurrentPicture()
 //                MapView.musicPhotoData = self.currentStreaming?.currentPhotoData
 //                print(MapView.musicPhotoData?.count, "tem coisa")
 //            }
 //        }
+        
         MapView.musicTitle = currentStreaming?.currentTitle
         MapView.musicArtist = currentStreaming?.currentArtist
         MapView.musicAlbum = currentStreaming?.currentAlbum

@@ -45,29 +45,6 @@ class MapView: MKMapView  {
     weak var locationController: LocationController?
     var currentStreaming: MusicProtocol?
 
-    
-    var displayedPlacements: [MKAnnotation]? {
-        willSet {
-            if let currentPlacements = displayedPlacements {
-                print("removendo", currentPlacements.count)
-                removeAnnotations(currentPlacements)
-                print("removendo...")
-            }
-        }
-        didSet {
-            if let newPlacements = displayedPlacements {
-//                let previousCount: Int = oldValue?.count ?? 0
-//                let newPlacement = Array(newPlacements.suffix(newPlacements.count - previousCount))
-//                print("Vai mostrar ", newPlacement.count - previousCount)
-                print("mostrando", newPlacements.count)
-                addAnnotations(newPlacements)
-//                                AppData.shared.update(musics: newPlacements)
-                print("mostrando...")
-            }
-        }
-    }
-    
-    var allPlacements: [MKAnnotation] = []
     //MARK: - Initializers
     init(locationController: LocationController) {
 
@@ -146,75 +123,7 @@ class MapView: MKMapView  {
     
     //MARK: - Annotations
     
-    enum PlacementStatus {
-        case hasSameMusic
-        case canAdd
-    }
-    /// Check if user can add annotation.
-    /// - Parameter userLocation: Current user location.
-    /// - Returns: Returns if userLocation variable is not being used in any other annotation.
-    private func canAddPlacement(_ userLocation: CLLocationCoordinate2D) -> PlacementStatus {
-        
-        if !allPlacements.isEmpty {
-            for annotations in allPlacements{
-                //TODO: determinar e calcular distancia para que as músicas sejam consideradas no mesmo local
-                if annotations.coordinate == userLocation {
-                    if annotations.title == currentStreaming?.currentTitle {
-                        return .hasSameMusic
-                    }
-                    return .canAdd
-                }
-            }
-        }
-        return .canAdd
-    }
-    
-    public func createPlacements (location: CLLocationCoordinate2D, music: MusicProtocol) async -> [MKAnnotation] {
-        print("music name -------", music.currentTitle)
-        await music.getCurrentPicture()
-        let placement = MusicPlacementModel(latitude: location.latitude, longitude: location.longitude, title: music.currentTitle, artist: music.currentArtist, musicData: music.currentPhotoData)
-        allPlacements.append(placement)
-        print("all", allPlacements.count)
-        print("foto-------", music.currentPhotoData.debugDescription)
-        AppData.shared.update(musics: allPlacements)
-        
-        return await AppData.shared.loadMusics()
-    }
-    
-    func addPlacement() {
-        guard let locationController = locationController else { fatalError("No locationController at \(#function)") }
-        //        let appleMusicService = appleMusicService else { fatalError("No locationController or appleMusicService at \(#function)") }
-        
-        guard let userLocation2 = locationController.location?.coordinate else { return }
-        var userLocation = userLocation2
-//        CLLocationCoordinate2D(latitude: 40.748594910689874, longitude: -73.9856644020802)
-//        userLocation.latitude += CLLocationDegrees.random(in: -0.02...0.02)
-//        userLocation.longitude =
-//        userLocation.latitude += CLLocationDegrees.random(in: -0.02...0.02)
-//        userLocation.longitude += CLLocationDegrees.random(in: -0.02...0.02)
-        
-        locationController.updateLastLocation()
-        
-        switch canAddPlacement(userLocation) {
-        case .canAdd:
-            Task {
-                if currentStreaming != nil{
-                    let placements = await createPlacements(location: userLocation, music: currentStreaming!)
-                    
-                    displayedPlacements = placements
-                }
-                else{
-                    print("NULOO")
-                }
-            }
-        case .hasSameMusic:
-            break
-            
-            // TODO: adiciona música na view de playlist
-            // TODO: checa se tem essa música na view de playlist
-            // TODO: pop-up avisando que tem a mesma música nesta playlist
-        }
-    }
+
     
     
     var isLoading: Bool = false
@@ -235,7 +144,7 @@ extension MapView: MusicProtocolDelegate {
         MapView.musicTitle = currentStreaming?.currentTitle
         MapView.musicArtist = currentStreaming?.currentArtist
         MapView.musicAlbum = currentStreaming?.currentAlbum
-        MapView.musicPhotoData = currentStreaming?.currentPhotoData
+//        MapView.musicPhotoData = currentStreaming?.currentPhotoData
         
         print(MapView.musicTitle!)
         print(MapView.musicArtist!)

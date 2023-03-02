@@ -55,6 +55,41 @@ class MapViewController: BaseViewController<MapView> {
         return true
     }
     
+    var addSameMusic: UIAlertController = {
+        let title = "Essa música já foi adicionada"
+        let message = "Você já adicionou essa música em uma localidade próxima."
+        let preferredStyle = UIAlertController.Style.actionSheet
+        let alert = UIAlertController(title: title, message: message, preferredStyle: preferredStyle)
+        return alert
+    }()
+    
+    var displayedPlacements: [MKAnnotation]? {
+        willSet {
+            if let currentPlacements = displayedPlacements {
+                print("removendo", currentPlacements.count)
+                mainView.removeAnnotations(currentPlacements)
+                print("removendo...")
+            }
+        }
+        didSet {
+            if let newPlacements = displayedPlacements {
+//                let previousCount: Int = oldValue?.count ?? 0
+//                let newPlacement = Array(newPlacements.suffix(newPlacements.count - previousCount))
+//                print("Vai mostrar ", newPlacement.count - previousCount)
+                print("mostrando", newPlacements.count)
+                mainView.addAnnotations(newPlacements)
+//                                AppData.shared.update(musics: newPlacements)
+                print("mostrando...")
+            }
+        }
+    }
+    
+    var allPlacements: [MKAnnotation] = []
+    
+    private func addAlertAction() {
+        addSameMusic.addAction(UIAlertAction(title: "Ok!", style: .default, handler: nil))
+    }
+    
     private func isRefreshRequired(previousZoomLevel: Int, currentZoomLevel: Int) -> Bool {
         var refreshRequired = false
         if currentZoomLevel > self.maxZoomLevel && previousZoomLevel <= self.maxZoomLevel {
@@ -98,6 +133,7 @@ class MapViewController: BaseViewController<MapView> {
         setupGestures()
         setupMapViewDelegate()
         registerMapPlacementViews()
+        addAlertAction()
     }
     override func viewDidLayoutSubviews() {
         mainView.setupMapView()
@@ -112,8 +148,8 @@ class MapViewController: BaseViewController<MapView> {
     override func viewDidAppear(_ animated: Bool) {
         print(AppData.shared.currentStreaming)
         Task {
-            mainView.displayedPlacements = await AppData.shared.loadMusics()
-            await mainView.allPlacements.append(contentsOf: AppData.shared.loadMusics())
+            displayedPlacements = await AppData.shared.loadMusics()
+            await allPlacements.append(contentsOf: AppData.shared.loadMusics())
         }
         SceneDelegate.appContainer.updateStreaming()
         mainView.currentStreaming = SceneDelegate.appContainer.currentStreaming
@@ -161,7 +197,7 @@ class MapViewController: BaseViewController<MapView> {
     /// Sets the object that changes the properties by the state.
     @objc func handleAddSongButtonAction() {
         print("alou", mainView.currentStreaming)
-        mainView.addPlacement()
+        addPlacement()
     }
 
     @objc func handleLocationButtonAction() {
@@ -199,4 +235,76 @@ class MapViewController: BaseViewController<MapView> {
         let alert = UIAlertController(title: title, message: message, preferredStyle: preferredStyle)
         return alert
     }()
+    
+    enum PlacementStatus {
+        case hasSameMusic
+        case canAdd
+    }
+    /// Check if user can add annotation.
+    /// - Parameter userLocation: Current user location.
+    /// - Returns: Returns if userLocation variable is not being used in any other annotation.
+    private func canAddPlacement(_ userLocation: CLLocationCoordinate2D) -> PlacementStatus {
+        var placementStatus: PlacementStatus = .canAdd
+        
+        if !allPlacements.isEmpty {
+            
+            for annotation in allPlacements{
+                
+                let distanceFromUserToAnnotation = locationController.calculateDistance(userLocation: CLLocation(latitude: userLocation.latitude, longitude: userLocation.longitude), annotationCoordinate: annotation.coordinate)
+                
+                //TODO: determinar e calcular distancia para que as músicas sejam consideradas no mesmo local
+                if distanceFromUserToAnnotation < 250 &&  annotation.title == mainView.currentStreaming?.currentTitle {
+                    placementStatus = .hasSameMusic
+                }
+            }
+        }
+        return placementStatus
+    }
+    
+    public func createPlacements (location: CLLocationCoordinate2D, music: MusicProtocol) async -> [MKAnnotation] {
+        print("music name -------", music.currentTitle)
+        await music.getCurrentPicture()
+        let placement = MusicPlacementModel(latitude: location.latitude, longitude: location.longitude, title: music.currentTitle, artist: music.currentArtist, musicData: music.currentPhotoData)
+        allPlacements.append(placement)
+        print("all", allPlacements.count)
+        print("foto-------", music.currentPhotoData.debugDescription)
+        AppData.shared.update(musics: allPlacements)
+        
+        return await AppData.shared.loadMusics()
+    }
+    
+    func addPlacement() {
+//        guard let locationController = locationController else { fatalError("No locationController at \(#function)") }
+        //        let appleMusicService = appleMusicService else { fatalError("No locationController or appleMusicService at \(#function)") }
+        
+        guard let userLocation2 = locationController.location?.coordinate else { return }
+        let userLocation = userLocation2
+//        CLLocationCoordinate2D(latitude: 40.748594910689874, longitude: -73.9856644020802)
+//        userLocation.latitude += CLLocationDegrees.random(in: -0.02...0.02)
+//        userLocation.longitude =
+//        userLocation.latitude += CLLocationDegrees.random(in: -0.02...0.02)
+//        userLocation.longitude += CLLocationDegrees.random(in: -0.02...0.02)
+        
+        locationController.updateLastLocation()
+        
+        switch canAddPlacement(userLocation) {
+        case .canAdd:
+            Task {
+                if mainView.currentStreaming != nil{
+                    let placements = await createPlacements(location: userLocation, music: mainView.currentStreaming!)
+                    
+                    displayedPlacements = placements
+                }
+                else{
+                    print("NULOO")
+                }
+            }
+        case .hasSameMusic:
+            present(addSameMusic, animated: true, completion: nil)
+            
+            // TODO: adiciona música na view de playlist
+            // TODO: checa se tem essa música na view de playlist
+            // TODO: pop-up avisando que tem a mesma música nesta playlist
+        }
+    }
 }

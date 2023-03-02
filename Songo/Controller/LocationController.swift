@@ -32,6 +32,13 @@ class LocationController: CLLocationManager {
         return lastLocation
     }
     
+    /// Returns the distance (in meters) from the
+    /// user's location to the specified point.
+    func calculateDistance(userLocation: CLLocation, annotationCoordinate: CLLocationCoordinate2D) -> Double {
+        let annotationLocation = CLLocation(latitude: annotationCoordinate.latitude, longitude: annotationCoordinate.longitude)
+        return userLocation.distance(from: annotationLocation)
+    }
+    
     /// Check the localization authorization of the user.
     func checkLocationAuthorization() {
         switch authorizationStatus {

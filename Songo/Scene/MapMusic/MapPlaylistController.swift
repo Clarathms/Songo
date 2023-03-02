@@ -19,6 +19,8 @@ class MapPlaylistController: BaseViewController<MapPlaylistView> {
     
     typealias DataSource = UICollectionViewDiffableDataSource<Int, String>
     var dataSource: DataSource!
+    let myImageView:UIImageView = UIImageView()
+
     
     struct Cells {
         static let titleCell = "contactCell"
@@ -58,6 +60,8 @@ class MapPlaylistController: BaseViewController<MapPlaylistView> {
         tableView.separatorStyle = .singleLine
         tableView.rowHeight = 70
         tableView.backgroundColor = .fundoPlaylist
+        tableView.isScrollEnabled = true
+   //     tableView.scrollToRow(at: IndexPath, at: .bottom, animated: true)
         print("entrei na table view")
         tableView.register(StyleCell.self, forCellReuseIdentifier: Cells.styleCell)
         return tableView
@@ -153,12 +157,20 @@ class MapPlaylistController: BaseViewController<MapPlaylistView> {
         //    self.tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             self.tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
            // self.tableView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 2)
-            self.tableView.heightAnchor.constraint(equalTo: view.heightAnchor,multiplier: 1),
+            self.tableView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5),
             self.tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor,
                    constant: 8)
         ])
     }
-
+    func setupImage () {
+        myImageView.contentMode = UIView.ContentMode.scaleAspectFit
+        myImageView.frame.size.width = .zero
+        myImageView.frame.size.height = .zero
+        myImageView.tintColor = .white
+        myImageView.center = self.view.center
+        myImageView.image = UIImage(systemName: "rectangle.fill")
+        view.addSubview(myImageView)
+    }
     
     func setGradientBackground() {
         let colorTop =  UIColor(red: 0, green: 0, blue: 0, alpha: 0.2).cgColor
@@ -209,6 +221,9 @@ extension MapPlaylistController: UITableViewDataSource {
         
         cell.backgroundColor = .fundoPlaylist
         cell.selectionStyle = .none
+        
+        
+        
         return cell
     }
 }

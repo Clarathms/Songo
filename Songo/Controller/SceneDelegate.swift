@@ -93,7 +93,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             //        if let _ = spotifyService.appRemote.connectionParameters.accessToken {
             //            spotifyService.appRemote.connect()
             //        }
-        }
+        } 
     }
         
         func sceneWillResignActive(_ scene: UIScene) {

@@ -25,7 +25,6 @@
 		DE4C8ECC2982F2D50065C813 /* MKMapViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4C8ECB2982F2D50065C813 /* MKMapViewDelegate.swift */; };
 		DE4F3463298AECA3004EE2F9 /* UIGestureRecognizerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4F3462298AECA3004EE2F9 /* UIGestureRecognizerDelegate.swift */; };
 		DE4F3465298B048C004EE2F9 /* CLLocationCoordinate2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4F3464298B048C004EE2F9 /* CLLocationCoordinate2D.swift */; };
-		DE4F3468298B05C7004EE2F9 /* SongPlacementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4F3467298B05C7004EE2F9 /* SongPlacementController.swift */; };
 		DE4F346B298B0605004EE2F9 /* MusicPlacementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4F346A298B0604004EE2F9 /* MusicPlacementView.swift */; };
 		DE5807FD29A932CB00ADAADE /* CurrentSongController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5807FC29A932CB00ADAADE /* CurrentSongController.swift */; };
 		DE5807FF29AD2F1400ADAADE /* MusicPlaylistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5807FE29AD2F1400ADAADE /* MusicPlaylistCell.swift */; };
@@ -88,7 +87,6 @@
 		DE4C8ECB2982F2D50065C813 /* MKMapViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKMapViewDelegate.swift; sourceTree = "<group>"; };
 		DE4F3462298AECA3004EE2F9 /* UIGestureRecognizerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIGestureRecognizerDelegate.swift; sourceTree = "<group>"; };
 		DE4F3464298B048C004EE2F9 /* CLLocationCoordinate2D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLLocationCoordinate2D.swift; sourceTree = "<group>"; };
-		DE4F3467298B05C7004EE2F9 /* SongPlacementController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongPlacementController.swift; sourceTree = "<group>"; };
 		DE4F346A298B0604004EE2F9 /* MusicPlacementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlacementView.swift; sourceTree = "<group>"; };
 		DE5807FC29A932CB00ADAADE /* CurrentSongController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentSongController.swift; sourceTree = "<group>"; };
 		DE5807FE29AD2F1400ADAADE /* MusicPlaylistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlaylistCell.swift; sourceTree = "<group>"; };
@@ -196,7 +194,6 @@
 		DE4F3466298B059A004EE2F9 /* MapMusic */ = {
 			isa = PBXGroup;
 			children = (
-				DE4F3467298B05C7004EE2F9 /* SongPlacementController.swift */,
 				DEEF6AA729918B3D0046DD90 /* MapPlaylistController.swift */,
 				AD84BFDE29AF4E010063F819 /* StyleCell.swift */,
 				DE58080229AD38B400ADAADE /* PlaylistPresentationController.swift */,
@@ -486,7 +483,6 @@
 				DE66A92E299AA47100BD21FA /* LocationButtonView.swift in Sources */,
 				DE4C8EC32981A12D0065C813 /* ClusterPlacementView.swift in Sources */,
 				AD956249299173A40045C68F /* ProfileViewController.swift in Sources */,
-				DE4F3468298B05C7004EE2F9 /* SongPlacementController.swift in Sources */,
 				DE5DD18C298874C4002BEB3F /* GoToVC.swift in Sources */,
 				DE7319BB297F610C00A6197C /* BaseViewController.swift in Sources */,
 				DE7319C12980486800A6197C /* MapReactiveButton.swift in Sources */,

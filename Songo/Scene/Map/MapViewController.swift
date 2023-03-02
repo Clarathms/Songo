@@ -115,13 +115,15 @@ class MapViewController: BaseViewController<MapView> {
             mainView.displayedPlacements = await AppData.shared.loadMusics()
             await mainView.allPlacements.append(contentsOf: AppData.shared.loadMusics())
         }
-            SceneDelegate.appContainer.updateStreaming()
-            mainView.currentStreaming = SceneDelegate.appContainer.currentStreaming
+        SceneDelegate.appContainer.updateStreaming()
+        mainView.currentStreaming = SceneDelegate.appContainer.currentStreaming
+        
         mainView.currentSongView = AddCurrentSongView(width: UIScreen.main.bounds.width * 0.9, height: 81, mapView: mainView, currentStreaming: mainView.currentStreaming)
         mainView.setupCurrentSongView()
         setupMapReactiveButton()
         
         mainView.currentStreaming?.delegate = mainView
+
 
     }
     

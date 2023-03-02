@@ -106,7 +106,7 @@ class AddCurrentSongView: UIView {
     func setupImage() {
         
         self.albumImage = UIImageView(frame: CGRect(x: self.bounds.maxX/28, y: self.bounds.maxY/6, width: self.bounds.size.width * 0.2, height: self.bounds.size.height * 0.8))
-//        self.albumImage.image = musicPicture
+//        self.albumImage.image = UIImage(data: mapView.currentStreaming?.currentPhotoData ?? Data())
         self.albumImage.layer.masksToBounds = true
         self.albumImage.layer.cornerRadius = 8
         self.addSubview(self.albumImage)

@@ -117,12 +117,14 @@ class SpotifyService: NSObject, MusicProtocol {
     var currentPhotoData: Data?
     
     func fetchArtwork(for track: SPTAppRemoteTrack) {
-        if currentTrack?.uri != track.uri {
-            appRemote.imageAPI?.fetchImage(forItem: track, with: CGSize.zero, callback: { [weak self] (image, error) in
+        let mapView = self.delegate as! MapView
+        DispatchQueue.main.async {
+            self.appRemote.imageAPI?.fetchImage(forItem: track, with: CGSize.zero, callback: { [weak self] (image, error) in
                 if let error = error {
                     print("Error fetching track image: " + error.localizedDescription)
                 } else if let image = image as? UIImage {
                     self?.currentPhotoData = image.jpegData(compressionQuality: 0.8)
+                    mapView.currentSongView?.albumImage.image = image
                     print(self?.currentPhotoData?.count, "artwork")
                 }
             })
@@ -164,22 +166,21 @@ class SpotifyService: NSObject, MusicProtocol {
 //
 //        }
 //        currentPhotoData
+        fetchArtwork(for: currentTrack!)
         return true
     }
     
     
    func update(playerState: SPTAppRemotePlayerState) {
        currentTrack = playerState.track
+       self.delegate!.didGet(song: self.currentTrack!)
        
        if delegate != nil {
-           DispatchQueue.main.async {
-               self.delegate!.didGet(song: self.currentTrack!)
-               
                let mapView = self.delegate as! MapView
                mapView.currentSongView?.currentTitle.text = MapView.musicTitle
                mapView.currentSongView?.currentAlbum.text = MapView.musicAlbum
                mapView.currentSongView?.currentArtist.text = MapView.musicArtist
-               mapView.currentSongView?.albumImage.image = UIImage(data: MapView.musicPhotoData ?? Data())
+//           mapView.currentSongView?.albumImage.image = UIImage(data: mapView.currentStreaming?.currentPhotoData ?? Data())
                //           mapView.currentSongView?.currentData? = self.currentPhotoData!
                // mapView.currentSongView?.currentPhotoStringAdd? = MapView.musicPhotoString!
                print("****** Novo print *******")
@@ -189,7 +190,6 @@ class SpotifyService: NSObject, MusicProtocol {
                print(mapView.currentSongView?.currentTitle.text)
                //       currentTitle = currentTrack.name
            }
-       }
        else {
         print("delegate nulo")
        }
@@ -206,7 +206,9 @@ class SpotifyService: NSObject, MusicProtocol {
             if let error = error {
                 print("Error getting player state:" + error.localizedDescription)
             } else if let playerState = playerState as? SPTAppRemotePlayerState {
+//                self?.fetchArtwork(for: playerState.track)
                 self?.update(playerState: playerState)
+                
             }
         })
     }

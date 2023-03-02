@@ -147,9 +147,8 @@ class MapView: MKMapView  {
     //MARK: - Annotations
     
     enum PlacementStatus {
-        case isEmpty
-        case hasMusic
         case hasSameMusic
+        case canAdd
     }
     /// Check if user can add annotation.
     /// - Parameter userLocation: Current user location.
@@ -163,11 +162,11 @@ class MapView: MKMapView  {
                     if annotations.title == currentStreaming?.currentTitle {
                         return .hasSameMusic
                     }
-                    return .hasMusic
+                    return .canAdd
                 }
             }
         }
-        return .isEmpty
+        return .canAdd
     }
     
     public func createPlacements (location: CLLocationCoordinate2D, music: MusicProtocol) async -> [MKAnnotation] {
@@ -197,7 +196,7 @@ class MapView: MKMapView  {
         locationController.updateLastLocation()
         
         switch canAddPlacement(userLocation) {
-        case .isEmpty:
+        case .canAdd:
             Task {
                 if currentStreaming != nil{
                     let placements = await createPlacements(location: userLocation, music: currentStreaming!)
@@ -208,7 +207,7 @@ class MapView: MKMapView  {
                     print("NULOO")
                 }
             }
-        default:
+        case .hasSameMusic:
             break
             
             // TODO: adiciona música na view de playlist
@@ -223,16 +222,16 @@ class MapView: MKMapView  {
 }
 
 extension MapView: MusicProtocolDelegate {
+    
     func didGet(song: Song) {
         print("Recebi musica do apple music")
-        DispatchQueue.main.async {
-            Task {
-                await self.currentStreaming?.getCurrentPicture()
-                MapView.musicPhotoData = self.currentStreaming?.currentPhotoData
-                print(MapView.musicPhotoData?.count, "tem coisa")
-            }
-        }
-        
+//        DispatchQueue.main.async {
+//            Task {
+//                await self.currentStreaming?.getCurrentPicture()
+//                MapView.musicPhotoData = self.currentStreaming?.currentPhotoData
+//                print(MapView.musicPhotoData?.count, "tem coisa")
+//            }
+//        }
         MapView.musicTitle = currentStreaming?.currentTitle
         MapView.musicArtist = currentStreaming?.currentArtist
         MapView.musicAlbum = currentStreaming?.currentAlbum
@@ -245,8 +244,8 @@ extension MapView: MusicProtocolDelegate {
     
     func didGet(song: SPTAppRemoteTrack) {
         print("Recebi musica do Spotify")
-        if isLoading {return}
-        isLoading = true
+//        if isLoading {return}
+//        isLoading = true
 //        DispatchQueue.main.async {
 //            Task { [weak self] in
 //                guard let self = self else { return }
@@ -257,15 +256,21 @@ extension MapView: MusicProtocolDelegate {
 //                self.isLoading = false
 //            }
 //        }
-        
+//        DispatchQueue.main.async {
+//            Task {
+//                await self.currentStreaming?.getCurrentPicture()
+//                MapView.musicPhotoData = self.currentStreaming?.currentPhotoData
+//            }
+//        }
         MapView.musicTitle = currentStreaming?.currentTitle
         MapView.musicArtist = currentStreaming?.currentArtist
         MapView.musicAlbum = currentStreaming?.currentAlbum
-//        MapView.musicPhotoData = currentStreaming?.currentPhotoData
         
-        print(MapView.musicTitle!)
+        
+        print(MapView.musicTitle!, "****** A")
         print(MapView.musicArtist!)
         print(MapView.musicAlbum!)
+        print(MapView.musicPhotoData?.count)
 
         
     }

@@ -55,7 +55,7 @@ class AppleMusicService: MusicProtocol {
                 mapView.currentSongView?.currentTitle.text = MapView.musicTitle
                 mapView.currentSongView?.currentAlbum.text = MapView.musicAlbum
                 mapView.currentSongView?.currentArtist.text = MapView.musicArtist
-                mapView.currentSongView?.albumImage.image = UIImage(data: MapView.musicPhotoData ?? Data())
+//                mapView.currentSongView?.albumImage.image = UIImage(data: MapView.musicPhotoData ?? Data())
                 //           mapView.currentSongView?.currentData? = self.currentPhotoData!
                 // mapView.currentSongView?.currentPhotoStringAdd? = MapView.musicPhotoString!
                 print("****** Novo print *******")
@@ -63,7 +63,7 @@ class AppleMusicService: MusicProtocol {
                 //  print(mapView.currentSongView?.currentPhotoStringAdd)
                 print("Novo print *******")
                 print(mapView.currentSongView?.currentTitle.text)
-                print(mapView.currentSongView?.albumImage.image?.size)
+//                print(mapView.currentSongView?.albumImage.image?.size)
             }
             //       currentTitle = currentTrack.name
         }
@@ -79,6 +79,7 @@ class AppleMusicService: MusicProtocol {
                 var currentMusicRequest: MusicCatalogResourceRequest<Song> { MusicCatalogResourceRequest<Song>(matching: \.id, equalTo: currentMusicPlaying!) }
                 let searchResponse = try await currentMusicRequest.response()
                 currentMusic = searchResponse.items.first
+                await getCurrentPicture()
             //    delegate?.didGet(song: currentMusic!)
                 update(playerState: currentMusic!)
 //                if delegate != nil {
@@ -108,6 +109,10 @@ class AppleMusicService: MusicProtocol {
         
         if let data = try? Data(contentsOf: url) {
             currentPhotoData = data
+            DispatchQueue.main.async {
+                guard let mapView = self.delegate as? MapView else { return }
+                mapView.currentSongView?.albumImage.image = UIImage(data: data)
+            }
         }
         return true
     }

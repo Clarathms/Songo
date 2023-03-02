@@ -114,7 +114,7 @@ class MapView: MKMapView  {
         currentSongView!.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             currentSongView!.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -120),
-            //   currentSongView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            currentSongView!.centerYAnchor.constraint(equalTo: centerYAnchor,constant: 1000),
             currentSongView!.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width * 0.9),
             currentSongView!.heightAnchor.constraint(equalToConstant: 51)
         ])

@@ -19,9 +19,9 @@ class AddCurrentSongView: UIView {
     
     var albumImage = UIImageView(frame: CGRect(x: UIScreen.main.bounds.maxX/4, y: UIScreen.main.bounds.midY/25, width: UIScreen.main.bounds.width/2, height:  UIScreen.main.bounds.height/25))
 
-    var currentTitle = UILabel(frame: CGRect(x: UIScreen.main.bounds.maxX/4.8, y: UIScreen.main.bounds.midY/25, width: UIScreen.main.bounds.width/2, height:  UIScreen.main.bounds.height/25))
+    var currentTitle = UILabel(frame: CGRect(x: UIScreen.main.bounds.maxX/4.5, y: UIScreen.main.bounds.midY/25, width: UIScreen.main.bounds.width/2, height:  UIScreen.main.bounds.height/25))
     
-    var currentArtist = UILabel(frame: CGRect(x: UIScreen.main.bounds.maxX/4.8, y: UIScreen.main.bounds.midY/10, width: UIScreen.main.bounds.width/4.5, height:  UIScreen.main.bounds.height/25))
+    var currentArtist = UILabel(frame: CGRect(x: UIScreen.main.bounds.maxX/4.5, y: UIScreen.main.bounds.midY/10, width: UIScreen.main.bounds.width/2, height:  UIScreen.main.bounds.height/25))
     
     var currentAlbum = UILabel(frame: CGRect(x: UIScreen.main.bounds.maxX/2, y: UIScreen.main.bounds.midY/10, width: UIScreen.main.bounds.width/4, height:  UIScreen.main.bounds.height/25))
 
@@ -75,7 +75,7 @@ class AddCurrentSongView: UIView {
         setupImage()
         setupCurrentTitle()
         setupArtist()
-        setupAlbum()
+       // setupAlbum()
 //        setupDot()
         createAnimation()
       //  image()
@@ -106,10 +106,10 @@ class AddCurrentSongView: UIView {
     
     func setupImage() {
         
-        self.albumImage = UIImageView(frame: CGRect(x: self.bounds.maxX/28, y: self.bounds.maxY/6, width: self.bounds.size.width * 0.2, height: self.bounds.size.height * 0.8))
+        self.albumImage = UIImageView(frame: CGRect(x: self.bounds.maxX/28, y: self.bounds.maxY/5.8, width: self.bounds.size.width * 0.18, height: self.bounds.size.width * 0.18))
 //        self.albumImage.image = UIImage(data: mapView.currentStreaming?.currentPhotoData ?? Data())
         self.albumImage.layer.masksToBounds = true
-        self.albumImage.layer.cornerRadius = 8
+        self.albumImage.layer.cornerRadius = 5
         self.addSubview(self.albumImage)
     }
     

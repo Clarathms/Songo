@@ -143,13 +143,19 @@ class ClusterPlacementView: MKAnnotationView {
         var musicTitlesC: [String] = []
 //        var musicAlbuns: [String] = []
         var musicArtistsC: [String] = []
-        
-        for member in cluster.memberAnnotations {
+        var index = 0
+        var memberAnnotations = cluster.memberAnnotations
+        for member in memberAnnotations {
+            let appears = memberAnnotations.filter({$0.title == member.title})
+            if appears.count > 1 {
+                memberAnnotations.remove(at: index)
+            }
             guard let music = member as? MusicPlacementModel else { return }
             musicPicturesC.append(music.musicPicture ?? UIImage())
             musicArtistsC.append(music.artist ?? " ---- ")
             musicTitlesC.append(music.title ?? " ----- ")
 //            musicAlbuns.append(music.)
+            index += 1
         }
         musicTitles = musicTitlesC
         musicArtists = musicArtistsC

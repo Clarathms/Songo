@@ -153,7 +153,7 @@ class MapPlaylistController: BaseViewController<MapPlaylistView> {
         //    self.tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             self.tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
            // self.tableView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 2)
-            self.tableView.heightAnchor.constraint(equalTo: view.heightAnchor,multiplier: 1),
+            self.tableView.heightAnchor.constraint(equalTo: view.heightAnchor,multiplier: 0.5),
             self.tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor,
                    constant: 8)
         ])

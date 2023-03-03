@@ -28,13 +28,13 @@ class StyleCell: UITableViewCell {
        let button: UIButton = {
            let btn = UIButton()
            btn.setTitle("...", for: .normal)
-         //  btn.backgroundColor = .systemPink
+//           btn.backgroundColor = .systemPink
            btn.titleLabel?.font = UIFont.systemFont(ofSize: 20,weight: .semibold)
            return btn
        }()
        
        
-       @objc func didTapButton() {
+    @objc func didTapButton(_ sender: UIButton) {
            onTap()
                                     
        }
@@ -42,11 +42,9 @@ class StyleCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-//        self.mapViewController = mapViewController
         addSubview(titleLabel)
         addSubview(imgView)
         addSubview(button)
-        button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
 
         setupTitleLabel()
         setupImage()
@@ -58,6 +56,10 @@ class StyleCell: UITableViewCell {
         imgConstrains()
 //        artistConstrains()
         titleConstrains()
+        deleteMusicAlert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: nil ))
+        deleteMusicAlert.addAction(UIAlertAction(title: "Apagar", style: .default, handler: { _ in
+            self.onDelete()
+        }))
     }
     
 
@@ -121,6 +123,7 @@ class StyleCell: UITableViewCell {
         titleLabel.adjustsFontSizeToFitWidth = true
         titleLabel.textColor = .white
         titleLabel.font = .systemFont(ofSize: 16, weight: .semibold)
+//        titleLabel.backgroundColor = .red
     }
     
     func titleConstrains() {
@@ -159,6 +162,7 @@ class StyleCell: UITableViewCell {
     
     
     func setup(from annotation:MKAnnotation) {
+        contentView.isUserInteractionEnabled = false
         
         guard let data = annotation as? MusicPlacementModel else {
             return
@@ -174,11 +178,8 @@ class StyleCell: UITableViewCell {
         
         self.backgroundColor = .fundoPlaylist
         self.selectionStyle = .none
-
-        deleteMusicAlert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: nil ))
-        deleteMusicAlert.addAction(UIAlertAction(title: "Apagar", style: .default, handler: { _ in
-            self.onDelete()
-        }))
+        
+        self.button.addTarget(self, action: #selector(didTapButton(_:)), for: .touchUpInside)
         
     }
 }

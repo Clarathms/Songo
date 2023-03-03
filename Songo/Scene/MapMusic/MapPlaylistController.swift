@@ -207,7 +207,7 @@ extension MapPlaylistController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: Cells.styleCell, for: indexPath) as! StyleCell
 
       
-        cell.setup(from: finalAnnotations[indexPath.row])
+        
         
         cell.onTap = {
             self.present(cell.deleteMusicAlert, animated: true, completion: nil)
@@ -217,6 +217,8 @@ extension MapPlaylistController: UITableViewDataSource {
             MapViewController.allPlacements.remove(at: indexPath.row)
             tableView.reloadData()
         }
+        
+        cell.setup(from: finalAnnotations[indexPath.row])
         
         return cell
     }

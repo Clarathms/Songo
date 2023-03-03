@@ -52,6 +52,7 @@ class MusicPlacementModel: NSObject, MKAnnotation {
     //TODO: mostrar o dia e a hora que a música foi adicionada
     //    var addedAt: CVTimeStamp
     var title: String?
+    var subtitle: String? {artist}
     var musicPicture: UIImage? { UIImage(data: musicData ?? Data()) }
     var artist: String?
 //    var album: String?

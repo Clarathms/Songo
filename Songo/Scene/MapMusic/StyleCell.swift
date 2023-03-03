@@ -7,20 +7,23 @@
 
 import Foundation
 import UIKit
+import MapKit
 
 class StyleCell: UITableViewCell {
     
     var titleLabel = UILabel()
     var artistLabel = UILabel(frame: .zero)
     var imgCapa: UIImage?
+    var onDelete: () -> Void = {}
+//    var mapViewController: MapViewController
     
     lazy var imgView: UIImageView = {
         let imageView = UIImageView(image: nil)
         return imageView
     }()
     
-    var buttonTapCallback: () -> ()  = {}
-       
+    let deleteMusicAlert: UIAlertController = UIAlertController(title: "", message: "Tem certeza que deseja apagar essa música?", preferredStyle: .actionSheet)
+    
        let button: UIButton = {
            let btn = UIButton()
            btn.setTitle("...", for: .normal)
@@ -37,13 +40,17 @@ class StyleCell: UITableViewCell {
 //       }()
        
        @objc func didTapButton() {
-           buttonTapCallback()
+           deleteMusicAlert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: nil ))
+           deleteMusicAlert.addAction(UIAlertAction(title: "Apagar", style: .default, handler: { _ in
+               self.onDelete()
+           }))
+                                    
        }
     
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+//        self.mapViewController = mapViewController
         addSubview(titleLabel)
         addSubview(imgView)
         addSubview(button)
@@ -66,11 +73,7 @@ class StyleCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("error")
     }
-    func set(image: UIImage ) {
-        imgCapa = image
-        
-    }
-    
+
     func setupImage(){
        // imageView?.sizeThatFits(CGSize( width: 50, height: 50))
         imgView.contentMode = .scaleAspectFit
@@ -160,6 +163,28 @@ class StyleCell: UITableViewCell {
 ////            self.artistLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
 ////            self.artistLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor)
 //        ])
+    }
+    
+    
+    func setup(from annotation:MKAnnotation) {
+        
+        guard let data = annotation as? MusicPlacementModel else {
+            return
+        }
+        
+        self.titleLabel.text = data.title ?? "No Title"
+        self.artistLabel.text = data.artist ?? "No Artist"
+        
+        
+        if let imageCell = data.musicPicture {
+            self.imgView.image = imageCell
+        }
+        
+        self.backgroundColor = .fundoPlaylist
+        self.selectionStyle = .none
+
+        
+        
     }
 }
 

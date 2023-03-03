@@ -139,6 +139,24 @@ class ClusterPlacementView: MKAnnotationView {
         super.prepareForDisplay()
         
         guard let cluster = annotation as? MKClusterAnnotation else { return }
+//        var memberAnnotations = cluster.memberAnnotations
+//        var finalAnnotations: [MKAnnotation] = []
+//
+//        for member in memberAnnotations {
+//            print(member.title, "conta fora")
+//            if finalAnnotations.contains(where: { $0.title == member.title}) {
+//                print(finalAnnotations.count, member.title)
+//            } else {
+//                finalAnnotations.append(member)
+//            }
+//        }
+//
+//        for annotation in finalAnnotations {
+//            guard let music = annotation as? MusicPlacementModel else { return }
+//            musicPictures?.append(music.musicPicture ?? UIImage())
+//            musicArtists?.append(music.artist ?? " ----- ")
+//            musicTitles?.append(music.title ?? " ----- ")
+//        }
         var musicPicturesC: [UIImage] = []
         var musicTitlesC: [String] = []
 //        var musicAlbuns: [String] = []
@@ -147,9 +165,9 @@ class ClusterPlacementView: MKAnnotationView {
         var memberAnnotations = cluster.memberAnnotations
         for member in memberAnnotations {
             let appears = memberAnnotations.filter({$0.title == member.title})
-            if appears.count > 1 {
-                memberAnnotations.remove(at: index)
-            }
+//            if appears.count > 1 {
+//                memberAnnotations.remove(at: index)
+//            }
             guard let music = member as? MusicPlacementModel else { return }
             musicPicturesC.append(music.musicPicture ?? UIImage())
             musicArtistsC.append(music.artist ?? " ---- ")
@@ -157,6 +175,7 @@ class ClusterPlacementView: MKAnnotationView {
 //            musicAlbuns.append(music.)
             index += 1
         }
+        
         musicTitles = musicTitlesC
         musicArtists = musicArtistsC
         musicPictures = musicPicturesC
@@ -170,7 +189,7 @@ class ClusterPlacementView: MKAnnotationView {
 
         var ratio: CGFloat = 1
         var count = 0
-        for musicPicture in musicPicturesC {
+        for musicPicture in musicPictures! {
             if musicPicture.size != CGSize.zero {
                 if count < imageViewList.count {
                     imageViewList[count].image = musicPicture

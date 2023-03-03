@@ -13,8 +13,6 @@ class StyleCell: UITableViewCell {
     var titleLabel = UILabel()
     var artistLabel = UILabel(frame: .zero)
     var imgCapa: UIImage?
-    let threeDots: UILabel = UILabel()
-
     
     lazy var imgView: UIImageView = {
         let imageView = UIImageView(image: nil)
@@ -30,9 +28,6 @@ class StyleCell: UITableViewCell {
         setupTitleLabel()
         setupImage()
         setupArtistLabel()
-        setupButtonImage()
-        
-        buttonConstrains()
         
         imgConstrains()
       //  artistConstrains()
@@ -63,29 +58,8 @@ class StyleCell: UITableViewCell {
         imgView.image = nil
     }
     
-    func setupButtonImage () {
-        self.threeDots.text =  "..."
-        self.threeDots.font = .systemFont(ofSize: 16, weight: .bold)
-        
-        
-    }
     
-    func buttonConstrains() {
-        self.threeDots.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-          //  self.imgView.topAnchor.constraint(equalTo: self.topAnchor),
-            self.threeDots.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor, constant: 50),
-           // self.imgView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            self.threeDots.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            self.threeDots.heightAnchor.constraint(equalToConstant: 80),
-            self.threeDots.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            self.threeDots.widthAnchor.constraint(equalTo: self.imgView.heightAnchor, multiplier: 0.7)
-          //  self.imgView.widthAnchor.constraint(equalTo: self.widthAnchor)
-
-        ])
-        
-    }
+    
     func imgConstrains() {
         self.imgView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -132,5 +106,19 @@ class StyleCell: UITableViewCell {
         self.artistLabel.topAnchor.constraint(equalTo:  self.titleLabel.bottomAnchor,constant: 20).isActive = true
         self.artistLabel.trailingAnchor.constraint(equalTo: self.artistLabel.trailingAnchor).isActive = true
         self.artistLabel.bottomAnchor.constraint(equalTo: self.artistLabel.bottomAnchor).isActive = true
+
+//        self.artistLabel.translatesAutoresizingMaskIntoConstraints = false
+//
+//        NSLayoutConstraint.activate([
+////            self.artistLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+////            self.artistLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+////            self.artistLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+//        ])
     }
 }
+
+//extension StyleCell: MusicPlacementView {
+//
+//
+//
+//}

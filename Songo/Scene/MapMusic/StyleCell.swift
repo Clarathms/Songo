@@ -19,19 +19,43 @@ class StyleCell: UITableViewCell {
         return imageView
     }()
     
+    var buttonTapCallback: () -> ()  = {}
+       
+       let button: UIButton = {
+           let btn = UIButton()
+           btn.setTitle("...", for: .normal)
+         //  btn.backgroundColor = .systemPink
+           btn.titleLabel?.font = UIFont.systemFont(ofSize: 20,weight: .semibold)
+           return btn
+       }()
+       
+//       let label: UILabel = {
+//          let lbl = UILabel()
+//           lbl.font = UIFont.systemFont(ofSize: 16)
+//           lbl.textColor = .systemPink
+//          return lbl
+//       }()
+       
+       @objc func didTapButton() {
+           buttonTapCallback()
+       }
+    
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         addSubview(titleLabel)
         addSubview(imgView)
-        
+        addSubview(button)
+        button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+
         setupTitleLabel()
         setupImage()
 //        setupArtistLabel()
-        setupButtonImage()
+        //setupButtonImage()
         
 //        buttonConstrains()
-        
+        buttonConstrains()
         imgConstrains()
 //        artistConstrains()
         titleConstrains()
@@ -61,6 +85,25 @@ class StyleCell: UITableViewCell {
         imgView.image = nil
     }
     
+   func buttonConstrains() {
+       button.translatesAutoresizingMaskIntoConstraints = false
+      // button.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor, constant: 0).isActive = true
+              button.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
+              button.widthAnchor.constraint(equalToConstant: 100).isActive = true
+              button.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
+       button.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor, constant: 10).isActive = true
+
+//       self.button.translatesAutoresizingMaskIntoConstraints = false
+//
+//       NSLayoutConstraint.activate([
+//           self.button.topAnchor.constraint(equalTo: self.topAnchor),
+//           self.button.leadingAnchor.constraint(equalTo: self.trailingAnchor,constant: 20),
+//           self.button.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+//           self.button.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+//      //     self.artistLabel.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor,constant: 20)
+//
+//       ])
+    }
     
     
     func imgConstrains() {

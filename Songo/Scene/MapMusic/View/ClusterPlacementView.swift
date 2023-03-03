@@ -74,10 +74,9 @@ class ClusterPlacementView: MKAnnotationView {
     private var imageHeightConstraint3: NSLayoutConstraint?
     private var imageHeightConstraint4: NSLayoutConstraint?
     
-    var musicPictures: [UIImage]?
-    var musicTitles: [String]?
-//        var musicAlbuns: [String] = []
-    var musicArtists: [String]?
+    var musicPictures: [UIImage] = []
+    var musicTitles: [String] = []
+    var musicArtists: [String] = []
     
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
@@ -133,52 +132,50 @@ class ClusterPlacementView: MKAnnotationView {
         imageViewList[1].image = nil
         imageViewList[2].image = nil
         imageViewList[3].image = nil
+//        finalAnnotations = []
     }
     
     override func prepareForDisplay() {
         super.prepareForDisplay()
-        
+        var finalAnnotations: [MKAnnotation] = []
         guard let cluster = annotation as? MKClusterAnnotation else { return }
-//        var memberAnnotations = cluster.memberAnnotations
-//        var finalAnnotations: [MKAnnotation] = []
-//
-//        for member in memberAnnotations {
+        
+        var musicPicturesC: [UIImage] = []
+        var musicTitlesC: [String] = []
+//        var musicAlbuns: [String] = []
+        var musicArtistsC: [String] = []
+        
+        for member in cluster.memberAnnotations {
+            if !finalAnnotations.contains(where: { $0.title == member.title}) {
+                finalAnnotations.append(member)
+            }
+        }
+        for finalAnnotation in finalAnnotations {
+            guard let music = finalAnnotation as? MusicPlacementModel else { return }
+            musicPicturesC.append(music.musicPicture ?? UIImage())
+            musicArtistsC.append(music.artist ?? " ---- ")
+            musicTitlesC.append(music.title ?? " ----- ")
+//            musicAlbuns.append(music.)
+        }
+        musicTitles = musicTitlesC
+        musicArtists = musicArtistsC
+        musicPictures = musicPicturesC
+        
+        
+//        for member in cluster.memberAnnotations {
 //            print(member.title, "conta fora")
-//            if finalAnnotations.contains(where: { $0.title == member.title}) {
-//                print(finalAnnotations.count, member.title)
-//            } else {
+//            if !finalAnnotations.contains(where: { $0.title == member.title}) {
 //                finalAnnotations.append(member)
 //            }
 //        }
 //
 //        for annotation in finalAnnotations {
 //            guard let music = annotation as? MusicPlacementModel else { return }
-//            musicPictures?.append(music.musicPicture ?? UIImage())
-//            musicArtists?.append(music.artist ?? " ----- ")
-//            musicTitles?.append(music.title ?? " ----- ")
+//            musicPictures.append(music.musicPicture ?? UIImage())
+//            musicArtists.append(music.artist ?? " ----- ")
+//            musicTitles.append(music.title ?? " ----- ")
 //        }
-        var musicPicturesC: [UIImage] = []
-        var musicTitlesC: [String] = []
-//        var musicAlbuns: [String] = []
-        var musicArtistsC: [String] = []
-        var index = 0
-        var memberAnnotations = cluster.memberAnnotations
-        for member in memberAnnotations {
-            let appears = memberAnnotations.filter({$0.title == member.title})
-//            if appears.count > 1 {
-//                memberAnnotations.remove(at: index)
-//            }
-            guard let music = member as? MusicPlacementModel else { return }
-            musicPicturesC.append(music.musicPicture ?? UIImage())
-            musicArtistsC.append(music.artist ?? " ---- ")
-            musicTitlesC.append(music.title ?? " ----- ")
-//            musicAlbuns.append(music.)
-            index += 1
-        }
-        
-        musicTitles = musicTitlesC
-        musicArtists = musicArtistsC
-        musicPictures = musicPicturesC
+//        
         
         if let heightConstraint = imageHeightConstraint1 {
             imageViewList[0].removeConstraint(heightConstraint)
@@ -189,7 +186,7 @@ class ClusterPlacementView: MKAnnotationView {
 
         var ratio: CGFloat = 1
         var count = 0
-        for musicPicture in musicPictures! {
+        for musicPicture in musicPictures {
             if musicPicture.size != CGSize.zero {
                 if count < imageViewList.count {
                     imageViewList[count].image = musicPicture

@@ -36,6 +36,7 @@ class MapPlaylistController: BaseViewController<MapPlaylistView> {
 
     
     var annotations: [MKAnnotation] = []
+    var finalAnnotations: [MKAnnotation] = []
     var cluster: MKClusterAnnotation
     var musicsTableView = UITableView()
     var toCoverView: UIImageView?
@@ -68,15 +69,20 @@ class MapPlaylistController: BaseViewController<MapPlaylistView> {
 
     }()
     
-
     
     init(cluster: MKClusterAnnotation) {
         self.cluster = cluster
         annotations = cluster.memberAnnotations
         
-        
         for annotation in annotations {
-            if let isModel = annotation as? MusicPlacementModel {
+            if !finalAnnotations.contains(where: { $0.title == annotation.title}) {
+                finalAnnotations.append(annotation)
+            }
+        }
+        
+        for finalAnnotation in finalAnnotations {
+            
+            if let isModel = finalAnnotation as? MusicPlacementModel {
                 titleList.append(isModel.title!)
                 artistList.append(isModel.artist!)
                 pictureList.append(isModel.musicPicture ?? UIImage())
@@ -199,7 +205,7 @@ class MapPlaylistController: BaseViewController<MapPlaylistView> {
 extension MapPlaylistController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return annotations.count
+        return finalAnnotations.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath ) -> UITableViewCell {

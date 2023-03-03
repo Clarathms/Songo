@@ -278,12 +278,12 @@ class MapViewController: BaseViewController<MapView> {
         //        let appleMusicService = appleMusicService else { fatalError("No locationController or appleMusicService at \(#function)") }
         
         guard let userLocation2 = locationController.location?.coordinate else { return }
-        let userLocation = userLocation2
+        var userLocation = userLocation2
 //        CLLocationCoordinate2D(latitude: 40.748594910689874, longitude: -73.9856644020802)
 //        userLocation.latitude += CLLocationDegrees.random(in: -0.02...0.02)
 //        userLocation.longitude =
-//        userLocation.latitude += CLLocationDegrees.random(in: -0.02...0.02)
-//        userLocation.longitude += CLLocationDegrees.random(in: -0.02...0.02)
+        userLocation.latitude += CLLocationDegrees.random(in: -0.02...0.02)
+        userLocation.longitude += CLLocationDegrees.random(in: -0.02...0.02)
         
         locationController.updateLastLocation()
         

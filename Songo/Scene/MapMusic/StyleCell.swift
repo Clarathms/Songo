@@ -15,6 +15,7 @@ class StyleCell: UITableViewCell {
     var artistLabel = UILabel(frame: .zero)
     var imgCapa: UIImage?
     var onDelete: () -> Void = {}
+    var onTap: () -> Void = {}
 //    var mapViewController: MapViewController
     
     lazy var imgView: UIImageView = {
@@ -32,18 +33,9 @@ class StyleCell: UITableViewCell {
            return btn
        }()
        
-//       let label: UILabel = {
-//          let lbl = UILabel()
-//           lbl.font = UIFont.systemFont(ofSize: 16)
-//           lbl.textColor = .systemPink
-//          return lbl
-//       }()
        
        @objc func didTapButton() {
-           deleteMusicAlert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: nil ))
-           deleteMusicAlert.addAction(UIAlertAction(title: "Apagar", style: .default, handler: { _ in
-               self.onDelete()
-           }))
+           onTap()
                                     
        }
     
@@ -183,7 +175,10 @@ class StyleCell: UITableViewCell {
         self.backgroundColor = .fundoPlaylist
         self.selectionStyle = .none
 
-        
+        deleteMusicAlert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: nil ))
+        deleteMusicAlert.addAction(UIAlertAction(title: "Apagar", style: .default, handler: { _ in
+            self.onDelete()
+        }))
         
     }
 }

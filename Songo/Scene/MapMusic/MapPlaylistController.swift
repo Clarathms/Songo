@@ -209,6 +209,9 @@ extension MapPlaylistController: UITableViewDataSource {
       
         cell.setup(from: finalAnnotations[indexPath.row])
         
+        cell.onTap = {
+            self.present(cell.deleteMusicAlert, animated: true, completion: nil)
+        }
         
         cell.onDelete = {
             MapViewController.allPlacements.remove(at: indexPath.row)

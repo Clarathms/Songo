@@ -29,13 +29,13 @@ class StyleCell: UITableViewCell {
         
         setupTitleLabel()
         setupImage()
-        setupArtistLabel()
+//        setupArtistLabel()
         setupButtonImage()
         
-        buttonConstrains()
+//        buttonConstrains()
         
         imgConstrains()
-      //  artistConstrains()
+//        artistConstrains()
         titleConstrains()
     }
     

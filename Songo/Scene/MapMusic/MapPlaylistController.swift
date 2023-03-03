@@ -219,11 +219,15 @@ extension MapPlaylistController: UITableViewDataSource {
         cell.set(image: imageCell)
         cell.imgView.image = imageCell
         
+        
+        
         cell.backgroundColor = .fundoPlaylist
         cell.selectionStyle = .none
         
-        
-        
+//        for _ in 0...indexPath.Element {
+//            return cell.threeDots
+//        }
+//        
         return cell
     }
 }

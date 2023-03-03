@@ -29,8 +29,6 @@
 		DE5807FD29A932CB00ADAADE /* CurrentSongController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5807FC29A932CB00ADAADE /* CurrentSongController.swift */; };
 		DE5807FF29AD2F1400ADAADE /* MusicPlaylistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5807FE29AD2F1400ADAADE /* MusicPlaylistCell.swift */; };
 		DE58080129AD326E00ADAADE /* UIViewTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE58080029AD326E00ADAADE /* UIViewTransitionDelegate.swift */; };
-		DE58080329AD38B400ADAADE /* PlaylistPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE58080229AD38B400ADAADE /* PlaylistPresentationController.swift */; };
-		DE5DD17129833224002BEB3F /* SongRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD16F29833224002BEB3F /* SongRepository.swift */; };
 		DE5DD17229833224002BEB3F /* MusicPlacementModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD17029833224002BEB3F /* MusicPlacementModel.swift */; };
 		DE5DD175298421C3002BEB3F /* SongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD174298421C3002BEB3F /* SongViewController.swift */; };
 		DE5DD178298421F8002BEB3F /* CurrentSongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5DD177298421F8002BEB3F /* CurrentSongView.swift */; };
@@ -91,8 +89,6 @@
 		DE5807FC29A932CB00ADAADE /* CurrentSongController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentSongController.swift; sourceTree = "<group>"; };
 		DE5807FE29AD2F1400ADAADE /* MusicPlaylistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlaylistCell.swift; sourceTree = "<group>"; };
 		DE58080029AD326E00ADAADE /* UIViewTransitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewTransitionDelegate.swift; sourceTree = "<group>"; };
-		DE58080229AD38B400ADAADE /* PlaylistPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistPresentationController.swift; sourceTree = "<group>"; };
-		DE5DD16F29833224002BEB3F /* SongRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongRepository.swift; sourceTree = "<group>"; };
 		DE5DD17029833224002BEB3F /* MusicPlacementModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicPlacementModel.swift; sourceTree = "<group>"; };
 		DE5DD174298421C3002BEB3F /* SongViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongViewController.swift; sourceTree = "<group>"; };
 		DE5DD177298421F8002BEB3F /* CurrentSongView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentSongView.swift; sourceTree = "<group>"; };
@@ -196,7 +192,6 @@
 			children = (
 				DEEF6AA729918B3D0046DD90 /* MapPlaylistController.swift */,
 				AD84BFDE29AF4E010063F819 /* StyleCell.swift */,
-				DE58080229AD38B400ADAADE /* PlaylistPresentationController.swift */,
 				DE4F3469298B05F6004EE2F9 /* View */,
 			);
 			path = MapMusic;
@@ -216,7 +211,6 @@
 		DE5DD16E29833224002BEB3F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				DE5DD16F29833224002BEB3F /* SongRepository.swift */,
 				DEEF6AB02992C6ED0046DD90 /* AppData.swift */,
 				DE5DD17029833224002BEB3F /* MusicPlacementModel.swift */,
 				DEEF6AB22992F8C40046DD90 /* MusicPlaylistModel.swift */,
@@ -472,7 +466,6 @@
 				DE5DD175298421C3002BEB3F /* SongViewController.swift in Sources */,
 				AD56EA9529786AA900BD9F59 /* AppDelegate.swift in Sources */,
 				DE4C8EC52981A9330065C813 /* LocationController.swift in Sources */,
-				DE58080329AD38B400ADAADE /* PlaylistPresentationController.swift in Sources */,
 				DE66A93B299C117A00BD21FA /* SpotifyDelegate.swift in Sources */,
 				DE4C8ECA29822BA80065C813 /* CLLocationManagerDelegate.swift in Sources */,
 				DEFB0BA029A02A76006329E4 /* MusicService.swift in Sources */,
@@ -489,7 +482,6 @@
 				DE5807FF29AD2F1400ADAADE /* MusicPlaylistCell.swift in Sources */,
 				DE4F346B298B0605004EE2F9 /* MusicPlacementView.swift in Sources */,
 				DE7319CA29806C1300A6197C /* CircleRangeView.swift in Sources */,
-				DE5DD17129833224002BEB3F /* SongRepository.swift in Sources */,
 				AD1E24552989BB7A00D344E3 /* extensionTabBar.swift in Sources */,
 				DEEF6AB12992C6ED0046DD90 /* AppData.swift in Sources */,
 				DEEF6AB32992F8C40046DD90 /* MusicPlaylistModel.swift in Sources */,

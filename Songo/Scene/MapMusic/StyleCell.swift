@@ -94,7 +94,7 @@ class StyleCell: UITableViewCell {
               button.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
               button.widthAnchor.constraint(equalToConstant: 100).isActive = true
               button.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
-       button.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor, constant: 10).isActive = true
+       button.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 10).isActive = true
 
 //       self.button.translatesAutoresizingMaskIntoConstraints = false
 //
@@ -125,7 +125,7 @@ class StyleCell: UITableViewCell {
         ])
     }
     func setupTitleLabel() {
-        titleLabel.numberOfLines = 0
+        titleLabel.numberOfLines = 1
         titleLabel.adjustsFontSizeToFitWidth = true
         titleLabel.textColor = .white
         titleLabel.font = .systemFont(ofSize: 16, weight: .semibold)
@@ -137,7 +137,7 @@ class StyleCell: UITableViewCell {
         NSLayoutConstraint.activate([
             self.titleLabel.topAnchor.constraint(equalTo: self.topAnchor),
             self.titleLabel.leadingAnchor.constraint(equalTo: self.imgView.trailingAnchor,constant: 20),
-            self.titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            self.titleLabel.trailingAnchor.constraint(equalTo: self.button.leadingAnchor, constant: 20),
             self.titleLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor)
        //     self.artistLabel.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor,constant: 20)
 

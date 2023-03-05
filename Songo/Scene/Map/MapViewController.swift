@@ -18,7 +18,7 @@ class MapViewController: BaseViewController<MapView> {
     typealias Factory = MusicServiceFactory
     
     var factory: Factory
-    var appleMusicService: AppleMusicService = AppleMusicService()
+//    var appleMusicService: AppleMusicService = AppleMusicService()
     let locationController: LocationController
     // Variable that holds the value (true or false) if the user authorized the location service or not.
     var isLocationOn: Bool {
@@ -84,8 +84,9 @@ class MapViewController: BaseViewController<MapView> {
         }
     }
     
-    var allPlacements: [MKAnnotation] = []
-    
+    static var allPlacements: [MKAnnotation] = []
+    static var allMusicPlacements: [MusicPlacementModel] = allPlacements.compactMap{$0 as? MusicPlacementModel}
+
     private func addAlertAction() {
         addSameMusic.addAction(UIAlertAction(title: "Ok!", style: .default, handler: nil))
     }
@@ -146,10 +147,9 @@ class MapViewController: BaseViewController<MapView> {
         updateOverlay(location: location)
     }
     override func viewDidAppear(_ animated: Bool) {
-        print(AppData.shared.currentStreaming)
         Task {
             displayedPlacements = await AppData.shared.loadMusics()
-            await allPlacements.append(contentsOf: AppData.shared.loadMusics())
+            await MapViewController.allPlacements.append(contentsOf: AppData.shared.loadMusics())
         }
         SceneDelegate.appContainer.updateStreaming()
         mainView.currentStreaming = SceneDelegate.appContainer.currentStreaming
@@ -246,9 +246,9 @@ class MapViewController: BaseViewController<MapView> {
     private func canAddPlacement(_ userLocation: CLLocationCoordinate2D) -> PlacementStatus {
         var placementStatus: PlacementStatus = .canAdd
         
-        if !allPlacements.isEmpty {
+        if !MapViewController.allPlacements.isEmpty {
             
-            for annotation in allPlacements{
+            for annotation in MapViewController.allPlacements{
                 
                 let distanceFromUserToAnnotation = locationController.calculateDistance(userLocation: CLLocation(latitude: userLocation.latitude, longitude: userLocation.longitude), annotationCoordinate: annotation.coordinate)
                 
@@ -265,25 +265,22 @@ class MapViewController: BaseViewController<MapView> {
         print("music name -------", music.currentTitle)
         await music.getCurrentPicture()
         let placement = MusicPlacementModel(latitude: location.latitude, longitude: location.longitude, title: music.currentTitle, artist: music.currentArtist, musicData: music.currentPhotoData)
-        allPlacements.append(placement)
-        print("all", allPlacements.count)
+        MapViewController.allPlacements.append(placement)
+//        print("all", allPlacements.count)
         print("foto-------", music.currentPhotoData.debugDescription)
-        AppData.shared.update(musics: allPlacements)
+        AppData.shared.update(musics: MapViewController.allPlacements)
         
         return await AppData.shared.loadMusics()
     }
     
     func addPlacement() {
-//        guard let locationController = locationController else { fatalError("No locationController at \(#function)") }
-        //        let appleMusicService = appleMusicService else { fatalError("No locationController or appleMusicService at \(#function)") }
-        
         guard let userLocation2 = locationController.location?.coordinate else { return }
-        let userLocation = userLocation2
+        var userLocation = userLocation2
 //        CLLocationCoordinate2D(latitude: 40.748594910689874, longitude: -73.9856644020802)
 //        userLocation.latitude += CLLocationDegrees.random(in: -0.02...0.02)
 //        userLocation.longitude =
-//        userLocation.latitude += CLLocationDegrees.random(in: -0.02...0.02)
-//        userLocation.longitude += CLLocationDegrees.random(in: -0.02...0.02)
+        userLocation.latitude += CLLocationDegrees.random(in: -0.02...0.02)
+        userLocation.longitude += CLLocationDegrees.random(in: -0.02...0.02)
         
         locationController.updateLastLocation()
         

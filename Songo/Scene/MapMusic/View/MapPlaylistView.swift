@@ -22,11 +22,7 @@ class MapPlaylistView: UIView {
 //
 //        return view
 //    }()
-    
-    public let deleteButton = UIButton()
-    
-    public let actionSheetController: UIAlertController = UIAlertController(title: "", message: NSLocalizedString("Tem certeza que deseja apagar sua publicação?", comment: "AnnotationDetailView: Sheet alert description"), preferredStyle: .actionSheet)
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
 //        self.addSubview(collectionView)

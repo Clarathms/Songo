@@ -47,9 +47,9 @@ struct TutorialPage2: View {
                               .frame(width: UIScreen.main.bounds.width/2
                                      , height: UIScreen.main.bounds.height/2)
                           VStack(spacing: 20){
-                              Text("Lembre do momento atráves de playlists")
+                              Text("Relembre os momentos atráves de playlists")
                                   .font(.headline)
-                              Text("No SoundMap você conseguira montar \n sua identidade sonoro-musical através da \n sua localização.")
+                              Text("Adicione a música que está ouvindo \n em sua localização atual e crie playlists \n  alterando o zoom no mapa.")
                                   .font(.subheadline)
                                   .multilineTextAlignment(.center)
                               

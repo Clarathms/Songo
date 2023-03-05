@@ -27,11 +27,11 @@ class MapPlaylistController: BaseViewController<MapPlaylistView> {
     }
     var coverView: UIImage = UIImage ()
     
-    var titleList: [String] = []
+    var titleList: Array<String> = []
+    var titleListS: Set<MusicPlacementModel> = []
     var artistList: [String] = []
     var pictureList: [UIImage] = []
     //    var albumList: [String]
-
     
     var annotations: [MKAnnotation] = []
     var finalAnnotations: [MKAnnotation] = []
@@ -63,6 +63,7 @@ class MapPlaylistController: BaseViewController<MapPlaylistView> {
         tableView.backgroundColor = .fundoPlaylist
         print("entrei na table view")
         tableView.register(StyleCell.self, forCellReuseIdentifier: Cells.styleCell)
+                
         return tableView
 
     }()
@@ -89,7 +90,7 @@ class MapPlaylistController: BaseViewController<MapPlaylistView> {
                 self.primeiraMusica = titleList[0]
                 self.albumPicture = pictureList[0]
             }
-        }
+        } 
         print(pictureList.count, "------fotos")
         if let isModel = annotations.first as? MusicPlacementModel {
             coverView = isModel.musicPicture ?? UIImage()
@@ -226,18 +227,19 @@ extension MapPlaylistController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: Cells.styleCell, for: indexPath) as! StyleCell
 
       
-        cell.titleLabel.text = (titleList[indexPath.row] ) as String
-        cell.artistLabel.text = (artistList[indexPath.row] ) as String
         
-        let imageCell = (pictureList[indexPath.row])
-        cell.set(image: imageCell)
-        cell.imgView.image = imageCell
-        cell.buttonTapCallback = {
-                   print("--------- botao funciona -------")
-               }
         
-        cell.backgroundColor = .fundoPlaylist
-        cell.selectionStyle = .none
+        cell.onTap = {
+            self.present(cell.deleteMusicAlert, animated: true, completion: nil)
+        }
+        
+        cell.onDelete = {
+            MapViewController.allPlacements.remove(at: indexPath.row)
+            tableView.reloadData()
+        }
+        
+        cell.setup(from: finalAnnotations[indexPath.row])
+        
         return cell
     }
 }

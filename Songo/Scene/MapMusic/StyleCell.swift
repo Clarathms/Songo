@@ -7,47 +7,44 @@
 
 import Foundation
 import UIKit
+import MapKit
 
 class StyleCell: UITableViewCell {
     
     var titleLabel = UILabel()
     var artistLabel = UILabel(frame: .zero)
     var imgCapa: UIImage?
+    var onDelete: () -> Void = {}
+    var onTap: () -> Void = {}
+//    var mapViewController: MapViewController
     
     lazy var imgView: UIImageView = {
         let imageView = UIImageView(image: nil)
         return imageView
     }()
     
-    var buttonTapCallback: () -> ()  = {}
-       
+    let deleteMusicAlert: UIAlertController = UIAlertController(title: "", message: "Tem certeza que deseja apagar essa música?", preferredStyle: .actionSheet)
+    
        let button: UIButton = {
            let btn = UIButton()
            btn.setTitle("...", for: .normal)
-         //  btn.backgroundColor = .systemPink
+//           btn.backgroundColor = .systemPink
            btn.titleLabel?.font = UIFont.systemFont(ofSize: 20,weight: .semibold)
            return btn
        }()
        
-//       let label: UILabel = {
-//          let lbl = UILabel()
-//           lbl.font = UIFont.systemFont(ofSize: 16)
-//           lbl.textColor = .systemPink
-//          return lbl
-//       }()
        
-       @objc func didTapButton() {
-           buttonTapCallback()
+    @objc func didTapButton(_ sender: UIButton) {
+           onTap()
+                                    
        }
     
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
         addSubview(titleLabel)
         addSubview(imgView)
         addSubview(button)
-        button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
 
         setupTitleLabel()
         setupImage()
@@ -59,6 +56,10 @@ class StyleCell: UITableViewCell {
         imgConstrains()
 //        artistConstrains()
         titleConstrains()
+        deleteMusicAlert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: nil ))
+        deleteMusicAlert.addAction(UIAlertAction(title: "Apagar", style: .default, handler: { _ in
+            self.onDelete()
+        }))
     }
     
 
@@ -66,11 +67,7 @@ class StyleCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("error")
     }
-    func set(image: UIImage ) {
-        imgCapa = image
-        
-    }
-    
+
     func setupImage(){
        // imageView?.sizeThatFits(CGSize( width: 50, height: 50))
         imgView.contentMode = .scaleAspectFit
@@ -91,7 +88,7 @@ class StyleCell: UITableViewCell {
               button.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
               button.widthAnchor.constraint(equalToConstant: 100).isActive = true
               button.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
-       button.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor, constant: 10).isActive = true
+       button.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 10).isActive = true
 
 //       self.button.translatesAutoresizingMaskIntoConstraints = false
 //
@@ -122,10 +119,11 @@ class StyleCell: UITableViewCell {
         ])
     }
     func setupTitleLabel() {
-        titleLabel.numberOfLines = 0
+        titleLabel.numberOfLines = 1
         titleLabel.adjustsFontSizeToFitWidth = true
         titleLabel.textColor = .white
         titleLabel.font = .systemFont(ofSize: 16, weight: .semibold)
+//        titleLabel.backgroundColor = .red
     }
     
     func titleConstrains() {
@@ -134,7 +132,7 @@ class StyleCell: UITableViewCell {
         NSLayoutConstraint.activate([
             self.titleLabel.topAnchor.constraint(equalTo: self.topAnchor),
             self.titleLabel.leadingAnchor.constraint(equalTo: self.imgView.trailingAnchor,constant: 20),
-            self.titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            self.titleLabel.trailingAnchor.constraint(equalTo: self.button.leadingAnchor, constant: 20),
             self.titleLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor)
        //     self.artistLabel.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor,constant: 20)
 
@@ -160,6 +158,29 @@ class StyleCell: UITableViewCell {
 ////            self.artistLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
 ////            self.artistLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor)
 //        ])
+    }
+    
+    
+    func setup(from annotation:MKAnnotation) {
+        contentView.isUserInteractionEnabled = false
+        
+        guard let data = annotation as? MusicPlacementModel else {
+            return
+        }
+        
+        self.titleLabel.text = data.title ?? "No Title"
+        self.artistLabel.text = data.artist ?? "No Artist"
+        
+        
+        if let imageCell = data.musicPicture {
+            self.imgView.image = imageCell
+        }
+        
+        self.backgroundColor = .fundoPlaylist
+        self.selectionStyle = .none
+        
+        self.button.addTarget(self, action: #selector(didTapButton(_:)), for: .touchUpInside)
+        
     }
 }
 

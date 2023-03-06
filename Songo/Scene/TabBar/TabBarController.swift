@@ -78,9 +78,9 @@ class TabBarController: UITabBarController {
         profileNavigationController.tabBarItem = profileTabBarItem
         
         // Adds the ViewControllers to the TabBar
-        setViewControllers([mapNavigationController,
-                            playlistNavigationController,
-                            profileNavigationController
+        setViewControllers([mapNavigationController
+                            //playlistNavigationController,
+                            //profileNavigationController
                            ],
                            animated: false)
         currentItem = mapTabBarItem

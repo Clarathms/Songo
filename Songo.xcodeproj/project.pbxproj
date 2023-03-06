@@ -43,7 +43,6 @@
 		DE66A92E299AA47100BD21FA /* LocationButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD655CF829956E1000B85B23 /* LocationButtonView.swift */; };
 		DE66A930299AB3DA00BD21FA /* SpotifyiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE66A92F299AB3D900BD21FA /* SpotifyiOS.framework */; };
 		DE66A935299C060600BD21FA /* ConstantsSpotify.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE66A934299C060600BD21FA /* ConstantsSpotify.swift */; };
-		DE66A937299C099800BD21FA /* SpotifyConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE66A936299C099800BD21FA /* SpotifyConnectViewController.swift */; };
 		DE66A93B299C117A00BD21FA /* SpotifyDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE66A93A299C117A00BD21FA /* SpotifyDelegate.swift */; };
 		DE66A93F299D489500BD21FA /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE66A93E299D489500BD21FA /* Array.swift */; };
 		DE66A941299D54B300BD21FA /* MusicProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE66A940299D54B300BD21FA /* MusicProtocol.swift */; };
@@ -103,7 +102,6 @@
 		DE66A92F299AB3D900BD21FA /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyiOS.framework; sourceTree = "<group>"; };
 		DE66A931299AC1C600BD21FA /* Songo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Songo-Bridging-Header.h"; sourceTree = "<group>"; };
 		DE66A934299C060600BD21FA /* ConstantsSpotify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantsSpotify.swift; sourceTree = "<group>"; };
-		DE66A936299C099800BD21FA /* SpotifyConnectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyConnectViewController.swift; sourceTree = "<group>"; };
 		DE66A93A299C117A00BD21FA /* SpotifyDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyDelegate.swift; sourceTree = "<group>"; };
 		DE66A93E299D489500BD21FA /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		DE66A940299D54B300BD21FA /* MusicProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicProtocol.swift; sourceTree = "<group>"; };
@@ -262,7 +260,6 @@
 			children = (
 				DE5DD180298874C4002BEB3F /* Controller */,
 				DE5DD184298874C4002BEB3F /* View */,
-				DE66A936299C099800BD21FA /* SpotifyConnectViewController.swift */,
 			);
 			path = Tutorial;
 			sourceTree = "<group>";
@@ -446,7 +443,6 @@
 				AD7E5B6C299AC0AB00A1FB66 /* AddCurrentSongView.swift in Sources */,
 				DE5DD193298875BC002BEB3F /* UIColor.swift in Sources */,
 				DE4C8ECC2982F2D50065C813 /* MKMapViewDelegate.swift in Sources */,
-				DE66A937299C099800BD21FA /* SpotifyConnectViewController.swift in Sources */,
 				DE66A935299C060600BD21FA /* ConstantsSpotify.swift in Sources */,
 				DE5DD190298874C4002BEB3F /* TutorialBase.swift in Sources */,
 				DE5DD18F298874C4002BEB3F /* TutorialPage2.swift in Sources */,
@@ -621,8 +617,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Songo/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SoundMap;
-				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Me deixa ver suas músicas";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Aceita pls";
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Gostaríamos de acessar a sua atividade atual no Apple Music, ela não será salva no aplicativo.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Localização usada somente para adicionar e salvar as músicas. Não será compartilhada com mais ninguém";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -662,8 +658,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Songo/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SoundMap;
-				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Me deixa ver suas músicas";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Aceita pls";
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Gostaríamos de acessar a sua atividade atual no Apple Music, ela não será salva no aplicativo.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Localização usada somente para adicionar e salvar as músicas. Não será compartilhada com mais ninguém";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;

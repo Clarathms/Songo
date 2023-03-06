@@ -279,9 +279,9 @@ class MapViewController: BaseViewController<MapView> {
 //        CLLocationCoordinate2D(latitude: 40.748594910689874, longitude: -73.9856644020802)
 //        userLocation.latitude += CLLocationDegrees.random(in: -0.02...0.02)
 //        userLocation.longitude =
-        userLocation.latitude += CLLocationDegrees.random(in: -0.02...0.02)
-        userLocation.longitude += CLLocationDegrees.random(in: -0.02...0.02)
-        
+//        userLocation.latitude += CLLocationDegrees.random(in: -0.02...0.02)
+//        userLocation.longitude += CLLocationDegrees.random(in: -0.02...0.02)
+//        
         locationController.updateLastLocation()
         
         switch canAddPlacement(userLocation) {

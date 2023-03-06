@@ -617,8 +617,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Songo/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SoundMap;
-				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Gostaríamos de acessar a sua atividade atual no Apple Music, ela não será salva no aplicativo.";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Localização usada somente para adicionar e salvar as músicas. Não será compartilhada com mais ninguém";
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Gostaríamos de acessar a sua atividade atual  para conferir o estado da assinatura e poder habilitar a opção de entrar no aplicativo por meio do Apple Music e assim, adicionar as músicas no mapa, ela não será salva no aplicativo.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Localização usada somente para adicionar e salvar as músicas. Não será compartilhada com mais ninguém.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -658,8 +658,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Songo/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SoundMap;
-				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Gostaríamos de acessar a sua atividade atual no Apple Music, ela não será salva no aplicativo.";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Localização usada somente para adicionar e salvar as músicas. Não será compartilhada com mais ninguém";
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Gostaríamos de acessar a sua atividade atual  para conferir o estado da assinatura e poder habilitar a opção de entrar no aplicativo por meio do Apple Music e assim, adicionar as músicas no mapa, ela não será salva no aplicativo.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Localização usada somente para adicionar e salvar as músicas. Não será compartilhada com mais ninguém.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;

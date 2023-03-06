@@ -52,7 +52,7 @@ class MusicPlacementModel: NSObject, MKAnnotation {
     //TODO: mostrar o dia e a hora que a música foi adicionada
     //    var addedAt: CVTimeStamp
     var title: String?
-    var subtitle: String? {artist}
+    var subtitle: String? { artist }
     var musicPicture: UIImage? { UIImage(data: musicData ?? Data()) }
     var artist: String?
 //    var album: String?
@@ -77,26 +77,6 @@ class MusicPlacementModel: NSObject, MKAnnotation {
         musicData = persistence.musicData
     }
     
-//    func getApplePicture() async  {
-//
-//        guard let url = self.musicURL else { return }
-//
-//        if let data = try? Data(contentsOf: url) {
-//            if let image = UIImage(data: data){
-//                musicPicture = image
-//            }
-//        }
-//    }
-//
-//    func getSpotifyPicture() {
-//        SpotifyService().appRemote.imageAPI?.fetchImage(forItem: musicImageIdentifier as! SPTAppRemoteImageRepresentable, with: CGSize.zero, callback: { [weak self] (image, error) in
-//            if let error = error {
-//                print("Error fetching track image: " + error.localizedDescription)
-//            } else if let image = image as? UIImage {
-//                self?.musicPicture = image
-//            }
-//        })
-//    }
 }
 
 

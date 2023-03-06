@@ -38,7 +38,6 @@ class TabBarController: UITabBarController {
     override func loadView() {
         super.loadView()
         
-//        self.tabBarController?.navigationItem.hidesBackButton = true
         locationController.checkLocationServices()
         setApplicationViewControllers()
         setupBar()
@@ -54,13 +53,10 @@ class TabBarController: UITabBarController {
     func setApplicationViewControllers() {
         
         // 1º tab
-//        let mapViewController = factory.createMapScene()
-       // let mapNavigationController = UINavigationController(rootViewController: mapViewController)
         let mapNavigationController = factory.createMapScene()
 
         let playlistNavigationController = playlistFactory.createPlaylistScene()
         let profileNavigationController = profileFactory.createProfileScene()
-       // self.navigationItem.setHidesBackButton(true, animated:true)
         
         // 1 tab
         let mapTabBarItem = UITabBarItem(title: NSLocalizedString("Mapa", comment: "TabBarController: Name of the Map slot on Tab Bar."), image: UIImage(systemName: "map"), selectedImage: UIImage(systemName: "map.fill"))

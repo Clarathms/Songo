@@ -153,6 +153,7 @@ class AddCurrentSongView: UIView {
     }
     
     func createAnimation () {
+      //  if SpotifyService.fetchPlayerState()
         for num in 1...10{
             //let strImageName : String = "foto\(num)"
             let image  = UIImage(named:"Frame \(num)")

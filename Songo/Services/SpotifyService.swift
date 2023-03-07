@@ -206,6 +206,7 @@ class SpotifyService: NSObject, MusicProtocol {
             if let error = error {
                 print("Error getting player state:" + error.localizedDescription)
             } else if let playerState = playerState as? SPTAppRemotePlayerState {
+                print("//// //// /// Player state + \(playerState)")
 //                self?.fetchArtwork(for: playerState.track)
                 self?.update(playerState: playerState)
                 

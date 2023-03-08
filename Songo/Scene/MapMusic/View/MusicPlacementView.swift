@@ -16,7 +16,9 @@ class MusicPlacementView: MKAnnotationView {
     private let boxInset = CGFloat(10)
     private let interItemSpacing = CGFloat(10)
     private let maxContentWidth = CGFloat(90)
-    private let contentInsets = UIEdgeInsets(top: 10, left: 30, bottom: 20, right: 20)
+  //  private let contentInsets = UIEdgeInsets(top: 10, left: 30, bottom: 20, right: 20)
+    private let contentInsets = UIEdgeInsets(top: 2, left: 15, bottom: 5, right: 5)
+
     
     private let blurEffect = UIBlurEffect(style: .systemChromeMaterialDark)
     
@@ -59,6 +61,7 @@ class MusicPlacementView: MKAnnotationView {
         
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView(image: nil)
+        imageView.layer.cornerRadius = 10
         return imageView
     }()
     
@@ -114,7 +117,9 @@ class MusicPlacementView: MKAnnotationView {
             
             if let image = annotation.musicPicture {
 
+               // imageView.layer.cornerRadius = 10
                 imageView.image = image
+                
                 
                 if let heightConstraint = imageHeightConstraint {
                     imageView.removeConstraint(heightConstraint)
@@ -173,7 +178,7 @@ class MusicPlacementView: MKAnnotationView {
         let box = CGRect(x: boxInset, y: 0, width: self.frame.size.width - boxInset, height: self.frame.size.height)
         let roundedRect = UIBezierPath(roundedRect: box,
                                        byRoundingCorners: [.topRight, .bottomLeft, .bottomRight],
-                                       cornerRadii: CGSize(width: 5, height: 5))
+                                       cornerRadii: CGSize(width: 10, height: 10))
         path.addPath(roundedRect.cgPath)
 
         shape.path = path

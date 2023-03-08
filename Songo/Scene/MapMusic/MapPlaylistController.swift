@@ -41,6 +41,16 @@ class MapPlaylistController: BaseViewController<MapPlaylistView> {
     
     var primeiraMusica: String?
     weak var mapView: MKMapView?
+    var titleString: String?
+
+    
+//    var toCoverView: UIImageView = {
+//        toCoverView.layer.cornerRadius = 10
+//        toCoverView.clipsToBounds = true
+//        toCoverView.image = coverView
+//
+//        return toCoverView
+//    }()
 
     private var tableView: UITableView = {
 
@@ -106,6 +116,7 @@ class MapPlaylistController: BaseViewController<MapPlaylistView> {
 
 
         addImgCapa()
+     //   addImageLabels()
        // view.addSubview(self.toCoverView!)
         view.addSubview(tableView)
         setTableViewConstrains()
@@ -142,6 +153,23 @@ class MapPlaylistController: BaseViewController<MapPlaylistView> {
 
     }
     
+    func addImageLabels() {
+    
+        var titleLabel: UILabel?
+     //   self.primeiraMusica = titleString[0]
+        
+        titleLabel?.text = self.primeiraMusica
+        titleLabel?.numberOfLines = 0
+        titleLabel?.adjustsFontSizeToFitWidth = true
+        titleLabel?.textColor = .white
+        titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
+        titleLabel?.frame = CGRect(x: UIScreen.main.bounds.midX*0.45, y: UIScreen.main.bounds.midY, width: UIScreen.main.bounds.width/1.8, height: UIScreen.main.bounds.width/1.8)
+        
+        self.view.addSubview(titleLabel!)
+        self.view.bringSubviewToFront(titleLabel!)
+
+        
+    }
     
     func setTableViewConstrains() {
         self.tableView.translatesAutoresizingMaskIntoConstraints = false

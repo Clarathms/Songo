@@ -30,7 +30,7 @@ protocol MusicServiceFactory {
 extension AppContainer: MusicServiceFactory {
     
     func updateStreaming() {
-        if currentStreaming?.id == .none {
+        if currentStreaming?.id == .none || currentStreaming?.id == .notLoggedIn {
             switch AppData.shared.currentStreaming {
             case .appleMusic:
                 let Streaming: MusicProtocol.Type = AppleMusicService.self
@@ -45,10 +45,12 @@ extension AppContainer: MusicServiceFactory {
                 currentStreaming!.authenticate()
                 print("escolha --------", AppData.shared.currentStreaming)
                 
-            case .none:
+            default:
                 break
             }
+            
         }
+        
         print("estado atual")
         print(AppData.shared.currentStreaming)
     }

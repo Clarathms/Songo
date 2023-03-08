@@ -44,9 +44,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.makeKeyAndVisible()
         Task{
             
-            if AppData.isFirstLaunch() == true || AppData.shared.currentStreaming != nil {
+            if AppData.isFirstLaunch() == true && AppData.shared.currentStreaming != nil {
                 window.rootViewController = SceneDelegate.appContainer.createTabBarControllerScene()
-            }else{
+            } else {
                 window.rootViewController = ViewControllerTutorial()
            }
         }

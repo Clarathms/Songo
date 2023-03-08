@@ -151,13 +151,6 @@ class StyleCell: UITableViewCell {
         self.artistLabel.trailingAnchor.constraint(equalTo: self.artistLabel.trailingAnchor).isActive = true
         self.artistLabel.bottomAnchor.constraint(equalTo: self.artistLabel.bottomAnchor).isActive = true
 
-//        self.artistLabel.translatesAutoresizingMaskIntoConstraints = false
-//
-//        NSLayoutConstraint.activate([
-////            self.artistLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-////            self.artistLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-////            self.artistLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor)
-//        ])
     }
     
     
@@ -184,8 +177,4 @@ class StyleCell: UITableViewCell {
     }
 }
 
-//extension StyleCell: MusicPlacementView {
-//
-//
-//
-//}
+

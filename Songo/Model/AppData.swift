@@ -75,4 +75,5 @@ class AppData: Codable {
 enum StreamChoice: Codable {
     case appleMusic
     case spotify
+    case notLoggedIn
 }

@@ -33,7 +33,6 @@ class MapPlaylistController: BaseViewController<MapPlaylistView> {
     var pictureList: [UIImage] = []
     //    var albumList: [String]
     
-    var annotations: [MKAnnotation] = []
     var finalAnnotations: [MKAnnotation] = []
     var cluster: MKClusterAnnotation
     var musicsTableView = UITableView()
@@ -41,14 +40,7 @@ class MapPlaylistController: BaseViewController<MapPlaylistView> {
     var albumPicture: UIImage?
     
     var primeiraMusica: String?
-    
-//    var toCoverView: UIImageView = {
-//        toCoverView.layer.cornerRadius = 10
-//        toCoverView.clipsToBounds = true
-//        toCoverView.image = coverView
-//
-//        return toCoverView
-//    }()
+    weak var mapView: MKMapView?
 
     private var tableView: UITableView = {
 
@@ -67,11 +59,10 @@ class MapPlaylistController: BaseViewController<MapPlaylistView> {
     }()
     
     
-    init(cluster: MKClusterAnnotation) {
+    init(cluster: MKClusterAnnotation, mapView: MKMapView) {
         self.cluster = cluster
-        annotations = cluster.memberAnnotations
-        
-        for annotation in annotations {
+        self.mapView = mapView
+        for annotation in cluster.memberAnnotations {
             if !finalAnnotations.contains(where: { $0.title == annotation.title}) {
                 finalAnnotations.append(annotation)
             }
@@ -90,7 +81,7 @@ class MapPlaylistController: BaseViewController<MapPlaylistView> {
             }
         } 
         print(pictureList.count, "------fotos")
-        if let isModel = annotations.first as? MusicPlacementModel {
+        if let isModel = finalAnnotations.first as? MusicPlacementModel {
             coverView = isModel.musicPicture ?? UIImage()
         }
         
@@ -103,6 +94,7 @@ class MapPlaylistController: BaseViewController<MapPlaylistView> {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -199,22 +191,26 @@ extension MapPlaylistController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath ) -> UITableViewCell {
         
-     //   let cell = musicsTableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath)
-//        let cell = UITableViewCell(style: .default, reuseIdentifier: Cells.styleCell)
-        // define a parte de info (Nome,etc)
-       // cell.textLabel?.text = (annotations[indexPath.row].title ?? " -- ")! as String
         
         let cell = tableView.dequeueReusableCell(withIdentifier: Cells.styleCell, for: indexPath) as! StyleCell
 
-      
-        
-        
         cell.onTap = {
             self.present(cell.deleteMusicAlert, animated: true, completion: nil)
         }
         
+        
         cell.onDelete = {
-            MapViewController.allPlacements.remove(at: indexPath.row)
+            
+            let elem = self.finalAnnotations[indexPath.row]
+            MapViewController.allPlacements = MapViewController.allPlacements.filter { annotation in
+                guard let songModel = annotation as? MusicPlacementModel else {return false}
+                guard let elemModel = elem as? MusicPlacementModel else {return false}
+                return songModel.id != elemModel.id
+            }
+            self.mapView?.removeAnnotation(elem)
+            self.finalAnnotations.removeAll(where: {$0.title == elem.title})
+            
+            AppData.shared.update(musics: MapViewController.allPlacements)
             tableView.reloadData()
         }
         
@@ -227,3 +223,5 @@ extension MapPlaylistController: UITableViewDelegate {
     
 }
 
+// A B C D E
+// C D E

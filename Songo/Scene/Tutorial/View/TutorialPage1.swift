@@ -17,15 +17,15 @@ struct TutorialPage1: View {
     @State var isPresented: Bool = false
     @State var teste: Bool = true
     @Binding var chamaBotao: Bool
-    var botao: some View {
-        Button {
-            isPresented = true
-        } label: {
-            Text("Pular")
-                .font(.subheadline)
-                .foregroundColor(.gray)
-        }
-    }
+//    var botao: some View {
+//        Button {
+//            isPresented = true
+//        } label: {
+//            Text("Pular")
+//                .font(.subheadline)
+//                .foregroundColor(.gray)
+//        }
+//    }
     
     var body: some View {
         ZStack{

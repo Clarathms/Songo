@@ -166,8 +166,13 @@ class SpotifyService: NSObject, MusicProtocol {
 //
 //        }
 //        currentPhotoData
-        fetchArtwork(for: currentTrack!)
-        return true
+        
+        if let currentTrack = currentTrack {
+            fetchArtwork(for: currentTrack)
+            return true
+        }
+        
+        return false
     }
     
     

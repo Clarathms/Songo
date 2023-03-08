@@ -617,7 +617,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Songo/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SoundMap;
-				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Gostaríamos de acessar a sua atividade atual  para conferir o estado da assinatura e poder habilitar a opção de entrar no aplicativo por meio do Apple Music e assim, adicionar as músicas no mapa, ela não será salva no aplicativo.";
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Gostaríamos de acessar a sua atividade atual para conferir o estado da assinatura e poder habilitar a opção de entrar no aplicativo por meio do Apple Music e assim, adicionar as músicas no mapa, ela não será salva no aplicativo.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Localização usada somente para adicionar e salvar as músicas. Não será compartilhada com mais ninguém.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -628,7 +628,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "Academy.les.inf.puc-rio.Songo1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -658,7 +658,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Songo/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SoundMap;
-				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Gostaríamos de acessar a sua atividade atual  para conferir o estado da assinatura e poder habilitar a opção de entrar no aplicativo por meio do Apple Music e assim, adicionar as músicas no mapa, ela não será salva no aplicativo.";
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Gostaríamos de acessar a sua atividade atual para conferir o estado da assinatura e poder habilitar a opção de entrar no aplicativo por meio do Apple Music e assim, adicionar as músicas no mapa, ela não será salva no aplicativo.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Localização usada somente para adicionar e salvar as músicas. Não será compartilhada com mais ninguém.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -670,7 +670,7 @@
 					"@executable_path/Frameworks",
 				);
 				"LD_RUNPATH_SEARCH_PATHS[arch=*]" = "-ObjC";
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "Academy.les.inf.puc-rio.Songo1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

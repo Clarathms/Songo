@@ -30,7 +30,7 @@ extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let clusterPlacement = view.annotation as? MKClusterAnnotation, clusterPlacement.isKind(of: MKClusterAnnotation.self) {
             let pin = view.annotation
-            let playlistViewController = MapPlaylistController(cluster: clusterPlacement)
+            let playlistViewController = MapPlaylistController(cluster: clusterPlacement, mapView: mapView)
             
             // Create half-modal
             playlistViewController.modalPresentationStyle = .popover

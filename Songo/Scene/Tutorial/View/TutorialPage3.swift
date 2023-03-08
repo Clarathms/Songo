@@ -23,6 +23,7 @@ struct TutorialPage3: View {
         Button {
             isPresented = true
             AppData.shared.currentStreaming = StreamChoice.appleMusic
+            SceneDelegate.appContainer.updateStreaming()
         } label: {
             Text("\(appleImg)  Login com Apple Music")
                 .bold()
@@ -40,6 +41,7 @@ struct TutorialPage3: View {
         Button {
             isPresented = true
             AppData.shared.currentStreaming = StreamChoice.spotify
+            SceneDelegate.appContainer.updateStreaming()
         } label: {
             
             Text("Login com Spotify")

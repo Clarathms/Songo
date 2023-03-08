@@ -20,15 +20,17 @@ class MusicPlacementModelPersistence: Codable {
     var title: String?
     var artist: String?
     var musicData: Data?
+    var id: UUID
 
     
-    init(latitude: Double, longitude: Double, title: String?, artist: String?, musicData: Data?) {
+    init(latitude: Double, longitude: Double, title: String?, artist: String?, musicData: Data?, id: UUID) {
         self.latitude = latitude
         self.longitude = longitude
         //        self.addedAt = addedAt
         self.title = title
         self.artist = artist
         self.musicData = musicData
+        self.id = id
     }
     
     init(music: MusicPlacementModel) {
@@ -37,6 +39,7 @@ class MusicPlacementModelPersistence: Codable {
         title = music.title
         artist = music.artist
         musicData = music.musicData
+        id = music.id
     }
     
 }
@@ -57,6 +60,7 @@ class MusicPlacementModel: NSObject, MKAnnotation {
     var artist: String?
 //    var album: String?
     var musicData: Data?
+    var id: UUID = UUID()
     
     
     init(latitude: Double, longitude: Double, title: String?, artist: String?, musicData: Data?) {
@@ -75,6 +79,7 @@ class MusicPlacementModel: NSObject, MKAnnotation {
         title = persistence.title
         artist = persistence.artist
         musicData = persistence.musicData
+        id = persistence.id
     }
     
 }

@@ -16,16 +16,16 @@ struct TutorialPage2: View {
 //    @State var isPresented: Bool = false
     @Binding var chamaBotao : Bool
 
-    var botao: some View {
-        Button {
-            isPresented = true
-        } label: {
-            Text("Pular")
-                .font(.headline)
-                .foregroundColor(.black)
-                .underline()
-        }
-    }
+//    var botao: some View {
+//        Button {
+//            isPresented = true
+//        } label: {
+//            Text("Pular")
+//                .font(.headline)
+//                .foregroundColor(.black)
+//                .underline()
+//        }
+//    }
     var body: some View {
         ZStack{
             Rectangle()
@@ -56,9 +56,9 @@ struct TutorialPage2: View {
                               
                           }
                       }
-                          if chamaBotao {
-                              botao
-                          }
+//                          if chamaBotao {
+//                              botao
+//                          }
                       }.position(x:UIScreen.main.bounds.midX,y:UIScreen.main.bounds.midY/1.3)
                   }
         }

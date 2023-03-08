@@ -20,7 +20,7 @@ protocol MusicProtocol {
     var currentArtist: String { get }
     var currentAlbum: String { get }
     var currentPhotoData: Data? { get }
-    var id: StreamChoice { get }
+    var id: StreamChoice { get set }
     var delegate: MusicProtocolDelegate? { get set }
     init()
     

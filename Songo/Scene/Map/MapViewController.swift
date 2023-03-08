@@ -147,19 +147,37 @@ class MapViewController: BaseViewController<MapView> {
         updateOverlay(location: location)
     }
     override func viewDidAppear(_ animated: Bool) {
+        
+        SceneDelegate.appContainer.updateStreaming()
+        mainView.currentStreaming = SceneDelegate.appContainer.currentStreaming
+        
         Task {
             displayedPlacements = await AppData.shared.loadMusics()
             await MapViewController.allPlacements.append(contentsOf: AppData.shared.loadMusics())
+            let succeed = await mainView.currentStreaming?.getCurrentPicture()
+            
+            if !(succeed ?? true) {
+                SceneDelegate.appContainer.currentStreaming?.id = .notLoggedIn
+                let alert = UIAlertController(title: "No Account", message:  "No music streaming account logged! You need to login with an account from Spotify or Apple Music", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { alert in
+                    let tutorialVC = ViewControllerTutorial()
+                    tutorialVC.modalPresentationStyle = .fullScreen
+    //                SceneDelegate.appContainer.currentStreaming
+                    self.present(tutorialVC, animated: true)
+                }))
+                
+                self.present(alert, animated: true)
+//                return await AppData.shared.loadMusics()
+            }
         }
-        SceneDelegate.appContainer.updateStreaming()
-        mainView.currentStreaming = SceneDelegate.appContainer.currentStreaming
+        
         
         mainView.currentSongView = AddCurrentSongView(width: UIScreen.main.bounds.width * 0.9, height: 81, mapView: mainView, currentStreaming: mainView.currentStreaming)
         mainView.setupCurrentSongView()
         setupMapReactiveButton()
         
         mainView.currentStreaming?.delegate = mainView
-
+        
 
     }
     
@@ -240,6 +258,7 @@ class MapViewController: BaseViewController<MapView> {
         case hasSameMusic
         case canAdd
     }
+    
     /// Check if user can add annotation.
     /// - Parameter userLocation: Current user location.
     /// - Returns: Returns if userLocation variable is not being used in any other annotation.
@@ -248,7 +267,7 @@ class MapViewController: BaseViewController<MapView> {
         
         if !MapViewController.allPlacements.isEmpty {
             
-            for annotation in MapViewController.allPlacements{
+            for annotation in MapViewController.allPlacements {
                 
                 let distanceFromUserToAnnotation = locationController.calculateDistance(userLocation: CLLocation(latitude: userLocation.latitude, longitude: userLocation.longitude), annotationCoordinate: annotation.coordinate)
                 
@@ -263,7 +282,22 @@ class MapViewController: BaseViewController<MapView> {
     
     public func createPlacements (location: CLLocationCoordinate2D, music: MusicProtocol) async -> [MKAnnotation] {
         print("music name -------", music.currentTitle)
-        await music.getCurrentPicture()
+        let succeed = await music.getCurrentPicture()
+        
+        if !succeed {
+            SceneDelegate.appContainer.currentStreaming?.id = .notLoggedIn
+            let alert = UIAlertController(title: "No Account", message:  "No music streaming account logged! You need to login with an account from Spotify or Apple Music", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { alert in
+                let tutorialVC = ViewControllerTutorial()
+                tutorialVC.modalPresentationStyle = .fullScreen
+//                SceneDelegate.appContainer.currentStreaming
+                self.present(tutorialVC, animated: true)
+            }))
+            
+            self.present(alert, animated: true)
+            return await AppData.shared.loadMusics()
+        }
+        
         let placement = MusicPlacementModel(latitude: location.latitude, longitude: location.longitude, title: music.currentTitle, artist: music.currentArtist, musicData: music.currentPhotoData)
         MapViewController.allPlacements.append(placement)
 //        print("all", allPlacements.count)
@@ -281,7 +315,7 @@ class MapViewController: BaseViewController<MapView> {
 //        userLocation.longitude =
 //        userLocation.latitude += CLLocationDegrees.random(in: -0.02...0.02)
 //        userLocation.longitude += CLLocationDegrees.random(in: -0.02...0.02)
-//        
+
         locationController.updateLastLocation()
         
         switch canAddPlacement(userLocation) {

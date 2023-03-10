@@ -117,7 +117,7 @@ class MapPlaylistController: BaseViewController<MapPlaylistView> {
         
 
 
-        addMusicArtist()
+      //  addMusicArtist()
         addMusicTitle()
         addImgCapa()
      //   addImageLabels()

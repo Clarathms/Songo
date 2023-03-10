@@ -42,6 +42,7 @@ class MapPlaylistController: BaseViewController<MapPlaylistView> {
     var primeiraMusica: String?
     weak var mapView: MKMapView?
     var titleString: String?
+    var artistString: String?
 
     
 //    var toCoverView: UIImageView = {
@@ -88,6 +89,7 @@ class MapPlaylistController: BaseViewController<MapPlaylistView> {
 
                 self.primeiraMusica = titleList[0]
                 self.albumPicture = pictureList[0]
+                self.artistString = artistList[0]
             }
         } 
         print(pictureList.count, "------fotos")
@@ -115,6 +117,8 @@ class MapPlaylistController: BaseViewController<MapPlaylistView> {
         
 
 
+        addMusicArtist()
+        addMusicTitle()
         addImgCapa()
      //   addImageLabels()
        // view.addSubview(self.toCoverView!)
@@ -133,14 +137,6 @@ class MapPlaylistController: BaseViewController<MapPlaylistView> {
    
     func addImgCapa() {
         self.albumPicture = pictureList[0]
-
-//
-//        self.toCoverView!.layer.cornerRadius = 10
-//        self.toCoverView!.clipsToBounds = true
-//        self.toCoverView!.image = albumPicture
-//
-//        self.view.bringSubviewToFront( self.toCoverView!)
-
         let image = self.albumPicture
         let imageView = UIImageView(image: image!)
       //  imageView.contentMode = .scaleAspectFit
@@ -150,9 +146,34 @@ class MapPlaylistController: BaseViewController<MapPlaylistView> {
         self.view.addSubview(imageView)
         //Imageview on Top of View
         self.view.bringSubviewToFront(imageView)
-
+        
+     //   primeiraMusica
     }
     
+    func addMusicTitle() {
+        self.primeiraMusica = titleList[0]
+        let label : UILabel = UILabel(frame: CGRect(x: UIScreen.main.bounds.midX/5, y: UIScreen.main.bounds.midY*0.55, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width/1.8))
+        label.text = self.primeiraMusica
+        label.adjustsFontSizeToFitWidth = true
+        label.textColor = .white
+        label.font = .systemFont(ofSize: 20, weight: .bold)
+        
+        self.view.addSubview(label)
+        self.view.bringSubviewToFront(label)
+        
+    }
+    func addMusicArtist() {
+        self.artistString = artistList[0]
+        let label : UILabel = UILabel(frame: CGRect(x: UIScreen.main.bounds.midX/5, y: UIScreen.main.bounds.midY*0.6, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width/1.8))
+        label.text = self.primeiraMusica
+        label.adjustsFontSizeToFitWidth = true
+        label.textColor = .white
+        label.font = .systemFont(ofSize: 18, weight: .light)
+        
+        self.view.addSubview(label)
+        self.view.bringSubviewToFront(label)
+        
+    }
     func addImageLabels() {
     
         var titleLabel: UILabel?

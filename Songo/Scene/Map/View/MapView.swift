@@ -12,6 +12,7 @@ import CoreLocation
 import Combine
 import MusicKit
 
+
 /// The visualization of the map.
 class MapView: MKMapView  {
     
@@ -43,11 +44,20 @@ class MapView: MKMapView  {
     var locationButton = MapLocationButton()
 
     weak var locationController: LocationController?
-    var currentStreaming: MusicProtocol?
+    
+    var currentStreaming: MusicProtocol? {
+        set {
+            SceneDelegate.appContainer.currentStreaming = newValue
+        }
+        get {
+            var currStreaming = SceneDelegate.appContainer.currentStreaming
+            currStreaming?.delegate = self
+            return currStreaming
+        }
+    }
 
     //MARK: - Initializers
     init(locationController: LocationController) {
-
 
 //        self.currentStreaming = currentStreaming
         self.locationController = locationController
@@ -123,9 +133,6 @@ class MapView: MKMapView  {
     
     //MARK: - Annotations
     
-
-    
-    
     var isLoading: Bool = false
 
 }
@@ -171,9 +178,9 @@ extension MapView: MusicProtocolDelegate {
 //                MapView.musicPhotoData = self.currentStreaming?.currentPhotoData
 //            }
 //        }
-        MapView.musicTitle = currentStreaming?.currentTitle
-        MapView.musicArtist = currentStreaming?.currentArtist
-        MapView.musicAlbum = currentStreaming?.currentAlbum
+        MapView.musicTitle = self.currentStreaming?.currentTitle
+        MapView.musicArtist = self.currentStreaming?.currentArtist
+        MapView.musicAlbum = self.currentStreaming?.currentAlbum
         
         
         print(MapView.musicTitle!, "****** A")

@@ -199,15 +199,6 @@ class MapPlaylistController: BaseViewController<MapPlaylistView> {
         
     }
     
-//    func getCount (){
-//        let musicCount = self.annotations.count
-//        for _ in 1...musicCount {
-//            print("Print da Anottation ------")
-//            print(annotations)
-//            musicsTableView.register(UITableViewCell.self, forCellReuseIdentifier: Cells.styleCell)
-//        }
-//    }
-   
     
 }
 

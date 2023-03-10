@@ -23,8 +23,22 @@ extension MapViewController: MKMapViewDelegate {
     
     func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
         updateReactiveButton()
-        //self.mapView.currentSongView?.addSongButton.updateReactiveButton()
         updateLocationButton()
+
+        if AppData.shared.isConnected == false {
+            let alert = UIAlertController(title: "No streaming account logged", message:  "Please login with Spotify or Apple Music before opening the app again. Press 'Ok' to close the app.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { alert in
+                AppData.shared.isConnected = true
+                exit(0)
+//                let tutorialVC = ViewControllerTutorial()
+//                tutorialVC.modalPresentationStyle = .fullScreen
+//                SceneDelegate.appContainer.currentStreaming?.id = .notLoggedIn
+//                self.present(tutorialVC, animated: true)
+            }))
+            
+            present(alert, animated: true)
+            //                return await AppData.shared.loadMusics()
+        }
     }
 
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {

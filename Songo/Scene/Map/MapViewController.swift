@@ -73,9 +73,6 @@ class MapViewController: BaseViewController<MapView> {
         }
         didSet {
             if let newPlacements = displayedPlacements {
-//                let previousCount: Int = oldValue?.count ?? 0
-//                let newPlacement = Array(newPlacements.suffix(newPlacements.count - previousCount))
-//                print("Vai mostrar ", newPlacement.count - previousCount)
                 print("mostrando", newPlacements.count)
                 mainView.addAnnotations(newPlacements)
 //                                AppData.shared.update(musics: newPlacements)
@@ -149,42 +146,23 @@ class MapViewController: BaseViewController<MapView> {
     override func viewDidAppear(_ animated: Bool) {
         
         SceneDelegate.appContainer.updateStreaming()
-        mainView.currentStreaming = SceneDelegate.appContainer.currentStreaming
-        
         Task {
             displayedPlacements = await AppData.shared.loadMusics()
             await MapViewController.allPlacements.append(contentsOf: AppData.shared.loadMusics())
-            let succeed = await mainView.currentStreaming?.getCurrentPicture()
-            
-            if !(succeed ?? true) {
-                SceneDelegate.appContainer.currentStreaming?.id = .notLoggedIn
-                let alert = UIAlertController(title: "No Account", message:  "No music streaming account logged! You need to login with an account from Spotify or Apple Music", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { alert in
-                    let tutorialVC = ViewControllerTutorial()
-                    tutorialVC.modalPresentationStyle = .fullScreen
-    //                SceneDelegate.appContainer.currentStreaming
-                    self.present(tutorialVC, animated: true)
-                }))
-                
-                self.present(alert, animated: true)
-//                return await AppData.shared.loadMusics()
-            }
         }
         
         
-        mainView.currentSongView = AddCurrentSongView(width: UIScreen.main.bounds.width * 0.9, height: 81, mapView: mainView, currentStreaming: mainView.currentStreaming)
+        mainView.currentSongView = AddCurrentSongView(width: UIScreen.main.bounds.width * 0.9, height: 81, mapView: mainView)
+//        mainView.currentStreaming = SceneDelegate.appContainer.currentStreaming
         mainView.setupCurrentSongView()
         setupMapReactiveButton()
         
         mainView.currentStreaming?.delegate = mainView
-        
 
     }
     
     func setupMapReactiveButton() {
         mainView.reactiveButton!.addTarget(self, action: #selector(handleAddSongButtonAction), for: .touchUpInside)
-        //mainView.currentSongView?.addSongButton.addTarget(<#T##Any?#>, action: <#T##Selector#>, for: <#T##UIControl.Event#>)
-        //mainView.currentSongView!.addSongButton.addTarget(self, action: #selector(handleAddSongButtonAction), for: .touchUpInside)
     }
     func setupMapLocationButton() {
         mainView.locationButton.addTarget(self, action: #selector(handleLocationButtonAction), for: .touchUpInside)
@@ -282,15 +260,17 @@ class MapViewController: BaseViewController<MapView> {
     
     public func createPlacements (location: CLLocationCoordinate2D, music: MusicProtocol) async -> [MKAnnotation] {
         print("music name -------", music.currentTitle)
-        let succeed = await music.getCurrentPicture()
+        let _ = await music.getCurrentPicture()
         
-        if !succeed {
-            SceneDelegate.appContainer.currentStreaming?.id = .notLoggedIn
+//        let crrStreamingId = mainView.currentStreaming?.id
+        let crrStreamingId = SceneDelegate.appContainer.currentStreaming?.id ?? .none
+        
+        if crrStreamingId == .notLoggedIn {
             let alert = UIAlertController(title: "No Account", message:  "No music streaming account logged! You need to login with an account from Spotify or Apple Music", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { alert in
                 let tutorialVC = ViewControllerTutorial()
                 tutorialVC.modalPresentationStyle = .fullScreen
-//                SceneDelegate.appContainer.currentStreaming
+                
                 self.present(tutorialVC, animated: true)
             }))
             
@@ -321,7 +301,7 @@ class MapViewController: BaseViewController<MapView> {
         switch canAddPlacement(userLocation) {
         case .canAdd:
             Task {
-                if mainView.currentStreaming != nil{
+                if mainView.currentStreaming != nil {
                     let placements = await createPlacements(location: userLocation, music: mainView.currentStreaming!)
                     
                     displayedPlacements = placements

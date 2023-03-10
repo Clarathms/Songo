@@ -23,7 +23,6 @@ struct TutorialPage3: View {
         Button {
             isPresented = true
             AppData.shared.currentStreaming = StreamChoice.appleMusic
-            SceneDelegate.appContainer.updateStreaming()
         } label: {
             Text("\(appleImg)  Login com Apple Music")
                 .bold()
@@ -41,7 +40,6 @@ struct TutorialPage3: View {
         Button {
             isPresented = true
             AppData.shared.currentStreaming = StreamChoice.spotify
-            SceneDelegate.appContainer.updateStreaming()
         } label: {
             
             Text("Login com Spotify")
@@ -90,7 +88,7 @@ struct TutorialPage3: View {
                             VStack(spacing: 20){
                                 Text("Atenção!")
                                     .font(.title)
-                                Text("Para utilizar o aplicativo, \n é necessário ter conta no Apple Music \n ou Spotify")
+                                Text("Para utilizar o aplicativo, \n é necessário estar logado e com o app do Apple Music \n ou Spotify")
                                     .font(.subheadline)
                                     .multilineTextAlignment(.center)
                             }

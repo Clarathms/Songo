@@ -29,30 +29,30 @@ protocol MusicServiceFactory {
 
 extension AppContainer: MusicServiceFactory {
     
+    ///
+    /// Essa função deve ser chamada 2 vezes no código:
+    /// - No `SceneDelegate`, para conectar e desconectar do Streaming
+    /// - No `viewDidAppear` do `MapViewController`, para carregar informação no mapa.
     func updateStreaming() {
+        
         if currentStreaming?.id == .none || currentStreaming?.id == .notLoggedIn {
             switch AppData.shared.currentStreaming {
             case .appleMusic:
                 let Streaming: MusicProtocol.Type = AppleMusicService.self
                 currentStreaming = Streaming.init()
                 currentStreaming?.authenticate()
-                print("escolha --------", AppData.shared.currentStreaming)
 
-                
             case .spotify:
                 let Streaming: MusicProtocol.Type = SpotifyService.self
                 currentStreaming = Streaming.init()
                 currentStreaming!.authenticate()
-                print("escolha --------", AppData.shared.currentStreaming)
-                
+                let sptService = currentStreaming as! SpotifyService
             default:
                 break
             }
             
         }
         
-        print("estado atual")
-        print(AppData.shared.currentStreaming)
     }
 }
 //MARK: - Map Factory

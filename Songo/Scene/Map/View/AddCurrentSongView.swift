@@ -40,7 +40,9 @@ class AddCurrentSongView: UIView {
     //var songButtonView = SongButtonView()
     
     var state: UIControl.State = .addCurrentSong
-    var currentStreaming: MusicProtocol?
+    var currentStreaming: MusicProtocol? {
+        mapView.currentStreaming
+    }
     var musicPicture: UIImage?
     
     //    lazy var musicPicture: UIImage? = {
@@ -61,9 +63,8 @@ class AddCurrentSongView: UIView {
     var soundFrames: UIImage!
     
     
-    init(width:CGFloat, height:Int, mapView: MapView, currentStreaming: MusicProtocol?) {
+    init(width:CGFloat, height:Int, mapView: MapView) {
         self.mapView = mapView
-        self.currentStreaming = currentStreaming
         super.init(frame: CGRect(x: 0, y: 0, width: Int(width), height: height))
            setupCurrentSongview()
 

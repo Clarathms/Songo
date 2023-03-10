@@ -11,12 +11,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
     static var appContainer: AppContainer = AppContainer()
-    lazy var currentStreaming = {
-        SceneDelegate.appContainer.updateStreaming()
-        return SceneDelegate.appContainer.currentStreaming
-    }()
     
     lazy var spotifyService: SpotifyService? = {
+        SceneDelegate.appContainer.updateStreaming()
+        let currentStreaming = SceneDelegate.appContainer.currentStreaming
         return currentStreaming as? SpotifyService
     }()
 
@@ -33,13 +31,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if #available(iOS 13.0, *) {
             window.overrideUserInterfaceStyle = .light
         }
-        //        // 4. Create the view hierarchy
-        //        let viewController = getRootViewController()
         
-        //        // 5. Set the root view controller of the window
-        //        window.rootViewController = viewController
-        
-        // 6. Set the window and make it keyAndVisible
         self.window = window
         window.makeKeyAndVisible()
         Task{
@@ -47,6 +39,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             if AppData.isFirstLaunch() == true && AppData.shared.currentStreaming != nil {
                 window.rootViewController = SceneDelegate.appContainer.createTabBarControllerScene()
             } else {
+                AppData.shared.isConnected = true
                 window.rootViewController = ViewControllerTutorial()
            }
         }
@@ -58,6 +51,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     //TODO: acertar scene com a view devida para a autenticação com o Spotify
         func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
             if AppData.shared.currentStreaming == .spotify {
+                AppData.shared.isConnected = true
                 guard let url = URLContexts.first?.url else { return }
                 let parameters = spotifyService?.appRemote.authorizationParameters(from: url)
                 if let code = parameters?["code"] {
@@ -65,7 +59,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 } else if let access_token = parameters?[SPTAppRemoteAccessTokenKey] {
                     spotifyService?.accessToken = access_token
                 } else if let error_description = parameters?[SPTAppRemoteErrorDescriptionKey] {
-                    print("No access token error =", error_description)
                 }
             }
         }
@@ -82,7 +75,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+        
         if AppData.shared.currentStreaming == .spotify {
+            
             if let accessToken = spotifyService?.appRemote.connectionParameters.accessToken {
                 spotifyService?.appRemote.connectionParameters.accessToken = accessToken
                 spotifyService?.appRemote.connect()
@@ -90,9 +85,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 spotifyService?.appRemote.connectionParameters.accessToken = accessToken
                 spotifyService?.appRemote.connect()
             }
-            //        if let _ = spotifyService.appRemote.connectionParameters.accessToken {
-            //            spotifyService.appRemote.connect()
-            //        }
         } 
     }
         
@@ -115,7 +107,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         func sceneWillEnterForeground(_ scene: UIScene) {
             // Called as the scene transitions from the background to the foreground.
             // Use this method to undo the changes made on entering the background.
-            print("Loading...")
             AppData.shared.loadData()
         }
         

@@ -14,6 +14,7 @@ class AppData: Codable {
     init() {}
     
     var currentStreaming: StreamChoice?
+    var isConnected: Bool? = true
     
     static var shared: AppData = AppData()
     
@@ -23,7 +24,6 @@ class AppData: Codable {
         
         let musicPlacementModels = musics.compactMap({$0 as? MusicPlacementModel})
         addedMusic = musicPlacementModels.map({MusicPlacementModelPersistence(music: $0)})
-        print("added", addedMusic.count)
     }
     
     func loadMusics() async -> [MusicPlacementModel] {
@@ -34,7 +34,6 @@ class AppData: Codable {
             loadedMusics.append(music)
         }
 //        loadedMusics = self.addedMusic.map({MusicPlacementModel(persistence: $0)})
-        print("loaded", loadedMusics.count)
         return loadedMusics
     }
     
@@ -46,7 +45,6 @@ class AppData: Codable {
            do {
                try self.save()
            } catch let err {
-               print(err.localizedDescription)
            }
        }
     
@@ -62,11 +60,9 @@ class AppData: Codable {
         let defaults = UserDefaults.standard
                 
                 if defaults.bool(forKey: "isAppAlreadyLaunchedOnce"){
-                    print("Não é a primeira vez no app")
                     return true
                 }else{
                     defaults.set(true, forKey: "isAppAlreadyLaunchedOnce")
-                    print("Primeira vez no app")
                     return false
                 }
     }

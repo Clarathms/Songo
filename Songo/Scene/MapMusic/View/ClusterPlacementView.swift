@@ -192,7 +192,7 @@ class ClusterPlacementView: MKAnnotationView {
                     imageViewList[count].image = musicPicture
                     ratio = musicPicture.size.height / musicPicture.size.width
                 }
-            } else {
+            } else if imageViewList.count > count {
                 imageViewList[count].image = .add
             }
             count += 1

@@ -11,10 +11,11 @@ import MapKit
 class ClusterPlacementView: MKAnnotationView {
     
     private let boxInset = CGFloat(10)
-    private let interItemSpacing = CGFloat(5)
-    private let maxContentWidth = CGFloat(45)
-    private let contentInsets = UIEdgeInsets(top: 10, left: 20, bottom: 20, right: 20)
-    
+    private let interItemSpacing = CGFloat(2)
+    private let maxContentWidth = CGFloat(50)
+   // private let contentInsets = UIEdgeInsets(top: 10, left: 20, bottom: 20, right: 20)
+    private let contentInsets = UIEdgeInsets(top: 5, left: 15, bottom: 15, right: 15)
+
     private let blurEffect = UIBlurEffect(style: .systemThickMaterial)
     
     private lazy var backgroundMaterial: UIVisualEffectView = {

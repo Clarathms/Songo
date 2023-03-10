@@ -88,7 +88,7 @@ class MapViewController: BaseViewController<MapView> {
     static var allMusicPlacements: [MusicPlacementModel] = allPlacements.compactMap{$0 as? MusicPlacementModel}
 
     private func addAlertAction() {
-        addSameMusic.addAction(UIAlertAction(title: "Ok!", style: .default, handler: nil))
+        addSameMusic.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
     }
     
     private func isRefreshRequired(previousZoomLevel: Int, currentZoomLevel: Int) -> Bool {

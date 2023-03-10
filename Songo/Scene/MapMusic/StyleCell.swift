@@ -48,13 +48,13 @@ class StyleCell: UITableViewCell {
 
         setupTitleLabel()
         setupImage()
-//        setupArtistLabel()
+      //  setupArtistLabel()
         //setupButtonImage()
         
 //        buttonConstrains()
         buttonConstrains()
         imgConstrains()
-//        artistConstrains()
+      //  artistConstrains()
         titleConstrains()
         deleteMusicAlert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: nil ))
         deleteMusicAlert.addAction(UIAlertAction(title: "Apagar", style: .default, handler: { _ in
@@ -90,16 +90,6 @@ class StyleCell: UITableViewCell {
               button.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
        button.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 10).isActive = true
 
-//       self.button.translatesAutoresizingMaskIntoConstraints = false
-//
-//       NSLayoutConstraint.activate([
-//           self.button.topAnchor.constraint(equalTo: self.topAnchor),
-//           self.button.leadingAnchor.constraint(equalTo: self.trailingAnchor,constant: 20),
-//           self.button.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-//           self.button.bottomAnchor.constraint(equalTo: self.bottomAnchor)
-//      //     self.artistLabel.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor,constant: 20)
-//
-//       ])
     }
     
     
@@ -143,21 +133,19 @@ class StyleCell: UITableViewCell {
         artistLabel.numberOfLines = 0
         artistLabel.adjustsFontSizeToFitWidth = true
         artistLabel.textColor = .white
+        artistLabel.font = .systemFont(ofSize: 16, weight: .light)
+
     }
     
     func artistConstrains() {
-        self.artistLabel.leadingAnchor.constraint(equalTo: self.artistLabel.leadingAnchor).isActive = true
-        self.artistLabel.topAnchor.constraint(equalTo:  self.titleLabel.bottomAnchor,constant: 20).isActive = true
-        self.artistLabel.trailingAnchor.constraint(equalTo: self.artistLabel.trailingAnchor).isActive = true
-        self.artistLabel.bottomAnchor.constraint(equalTo: self.artistLabel.bottomAnchor).isActive = true
 
-//        self.artistLabel.translatesAutoresizingMaskIntoConstraints = false
-//
-//        NSLayoutConstraint.activate([
-////            self.artistLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-////            self.artistLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-////            self.artistLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor)
-//        ])
+        self.artistLabel.translatesAutoresizingMaskIntoConstraints = false
+       // button.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor, constant: 0).isActive = true
+        
+        self.artistLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
+        self.artistLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        self.artistLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
+        self.artistLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 10).isActive = true
     }
     
     

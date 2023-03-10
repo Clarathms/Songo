@@ -154,13 +154,13 @@ class AddCurrentSongView: UIView {
     
     func createAnimation () {
       //  if SpotifyService.fetchPlayerState()
-        for num in 1...10{
+        for num in 1...17{
             //let strImageName : String = "foto\(num)"
             let image  = UIImage(named:"Frame \(num)")
             imgListArray.append(image!)
         }
         
-        self.soundFrames = UIImage.animatedImage(with: imgListArray, duration: 1.5)
+        self.soundFrames = UIImage.animatedImage(with: imgListArray, duration: 1)
         myImageView.image = self.soundFrames
         myImageView.layoutIfNeeded()
         myImageView.startAnimating()

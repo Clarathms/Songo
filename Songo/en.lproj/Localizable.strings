@@ -1,0 +1,18 @@
+/*
+  Localizable (English).strings
+  Songo
+
+  Created by Clara Thaís Maciel e Silva on 13/03/23.
+  
+*/
+
+"TutPage1.1" = "Welcome to SoundMap!";
+"TutPage1.2" = "In SoundMap you will be able to \n build your musical identity \n through your location.";
+
+"TutPage2.1" = "Remember moments through playlists";
+"TutPage2.2" = "Add the music you're listening to \n in your current location and create playlists \n by zooming in on the map.";
+
+"TutPage3.1" = "Attention!";
+"TutPage3.2" = "To use the application, \n you must be logged in and have the \n Apple Music or Spotify \n app installed";
+
+"MapTabBar" = "Map";

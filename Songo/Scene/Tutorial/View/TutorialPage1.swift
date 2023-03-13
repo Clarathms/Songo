@@ -55,9 +55,9 @@ struct TutorialPage1: View {
                             .frame(width: UIScreen.main.bounds.width/2
                             , height: UIScreen.main.bounds.height/2)
                         VStack(spacing: 20){
-                            Text("Seja bem-vindo ao SoundMap!")
+                            Text("TutPage1.1")
                                 .font(.headline)
-                            Text("No SoundMap você conseguirá \n montar sua identidade sonoro-musical  \n através da sua localização.")
+                            Text("TutPage1.2")
                                 .lineLimit(3)
                                 .font(.subheadline)
                                 .multilineTextAlignment(.center)

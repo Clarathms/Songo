@@ -47,9 +47,9 @@ struct TutorialPage2: View {
                               .frame(width: UIScreen.main.bounds.width/2
                                      , height: UIScreen.main.bounds.height/2)
                           VStack(spacing: 20){
-                              Text("Relembre os momentos atráves de playlists")
+                              Text("TutPage2.1")
                                   .font(.headline)
-                              Text("Adicione a música que está ouvindo \n em sua localização atual e crie playlists \n  alterando o zoom no mapa.")
+                              Text("TutPage2.2")
                                   .font(.subheadline)
                                   .multilineTextAlignment(.center)
                               

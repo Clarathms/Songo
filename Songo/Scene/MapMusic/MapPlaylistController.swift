@@ -23,8 +23,8 @@ class MapPlaylistController: BaseViewController<MapPlaylistView> {
     struct Cells {
         static let titleCell = "contactCell"
         static let styleCell = "styleCell"
-
     }
+    
     var coverView: UIImage = UIImage ()
     
     var titleList: Array<String> = []

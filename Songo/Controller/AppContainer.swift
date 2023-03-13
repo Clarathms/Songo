@@ -46,7 +46,7 @@ extension AppContainer: MusicServiceFactory {
                 let Streaming: MusicProtocol.Type = SpotifyService.self
                 currentStreaming = Streaming.init()
                 currentStreaming!.authenticate()
-                let sptService = currentStreaming as! SpotifyService
+//                let sptService = currentStreaming as! SpotifyService
             default:
                 break
             }

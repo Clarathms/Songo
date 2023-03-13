@@ -64,7 +64,7 @@ class AppleMusicService: MusicProtocol {
     func runTimer() {
         guard !timerIsRunning else { return }
         timerIsRunning = true
-        Timer.scheduledTimer(withTimeInterval: 4, repeats: true, block: { timer in
+        Timer.scheduledTimer(withTimeInterval: 2, repeats: true, block: { timer in
             guard  self.currentMusicID != SystemMusicPlayer.shared.queue.currentEntry?.item?.id else {return}
             self.currentMusicID = SystemMusicPlayer.shared.queue.currentEntry?.item?.id
             Task {

@@ -221,6 +221,7 @@ class MapViewController: BaseViewController<MapView> {
     
 
     func requestLocationAuthorization() {
+        redirectToSettingsAlert.addAction(UIAlertAction(title: "Ok!", style: .default))
         present(redirectToSettingsAlert, animated: true, completion: nil)
     }
     

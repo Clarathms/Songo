@@ -58,8 +58,6 @@
 		DEEF6AAA2992C5630046DD90 /* MapPlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEF6AA92992C5630046DD90 /* MapPlaylistView.swift */; };
 		DEEF6AAD2992C6520046DD90 /* CodableExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = DEEF6AAC2992C6520046DD90 /* CodableExtensions */; };
 		DEEF6AB12992C6ED0046DD90 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEF6AB02992C6ED0046DD90 /* AppData.swift */; };
-		DEEF6AB32992F8C40046DD90 /* MusicPlaylistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEF6AB22992F8C40046DD90 /* MusicPlaylistModel.swift */; };
-		DEFB0BA029A02A76006329E4 /* MusicService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFB0B9F29A02A76006329E4 /* MusicService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +75,7 @@
 		AD84BFDE29AF4E010063F819 /* StyleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleCell.swift; sourceTree = "<group>"; };
 		AD956248299173A40045C68F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		AD95624A2991A4700045C68F /* PlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistViewController.swift; sourceTree = "<group>"; };
+		DE1035C929BE836F00E3C832 /* sample.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = sample.gpx; sourceTree = "<group>"; };
 		DE4C8EC22981A12D0065C813 /* ClusterPlacementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterPlacementView.swift; sourceTree = "<group>"; };
 		DE4C8EC42981A9330065C813 /* LocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
 		DE4C8EC72981C32A0065C813 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -116,8 +115,6 @@
 		DEEF6AA729918B3D0046DD90 /* MapPlaylistController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPlaylistController.swift; sourceTree = "<group>"; };
 		DEEF6AA92992C5630046DD90 /* MapPlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPlaylistView.swift; sourceTree = "<group>"; };
 		DEEF6AB02992C6ED0046DD90 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
-		DEEF6AB22992F8C40046DD90 /* MusicPlaylistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlaylistModel.swift; sourceTree = "<group>"; };
-		DEFB0B9F29A02A76006329E4 /* MusicService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +133,7 @@
 		AD56EA8829786AA900BD9F59 = {
 			isa = PBXGroup;
 			children = (
+				DE1035C929BE836F00E3C832 /* sample.gpx */,
 				AD56EA9329786AA900BD9F59 /* Songo */,
 				AD56EA9229786AA900BD9F59 /* Products */,
 			);
@@ -211,7 +209,6 @@
 			children = (
 				DEEF6AB02992C6ED0046DD90 /* AppData.swift */,
 				DE5DD17029833224002BEB3F /* MusicPlacementModel.swift */,
-				DEEF6AB22992F8C40046DD90 /* MusicPlaylistModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -248,7 +245,6 @@
 			children = (
 				DE66A940299D54B300BD21FA /* MusicProtocol.swift */,
 				DE5DD17D2984813D002BEB3F /* AppleMusicService.swift */,
-				DEFB0B9F29A02A76006329E4 /* MusicService.swift */,
 				AD6B72E729A004D200DC024F /* SpotifyService.swift */,
 				DE66A934299C060600BD21FA /* ConstantsSpotify.swift */,
 			);
@@ -464,7 +460,6 @@
 				DE4C8EC52981A9330065C813 /* LocationController.swift in Sources */,
 				DE66A93B299C117A00BD21FA /* SpotifyDelegate.swift in Sources */,
 				DE4C8ECA29822BA80065C813 /* CLLocationManagerDelegate.swift in Sources */,
-				DEFB0BA029A02A76006329E4 /* MusicService.swift in Sources */,
 				DE4F3463298AECA3004EE2F9 /* UIGestureRecognizerDelegate.swift in Sources */,
 				DE7319B9297F60BD00A6197C /* MapViewController.swift in Sources */,
 				DEEF6AAA2992C5630046DD90 /* MapPlaylistView.swift in Sources */,
@@ -480,7 +475,6 @@
 				DE7319CA29806C1300A6197C /* CircleRangeView.swift in Sources */,
 				AD1E24552989BB7A00D344E3 /* extensionTabBar.swift in Sources */,
 				DEEF6AB12992C6ED0046DD90 /* AppData.swift in Sources */,
-				DEEF6AB32992F8C40046DD90 /* MusicPlaylistModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

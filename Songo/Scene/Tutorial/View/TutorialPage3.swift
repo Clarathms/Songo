@@ -86,9 +86,9 @@ struct TutorialPage3: View {
                             
                             
                             VStack(spacing: 20){
-                                Text("Atenção!")
+                                Text("TutPage3.1")
                                     .font(.title)
-                                Text("Para utilizar o aplicativo, \n é necessário estar logado e com o app do Apple Music \n ou Spotify")
+                                Text("TutPage3.2")
                                     .font(.subheadline)
                                     .multilineTextAlignment(.center)
                             }

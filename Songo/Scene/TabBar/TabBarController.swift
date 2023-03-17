@@ -59,7 +59,7 @@ class TabBarController: UITabBarController {
         let profileNavigationController = profileFactory.createProfileScene()
         
         // 1 tab
-        let mapTabBarItem = UITabBarItem(title: NSLocalizedString("Mapa", comment: "TabBarController: Name of the Map slot on Tab Bar."), image: UIImage(systemName: "map"), selectedImage: UIImage(systemName: "map.fill"))
+        let mapTabBarItem = UITabBarItem(title: NSLocalizedString("MapTabBar", comment: "TabBarController: Name of the Map slot on Tab Bar."), image: UIImage(systemName: "map"), selectedImage: UIImage(systemName: "map.fill"))
         mapTabBarItem.tag = 0
         mapNavigationController.tabBarItem = mapTabBarItem
 //

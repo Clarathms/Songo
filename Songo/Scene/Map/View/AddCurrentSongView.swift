@@ -90,7 +90,7 @@ class AddCurrentSongView: UIView {
     func setupDot (){
         self.separationDot.text = "."
         self.separationDot.textColor = .white
-        self.separationDot.font = UIFont.boldSystemFont(ofSize: 57)
+        self.separationDot.font = UIFont(name: "FiraSans-Regular", size: 57)
        // self.separationDot.font = UIFont(name:"Inter", size: 45.0)
         addSubview(self.separationDot)
     }
@@ -120,9 +120,8 @@ class AddCurrentSongView: UIView {
         self.currentTitle.textColor = .white
         self.currentTitle.textAlignment = .left
         self.currentTitle.numberOfLines = 1
-        self.currentTitle.font = UIFont(name:"Inter", size: 5.0)
-        self.currentTitle.font = UIFont.boldSystemFont(ofSize: 17)
-        print( "\(String(describing: self.currentTitle.text)) + ******/////*******")
+        self.currentTitle.font = UIFont(name: "FiraSans-Bold", size: 17)
+//        print( "\(String(describing: self.currentTitle.text)) + ******/////*******")
         self.addSubview(self.currentTitle)
         
     }
@@ -132,8 +131,7 @@ class AddCurrentSongView: UIView {
         self.currentArtist.textColor = .white
         self.currentArtist.textAlignment = .left
         self.currentArtist.numberOfLines = 1
-        self.currentArtist.font = UIFont(name:"Inter", size: 20.0)
-        self.currentArtist.font = UIFont.systemFont(ofSize: 15)
+        self.currentArtist.font = UIFont(name: "FiraSans-Regular", size: 15)
        
         self.addSubview(currentArtist)
         
@@ -144,8 +142,7 @@ class AddCurrentSongView: UIView {
         self.currentAlbum.textColor = .white
         self.currentAlbum.textAlignment = .left
         self.currentAlbum.numberOfLines = 1
-        self.currentAlbum.font = UIFont(name:"Inter", size: 20.0)
-        self.currentAlbum.font = UIFont.systemFont(ofSize: 15)
+        self.currentAlbum.font = UIFont(name: "FiraSans-Regular", size: 15)
         self.addSubview(currentAlbum)
     }
     

@@ -72,15 +72,15 @@ extension AppContainer: MapSceneFactory {
 }
 
 // ******* Cria a Cena de perfil ********
-protocol ProfileSceneFactory {
-    func createProfileScene() -> ProfileViewController
+protocol ContactSceneFactory {
+    func createContactScene() -> ContactViewController
     
 }
 
-extension AppContainer: ProfileSceneFactory {
+extension AppContainer: ContactSceneFactory {
     
-    func createProfileScene() -> ProfileViewController {
-        return ProfileViewController()
+    func createContactScene() -> ContactViewController {
+        return ContactViewController()
     }
     
 }

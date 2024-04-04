@@ -29,7 +29,7 @@ class StyleCell: UITableViewCell {
            let btn = UIButton()
            btn.setTitle("...", for: .normal)
 //           btn.backgroundColor = .systemPink
-           btn.titleLabel?.font = UIFont.systemFont(ofSize: 20,weight: .semibold)
+           btn.titleLabel?.font = UIFont(name: "FiraSans-SemiBold", size: 20)
            return btn
        }()
        
@@ -112,7 +112,7 @@ class StyleCell: UITableViewCell {
         titleLabel.numberOfLines = 1
         titleLabel.adjustsFontSizeToFitWidth = true
         titleLabel.textColor = .white
-        titleLabel.font = .systemFont(ofSize: 16, weight: .semibold)
+        titleLabel.font = UIFont(name: "FiraSans-SemiBold", size: 16)
 //        titleLabel.backgroundColor = .red
     }
     
@@ -133,7 +133,7 @@ class StyleCell: UITableViewCell {
         artistLabel.numberOfLines = 0
         artistLabel.adjustsFontSizeToFitWidth = true
         artistLabel.textColor = .white
-        artistLabel.font = .systemFont(ofSize: 16, weight: .light)
+        artistLabel.font = UIFont(name: "FiraSans-Light", size: 16)
 
     }
     

@@ -156,7 +156,7 @@ class MapPlaylistController: BaseViewController<MapPlaylistView> {
         label.text = self.primeiraMusica
         label.adjustsFontSizeToFitWidth = true
         label.textColor = .white
-        label.font = .systemFont(ofSize: 20, weight: .bold)
+        label.font = UIFont(name: "FiraSans-Bold", size: 20)
         
         self.view.addSubview(label)
         self.view.bringSubviewToFront(label)
@@ -168,8 +168,7 @@ class MapPlaylistController: BaseViewController<MapPlaylistView> {
         label.text = self.primeiraMusica
         label.adjustsFontSizeToFitWidth = true
         label.textColor = .white
-        label.font = .systemFont(ofSize: 18, weight: .light)
-        
+        label.font = UIFont(name: "FiraSans-Light", size: 18)
         self.view.addSubview(label)
         self.view.bringSubviewToFront(label)
         
@@ -183,7 +182,7 @@ class MapPlaylistController: BaseViewController<MapPlaylistView> {
         titleLabel?.numberOfLines = 0
         titleLabel?.adjustsFontSizeToFitWidth = true
         titleLabel?.textColor = .white
-        titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
+        titleLabel?.font = UIFont(name: "FiraSans-Bold", size: 16)
         titleLabel?.frame = CGRect(x: UIScreen.main.bounds.midX*0.45, y: UIScreen.main.bounds.midY, width: UIScreen.main.bounds.width/1.8, height: UIScreen.main.bounds.width/1.8)
         
         self.view.addSubview(titleLabel!)

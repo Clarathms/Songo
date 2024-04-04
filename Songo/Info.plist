@@ -21,6 +21,13 @@
 	<array>
 		<string>spotify</string>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>FiraSans-Bold.ttf</string>
+		<string>FiraSans-Regular.ttf</string>
+		<string>FiraSans-SemiBold.ttf</string>
+		<string>FiraSans-Light.ttf</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

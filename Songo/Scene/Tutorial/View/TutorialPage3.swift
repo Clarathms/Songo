@@ -81,7 +81,7 @@ struct TutorialPage3: View {
                             
                             Image(systemName: "waveform.badge.exclamationmark")
                                 .foregroundColor(Color(UIColor.fundoSecundario))
-                                .font(.system(size: 150))
+                                .font(Font.custom("FiraSans-Regular", size: 150))
                                 .scaledToFit()
                             
                             

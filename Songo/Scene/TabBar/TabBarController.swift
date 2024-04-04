@@ -12,10 +12,10 @@ import SwiftUI
 
 class TabBarController: UITabBarController {
     typealias Factory = MapSceneFactory
-    typealias ProfileFactory = ProfileSceneFactory
+    typealias ContactFactory = ContactSceneFactory
     typealias PlaylistFactory = PlaylistSceneFactory
 
-    let profileFactory : ProfileFactory
+    let contactFactory : ContactFactory
     let playlistFactory : PlaylistFactory
     let factory: Factory
     public var currentItem: UITabBarItem?
@@ -23,10 +23,10 @@ class TabBarController: UITabBarController {
     
     let locationController: LocationController
     
-    init(factory: Factory, locationController: LocationController,profileFactory: ProfileFactory, playlistFactory: PlaylistFactory) {
+    init(factory: Factory, locationController: LocationController,profileFactory: ContactFactory, playlistFactory: PlaylistFactory) {
         self.locationController = locationController
         self.factory = factory
-        self.profileFactory = profileFactory
+        self.contactFactory = profileFactory
         self.playlistFactory = playlistFactory
         super.init(nibName: nil, bundle: nil)
     }
@@ -56,7 +56,7 @@ class TabBarController: UITabBarController {
         let mapNavigationController = factory.createMapScene()
 
         let playlistNavigationController = playlistFactory.createPlaylistScene()
-        let profileNavigationController = profileFactory.createProfileScene()
+        let contactNavigationController = contactFactory.createContactScene()
         
         // 1 tab
         let mapTabBarItem = UITabBarItem(title: NSLocalizedString("MapTabBar", comment: "TabBarController: Name of the Map slot on Tab Bar."), image: UIImage(systemName: "map"), selectedImage: UIImage(systemName: "map.fill"))
@@ -69,14 +69,14 @@ class TabBarController: UITabBarController {
         playlistNavigationController.tabBarItem = playlistTabBarItem
 
         // 3 tab
-        let profileTabBarItem = UITabBarItem(title: NSLocalizedString("Perfil", comment: "TabBarController: Name of the Profile slot on Tab Bar."), image: UIImage(systemName: "person.crop.circle"), selectedImage: UIImage(systemName: "person.crop.circle.fill"))
+        let profileTabBarItem = UITabBarItem(title: NSLocalizedString("Contact Us", comment: "TabBarController: Name of the Contact Us slot on Tab Bar."), image: UIImage(systemName: "questionmark.circle"), selectedImage: UIImage(systemName: "questionmark.circle.fill"))
         profileTabBarItem.tag = 2
-        profileNavigationController.tabBarItem = profileTabBarItem
+        contactNavigationController.tabBarItem = profileTabBarItem
         
         // Adds the ViewControllers to the TabBar
-        setViewControllers([mapNavigationController
+        setViewControllers([mapNavigationController,
                             //playlistNavigationController,
-                            //profileNavigationController
+                            contactNavigationController
                            ],
                            animated: false)
         currentItem = mapTabBarItem
@@ -87,7 +87,7 @@ class TabBarController: UITabBarController {
         tabBar.tintColor = .white
         tabBar.unselectedItemTintColor = .white
      //   tabBar.barTintColor = .blue
-        tabBar.backgroundColor = .fundo
+        tabBar.backgroundColor = .fundoPlaylist
     }
     func setUpNavigationBar(){
         navigationController?.navigationBar.isHidden = true

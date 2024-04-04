@@ -23,7 +23,7 @@ class MusicPlaylistCell: UICollectionViewCell {
     let label:UILabel = {
         let label = UILabel()
         label.text = "No Title"
-        label.font = UIFont.systemFont(ofSize: 40)
+        label.font = UIFont(name: "FiraSans-Regular", size: 40)
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.1
         return label

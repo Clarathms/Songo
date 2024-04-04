@@ -38,7 +38,7 @@ class SongButtonView: UIButton {
         
     
                 
-        self.titleLabel?.font = .boldSystemFont(ofSize: 10)
+        self.titleLabel?.font = UIFont(name: "FiraSans-Regular", size: 10)
         layer.cornerRadius = 10
         isEnabled = true
 //        widthAnchor.constraint(equalToConstant: 30 * UIScreen.main.bounds.width / 5).isActive = true

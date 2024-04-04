@@ -32,12 +32,10 @@ class PlaylistViewController: UIViewController {
     
     func setupText () {
         message.text = "Em Construção..."
-        message.font = .preferredFont(forTextStyle: .headline, compatibleWith: .current)
         message.textColor = .fundo
         message.textAlignment = .center
         message.numberOfLines = 0
-        message.font = UIFont(name:"Fira Sans", size: 30.0)
-        message.font = UIFont.boldSystemFont(ofSize: 30)
+        message.font = UIFont(name: "FiraSans-Regular", size: 30)
         view.addSubview(message)
     }
     
